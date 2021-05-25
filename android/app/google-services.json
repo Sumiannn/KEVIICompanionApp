@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1045633800553",
+    "project_id": "keviifirebase",
+    "storage_bucket": "keviifirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045633800553:android:f79e0e315eddaaa5fe05f8",
+        "android_client_info": {
+          "package_name": "com.example.keviiapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045633800553-ckfqgf6ubv2hp3cs3ggshkllv68km0v0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3Ky7kXn_t84iVf8i2IJnbvgZlNpNbIgg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045633800553-ckfqgf6ubv2hp3cs3ggshkllv68km0v0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
