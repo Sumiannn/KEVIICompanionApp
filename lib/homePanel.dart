@@ -4,11 +4,13 @@ import 'bookingPage.dart';
 
 class homePanel extends StatelessWidget {
   String imrURL, eventName, brief;
+  StatelessWidget nextPage;
 
-  homePanel(String imgURL, String eventName, String brief) {
+  homePanel(String imgURL, String eventName, String brief, StatelessWidget nextPage) {
     this.imrURL = imgURL;
     this.eventName = eventName;
     this.brief = brief;
+    this.nextPage = nextPage;
   }
 
   @override
@@ -24,7 +26,7 @@ class homePanel extends StatelessWidget {
           onTap: () {
             Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => bookingPage())
+                MaterialPageRoute(builder: (context) => nextPage)
             );
           },
           child: Container(
