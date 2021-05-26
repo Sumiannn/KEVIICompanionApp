@@ -1,15 +1,26 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:keviiapp/accountPage.dart';
 
 import 'signup.dart';
+import 'homePanel.dart';
+import 'bookingPage.dart';
+import 'homePage.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget{
   Home({this.uid});
   final String uid;
+  @override
+  State<StatefulWidget> createState(){
+    return _HomeState();
+  }
+}
+class _HomeState extends State<Home> {
   final String title = "KEVII Community";
   User user = FirebaseAuth.instance.currentUser;
-
+  int _currentIndex = 0;
+  final List<Widget> _children = [homePage(Colors.blue),bookingPage(), accountPage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,14 +95,103 @@ class Home extends StatelessWidget {
                               text: "Facilities"
                             )
                           ]
+                        ),
+                        SizedBox(height: 20.0),
+                        Container(
+                          height: 500.0,
+                          child: TabBarView(
+                            children: [
+                              Container(
+                                child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: [
+                                    homePanel(
+                                        "https://scontent-xsp1-1.xx.fbcdn.net/v/t1.6435-9/40773051_735925123423298_3456762337506099200_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=973b4a&_nc_ohc=_BJ14eye4rIAX_qukC0&_nc_ht=scontent-xsp1-1.xx&oh=4a9661bf02f0605d04d76f02f2d653ce&oe=60D30A01",
+                                      "Check in for freshies",
+                                      "Click for more details",
+                                    )
+                                  ]
+                                )
+                              ),
+                              Container(
+                                  child: ListView(
+                                      scrollDirection: Axis.horizontal,
+                                      children: [
+                                        homePanel(
+                                          "https://scontent-xsp1-1.xx.fbcdn.net/v/t1.6435-9/40773051_735925123423298_3456762337506099200_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=973b4a&_nc_ohc=_BJ14eye4rIAX_qukC0&_nc_ht=scontent-xsp1-1.xx&oh=4a9661bf02f0605d04d76f02f2d653ce&oe=60D30A01",
+                                          "Check in for freshies",
+                                          "Click for more details",
+                                        )
+                                      ]
+                                  )
+                              ),
+                              Container(
+                                  child: ListView(
+                                      scrollDirection: Axis.horizontal,
+                                      children: [
+                                        homePanel(
+                                          "https://scontent-xsp1-1.xx.fbcdn.net/v/t1.6435-9/40773051_735925123423298_3456762337506099200_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=973b4a&_nc_ohc=_BJ14eye4rIAX_qukC0&_nc_ht=scontent-xsp1-1.xx&oh=4a9661bf02f0605d04d76f02f2d653ce&oe=60D30A01",
+                                          "Check in for freshies",
+                                          "Click for more details",
+                                        )
+                                      ]
+                                  )
+                              ),
+                              Container(
+                                  child: ListView(
+                                      scrollDirection: Axis.horizontal,
+                                      children: [
+                                        homePanel(
+                                          "https://scontent-xsp1-1.xx.fbcdn.net/v/t1.6435-9/40773051_735925123423298_3456762337506099200_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=973b4a&_nc_ohc=_BJ14eye4rIAX_qukC0&_nc_ht=scontent-xsp1-1.xx&oh=4a9661bf02f0605d04d76f02f2d653ce&oe=60D30A01",
+                                          "Check in for freshies",
+                                          "Click for more details",
+                                        ),
+                                        homePanel(
+                                          "https://scontent-xsp1-1.xx.fbcdn.net/v/t1.6435-9/40773051_735925123423298_3456762337506099200_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=973b4a&_nc_ohc=_BJ14eye4rIAX_qukC0&_nc_ht=scontent-xsp1-1.xx&oh=4a9661bf02f0605d04d76f02f2d653ce&oe=60D30A01",
+                                          "Check in for freshies",
+                                          "Click for more details",
+                                        )
+                                      ]
+                                  )
+                              )
+                            ]
+                          )
                         )
                       ]
                     )
                   ))
             ]
           ),
-        )
+        ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: onTabTapped,
+        currentIndex: _currentIndex,
+        backgroundColor: Color(0xFF820312),
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.amber,
+        items:[
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home_filled),
+            label: "Home"
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_box),
+            label: "Book",
+
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle_rounded),
+            label: "Account"
+          )
+
+        ]
+      ),
     );
+  }
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
   }
 }
 
