@@ -1,19 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:keviiapp/bookingPagePanel.dart';
+import 'package:keviiapp/signup.dart';
 
-import 'signup.dart';
-
-class LatestNewsPage extends StatelessWidget {
-  String headline, details;
-  final title = 'Latest News';
-  LatestNewsPage(String headline, String details) {
-    this.headline = headline;
-    this.details = details;
-  }
+class FacilitiesBookingPage extends StatelessWidget {
+  final title = "Check current bookings";
+  FacilitiesBookingPage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF820312),
       appBar: AppBar(
         backgroundColor: Color(0xFF820312),
         elevation: 0.0,
@@ -43,6 +40,23 @@ class LatestNewsPage extends StatelessWidget {
             },
           )
         ],
+      ),
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection("Facilities").snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+              itemCount: snapshot.data.docs.length,
+              itemBuilder: (context, index) {
+                DocumentSnapshot bookings = snapshot.data.docs[index];
+                return bookingPagePanel(
+                    bookings['Venue'], bookings['Date'], bookings['Time']);
+              },
+            );
+          }
+          return Text('Please Wait');
+        }
       ),
     );
   }
