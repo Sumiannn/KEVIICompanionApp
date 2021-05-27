@@ -98,7 +98,7 @@ class _HomeState extends State<Home> {
                         ),
                         SizedBox(height: 20.0),
                         Container(
-                          height: 500.0,
+                          height: 410.0,
                           child: TabBarView(
                             children: [
                               Container(

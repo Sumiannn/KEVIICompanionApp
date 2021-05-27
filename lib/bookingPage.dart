@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:keviiapp/bookingPagePanel.dart';
 import 'package:keviiapp/venuePanel.dart';
 
 import 'signup.dart';
@@ -10,16 +12,13 @@ class bookingPage extends StatelessWidget {
   final CollectionReference _bookings = FirebaseFirestore.instance.collection("Facilities");
   bookingPage();
   List<dynamic> stuff = [];
+
   getDoc() async {
-    FirebaseFirestore.instance
-        .collection('users')
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        stuff.add(doc.data());
-        print(doc["venue"]);
-          });
-        });
+    _bookings.get().then((querySnapshot) {
+      querySnapshot.docs.forEach((result) {
+        return (result.data().values.first.toString());
+      });
+    });
   }
 
   @override
@@ -70,7 +69,24 @@ class bookingPage extends StatelessWidget {
               fontWeight: FontWeight.w800,
               fontSize: 30.0,
             ),),
-
+            SizedBox(height: 20.0,),
+            Text(getDoc().toString()),
+            Expanded(child: SizedBox(
+              height: 200.0,
+                child: new ListView(
+                  scrollDirection: Axis.vertical,
+                  children: [bookingPagePanel("Venue")],
+                  /*
+                  children: [bookingPagePanel(
+                      _bookings.get().then((querySnapshot) {
+                        querySnapshot.docs.
+                        })
+                      })
+                  )],
+                  
+                   */
+                ),
+            ))
             /*Container(
               child: ListView(
                 scrollDirection: Axis.vertical,
