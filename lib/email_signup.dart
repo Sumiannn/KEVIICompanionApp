@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -55,8 +56,33 @@ class _EmailSignUpState extends State<EmailSignUp> {
                       },
                     ),
                   ),
+
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: TextFormField(
+                      controller: nusidController,
+                      decoration: InputDecoration(
+                        hintText: "Enter NUSID",
+                        hintStyle: TextStyle(
+                            color: Colors.amber,
+                            fontFamily: 'Montserrat'
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: BorderSide(color: Colors.amber),
+                        ),
+                      ),
+                      // The validator receives the text that the user has entered.
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Enter Room Number';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical:16.0, horizontal: 16.0),
                     child: TextFormField(
                       controller: roomController,
                       decoration: InputDecoration(
@@ -80,7 +106,7 @@ class _EmailSignUpState extends State<EmailSignUp> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: TextFormField(
                       obscureText: true,
                       controller: passwordController,
@@ -135,12 +161,18 @@ class _EmailSignUpState extends State<EmailSignUp> {
         .createUserWithEmailAndPassword(
         email: emailController.text, password: passwordController.text)
         .then((result) {
+      FirebaseFirestore.instance.collection("users").add({
+        "email": emailController.text,
+        "room": roomController.text,
+        "nusid": nusidController.text,
+      });
       dbRef.child(result.user.uid).set({
         "email": emailController.text,
         "room": roomController.text,
         "nusid": nusidController.text,
 
       }).then((res) {
+        print("Success!");
         isLoading = false;
         Navigator.pushReplacement(
           context,
