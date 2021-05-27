@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:keviiapp/FacilitiesBookingPage.dart';
 import 'package:keviiapp/accountPage.dart';
 
 import 'signup.dart';
 import 'homePanel.dart';
-import 'bookingPage.dart';
 import 'LatestNewsPage.dart';
 
 class Home extends StatefulWidget{
@@ -20,7 +20,6 @@ class _HomeState extends State<Home> {
   final String title = "KEVII Community";
   User user = FirebaseAuth.instance.currentUser;
   int _currentIndex = 0;
-  //final List<Widget> _children = [h(omePageColors.blue),bookingPage(), accountPage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,10 +108,7 @@ class _HomeState extends State<Home> {
                                         "https://scontent-xsp1-1.xx.fbcdn.net/v/t1.6435-9/40773051_735925123423298_3456762337506099200_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=973b4a&_nc_ohc=_BJ14eye4rIAX_qukC0&_nc_ht=scontent-xsp1-1.xx&oh=4a9661bf02f0605d04d76f02f2d653ce&oe=60D30A01",
                                       "Check in for freshies",
                                       "Click for more details",
-                                        latestNewsPage(
-                                          "KEVII wins champions",
-                                          "click here for more details",
-                                        )
+                                      LatestNewsPage('Some Headline', 'Subtitle'),
                                     )
                                   ]
                                 )
@@ -125,10 +121,7 @@ class _HomeState extends State<Home> {
                                           "https://scontent-xsp1-1.xx.fbcdn.net/v/t1.6435-9/40773051_735925123423298_3456762337506099200_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=973b4a&_nc_ohc=_BJ14eye4rIAX_qukC0&_nc_ht=scontent-xsp1-1.xx&oh=4a9661bf02f0605d04d76f02f2d653ce&oe=60D30A01",
                                           "Check in for freshies",
                                           "Click for more details",
-                                          latestNewsPage(
-                                              "KEVII wins champions",
-                                              "click here for more details",
-                                          )
+                                          LatestNewsPage('Some headlines', 'Subtitle'),
                                         )
                                       ]
                                   )
@@ -141,10 +134,7 @@ class _HomeState extends State<Home> {
                                           "https://scontent-xsp1-1.xx.fbcdn.net/v/t1.6435-9/40773051_735925123423298_3456762337506099200_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=973b4a&_nc_ohc=_BJ14eye4rIAX_qukC0&_nc_ht=scontent-xsp1-1.xx&oh=4a9661bf02f0605d04d76f02f2d653ce&oe=60D30A01",
                                           "Check in for freshies",
                                           "Click for more details",
-                                            latestNewsPage(
-                                              "KEVII wins champions",
-                                              "click here for more details",
-                                            )
+                                            LatestNewsPage('Some Headlines', 'Subtitle'),
                                         )
                                       ]
                                   )
@@ -157,13 +147,13 @@ class _HomeState extends State<Home> {
                                           "https://scontent-xsp1-2.xx.fbcdn.net/v/t1.6435-9/149120258_1400615820287555_8073421677754248923_n.jpg?_nc_cat=104&ccb=1-3&_nc_sid=973b4a&_nc_ohc=6K0JZvb-_YgAX9YNiRP&_nc_ht=scontent-xsp1-2.xx&oh=49731e8e72eee2233b6834e268316740&oe=60D35263",
                                           "Comm Hall",
                                           "Click for booking",
-                                          bookingPage(),
+                                          FacilitiesBookingPage(),
                                         ),
                                         homePanel(
                                           "https://scontent-xsp1-2.xx.fbcdn.net/v/t1.6435-9/161352609_1418565688492568_6792285338831241728_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=973b4a&_nc_ohc=RrLl48AXTl8AX9f00s_&_nc_ht=scontent-xsp1-2.xx&oh=9e245fd158292ee72dee0af67ab814c4&oe=60D4A8A4",
                                           "Multi Purpose Court",
                                           "Click for booking",
-                                          bookingPage(),
+                                          FacilitiesBookingPage(),
                                         )
                                       ]
                                   )
