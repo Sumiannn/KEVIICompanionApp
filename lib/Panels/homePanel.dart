@@ -19,7 +19,7 @@ class homePanel extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
-        elevation: 5.0,
+        elevation: 0.0,
         child: InkWell(
           onTap: () {
             Navigator.push(
@@ -51,6 +51,7 @@ class homePanel extends StatelessWidget {
                           fontWeight: FontWeight.w800,
                         ),
                       ),
+                      Column(),
                       SizedBox(height: 3.0,),
                       Text(
                           brief,

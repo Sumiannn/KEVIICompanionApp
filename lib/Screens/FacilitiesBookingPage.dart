@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/bookingPagePanel.dart';
+import 'package:keviiapp/Panels/bookingPagePanel.dart';
 import 'package:keviiapp/signup.dart';
 
 class FacilitiesBookingPage extends StatelessWidget {
@@ -11,6 +11,7 @@ class FacilitiesBookingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF820312),
       appBar: AppBar(
         backgroundColor: Color(0xFF820312),
         elevation: 0.0,
@@ -19,7 +20,7 @@ class FacilitiesBookingPage extends StatelessWidget {
           style: TextStyle(
             color: Colors.amber,
             fontWeight: FontWeight.w600,
-            fontSize: 30.0,
+            fontSize: 22.0,
             fontFamily: 'Montserrat',
           ),
         ),
@@ -55,7 +56,7 @@ class FacilitiesBookingPage extends StatelessWidget {
               },
             );
           }
-          return Text('Please Wait');
+          return Text('No bookings currently');
         }
       ),
     );
