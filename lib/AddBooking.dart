@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:keviiapp/signup.dart';
@@ -14,7 +15,15 @@ class _AddBookingState extends State<AddBooking> {
   _AddBookingState();
   String title = 'Add a Booking', venueChoose;
   List venueList = ["MPC", "Comm Hall", "Dance Studio", "Dining Hall"];
-
+  @override
+  void initState(){
+    _getVenueList();
+    super.initState();
+  }
+  _getVenueList() {
+    Stream snapshot = FirebaseFirestore.instance.collection(
+        'Available Facilities').snapshots();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +58,39 @@ class _AddBookingState extends State<AddBooking> {
           )
         ],
       ),
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection('Available Facilities').snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Text('Loading, please wait');
+          }
+            return DropdownButton(
+              hint: Text('Choose Venue'),
+              dropdownColor: Colors.grey,
+              icon: Icon(Icons.arrow_drop_down_circle_sharp),
+              iconSize: 36,
+              isExpanded: true,
+              style: TextStyle(
+                fontFamily: 'Montserrat',
+                color: Colors.black,
+                fontSize: 22.0,
+              ),
+              value: venueChoose,
+              onChanged: (newValue) {
+                setState(() {
+                  venueChoose = newValue;
+                });
+              },
+              items: snapshot.data.docs.map((DocumentSnapshot document){
+                return DropdownMenuItem(
+                  value: document,
+                  child: Text(document.data()),
+                );
+              }));
+          }
+        }
+      )
+        /*
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -85,6 +127,8 @@ class _AddBookingState extends State<AddBooking> {
           ),
         ),
       ),
+
+         */
     );
   }
 }
