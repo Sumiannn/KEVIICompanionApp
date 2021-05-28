@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'signup.dart';
+import '../signup.dart';
 
 class LatestNewsPage extends StatelessWidget {
   String headline, details;

@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/email_login.dart';
+import 'package:keviiapp/Screens/email_login.dart';
 import 'package:splashscreen/splashscreen.dart';
 
-import 'home.dart';
+import 'Screens/home.dart';
 import 'signup.dart';
 
 void main() async {

@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/FacilitiesBookingPage.dart';
-import 'package:keviiapp/accountPage.dart';
+import 'package:keviiapp/Panels/homePanel.dart';
+import 'package:keviiapp/Screens/FacilitiesBookingPage.dart';
+import 'package:keviiapp/Screens/accountPage.dart';
 
-import 'signup.dart';
-import 'homePanel.dart';
+import '../signup.dart';
 import 'LatestNewsPage.dart';
 
 class Home extends StatefulWidget{
