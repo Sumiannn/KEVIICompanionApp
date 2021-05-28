@@ -81,15 +81,16 @@ class _AddBookingState extends State<AddBooking> {
                   venueChoose = newValue;
                 });
               },
-              items: snapshot.data.docs.map((DocumentSnapshot document){
-                return DropdownMenuItem(
-                  value: document,
-                  child: Text(document.data()),
+              items: snapshot.data.docs.map<DropdownMenuItem<String>>((DocumentSnapshot document){
+                return new DropdownMenuItem<String>(
+                  value: document['Value'],
+                  child: Text(document['Value']),
                 );
-              }));
+              }).toList(),
+            );
           }
-        }
-      )
+        ),
+      );
         /*
       body: Center(
         child: Padding(
@@ -129,6 +130,5 @@ class _AddBookingState extends State<AddBooking> {
       ),
 
          */
-    );
   }
 }
