@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 
 class homePanel extends StatelessWidget {
-  String imrURL, eventName, brief;
+  String imrURL, headline, subheading, news;
   StatelessWidget nextPage;
-
-  homePanel(String imgURL, String eventName, String brief, StatelessWidget nextPage) {
-    this.imrURL = imgURL;
-    this.eventName = eventName;
-    this.brief = brief;
-    this.nextPage = nextPage;
-  }
+  homePanel(this.imrURL, this.headline, this.subheading, this.news, this.nextPage);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +37,7 @@ class homePanel extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        eventName,
+                        headline,
                         style: TextStyle(
                           color: Colors.amber,
                           fontSize: 22.0,
@@ -54,7 +48,7 @@ class homePanel extends StatelessWidget {
                       Column(),
                       SizedBox(height: 3.0,),
                       Text(
-                          brief,
+                          subheading,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20.0,

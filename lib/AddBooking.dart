@@ -1,29 +1,38 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:keviiapp/Screens/FacilitiesBookingPage.dart';
 import 'package:keviiapp/signup.dart';
+import 'package:dropdown_date_picker/dropdown_date_picker.dart';
 
 class AddBooking extends StatefulWidget {
-  const AddBooking({Key key}) : super(key: key);
-
+  static final now = DateTime.now();
+  final dropdownDatePicker = DropdownDatePicker(
+    firstDate: ValidDate(year: now.year, month: now.month, day: now.day),
+    lastDate: ValidDate(year: now.year + 1, month: 12, day: 31),
+    textStyle: TextStyle(fontFamily: 'Montserrat', color: Colors.white, fontWeight: FontWeight.bold),
+    dropdownColor: Colors.amber,
+    dateHint: DateHint(year: 'year', month: 'month', day: 'day'),
+    ascending: true,
+  );
   @override
   _AddBookingState createState() => _AddBookingState();
 }
 
 class _AddBookingState extends State<AddBooking> {
+  String title = 'Add a Booking',
+      venueChoose,
+      startChoose,
+      endChoose,
+      periodChoose;
+
   _AddBookingState();
-  String title = 'Add a Booking', venueChoose;
-  List venueList = ["MPC", "Comm Hall", "Dance Studio", "Dining Hall"];
+
   @override
-  void initState(){
-    _getVenueList();
+  void initState() {
     super.initState();
   }
-  _getVenueList() {
-    Stream snapshot = FirebaseFirestore.instance.collection(
-        'Available Facilities').snapshots();
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,83 +61,329 @@ class _AddBookingState extends State<AddBooking> {
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => SignUp()),
-                        (Route<dynamic> route) => false);
+                    (Route<dynamic> route) => false);
               });
             },
           )
         ],
       ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('Available Facilities').snapshots(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return Text('Loading, please wait');
-          }
-            return DropdownButton(
-              hint: Text('Choose Venue'),
-              dropdownColor: Colors.grey,
-              icon: Icon(Icons.arrow_drop_down_circle_sharp),
-              iconSize: 36,
-              isExpanded: true,
-              style: TextStyle(
-                fontFamily: 'Montserrat',
-                color: Colors.black,
-                fontSize: 22.0,
-              ),
-              value: venueChoose,
-              onChanged: (newValue) {
-                setState(() {
-                  venueChoose = newValue;
-                });
-              },
-              items: snapshot.data.docs.map<DropdownMenuItem<String>>((DocumentSnapshot document){
-                return new DropdownMenuItem<String>(
-                  value: document['Value'],
-                  child: Text(document['Value']),
-                );
-              }).toList(),
-            );
-          }
-        ),
-      );
-        /*
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Container(
-            padding: EdgeInsets.only(left: 16.0, right: 16.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(2.0),
-              border: Border.all(color: Colors.amber, width: 1.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('Available Facilities')
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Text('Loading, please wait');
+                  }
+                  return Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: DropdownButton(
+                      hint: Text(
+                        'Choose Venue',
+                        style: TextStyle(
+                            color: Colors.amber,
+                            fontSize: 22.0,
+                            fontFamily: 'Montserrat'),
+                      ),
+                      dropdownColor: Colors.grey,
+                      icon: Icon(
+                        Icons.arrow_drop_down_circle_sharp,
+                        color: Colors.amber,
+                      ),
+                      iconSize: 22.0,
+                      isExpanded: true,
+                      style: TextStyle(
+                        fontFamily: 'Montserrat',
+                        color: Colors.amber,
+                        fontSize: 22.0,
+                      ),
+                      value: venueChoose,
+                      onChanged: (newValue) {
+                        setState(() {
+                          venueChoose = newValue;
+                        });
+                      },
+                      items: snapshot.data.docs.map<DropdownMenuItem<String>>(
+                          (DocumentSnapshot document) {
+                        return new DropdownMenuItem<String>(
+                          value: document['Value'],
+                          child: Text(
+                            document['Value'],
+                            style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontSize: 15.0,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  );
+                }),
+            SizedBox(height: 5.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection('Time')
+                        .orderBy('Hour')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Text('Loading, please wait');
+                      }
+                      return Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        child: DropdownButton(
+                          hint: Text(
+                            'Choose Start Time',
+                            style: TextStyle(
+                                color: Colors.amber,
+                                fontSize: 22.0,
+                                fontFamily: 'Montserrat'),
+                          ),
+                          dropdownColor: Colors.grey,
+                          icon: Icon(
+                            Icons.arrow_drop_down_circle_sharp,
+                            color: Colors.amber,
+                          ),
+                          iconSize: 22.0,
+                          isExpanded: false,
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            color: Colors.amber,
+                            fontSize: 22.0,
+                          ),
+                          value: startChoose,
+                          onChanged: (newValue) {
+                            setState(() {
+                              startChoose = newValue;
+                            });
+                          },
+                          items: snapshot.data.docs
+                              .map<DropdownMenuItem<String>>(
+                                  (DocumentSnapshot document) {
+                            return new DropdownMenuItem<String>(
+                              value: document['Hour'].toString(),
+                              child: Text(
+                                document['Hour'].toString(),
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 15.0,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      );
+                    }),
+                SizedBox(width: 6.0),
+                StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection('Period')
+                        .orderBy('Period')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Text('Loading, please wait');
+                      }
+                      return Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        child: DropdownButton(
+                          hint: Text(
+                            'AM/PM',
+                            style: TextStyle(
+                                color: Colors.amber,
+                                fontSize: 22.0,
+                                fontFamily: 'Montserrat'),
+                          ),
+                          dropdownColor: Colors.grey,
+                          icon: Icon(
+                            Icons.arrow_drop_down_circle_sharp,
+                            color: Colors.amber,
+                          ),
+                          iconSize: 22.0,
+                          isExpanded: false,
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            color: Colors.amber,
+                            fontSize: 22.0,
+                          ),
+                          value: periodChoose,
+                          onChanged: (newValue) {
+                            setState(() {
+                              periodChoose = newValue;
+                            });
+                          },
+                          items: snapshot.data.docs
+                              .map<DropdownMenuItem<String>>(
+                                  (DocumentSnapshot document) {
+                            return new DropdownMenuItem<String>(
+                              value: document['Period'],
+                              child: Text(
+                                document['Period'],
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 15.0,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      );
+                    })
+              ],
             ),
-            child: DropdownButton(
-              hint: Text('Choose Venue'),
-              dropdownColor: Colors.grey,
-              icon: Icon(Icons.arrow_drop_down_circle_sharp),
-              iconSize: 36,
-              isExpanded: true,
-              style: TextStyle(
-                fontFamily: 'Montserrat',
-                color: Colors.black,
-                fontSize: 22.0,
+            SizedBox(height: 5.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection('Time')
+                        .orderBy('Hour')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Text('Loading, please wait');
+                      }
+                      return Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        child: DropdownButton(
+                          hint: Text(
+                            'Choose End Time',
+                            style: TextStyle(
+                                color: Colors.amber,
+                                fontSize: 22.0,
+                                fontFamily: 'Montserrat'),
+                          ),
+                          dropdownColor: Colors.grey,
+                          icon: Icon(
+                            Icons.arrow_drop_down_circle_sharp,
+                            color: Colors.amber,
+                          ),
+                          iconSize: 22.0,
+                          isExpanded: false,
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            color: Colors.amber,
+                            fontSize: 22.0,
+                          ),
+                          value: endChoose,
+                          onChanged: (newValue) {
+                            setState(() {
+                              endChoose = newValue;
+                            });
+                          },
+                          items: snapshot.data.docs
+                              .map<DropdownMenuItem<String>>(
+                                  (DocumentSnapshot document) {
+                            return new DropdownMenuItem<String>(
+                              value: document['Hour'].toString(),
+                              child: Text(
+                                document['Hour'].toString(),
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 15.0,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      );
+                    }),
+                SizedBox(width: 6.0),
+                StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection('Period')
+                        .orderBy('Period')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Text('Loading, please wait');
+                      }
+                      return Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        child: DropdownButton(
+                          hint: Text(
+                            'AM/PM',
+                            style: TextStyle(
+                                color: Colors.amber,
+                                fontSize: 22.0,
+                                fontFamily: 'Montserrat'),
+                          ),
+                          dropdownColor: Colors.grey,
+                          icon: Icon(
+                            Icons.arrow_drop_down_circle_sharp,
+                            color: Colors.amber,
+                          ),
+                          iconSize: 22.0,
+                          isExpanded: false,
+                          style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            color: Colors.amber,
+                            fontSize: 22.0,
+                          ),
+                          value: periodChoose,
+                          onChanged: (newValue) {
+                            setState(() {
+                              periodChoose = newValue;
+                            });
+                          },
+                          items: snapshot.data.docs
+                              .map<DropdownMenuItem<String>>(
+                                  (DocumentSnapshot document) {
+                            return new DropdownMenuItem<String>(
+                              value: document['Period'],
+                              child: Text(
+                                document['Period'],
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 15.0,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      );
+                    })
+              ],
+            ),
+            SizedBox(height: 5.0),
+            Column(
+              children: <Widget>[
+                widget.dropdownDatePicker,
+              ],
+            ),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  addBooking();
+                },
+                child: Text('Add Booking'),
               ),
-              value: venueChoose,
-              onChanged: (newValue) {
-                setState(() {
-                  venueChoose = newValue;
-                });
-              },
-              items: venueList.map((venueItem){
-                return DropdownMenuItem(
-                  value: venueItem,
-                child: Text(venueItem),
-              );
-              }).toList(),
-            ),
-          ),
+            )
+          ],
         ),
       ),
+    );
+  }
 
-         */
+  void addBooking() {
+    FirebaseFirestore.instance.collection('Facilities').add({
+      'Date': widget.dropdownDatePicker.getDate(),
+      'Start time': startChoose + periodChoose,
+      'End time': endChoose + periodChoose,
+      'Venue': venueChoose
+    });
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => FacilitiesBookingPage()));
   }
 }

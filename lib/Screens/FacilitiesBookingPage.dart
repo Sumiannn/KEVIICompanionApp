@@ -52,7 +52,7 @@ class FacilitiesBookingPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 DocumentSnapshot bookings = snapshot.data.docs[index];
                 return bookingPagePanel(
-                    bookings['Venue'], bookings['Date'], bookings['Time']);
+                    bookings['Venue'], bookings['Date'], bookings['Start time']);
               },
             );
           }

@@ -34,20 +34,10 @@ class IntroScreen extends StatelessWidget {
     return new SplashScreen(
         navigateAfterSeconds: result != null ? Home(uid: result.uid) : EmailLogIn(),
         seconds: 5,
-        title: new Text(
-          'KEVII Community App',
-          style: new TextStyle(
-              fontFamily:'Montserrat',
-              fontWeight: FontWeight.bold,
-              fontSize: 20.0,
-              color: Colors.amber),
-        ),
-        image: new Image.asset('assets/image/KE2.jpg',
-            height: 300,
-            width: 300),
+        image: new Image.asset('assets/image/KE2.jpg', fit: BoxFit.cover,),
         backgroundColor: Color(0xFF820312),
         styleTextUnderTheLoader: new TextStyle(),
-        photoSize: 30.0,
+        photoSize: 200.0,
         onClick: () => print("flutter"),
         loaderColor: Colors.amber);
   }
