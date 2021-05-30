@@ -2,12 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/AddBooking.dart';
+import 'package:keviiapp/Screens/AddBooking.dart';
 import 'package:keviiapp/Panels/homePanel.dart';
 import 'package:keviiapp/Screens/FacilitiesBookingPage.dart';
 import 'package:keviiapp/Screens/accountPage.dart';
 import 'package:keviiapp/Screens/email_login.dart';
 
+import 'AddBooking.dart';
 import 'LatestNewsPage.dart';
 
 class Home extends StatefulWidget {
@@ -215,7 +216,7 @@ class _HomeState extends State<Home> {
                                       "Make A Booking",
                                       "Click to book",
                                       "Empty",
-                                      FacilitiesBookingPage(),
+                                      AddBooking(),
                                     ),
                                   ]))
                             ]))
