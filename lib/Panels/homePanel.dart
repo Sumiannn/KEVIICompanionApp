@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class homePanel extends StatelessWidget {
   String imrURL, headline, subheading, news;
-  StatelessWidget nextPage;
-  homePanel(this.imrURL, this.headline, this.subheading, this.news, this.nextPage);
+  Widget nextPage;
+
+  homePanel(
+      this.imrURL, this.headline, this.subheading, this.news, this.nextPage);
 
   @override
   Widget build(BuildContext context) {
@@ -17,18 +19,15 @@ class homePanel extends StatelessWidget {
         child: InkWell(
           onTap: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => nextPage)
-            );
+                context, MaterialPageRoute(builder: (context) => nextPage));
           },
           child: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(this.imrURL),
-                  fit: BoxFit.cover,
-                  scale: 2.0,
-                )
-            ),
+              image: NetworkImage(this.imrURL),
+              fit: BoxFit.cover,
+              scale: 2.0,
+            )),
             width: 310.0,
             child: Padding(
                 padding: EdgeInsets.all(12.0),
@@ -46,21 +45,18 @@ class homePanel extends StatelessWidget {
                         ),
                       ),
                       Column(),
-                      SizedBox(height: 3.0,),
-                      Text(
-                          subheading,
+                      SizedBox(
+                        height: 3.0,
+                      ),
+                      Text(subheading,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20.0,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w600,
                           ))
-                    ]
-                )
-            ),
+                    ])),
           ),
-        )
-    );
+        ));
   }
 }
-

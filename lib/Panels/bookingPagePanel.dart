@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/AddBooking.dart';
+import 'package:keviiapp/Screens/AddBooking.dart';
 import 'package:keviiapp/Screens/FacilitiesBookingPage.dart';
 
 class bookingPagePanel extends StatelessWidget {
