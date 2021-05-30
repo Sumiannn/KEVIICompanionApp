@@ -37,5 +37,7 @@ A few of the things you can do with KEVII Companion App:
 5) Run the app on the specified emulator
 
 ## Contributors
+1) Thia Su Mian
+2) Chng Lip Kiam
 
 
