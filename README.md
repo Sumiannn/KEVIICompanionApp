@@ -28,6 +28,19 @@ A few of the things you can do with KEVII Companion App:
 
 </p>
 
+## Potential Features
+- KEIPS points system
+- Open Jio Function for KEVII residents for block events
+
+## Current Progress
+- Established link between front-end and backend using FIreFlutter
+- First draft of how Home Page and Facilities page will look like
+- Draft and rough outline of registration page/ signup page/ facilities booking page which utilise Firebase
+
+## Development Plan
+- 31/05 - 13/06: Create all relevant pages and links in the application
+- 14/06 - 28/06: Work on desired UI, Implement the protoype and do system testing 
+- Remaining: Continue system testing, implement the features under Potential Features
 
 ## Build Process
 1) Follow the [Flutter Installation Guide](https://flutter.dev/docs/get-started/install) to set up the environment needed. 

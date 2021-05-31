@@ -212,12 +212,6 @@ class _AddBookingState extends State<AddBooking> {
         dateChosen.day, startTime.hour, startTime.minute);
     DateTime chosenEnd = DateTime(dateChosen.year, dateChosen.month,
         dateChosen.day, endTime.hour, endTime.minute);
-    /*
-    AllBookings.forEach((doc) {
-      if (doc== venueChoose)
-    });
-
-     */
     FirebaseFirestore.instance.collection('Facilities').add({
       'Date': dateChosen.day.toString() +
           '-' +
