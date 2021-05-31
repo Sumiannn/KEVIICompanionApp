@@ -7,23 +7,13 @@ import 'package:flutter/rendering.dart';
 import 'package:keviiapp/Screens/FacilitiesBookingPage.dart';
 import 'package:keviiapp/signup.dart';
 
-
 class AddBooking extends StatefulWidget {
-  static final DateTime isNow = DateTime(
-    DateTime.now().year,
-    DateTime.now().month,
-    DateTime.now().day,
-    DateTime.now().hour,
-    DateTime.now().minute,
-  ).add(const Duration(hours: 8));
-
   @override
   _AddBookingState createState() => _AddBookingState();
 }
 
 class _AddBookingState extends State<AddBooking> {
-  String title = 'Add a Booking',
-      venueChoose;
+  String title = 'Add a Booking', venueChoose;
 
   DateTime dateChosen, start;
   TimeOfDay startTime, endTime;
@@ -69,8 +59,7 @@ class _AddBookingState extends State<AddBooking> {
 
   Future<Null> selectEndTimePicker(BuildContext context) async {
     final TimeOfDay timePicked = await showTimePicker(
-        context: context,
-        initialTime: TimeOfDay.fromDateTime(isNow));
+        context: context, initialTime: TimeOfDay.fromDateTime(isNow));
     if (timePicked != null) {
       setState(() {
         endTime = timePicked;
@@ -117,28 +106,35 @@ class _AddBookingState extends State<AddBooking> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            //(isNow.toString()),
             ElevatedButton(
-              child: Text('Pick a Date'),
+              child: dateChosen == null
+                  ? Text('Select a Date: ')
+                  : Text('Selected Date: ' +
+                      dateChosen.day.toString() +
+                      '-' +
+                      dateChosen.month.toString() +
+                      '-' +
+                      dateChosen.year.toString()),
               onPressed: () {
                 selectDatePicker(context);
               },
             ),
-            dateChosen == null ? Text('Selected Date: ') : Text('Selected Date: ' + dateChosen.day.toString() + '-' + dateChosen.month.toString() + '-' + dateChosen.year.toString()),
             ElevatedButton(
-              child: Text('Pick a Start Time'),
+              child: startTime == null
+                  ? Text('Start Time: ')
+                  : Text('Start Time: ' + startTime.format(context)),
               onPressed: () {
                 selectStartTimePicker(context);
               },
             ),
-            startTime == null ? Text('Start: ') : Text('Start: ' + startTime.format(context)),
             ElevatedButton(
-              child: Text('Pick an End Time'),
+              child: endTime == null
+                  ? Text('End Time: ')
+                  : Text('End Time: ' + endTime.format(context)),
               onPressed: () {
                 selectEndTimePicker(context);
               },
             ),
-            endTime == null ? Text('End: ') : Text('End: ' + endTime.format(context)),
             StreamBuilder(
                 stream: FirebaseFirestore.instance
                     .collection('Available Facilities')
@@ -209,14 +205,13 @@ class _AddBookingState extends State<AddBooking> {
   }
 
   void addBooking() {
-    Stream<QuerySnapshot> AllBookings = FirebaseFirestore.instance.collection('Facilities').snapshots();
+    Stream<QuerySnapshot> AllBookings =
+        FirebaseFirestore.instance.collection('Facilities').snapshots();
 
     DateTime chosenStart = DateTime(dateChosen.year, dateChosen.month,
-            dateChosen.day, startTime.hour, startTime.minute)
-        ;
+        dateChosen.day, startTime.hour, startTime.minute);
     DateTime chosenEnd = DateTime(dateChosen.year, dateChosen.month,
-            dateChosen.day, endTime.hour, endTime.minute)
-        ;
+        dateChosen.day, endTime.hour, endTime.minute);
     /*
     AllBookings.forEach((doc) {
       if (doc== venueChoose)
@@ -232,8 +227,8 @@ class _AddBookingState extends State<AddBooking> {
       'Start time':
           TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
               .format(context),
-      'End time':
-          TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute).format(context),
+      'End time': TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
+          .format(context),
       'Venue': venueChoose,
       'Start Time (Timestamp)': chosenStart.subtract(const Duration(hours: 8)),
       'End Time (Timestamp)': chosenEnd.subtract(const Duration(hours: 8)),
