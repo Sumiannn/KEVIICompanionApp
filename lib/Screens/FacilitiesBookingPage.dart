@@ -43,7 +43,7 @@ class FacilitiesBookingPage extends StatelessWidget {
         ],
       ),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection("Facilities").snapshots(),
+        stream: FirebaseFirestore.instance.collection("Facilities").orderBy('Start Time (Timestamp)').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(

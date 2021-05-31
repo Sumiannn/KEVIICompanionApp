@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:keviiapp/Screens/AddBooking.dart';
 import 'package:keviiapp/Screens/FacilitiesBookingPage.dart';
 
+import '../BookingDataPage.dart';
+
 class bookingPagePanel extends StatelessWidget {
   final Color boxColor = Colors.amberAccent;
   final Color textColor = Colors.white;
@@ -43,7 +45,7 @@ class bookingPagePanel extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AddBooking(),
+                  builder: (context) => BookingDataPage(venue, time, time, date),
                 ));
           },
           child: Container(

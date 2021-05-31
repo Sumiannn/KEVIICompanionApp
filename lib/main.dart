@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'KEVII Community',
       theme: ThemeData(
+        fontFamily: 'Montserrat',
         primarySwatch: Colors.amber,
       ),
       home: IntroScreen(),
