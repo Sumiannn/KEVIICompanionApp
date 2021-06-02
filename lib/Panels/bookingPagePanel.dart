@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:keviiapp/Screens/AddBooking.dart';
 import 'package:keviiapp/Screens/FacilitiesBookingPage.dart';
 
-import '../BookingDataPage.dart';
+import '../Screens/BookingDataPage.dart';
 
 class bookingPagePanel extends StatelessWidget {
   final Color boxColor = Colors.amberAccent;
