@@ -62,13 +62,11 @@ class _EmailLogInState extends State<EmailLogIn> {
                   )),
                 ),
               ),
-
               Positioned(
                 width: MediaQuery.of(context).size.width * 0.8,
                 bottom: MediaQuery.of(context).size.height * 0.4,
                 left: MediaQuery.of(context).size.width * 0.1,
                 child: TextFormField(
-                  autofocus: true,
                   controller: emailController,
                   decoration: InputDecoration(
                     filled: true,

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:keviiapp/signup.dart';
-import 'colorScheme.dart';
+import '../colorScheme.dart';
 
 class BookingDataPage extends StatefulWidget {
   String venue, startTime, endTime, date;
