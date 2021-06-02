@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:keviiapp/Screens/email_signup.dart';
 import 'package:keviiapp/signup.dart';
-
+import 'package:keviiapp/colorScheme.dart';
 import 'home.dart';
 
 class EmailLogIn extends StatefulWidget {
@@ -20,32 +21,68 @@ class _EmailLogInState extends State<EmailLogIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFF820312),
+        backgroundColor: bgColor,
         body: Form(
             key: _formKey,
             child: SingleChildScrollView(
-                child: Column(children: <Widget>[
-              SizedBox(height: 100.0),
+                child: Stack(alignment: Alignment.center, children: <Widget>[
               Container(
-                width: 300.0,
-                height: 300.0,
-                child: Image.asset(
-                  'assets/image/KE2.jpg',
-                  fit: BoxFit.cover,
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: CustomPaint(
+                  painter: pathPainter(),
                 ),
               ),
-              SizedBox(height: 30.0),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+                  Positioned(
+                    top:0,
+                    child: Container(
+                      height: 307,
+                      width: MediaQuery.of(context).size.width,
+                      child: Center(
+                        child: Image.asset(
+                          'assets/image/KEVIILogo.png', fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+              Positioned(
+                bottom: MediaQuery.of(context).size.height * 0.45,
+                child: Container(
+                  padding: EdgeInsets.all(50.0),
+                  margin: EdgeInsets.only(top: 20),
+                  child: Center(
+                      child: Text(
+                    "Sign In",
+                    style: TextStyle(
+                      color: KERed,
+                      fontFamily: 'Montserrat',
+                      fontSize: 35.0,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  )),
+                ),
+              ),
+
+              Positioned(
+                width: MediaQuery.of(context).size.width * 0.8,
+                bottom: MediaQuery.of(context).size.height * 0.4,
+                left: MediaQuery.of(context).size.width * 0.1,
                 child: TextFormField(
+                  autofocus: true,
                   controller: emailController,
                   decoration: InputDecoration(
+                    filled: true,
+                    fillColor: KELightYellow,
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: KERed,
+                    ),
                     hintText: "Enter NUS Email",
-                    hintStyle: TextStyle(
-                        color: Colors.amber, fontFamily: 'Montserrat'),
+                    hintStyle:
+                        TextStyle(color: KERed, fontFamily: 'Montserrat'),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(color: Colors.amber),
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide.none,
                     ),
                   ),
                   // The validator receives the text that the user has entered.
@@ -59,18 +96,26 @@ class _EmailLogInState extends State<EmailLogIn> {
                   },
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+              Positioned(
+                width: MediaQuery.of(context).size.width * 0.8,
+                bottom: MediaQuery.of(context).size.height * 0.3,
+                left: MediaQuery.of(context).size.width * 0.1,
                 child: TextFormField(
                   obscureText: true,
                   controller: passwordController,
                   decoration: InputDecoration(
+                    filled: true,
+                    fillColor: KELightYellow,
+                    prefixIcon: Icon(
+                      Icons.vpn_key,
+                      color: KERed,
+                    ),
                     hintText: "Enter Password",
-                    hintStyle: TextStyle(
-                        color: Colors.amber, fontFamily: 'Montserrat'),
+                    hintStyle:
+                        TextStyle(color: KERed, fontFamily: 'Montserrat'),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(color: Colors.amber),
+                      borderRadius: BorderRadius.circular(30),
+                      borderSide: BorderSide.none,
                     ),
                   ),
                   // The validator receives the text that the user has entered.
@@ -84,14 +129,19 @@ class _EmailLogInState extends State<EmailLogIn> {
                   },
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(20.0),
+              Positioned(
+                bottom: MediaQuery.of(context).size.height * 0.22,
                 child: isLoading
                     ? CircularProgressIndicator()
                     : ElevatedButton(
                         style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                              side: BorderSide.none,
+                            )),
                             backgroundColor:
-                                MaterialStateProperty.all<Color>(Colors.amber)),
+                                MaterialStateProperty.all<Color>(KERed)),
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
                             setState(() {
@@ -102,25 +152,27 @@ class _EmailLogInState extends State<EmailLogIn> {
                         },
                         child: Text(
                           'Log In',
-                          style: TextStyle(color: Color(0xFF820312),fontFamily: 'Montserrat'),
+                          style: TextStyle(
+                              color: KELightYellow, fontFamily: 'Montserrat'),
                         ),
                       ),
               ),
-              Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: GestureDetector(
-                      child: Text("New KEViian? Sign Up Here",
-                          style: TextStyle(
-                              fontFamily: 'Montserrat',
-                              decoration: TextDecoration.underline,
-                              color: Colors.amber)),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => EmailSignUp()),
-                        );
-                      }))
+              Positioned(
+                bottom: MediaQuery.of(context).size.height * 0.15,
+                child: GestureDetector(
+                    child: Text("New KEViian? Sign Up Here",
+                        style: TextStyle(
+                            fontSize: 12.0,
+                            fontFamily: 'Montserrat',
+                            decoration: TextDecoration.underline,
+                            color: KERed)),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => EmailSignUp()),
+                      );
+                    }),
+              ),
             ]))));
   }
 
@@ -153,5 +205,32 @@ class _EmailLogInState extends State<EmailLogIn> {
             );
           });
     });
+  }
+}
+
+class pathPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint();
+    paint.color = KELightRed;
+    paint.style = PaintingStyle.fill;
+    var path = Path();
+    path.moveTo(0, size.height * 0.4);
+    path.quadraticBezierTo(size.width * 0.35, size.height * 0.40,
+        size.width * 0.58, size.height * 0.6);
+    path.quadraticBezierTo(size.width * 0.72, size.height * 0.8,
+        size.width * 0.92, size.height * 0.8);
+    path.quadraticBezierTo(
+        size.width * 0.98, size.height * 0.8, size.width, size.height * 0.82);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.close();
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    // TODO: implement shouldRepaint
+    return true;
   }
 }
