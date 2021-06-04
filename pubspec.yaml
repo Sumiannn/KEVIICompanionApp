@@ -60,6 +60,10 @@ flutter:
     - assets/image/KE2.jpg
     - assets/image/KEVIILogo.png
     - assets/image/KEView.jpg
+    - assets/image/FacilitiesImage.png
+    - assets/image/AccountImage.png
+    - assets/image/HallInfoImage.png
+    - assets/image/LatestNewsImage.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

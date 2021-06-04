@@ -1,15 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:keviiapp/Screens/AddBooking.dart';
 import 'package:keviiapp/Panels/homePanel.dart';
 import 'package:keviiapp/Screens/FacilitiesBookingPage.dart';
 import 'package:keviiapp/Screens/accountPage.dart';
-import 'package:keviiapp/Screens/email_login.dart';
+import 'package:keviiapp/colorScheme.dart';
 
 import 'AddBooking.dart';
 import 'LatestNewsPage.dart';
+import 'email_login.dart';
 
 class Home extends StatefulWidget {
   Home({this.uid});
@@ -30,7 +32,141 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF820312),
+      backgroundColor: bgColor,
+      body: Stack(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: CustomPaint(
+              painter: pathPainter(),
+            ),
+          ),
+          Positioned(
+            top: 25,
+            left: 15,
+            child: IconButton(icon: Icon(Icons.menu_rounded, color: KERed, size: 30), onPressed: () {},),
+          ),
+          Positioned(
+            top: 25,
+            right: 55,
+            child: IconButton(icon: Icon(Icons.home_rounded, color: KERed, size: 30), onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home()),
+                      (Route<dynamic> route) => false);
+            },),
+          ),
+          Positioned(
+            top: 25,
+            right: 15,
+            child: IconButton(icon: Icon(Icons.exit_to_app_rounded, color: KERed, size: 30,), onPressed: (){
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => EmailLogIn()),
+                      (Route<dynamic> route) => false);
+            },),
+          ),
+          Positioned(
+            top: 75,
+            left: 25,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(user.uid)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return Text(
+                        "Welcome ",
+                        style: TextStyle(
+                          fontSize: 30.0,
+                          color: KERed,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w700,
+                        ),
+                      );
+                    }
+                    Map<String, dynamic> data = snapshot.data.data();
+                    return Text(
+                      "Welcome ${data['nusid']}",
+                      style: TextStyle(
+                        fontSize: 30.0,
+                        color: KERed,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w700,
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            top: 135,
+            left: 25,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 150,
+              margin: EdgeInsets.only(top: 10),
+              child: ListView(
+                physics: BouncingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                children: [
+                  categoryContainer("FacilitiesImage.png", "Facilities"),
+                  categoryContainer("HallInfoImage.png", "Hall Info"),
+                  categoryContainer("LatestNewsImage.png", "News"),
+                  categoryContainer("AccountImage.png", "Account"),
+                ],
+              )
+            ),
+          ),
+          Positioned(
+            top: 340,
+            left: 25,
+            child: Text("Latest News", style: TextStyle(fontFamily: 'Montserrat', fontSize: 25, fontWeight: FontWeight.w600, color: KERed),),
+          ),
+          Positioned(
+            top: 370,
+            left: 25,
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.5,
+              width: MediaQuery.of(context).size.width * 0.875,
+                child:
+                    StreamBuilder(
+                      stream: FirebaseFirestore.instance.collection('Home Panel News').snapshots(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return Text('Loading please wait');
+                        }
+                        return ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: snapshot.data.docs.length,
+                              itemBuilder: (context, index) {
+                                DocumentSnapshot document =
+                                snapshot.data.docs[index];
+                                return homePanel(
+                                    document['ImageURL'],
+                                    document['Headline'],
+                                    document['Subheading'],
+                                    document['News'],
+                                    LatestNewsPage(document['Headline'],
+                                        document['Subheading']));
+                              },
+                              scrollDirection: Axis.vertical,
+                            );
+                      },
+                    )
+
+                )
+              ),
+        ],
+      ),
+
+      /*
       appBar: AppBar(
         backgroundColor: Color(0xFF820312),
         elevation: 0.0,
@@ -322,6 +458,52 @@ class _NavigateDrawerState extends State<NavigateDrawer> {
           ),
         ],
       ),
+
+       */
+    );
+
+  }
+  Container categoryContainer(String imgName, String title)
+  {
+    return Container(
+      width: 130,
+      child: Column(
+        children: <Widget>[
+          Image.asset('assets/image/$imgName', scale: 0.7,),
+          Text(
+            "$title", style: TextStyle(
+            fontFamily: 'Montserrat',
+              fontWeight: FontWeight.w800,
+              fontSize: 17,
+            color:KERed
+          ),
+          )
+        ],
+      ),
     );
   }
+
+}
+class pathPainter extends CustomPainter
+{
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint = new Paint();
+    paint.color = KELightRed;
+
+    Path path = new Path();
+    path.moveTo(0, 0);
+    path.lineTo(size.width*0.3, 0);
+    path.quadraticBezierTo(size.width*0.5, size.height*0.03, size.width*0.42, size.height*0.17);
+    path.quadraticBezierTo(size.width*0.35, size.height*0.32, 0, size.height*0.29);
+    path.close();
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    // TODO: implement shouldRepaint
+    return true;
+  }
+
 }
