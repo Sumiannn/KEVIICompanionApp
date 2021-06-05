@@ -161,6 +161,7 @@ class _EmailLogInState extends State<EmailLogIn> {
                     child: Text("New KEViian? Sign Up Here",
                         style: TextStyle(
                             fontSize: 12.0,
+                            fontWeight: FontWeight.w500,
                             fontFamily: 'Montserrat',
                             decoration: TextDecoration.underline,
                             color: KERed)),
