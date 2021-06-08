@@ -66,6 +66,8 @@ flutter:
     - assets/image/ManageBookingsImage.png
     - assets/image/CheckBookingsImage.jpg
     - assets/image/LatestNewsImage.png
+    - assets/image/KE7HallHistory.jpg
+    - assets/image/KE7HallRoom.png
 
       # An image asset can refer to one or more resolution-specific "variants", see
       # https://flutter.dev/assets-and-images/#resolution-aware.

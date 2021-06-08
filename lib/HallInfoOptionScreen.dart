@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:keviiapp/colorScheme.dart';
 
 import 'Screens/BookingDataPage.dart';
+import 'Screens/HallHistory.dart';
 import 'Screens/email_login.dart';
 import 'Screens/home.dart';
 
@@ -40,7 +41,7 @@ class HallInfoOptionScreen extends StatelessWidget {
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => Home()),
-                        (Route<dynamic> route) => false);
+                    (Route<dynamic> route) => false);
               },
             ),
           ),
@@ -59,7 +60,7 @@ class HallInfoOptionScreen extends StatelessWidget {
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (context) => EmailLogIn()),
-                          (Route<dynamic> route) => false);
+                      (Route<dynamic> route) => false);
                 });
               },
             ),
@@ -94,26 +95,94 @@ class HallInfoOptionScreen extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 210,
-            left: 20,
-            right: 20,
-            child: Row(
-              children: [
-                InkWell(
-                  child: Container(
-                    padding: EdgeInsets.only(right: 10),
-                    height: MediaQuery.of(context).size.height * 0.25 ,
-                    width: MediaQuery.of(context).size.width * 0.89,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(image: AssetImage('assets/image/CheckBookingsImage.jpg'), fit: BoxFit.cover),
-                    ),
-                    child: Text("Check Current Bookings", style: TextStyle(fontSize: 21, fontWeight: FontWeight.w700, color: bgColor),),
-                  ),
-                ),
-              ],
+            top: 200,
+            left: 25,
+            right: 25,
+            child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 500,
+                margin: EdgeInsets.only(top: 10.0),
+                child: ListView(
+                    physics: BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    children: <Widget>[
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    HallHistory(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
+                            height: MediaQuery.of(context).size.height * 0.25,
+                            width: MediaQuery.of(context).size.width * 0.89,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              image: DecorationImage(
+                                  image:
+                                  AssetImage('assets/image/KE7HallHistory.jpg'),
+                                  fit: BoxFit.cover),
+                            ),
+                            child: Text(
+                              "Hall History",
+                              style: TextStyle(
+                                  fontSize: 21,
+                                  fontWeight: FontWeight.w700,
+                                  color: bgColor),
+                            ),
+                          ),
+                        ),
+                      SizedBox(height: 10),
+                      InkWell(
+                        child: Container(
+                          padding: EdgeInsets.only(right: 10, top: 5, left: 10),
+                          height: MediaQuery.of(context).size.height * 0.25,
+                          width: MediaQuery.of(context).size.width * 0.89,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                                image: AssetImage(
+                                    'assets/image/CheckBookingsImage.jpg'),
+                                fit: BoxFit.cover),
+                          ),
+                          child: Text(
+                            "CCA Information",
+                            style: TextStyle(
+                                fontSize: 21,
+                                fontWeight: FontWeight.w700,
+                                color: bgColor),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      InkWell(
+                        child: Container(
+                          padding: EdgeInsets.only(right: 10, top: 5, left: 10),
+                          height: MediaQuery.of(context).size.height * 0.25,
+                          width: MediaQuery.of(context).size.width * 0.89,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                                image: AssetImage(
+                                    'assets/image/KE7HallRoom.png'),
+                                fit: BoxFit.cover),
+                          ),
+                          child: Text(
+                            "Room Information",
+                            style: TextStyle(
+                                fontSize: 21,
+                                fontWeight: FontWeight.w700,
+                                color: bgColor),
+                          ),
+                        ),
+                      ),
+                    ])
             ),
-          )
+          ),
         ],
       ),
     );
