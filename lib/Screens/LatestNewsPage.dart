@@ -14,6 +14,36 @@ class LatestNewsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF820312),
+        body: Stack(
+          children: <Widget>[
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: CustomPaint(),
+            ),
+            Container(
+                padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                        padding:
+                        EdgeInsets.only(left: 14.0, right: 10.0, top: 25.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              "Check in for Freshies in AY2021/22",
+                              style: TextStyle(
+                                fontSize: 30.0,
+                              ),
+                            ),
+                          ],
+                        ))
+                  ],
+                ))
+          ],
+        ),
       appBar: AppBar(
         backgroundColor: Color(0xFF820312),
         elevation: 0.0,
