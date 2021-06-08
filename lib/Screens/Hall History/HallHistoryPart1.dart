@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HallHistory extends StatelessWidget {
+class HallHistoryPart1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,9 +11,8 @@ class HallHistory extends StatelessWidget {
           backgroundColor: Colors.black,
         ),
         body: Center(
-          child: Text('Hello there', style: TextStyle(fontSize: 30.0),),
+            child: Text("Hello")
         )
     );
   }
 }
-
