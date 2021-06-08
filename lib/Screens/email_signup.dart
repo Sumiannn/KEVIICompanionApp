@@ -185,7 +185,7 @@ class _EmailSignUpState extends State<EmailSignUp> {
                 bottom: MediaQuery.of(context).size.height * 0.1,
                 left: MediaQuery.of(context).size.width * 0.1,
                 child: TextFormField(
-                  controller: roomController,
+                  controller: passwordController,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: KELightYellow,

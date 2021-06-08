@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:keviiapp/Screens/AddBooking.dart';
+import 'package:keviiapp/Screens/FacilitiesBookingPage.dart';
 import 'package:keviiapp/colorScheme.dart';
 
 import 'Screens/BookingDataPage.dart';
@@ -59,7 +61,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (context) => EmailLogIn()),
-                          (Route<dynamic> route) => false);
+                      (Route<dynamic> route) => false);
                 });
               },
             ),
@@ -100,7 +102,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
             child: InkWell(
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                height: MediaQuery.of(context).size.height * 0.15,
+                height: MediaQuery.of(context).size.height * 0.18,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -120,7 +122,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
                           Text(
                             "Manage My Bookings",
                             style: TextStyle(
-                                fontSize: 21,
+                                fontSize: 19,
                                 fontWeight: FontWeight.w700,
                                 color: KERed),
                           ),
@@ -141,26 +143,105 @@ class FacilitiesOptionsScreen extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 360,
-            left: 20,
-            right: 20,
-            child: Row(
-              children: [
-                InkWell(
-                  child: Container(
-                    padding: EdgeInsets.only(right: 10),
-                    height: MediaQuery.of(context).size.height * 0.25 ,
-                    width: MediaQuery.of(context).size.width * 0.89,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(image: AssetImage('assets/image/CheckBookingsImage.jpg'), fit: BoxFit.cover),
-                    ),
-                    child: Text("Check Current Bookings", style: TextStyle(fontSize: 21, fontWeight: FontWeight.w700, color: bgColor),),
+              top: 385,
+              left: 20,
+              right: 20,
+              child: InkWell(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  height: MediaQuery.of(context).size.height * 0.18,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: KELightRed,
                   ),
-                )
-              ],
-            ),
-          )
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/image/CurrentBookingsImage.png',
+                        fit: BoxFit.fill,
+                      ),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Check current Bookings",
+                              style: TextStyle(
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.w700,
+                                  color: KERed),
+                            ),
+                            Text(
+                              "Obtain details about current bookings",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  color: KERed),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FacilitiesBookingPage()));
+                }, //TODO
+              )),
+          Positioned(
+              top: 540,
+              left: 20,
+              right: 20,
+              child: InkWell(
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  height: MediaQuery.of(context).size.height * 0.18,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: KELightRed,
+                  ),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/image/AddBookingImage.png',
+                        fit: BoxFit.fill,
+                      ),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Add a Booking",
+                              style: TextStyle(
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.w700,
+                                  color: KERed),
+                            ),
+                            Text(
+                              "Make bookings for facilities",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  color: KERed),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AddBooking()));
+                }, //TODO
+              ))
         ],
       ),
     );
