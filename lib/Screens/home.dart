@@ -4,6 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:keviiapp/FacilitiesOptionScreen.dart';
+import 'package:keviiapp/HallInfoOptionScreen.dart';
 import 'package:keviiapp/Screens/AddBooking.dart';
 import 'package:keviiapp/Panels/homePanel.dart';
 import 'package:keviiapp/Screens/FacilitiesBookingPage.dart';
@@ -144,7 +145,16 @@ class _HomeState extends State<Home> {
                                     FacilitiesOptionsScreen()));
                       },
                     ),
-                    categoryContainer("HallInfoImage.png", "Hall Info"),
+                    InkWell(
+                      child: categoryContainer("HallInfoImage.png", "Hall Info"),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    HallInfoOptionScreen()));
+                      },
+                    ),
                     categoryContainer("LatestNewsImage.png", "News"),
                     categoryContainer("AccountImage.png", "Account"),
                   ],
