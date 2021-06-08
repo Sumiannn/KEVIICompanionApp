@@ -69,6 +69,9 @@ flutter:
     - assets/image/AddBookingImage.png
     - assets/image/location.png
     - assets/image/calendar.png
+    - assets/image/clock.png
+    - assets/image/Cca.png
+    - assets/image/numberOfPax.png
     - assets/image/LatestNewsImage.png
 
       # An image asset can refer to one or more resolution-specific "variants", see
