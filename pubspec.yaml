@@ -65,6 +65,13 @@ flutter:
     - assets/image/HallInfoImage.png
     - assets/image/ManageBookingsImage.png
     - assets/image/CheckBookingsImage.jpg
+    - assets/image/CurrentBookingsImage.png
+    - assets/image/AddBookingImage.png
+    - assets/image/location.png
+    - assets/image/calendar.png
+    - assets/image/clock.png
+    - assets/image/Cca.png
+    - assets/image/numberOfPax.png
     - assets/image/LatestNewsImage.png
 
       # An image asset can refer to one or more resolution-specific "variants", see
