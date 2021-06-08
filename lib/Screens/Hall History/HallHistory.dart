@@ -6,6 +6,9 @@ import '../../HallInfoOptionScreen.dart';
 import '../../colorScheme.dart';
 import '../email_login.dart';
 import '../home.dart';
+import 'HallHistoryPart2.dart';
+import 'HallHistoryPart3.dart';
+import 'HallHistoryPart4.dart';
 
 class HallHistory extends StatelessWidget {
   @override
@@ -114,17 +117,31 @@ class HallHistory extends StatelessWidget {
                           SizedBox(width: 10.0),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: Color(0xFFFFFFFF),
+                              primary: Color(0xFFF8CF3E),
                             ),
                             child: Container(
-                              width: 150.0,
+                              width: 160.0,
                               height: 115.0,
-                              child: Text(
-                                  "Federated Malay States (F.M.S.) Hostel",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 20,
-                                      color: Colors.black)),
+                              child: Column(
+                                children: <Widget>[
+                                  SizedBox(height: 2.0),
+                                  Text(
+                                      "Federated Malay States Hostel",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 15,
+                                          color: Colors.black)
+                                  ),
+                                  SizedBox(height:5.0),
+                                  Text(
+                                      "Sepoy Lines (1916-1956)",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 15,
+                                          color: Colors.black)
+                                  ),
+                                ],
+                              )
                             ),
                             onPressed: () {
                               Navigator.push(
@@ -137,7 +154,7 @@ class HallHistory extends StatelessWidget {
                         ]
                     ),
                     SizedBox(
-                      height: 30.0,
+                      height: 50.0,
                     ),
                     Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,30 +166,44 @@ class HallHistory extends StatelessWidget {
                           SizedBox(width: 10.0),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: Color(0xFFFFFFFF),
+                              primary: Color(0xFFF8CF3E),
                             ),
                             child: Container(
-                              width: 150.0,
+                              width: 160.0,
                               height: 115.0,
-                              child: Text(
-                                  "Holne Chase",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 20,
-                                      color: Colors.black)),
+                              child: Column(
+                                children: <Widget>[
+                                  SizedBox(height: 2.0),
+                                  Text(
+                                      "Holne Chase",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 15,
+                                          color: Colors.black)
+                                  ),
+                                  SizedBox(height:5.0),
+                                  Text(
+                                      "Grange Road (1938-1956)",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 15,
+                                          color: Colors.black)
+                                  ),
+                                ],
+                              )
                             ),
                             onPressed: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          HallHistoryPart1()));
+                                          HallHistoryPart2()));
                             },
                           ),
                         ]
                     ),
                     SizedBox(
-                      height: 30.0,
+                      height: 50.0,
                     ),
                     Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -184,30 +215,44 @@ class HallHistory extends StatelessWidget {
                           SizedBox(width: 10.0),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: Color(0xFFFFFFFF),
+                              primary: Color(0xFFF8CF3E),
                             ),
                             child: Container(
-                              width: 150.0,
-                              height: 115.0,
-                              child: Text(
-                                  "King Edward VII Hall",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 20,
-                                      color: Colors.black)),
+                                width: 160.0,
+                                height: 115.0,
+                                child: Column(
+                                  children: <Widget>[
+                                    SizedBox(height: 2.0),
+                                    Text(
+                                        "King Edward VII Hall",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 15,
+                                            color: Colors.black)
+                                    ),
+                                    SizedBox(height:5.0),
+                                    Text(
+                                        "Sepoy Lines, 12 College Road (1957-1987)",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 15,
+                                            color: Colors.black)
+                                    ),
+                                  ],
+                                )
                             ),
                             onPressed: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          HallHistoryPart1()));
+                                          HallHistoryPart3()));
                             },
                           ),
                         ]
                     ),
                     SizedBox(
-                      height: 30.0,
+                      height: 50.0,
                     ),
                     Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -219,24 +264,38 @@ class HallHistory extends StatelessWidget {
                           SizedBox(width: 10.0),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: Color(0xFFFFFFFF),
+                              primary: Color(0xFFF8CF3E),
                             ),
                             child: Container(
-                              width: 150.0,
-                              height: 115.0,
-                              child: Text(
-                                  "King Edward VII Hall",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 20,
-                                      color: Colors.black)),
+                                width: 160.0,
+                                height: 115.0,
+                                child: Column(
+                                  children: <Widget>[
+                                    SizedBox(height: 2.0),
+                                    Text(
+                                        "King Edward VII Hall",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 15,
+                                            color: Colors.black)
+                                    ),
+                                    SizedBox(height:5.0),
+                                    Text(
+                                        "1A Kent Ridge Road (1987-Present)",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 15,
+                                            color: Colors.black)
+                                    ),
+                                  ],
+                                )
                             ),
                             onPressed: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          HallHistoryPart1()));
+                                          HallHistoryPart4()));
                             },
                           ),
                         ]
