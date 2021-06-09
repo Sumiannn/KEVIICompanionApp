@@ -29,7 +29,6 @@ class _BookingDataPageState extends State<BookingDataPage> {
             Stack(
               clipBehavior: Clip.none,
               children: [
-
                 Container(
                   height: MediaQuery.of(context).size.height * 0.4,
                   width: MediaQuery.of(context).size.width,
