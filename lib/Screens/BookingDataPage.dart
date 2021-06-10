@@ -5,20 +5,19 @@ import 'package:keviiapp/signup.dart';
 import '../colorScheme.dart';
 
 class BookingDataPage extends StatefulWidget {
-  String venue, startTime, endTime, date;
+  String venue, startTime, endTime, date, numberOfPax, ccaBlock;
 
-  BookingDataPage(this.venue, this.startTime, this.endTime, this.date);
+  BookingDataPage(this.venue, this.startTime, this.endTime, this.date, this.numberOfPax, this.ccaBlock);
 
   _BookingDataPageState createState() =>
-      _BookingDataPageState(venue, startTime, endTime, date);
+      _BookingDataPageState(venue, startTime, endTime, date, numberOfPax, ccaBlock);
 }
 
 class _BookingDataPageState extends State<BookingDataPage> {
-  int numberOfPax;
-  String userID, usedBy, venue, startTime, endTime, date;
+  String userID, usedBy, venue, startTime, endTime, date, numberOfPax, ccaBlock;
   Timestamp startDateTime, endDateTime;
 
-  _BookingDataPageState(this.venue, this.startTime, this.endTime, this.date);
+  _BookingDataPageState(this.venue, this.startTime, this.endTime, this.date, this.numberOfPax, this.ccaBlock);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,6 @@ class _BookingDataPageState extends State<BookingDataPage> {
             Stack(
               clipBehavior: Clip.none,
               children: [
-
                 Container(
                   height: MediaQuery.of(context).size.height * 0.4,
                   width: MediaQuery.of(context).size.width,
@@ -104,15 +102,15 @@ class _BookingDataPageState extends State<BookingDataPage> {
                               const EdgeInsets.only(left: 12.0, right: 12.0),
                           child: Column(
                             children: [
-                              infoWidget('Venue', 'venue',
+                              infoWidget('Venue', venue,
                                   Icon(Icons.location_on_rounded)),
                               infoWidget(
-                                  "Date", 'date', Icon(Icons.date_range)),
-                              infoWidget("Duration", 'endTime',
+                                  "Date", date, Icon(Icons.date_range)),
+                              infoWidget("Duration", startTime + ' to ' + endTime,
                                   Icon(Icons.access_time_rounded)),
-                              infoWidget("Booked By", 'CCA Name',
+                              infoWidget("Booked By", ccaBlock,
                                   Icon(Icons.group_rounded)),
-                              infoWidget("Number of People", 'Pax',
+                              infoWidget("Number of People", numberOfPax,
                                   Icon(Icons.emoji_people_rounded)),
                             ],
                           ),
