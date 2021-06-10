@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:keviiapp/Panels/bookingPagePanel.dart';
+import 'package:keviiapp/Screens/AddBooking.dart';
 import 'package:keviiapp/colorScheme.dart';
 import 'package:keviiapp/signup.dart';
 
@@ -24,12 +25,12 @@ class FacilitiesBookingPage extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               Container(
-                height: MediaQuery.of(context).size.height * 0.4,
+                height: MediaQuery.of(context).size.height ,
                 width: MediaQuery.of(context).size.width,
                 child: Image.network(
                   'https://scontent.fsin7-1.fna.fbcdn.net/v/t1.6435-9/40773051_735925123423298_3456762337506099200_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=e3f864&_nc_ohc=cYV5LA7oRwAAX-JegYv&_nc_ht=scontent.fsin7-1.fna&oh=f6574ac78423be012faf59f4cc022025&oe=60E6D081',
                   alignment: Alignment.topLeft,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.fitWidth,
                 ),
               ),
               Positioned(
@@ -76,9 +77,9 @@ class FacilitiesBookingPage extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: 250,
+                top: 230,
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.8,
+                  height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -87,7 +88,6 @@ class FacilitiesBookingPage extends StatelessWidget {
                     ),
                     color: bgColor,
                   ),
-                  child: SingleChildScrollView(
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -103,40 +103,49 @@ class FacilitiesBookingPage extends StatelessWidget {
                               color: KERed),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: StreamBuilder(
-                            stream: FirebaseFirestore.instance
-                                .collection("Facilities")
-                                .orderBy('Start Time (Timestamp)')
-                                .snapshots(),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                return ListView.builder(
-                                  shrinkWrap: true,
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 10.0, horizontal: 16.0),
-                                  itemCount: snapshot.data.docs.length,
-                                  itemBuilder: (context, index) {
-                                    DocumentSnapshot bookings =
-                                        snapshot.data.docs[index];
-                                    return bookingPagePanel(
-                                        bookings['Venue'],
-                                        bookings['Date'],
-                                        bookings['Start time'],
-                                        bookings['End time'],
-                                        bookings['Start Time (Timestamp)'],
-                                        bookings['Number of Pax']);
-                                  },
-                                );
-                              }
-                              return Text('No bookings currently');
-                            }),
-                      ),
                     ],
                   )),
                 ),
-              ),
+              Positioned(
+                top: 270,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                      child: StreamBuilder(
+                          stream: FirebaseFirestore.instance
+                              .collection("Facilities")
+                              .orderBy('Start Time (Timestamp)')
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return ListView.builder(
+                                shrinkWrap: true,
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10.0, horizontal: 16.0),
+                                itemCount: snapshot.data.docs.length,
+                                itemBuilder: (context, index) {
+                                  DocumentSnapshot bookings =
+                                  snapshot.data.docs[index];
+                                  return bookingPagePanel(
+                                      bookings['Venue'],
+                                      bookings['Date'],
+                                      bookings['Start time'],
+                                      bookings['End time'],
+                                      bookings['Start Time (Timestamp)'],
+                                      bookings['Number of Pax'],
+                                  bookings['CcaBlock'],
+                                  );
+                                },
+                              );
+                            }
+                            return Text('No bookings currently');
+                          }),
+                    ),
+                ),
+                ),
+
             ],
           ),
         ],
