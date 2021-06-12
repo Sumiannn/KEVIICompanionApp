@@ -25,7 +25,7 @@ class FacilitiesBookingPage extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               Container(
-                height: MediaQuery.of(context).size.height ,
+                height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 child: Image.network(
                   'https://scontent.fsin7-1.fna.fbcdn.net/v/t1.6435-9/40773051_735925123423298_3456762337506099200_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=e3f864&_nc_ohc=cYV5LA7oRwAAX-JegYv&_nc_ht=scontent.fsin7-1.fna&oh=f6574ac78423be012faf59f4cc022025&oe=60E6D081',
@@ -79,73 +79,374 @@ class FacilitiesBookingPage extends StatelessWidget {
               Positioned(
                 top: 230,
                 child: Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(40),
-                      topRight: Radius.circular(40),
-                    ),
-                    color: bgColor,
-                  ),
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 20.0,
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(40),
+                        topRight: Radius.circular(40),
                       ),
-                      Center(
-                        child: Text(
-                          "Current Bookings",
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.w700,
-                              color: KERed),
+                      color: bgColor,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 20.0,
                         ),
-                      ),
-                    ],
-                  )),
-                ),
-              Positioned(
-                top: 270,
+                        Center(
+                          child: Text(
+                            "Current Bookings",
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.w700,
+                                color: KERed),
+                          ),
+                        ),
+                      ],
+                    )),
+              ),
+              Positioned.fill(
+                top: 300,
                 child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                      child: StreamBuilder(
-                          stream: FirebaseFirestore.instance
-                              .collection("Facilities")
-                              .orderBy('Start Time (Timestamp)')
-                              .snapshots(),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return ListView.builder(
-                                shrinkWrap: true,
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 10.0, horizontal: 16.0),
-                                itemCount: snapshot.data.docs.length,
-                                itemBuilder: (context, index) {
-                                  DocumentSnapshot bookings =
-                                  snapshot.data.docs[index];
-                                  return bookingPagePanel(
-                                      bookings['Venue'],
-                                      bookings['Date'],
-                                      bookings['Start time'],
-                                      bookings['End time'],
-                                      bookings['Start Time (Timestamp)'],
-                                      bookings['Number of Pax'],
-                                  bookings['CcaBlock'],
-                                  );
-                                },
-                              );
-                            }
-                            return Text('No bookings currently');
-                          }),
-                    ),
-                ),
-                ),
-
+                    child: DefaultTabController(
+                  length: 7,
+                  child: Column(
+                    children: [
+                      TabBar(
+                        isScrollable: true,
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w600),
+                        indicatorColor: KEYellow,
+                        unselectedLabelColor: KELightRed,
+                        labelColor: KERed,
+                        labelPadding: EdgeInsets.symmetric(horizontal: 8.0),
+                        tabs: [
+                          Tab(
+                            text: 'MPC',
+                          ),
+                          Tab(
+                            text: 'Comm Hall',
+                          ),
+                          Tab(
+                            text: 'Squash Courts',
+                          ),
+                          Tab(
+                            text: 'Tennis Courts',
+                          ),
+                          Tab(
+                            text: 'Dance Studio',
+                          ),
+                          Tab(
+                            text: 'Heritage Room',
+                          ),
+                          Tab(
+                            text: 'Dining Hall',
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 400,
+                        child: TabBarView(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: StreamBuilder(
+                                  stream: FirebaseFirestore.instance
+                                      .collection("Facilities")
+                                      .where('Venue', isEqualTo: 'MPC')
+                                      .orderBy('Start Time (Timestamp)')
+                                      .snapshots(),
+                                  builder: (context, snapshot) {
+                                    if (!snapshot.hasData || snapshot.data.docs.length == 0) {
+                                      return Center(
+                                          child: Text(
+                                            'No bookings currently',
+                                            style: TextStyle(
+                                                color: KERed,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 25),
+                                          ));
+                                      }
+                                      return ListView.builder(
+                                        shrinkWrap: true,
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 10.0, horizontal: 16.0),
+                                        itemCount: snapshot.data.docs.length,
+                                        itemBuilder: (context, index) {
+                                          DocumentSnapshot bookings =
+                                              snapshot.data.docs[index];
+                                          return bookingPagePanel(
+                                            bookings['Venue'],
+                                            bookings['Date'],
+                                            bookings['Start time'],
+                                            bookings['End time'],
+                                            bookings['Start Time (Timestamp)'],
+                                            bookings['Number of Pax'],
+                                            bookings['CcaBlock'],
+                                          );
+                                        },
+                                      );
+                                    }
+                                  ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: StreamBuilder(
+                                  stream: FirebaseFirestore.instance
+                                      .collection("Facilities")
+                                      .where('Venue', isEqualTo: 'Comm Hall')
+                                      .orderBy('Start Time (Timestamp)')
+                                      .snapshots(),
+                                  builder: (context, snapshot) {
+                                    if (!snapshot.hasData || snapshot.data.docs.length == 0) {
+                                      return Center(
+                                          child: Text(
+                                            'No bookings currently',
+                                            style: TextStyle(
+                                                color: KERed,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 25),
+                                          ));
+                                    }
+                                    return ListView.builder(
+                                      shrinkWrap: true,
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 10.0, horizontal: 16.0),
+                                      itemCount: snapshot.data.docs.length,
+                                      itemBuilder: (context, index) {
+                                        DocumentSnapshot bookings =
+                                        snapshot.data.docs[index];
+                                        return bookingPagePanel(
+                                          bookings['Venue'],
+                                          bookings['Date'],
+                                          bookings['Start time'],
+                                          bookings['End time'],
+                                          bookings['Start Time (Timestamp)'],
+                                          bookings['Number of Pax'],
+                                          bookings['CcaBlock'],
+                                        );
+                                      },
+                                    );
+                                  }
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: StreamBuilder(
+                                  stream: FirebaseFirestore.instance
+                                      .collection("Facilities")
+                                      .where('Venue', isEqualTo: 'Squash Courts')
+                                      .orderBy('Start Time (Timestamp)')
+                                      .snapshots(),
+                                  builder: (context, snapshot) {
+                                    if (!snapshot.hasData || snapshot.data.docs.length == 0) {
+                                      return Center(
+                                          child: Text(
+                                            'No bookings currently',
+                                            style: TextStyle(
+                                                color: KERed,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 25),
+                                          ));
+                                    }
+                                    return ListView.builder(
+                                      shrinkWrap: true,
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 10.0, horizontal: 16.0),
+                                      itemCount: snapshot.data.docs.length,
+                                      itemBuilder: (context, index) {
+                                        DocumentSnapshot bookings =
+                                        snapshot.data.docs[index];
+                                        return bookingPagePanel(
+                                          bookings['Venue'],
+                                          bookings['Date'],
+                                          bookings['Start time'],
+                                          bookings['End time'],
+                                          bookings['Start Time (Timestamp)'],
+                                          bookings['Number of Pax'],
+                                          bookings['CcaBlock'],
+                                        );
+                                      },
+                                    );
+                                  }
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: StreamBuilder(
+                                  stream: FirebaseFirestore.instance
+                                      .collection("Facilities")
+                                      .where('Venue',
+                                          isEqualTo: 'Tennis Courts')
+                                      .orderBy('Start Time (Timestamp)')
+                                      .snapshots(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return ListView.builder(
+                                        shrinkWrap: true,
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 10.0, horizontal: 16.0),
+                                        itemCount: snapshot.data.docs.length,
+                                        itemBuilder: (context, index) {
+                                          DocumentSnapshot bookings =
+                                              snapshot.data.docs[index];
+                                          return bookingPagePanel(
+                                            bookings['Venue'],
+                                            bookings['Date'],
+                                            bookings['Start time'],
+                                            bookings['End time'],
+                                            bookings['Start Time (Timestamp)'],
+                                            bookings['Number of Pax'],
+                                            bookings['CcaBlock'],
+                                          );
+                                        },
+                                      );
+                                    }
+                                    return Center(
+                                        child: Text(
+                                      'No bookings currently',
+                                      style: TextStyle(
+                                          color: KERed,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 30),
+                                    ));
+                                  }),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: StreamBuilder(
+                                  stream: FirebaseFirestore.instance
+                                      .collection("Facilities")
+                                      .where('Venue', isEqualTo: 'Tennis Courts')
+                                      .orderBy('Start Time (Timestamp)')
+                                      .snapshots(),
+                                  builder: (context, snapshot) {
+                                    if (!snapshot.hasData || snapshot.data.docs.length == 0) {
+                                      return Center(
+                                          child: Text(
+                                            'No bookings currently',
+                                            style: TextStyle(
+                                                color: KERed,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 25),
+                                          ));
+                                    }
+                                    return ListView.builder(
+                                      shrinkWrap: true,
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 10.0, horizontal: 16.0),
+                                      itemCount: snapshot.data.docs.length,
+                                      itemBuilder: (context, index) {
+                                        DocumentSnapshot bookings =
+                                        snapshot.data.docs[index];
+                                        return bookingPagePanel(
+                                          bookings['Venue'],
+                                          bookings['Date'],
+                                          bookings['Start time'],
+                                          bookings['End time'],
+                                          bookings['Start Time (Timestamp)'],
+                                          bookings['Number of Pax'],
+                                          bookings['CcaBlock'],
+                                        );
+                                      },
+                                    );
+                                  }
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: StreamBuilder(
+                                  stream: FirebaseFirestore.instance
+                                      .collection("Facilities")
+                                      .where('Venue', isEqualTo: 'Heritage Room')
+                                      .orderBy('Start Time (Timestamp)')
+                                      .snapshots(),
+                                  builder: (context, snapshot) {
+                                    if (!snapshot.hasData || snapshot.data.docs.length == 0) {
+                                      return Center(
+                                          child: Text(
+                                            'No bookings currently',
+                                            style: TextStyle(
+                                                color: KERed,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 25),
+                                          ));
+                                    }
+                                    return ListView.builder(
+                                      shrinkWrap: true,
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 10.0, horizontal: 16.0),
+                                      itemCount: snapshot.data.docs.length,
+                                      itemBuilder: (context, index) {
+                                        DocumentSnapshot bookings =
+                                        snapshot.data.docs[index];
+                                        return bookingPagePanel(
+                                          bookings['Venue'],
+                                          bookings['Date'],
+                                          bookings['Start time'],
+                                          bookings['End time'],
+                                          bookings['Start Time (Timestamp)'],
+                                          bookings['Number of Pax'],
+                                          bookings['CcaBlock'],
+                                        );
+                                      },
+                                    );
+                                  }
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: StreamBuilder(
+                                  stream: FirebaseFirestore.instance
+                                      .collection("Facilities")
+                                      .where('Venue', isEqualTo: 'Dining Hall')
+                                      .orderBy('Start Time (Timestamp)')
+                                      .snapshots(),
+                                  builder: (context, snapshot) {
+                                    if (!snapshot.hasData || snapshot.data.docs.length == 0) {
+                                      return Center(
+                                          child: Text(
+                                            'No bookings currently',
+                                            style: TextStyle(
+                                                color: KERed,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 25),
+                                          ));
+                                    }
+                                    return ListView.builder(
+                                      shrinkWrap: true,
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 10.0, horizontal: 16.0),
+                                      itemCount: snapshot.data.docs.length,
+                                      itemBuilder: (context, index) {
+                                        DocumentSnapshot bookings =
+                                        snapshot.data.docs[index];
+                                        return bookingPagePanel(
+                                          bookings['Venue'],
+                                          bookings['Date'],
+                                          bookings['Start time'],
+                                          bookings['End time'],
+                                          bookings['Start Time (Timestamp)'],
+                                          bookings['Number of Pax'],
+                                          bookings['CcaBlock'],
+                                        );
+                                      },
+                                    );
+                                  }
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                )),
+              ),
             ],
           ),
         ],

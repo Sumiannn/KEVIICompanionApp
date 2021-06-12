@@ -571,7 +571,7 @@ class _AddBookingState extends State<AddBooking> {
       'Venue': venueChoose,
       'Start Time (Timestamp)': chosenStart.subtract(const Duration(hours: 8)),
       'End Time (Timestamp)': chosenEnd.subtract(const Duration(hours: 8)),
-      'CCA/ Block': ccaField.text,
+      'CcaBlock': ccaField.text,
       'Number of Pax': numOfPax.text,
       'user' : this.user.uid,
     });
