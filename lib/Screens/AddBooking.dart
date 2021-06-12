@@ -184,9 +184,18 @@ class _AddBookingState extends State<AddBooking> {
                       ),
                       child: Row(
                         children: [
-                          Image.asset(
-                            'assets/image/location.png',
-                            fit: BoxFit.contain,
+                          Container(
+                            height: 40.0,
+                            width: 40,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                color: KERed),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.location_on_rounded, color: bgColor, size: 30,)
+                              ],
+                            ),
                           ),
                           SizedBox(
                             width: 10,
@@ -289,7 +298,19 @@ class _AddBookingState extends State<AddBooking> {
                       ),
                       child: Row(
                         children: [
-                          Image.asset('assets/image/calendar.png'),
+                          Container(
+                            height: 40.0,
+                            width: 40,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                color: KERed),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.date_range_rounded, color: bgColor, size: 30,)
+                              ],
+                            ),
+                          ),
                           SizedBox(width: 10),
                           Container(
                               padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -337,7 +358,19 @@ class _AddBookingState extends State<AddBooking> {
                       ),
                       child: Row(
                         children: [
-                          Image.asset('assets/image/clock.png'),
+                          Container(
+                            height: 40.0,
+                            width: 40,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                color: KERed),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.access_time_rounded, color: bgColor, size: 30,)
+                              ],
+                            ),
+                          ),
                           SizedBox(width: 10),
                           Container(
                               padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -381,7 +414,19 @@ class _AddBookingState extends State<AddBooking> {
                       ),
                       child: Row(
                         children: [
-                          Image.asset('assets/image/clock.png'),
+                          Container(
+                            height: 40.0,
+                            width: 40,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                color: KERed),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.access_time_rounded, color: bgColor, size: 30,)
+                              ],
+                            ),
+                          ),
                           SizedBox(width: 10),
                           Container(
                               padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -421,7 +466,19 @@ class _AddBookingState extends State<AddBooking> {
                       color: KELightRed,
                     ),
                     child: Row(children: [
-                      Image.asset('assets/image/Cca.png'),
+                      Container(
+                        height: 40.0,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            color: KERed),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.sports_tennis_rounded, color: bgColor, size: 30,)
+                          ],
+                        ),
+                      ),
                       SizedBox(width: 10),
                       Expanded(
                         child: Container(
@@ -472,7 +529,19 @@ class _AddBookingState extends State<AddBooking> {
                       color: KELightRed,
                     ),
                     child: Row(children: [
-                      Image.asset('assets/image/numberOfPax.png'),
+                      Container(
+                        height: 40.0,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            color: KERed),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.people_outline_rounded, color: bgColor, size: 30,)
+                          ],
+                        ),
+                      ),
                       SizedBox(width: 10),
                       Expanded(
                         child: Container(
@@ -571,7 +640,7 @@ class _AddBookingState extends State<AddBooking> {
       'Venue': venueChoose,
       'Start Time (Timestamp)': chosenStart.subtract(const Duration(hours: 8)),
       'End Time (Timestamp)': chosenEnd.subtract(const Duration(hours: 8)),
-      'CCA/ Block': ccaField.text,
+      'CcaBlock': ccaField.text,
       'Number of Pax': numOfPax.text,
       'user' : this.user.uid,
     });
