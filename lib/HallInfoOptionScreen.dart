@@ -102,7 +102,7 @@ class HallInfoOptionScreen extends StatelessWidget {
             right: 25,
             child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: 500,
+                height: 520,
                 margin: EdgeInsets.only(top: 10.0),
                 child: ListView(
                     physics: BouncingScrollPhysics(),

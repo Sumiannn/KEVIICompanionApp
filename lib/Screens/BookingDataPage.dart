@@ -5,20 +5,45 @@ import 'package:keviiapp/signup.dart';
 import '../colorScheme.dart';
 
 class BookingDataPage extends StatefulWidget {
-  String venue, startTime, endTime, date;
+  String venue, startTime, endTime, date, numberOfPax, ccaBlock;
 
-  BookingDataPage(this.venue, this.startTime, this.endTime, this.date);
+  BookingDataPage(this.venue, this.startTime, this.endTime, this.date, this.numberOfPax, this.ccaBlock);
 
   _BookingDataPageState createState() =>
-      _BookingDataPageState(venue, startTime, endTime, date);
+      _BookingDataPageState(venue, startTime, endTime, date, numberOfPax, ccaBlock);
 }
 
 class _BookingDataPageState extends State<BookingDataPage> {
-  int numberOfPax;
-  String userID, usedBy, venue, startTime, endTime, date;
+  String userID, usedBy, venue, startTime, endTime, date, numberOfPax, ccaBlock;
   Timestamp startDateTime, endDateTime;
+  int MPC = 0, CommHall = 1, SquashCourt = 2, TennisCourt = 3, DanceStudio = 4, HeritageRoom = 5, DiningHall = 6, index;
+  List<String> imgURL = [
+    'https://scontent.fsin7-1.fna.fbcdn.net/v/t1.6435-9/154692928_1408458799503257_2644835914742009710_n.jpg?_nc_cat=105&ccb=1-3&_nc_sid=0debeb&_nc_ohc=dwpuIyP4-KMAX_-3HN1&_nc_ht=scontent.fsin7-1.fna&oh=e457900a67f5dec1a6dbabf315ec13ef&oe=60C7C5CD',
+    'https://scontent.fsin7-1.fna.fbcdn.net/v/t1.6435-9/154692928_1408458799503257_2644835914742009710_n.jpg?_nc_cat=105&ccb=1-3&_nc_sid=0debeb&_nc_ohc=dwpuIyP4-KMAX_-3HN1&_nc_ht=scontent.fsin7-1.fna&oh=e457900a67f5dec1a6dbabf315ec13ef&oe=60C7C5CD',
+    'https://scontent.fsin7-1.fna.fbcdn.net/v/t1.6435-9/69104064_953490665000075_6525877380894949376_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=cdbe9c&_nc_aid=0&_nc_ohc=NIAo8HD-qu8AX-YoEgq&_nc_ht=scontent.fsin7-1.fna&oh=0cb3e8ba7efd95b8c9a896a98cb3ec63&oe=60C794D1',
+    'https://scontent.fsin7-1.fna.fbcdn.net/v/t1.6435-9/161011285_1418566218492515_3522713555380780871_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=0debeb&_nc_ohc=Zu_7Lhz1T4sAX-_S2vW&_nc_ht=scontent.fsin7-1.fna&oh=8850915a82d2bbae95527e419cd6d495&oe=60C6FF14',
+    'https://cdn2.hubspot.net/hubfs/2620837/Imported_Blog_Media/Urband-dance-Studio-1.jpg',
+    'https://scontent.fsin7-1.fna.fbcdn.net/v/t1.6435-9/166675118_1428634354152368_3226097963581441149_n.jpg?_nc_cat=104&ccb=1-3&_nc_sid=0debeb&_nc_ohc=ka-ohoeo1rEAX-6jv2_&_nc_ht=scontent.fsin7-1.fna&oh=0525fdd665c69be453d80a456b00056d&oe=60C8CA8C',
+    'https://scontent.fsin7-1.fna.fbcdn.net/v/t1.6435-9/118727987_1269657280050077_6685992467446830307_n.jpg?_nc_cat=109&ccb=1-3&_nc_sid=0debeb&_nc_ohc=Yzi5DBi8Y9QAX8sHIos&tn=g9Z8h1jx25xvmq03&_nc_ht=scontent.fsin7-1.fna&oh=c57c8d72201f8cbbc556cc74123556ad&oe=60C8A16B',
+  ];
 
-  _BookingDataPageState(this.venue, this.startTime, this.endTime, this.date);
+  _BookingDataPageState(this.venue, this.startTime, this.endTime, this.date, this.numberOfPax, this.ccaBlock) {
+    if (this.venue == 'MPC') {
+      index = MPC;
+    } else if (this.venue == 'Comm Hall') {
+      index = CommHall;
+    } else if (this.venue == 'Squash Courts') {
+      index = SquashCourt;
+    } else if (this.venue == 'Tennis Courts') {
+      index = TennisCourt;
+    } else if (this.venue == 'Dance Studio') {
+      index = DanceStudio;
+    } else if (this.venue == 'Heritage Room') {
+      index = HeritageRoom;
+    } else if (this.venue == 'Dining Hall') {
+      index = DiningHall;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +54,13 @@ class _BookingDataPageState extends State<BookingDataPage> {
             Stack(
               clipBehavior: Clip.none,
               children: [
-
                 Container(
                   height: MediaQuery.of(context).size.height * 0.4,
                   width: MediaQuery.of(context).size.width,
                   child: Image.network(
-                    'https://scontent.fsin7-1.fna.fbcdn.net/v/t1.6435-9/56679359_860544750961334_6665091079278166016_n.jpg?_nc_cat=102&ccb=1-3&_nc_sid=cdbe9c&_nc_ohc=wHP-odKdEUMAX8vQpV-&_nc_ht=scontent.fsin7-1.fna&oh=a82c5d35519971b6391702f8fc413c9b&oe=60D79764',
+                    imgURL[index],
                     alignment: Alignment.topLeft,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.fitWidth,
                   ),
                 ),
                 Positioned(
@@ -48,7 +72,7 @@ class _BookingDataPageState extends State<BookingDataPage> {
                       }),
                 ),
                 Positioned(
-                  top: 250,
+                  top: 230,
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.8,
                     width: MediaQuery.of(context).size.width,
@@ -104,15 +128,15 @@ class _BookingDataPageState extends State<BookingDataPage> {
                               const EdgeInsets.only(left: 12.0, right: 12.0),
                           child: Column(
                             children: [
-                              infoWidget('Venue', 'venue',
+                              infoWidget('Venue', venue,
                                   Icon(Icons.location_on_rounded)),
                               infoWidget(
-                                  "Date", 'date', Icon(Icons.date_range)),
-                              infoWidget("Duration", 'endTime',
+                                  "Date", date, Icon(Icons.date_range)),
+                              infoWidget("Duration", startTime + ' to ' + endTime,
                                   Icon(Icons.access_time_rounded)),
-                              infoWidget("Booked By", 'CCA Name',
+                              infoWidget("Booked By", ccaBlock,
                                   Icon(Icons.group_rounded)),
-                              infoWidget("Number of People", 'Pax',
+                              infoWidget("Number of People", numberOfPax,
                                   Icon(Icons.emoji_people_rounded)),
                             ],
                           ),
