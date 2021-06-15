@@ -155,8 +155,21 @@ class _HomeState extends State<Home> {
                                     HallInfoOptionScreen()));
                       },
                     ),
-                    categoryContainer("LatestNewsImage.png", "News"),
-                    categoryContainer("AccountImage.png", "Account"),
+                    InkWell(
+                        child: categoryContainer("LatestNewsImage.png", "News"),
+                        onTap: () {
+                          //TODO
+                        },
+                    ),
+                    InkWell(
+                      child: categoryContainer("AccountImage.png", "Account"),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => accountPage()));
+                      },
+                    ),
                   ],
                 )),
           ),
@@ -199,7 +212,7 @@ class _HomeState extends State<Home> {
                               document['Subheading'],
                               document['News'],
                               LatestNewsPage(document['Headline'],
-                                  document['Subheading']));
+                                  document['Subheading'], document['News'], document['ImageURL']));
                         },
                       );
                     },

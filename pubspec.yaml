@@ -71,6 +71,7 @@ flutter:
     - assets/image/calendar.png
     - assets/image/clock.png
     - assets/image/Cca.png
+    - assets/image/ProfilePics/fox.png
     - assets/image/numberOfPax.png
     - assets/image/LatestNewsImage.png
     - assets/image/KE7HallHistory.jpg
@@ -92,6 +93,7 @@ flutter:
       fonts:
         - asset: assets/font/Montserrat-Regular.ttf
         - asset: assets/font/Montserrat-Italic.ttf
+        - asset: assets/font/Montserrat-Bold.ttf
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
