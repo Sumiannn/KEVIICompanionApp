@@ -11,7 +11,6 @@ import 'package:keviiapp/Screens/FacilitiesBookingPage.dart';
 import 'package:keviiapp/Screens/accountPage.dart';
 import 'package:keviiapp/colorScheme.dart';
 
-import 'AccountInfoScreen.dart';
 import 'AddBooking.dart';
 import 'LatestNewsPage.dart';
 import 'email_login.dart';
@@ -42,7 +41,7 @@ class _HomeState extends State<Home> {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: CustomPaint(
-              painter: pathPainter(),
+              painter: PathPainter(),
             ),
           ),
           Positioned(
@@ -147,31 +146,20 @@ class _HomeState extends State<Home> {
                       },
                     ),
                     InkWell(
-                      child: categoryContainer("HallInfoImage.png", "Hall Info"),
+                      child:
+                          categoryContainer("HallInfoImage.png", "Hall Info"),
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    HallInfoOptionScreen()));
+                                builder: (context) => HallInfoOptionScreen()));
                       },
                     ),
                     InkWell(
-<<<<<<< HEAD
                       child: categoryContainer("LatestNewsImage.png", "News"),
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    HallInfoOptionScreen()));
+                        //TODO
                       },
-=======
-                        child: categoryContainer("LatestNewsImage.png", "News"),
-                        onTap: () {
-                          //TODO
-                        },
->>>>>>> f920833ce353ff850d069e22340104bf75caf3b4
                     ),
                     InkWell(
                       child: categoryContainer("AccountImage.png", "Account"),
@@ -179,12 +167,7 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-<<<<<<< HEAD
-                                builder: (context) =>
-                                    AccountInfoScreen()));
-=======
                                 builder: (context) => accountPage()));
->>>>>>> f920833ce353ff850d069e22340104bf75caf3b4
                       },
                     ),
                   ],
@@ -228,8 +211,11 @@ class _HomeState extends State<Home> {
                               document['Headline'],
                               document['Subheading'],
                               document['News'],
-                              LatestNewsPage(document['Headline'],
-                                  document['Subheading'], document['News'], document['ImageURL']));
+                              LatestNewsPage(
+                                  document['Headline'],
+                                  document['Subheading'],
+                                  document['News'],
+                                  document['ImageURL']));
                         },
                       );
                     },
@@ -448,23 +434,18 @@ class _HomeState extends State<Home> {
           ]),
     );
   }
-
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
     });
   }
 }
-
 class NavigateDrawer extends StatefulWidget {
   final String uid;
-
   NavigateDrawer({Key key, this.uid}) : super(key: key);
-
   @override
   _NavigateDrawerState createState() => _NavigateDrawerState();
 }
-
 class _NavigateDrawerState extends State<NavigateDrawer> {
   @override
   Widget build(BuildContext context) {
@@ -529,7 +510,6 @@ class _NavigateDrawerState extends State<NavigateDrawer> {
           ),
         ],
       ),
-
        */
     );
   }
@@ -557,7 +537,7 @@ class _NavigateDrawerState extends State<NavigateDrawer> {
   }
 }
 
-class pathPainter extends CustomPainter {
+class PathPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = new Paint();
