@@ -120,29 +120,29 @@ class HallHistory extends StatelessWidget {
                               primary: Color(0xFFF8CF3E),
                             ),
                             child: Container(
-                              width: 160.0,
-                              height: 115.0,
-                              child: Column(
-                                children: <Widget>[
-                                  SizedBox(height: 2.0),
-                                  Text(
-                                      "Federated Malay States Hostel",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 15,
-                                          color: Colors.black)
-                                  ),
-                                  SizedBox(height:5.0),
-                                  Text(
-                                      "Sepoy Lines (1916-1956)",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 15,
-                                          color: Colors.black)
-                                  ),
-                                ],
-                              )
-                            ),
+                                width: 160.0,
+                                height: 115.0,
+                                child: Column(
+                                  children: <Widget>[
+                                    SizedBox(height: 2.0),
+                                    Text("Federated Malay States Hostel",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 15,
+                                            color: Colors.black)),
+                                    SizedBox(height: 5.0),
+                                    Text("Sepoy Lines (1916-1956)",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 15,
+                                            color: Colors.black)),
+                                    SizedBox(height: 10.0),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: Text("view more >>"),
+                                    )
+                                  ],
+                                )),
                             onPressed: () {
                               Navigator.push(
                                   context,
@@ -151,8 +151,7 @@ class HallHistory extends StatelessWidget {
                                           HallHistoryPart1()));
                             },
                           ),
-                        ]
-                    ),
+                        ]),
                     SizedBox(
                       height: 50.0,
                     ),
@@ -169,29 +168,29 @@ class HallHistory extends StatelessWidget {
                               primary: Color(0xFFF8CF3E),
                             ),
                             child: Container(
-                              width: 160.0,
-                              height: 115.0,
-                              child: Column(
-                                children: <Widget>[
-                                  SizedBox(height: 2.0),
-                                  Text(
-                                      "Holne Chase",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 15,
-                                          color: Colors.black)
-                                  ),
-                                  SizedBox(height:5.0),
-                                  Text(
-                                      "Grange Road (1938-1956)",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 15,
-                                          color: Colors.black)
-                                  ),
-                                ],
-                              )
-                            ),
+                                width: 160.0,
+                                height: 115.0,
+                                child: Column(
+                                  children: <Widget>[
+                                    SizedBox(height: 2.0),
+                                    Text("Holne Chase",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 15,
+                                            color: Colors.black)),
+                                    SizedBox(height: 5.0),
+                                    Text("Grange Road (1938-1956)",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 15,
+                                            color: Colors.black)),
+                                    SizedBox(height: 25.0),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: Text("view more >>"),
+                                    )
+                                  ],
+                                )),
                             onPressed: () {
                               Navigator.push(
                                   context,
@@ -200,8 +199,7 @@ class HallHistory extends StatelessWidget {
                                           HallHistoryPart2()));
                             },
                           ),
-                        ]
-                    ),
+                        ]),
                     SizedBox(
                       height: 50.0,
                     ),
@@ -223,24 +221,25 @@ class HallHistory extends StatelessWidget {
                                 child: Column(
                                   children: <Widget>[
                                     SizedBox(height: 2.0),
-                                    Text(
-                                        "King Edward VII Hall",
+                                    Text("King Edward VII Hall",
                                         style: TextStyle(
                                             fontWeight: FontWeight.w700,
                                             fontSize: 15,
-                                            color: Colors.black)
-                                    ),
-                                    SizedBox(height:5.0),
+                                            color: Colors.black)),
+                                    SizedBox(height: 5.0),
                                     Text(
                                         "Sepoy Lines, 12 College Road (1957-1987)",
                                         style: TextStyle(
                                             fontWeight: FontWeight.w300,
                                             fontSize: 15,
-                                            color: Colors.black)
-                                    ),
+                                            color: Colors.black)),
+                                    SizedBox(height: 10.0),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: Text("view more >>"),
+                                    )
                                   ],
-                                )
-                            ),
+                                )),
                             onPressed: () {
                               Navigator.push(
                                   context,
@@ -249,8 +248,7 @@ class HallHistory extends StatelessWidget {
                                           HallHistoryPart3()));
                             },
                           ),
-                        ]
-                    ),
+                        ]),
                     SizedBox(
                       height: 50.0,
                     ),
@@ -272,24 +270,24 @@ class HallHistory extends StatelessWidget {
                                 child: Column(
                                   children: <Widget>[
                                     SizedBox(height: 2.0),
-                                    Text(
-                                        "King Edward VII Hall",
+                                    Text("King Edward VII Hall",
                                         style: TextStyle(
                                             fontWeight: FontWeight.w700,
                                             fontSize: 15,
-                                            color: Colors.black)
-                                    ),
-                                    SizedBox(height:5.0),
-                                    Text(
-                                        "1A Kent Ridge Road (1987-Present)",
+                                            color: Colors.black)),
+                                    SizedBox(height: 5.0),
+                                    Text("1A Kent Ridge Road (1987-Present)",
                                         style: TextStyle(
                                             fontWeight: FontWeight.w300,
                                             fontSize: 15,
-                                            color: Colors.black)
-                                    ),
+                                            color: Colors.black)),
+                                    SizedBox(height: 25.0),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: Text("view more >>"),
+                                    )
                                   ],
-                                )
-                            ),
+                                )),
                             onPressed: () {
                               Navigator.push(
                                   context,
@@ -298,8 +296,7 @@ class HallHistory extends StatelessWidget {
                                           HallHistoryPart4()));
                             },
                           ),
-                        ]
-                    ),
+                        ]),
                   ]),
             ))
       ]),

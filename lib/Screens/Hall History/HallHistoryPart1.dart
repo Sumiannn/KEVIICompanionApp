@@ -8,7 +8,7 @@ class HallHistoryPart1 extends StatelessWidget {
           title: Text("Garen, The Might of Demacia",
               style: TextStyle(fontFamily: 'Raleway')
           ),
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.white,
         ),
         body: Center(
             child: Text("Hello")

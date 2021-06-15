@@ -11,6 +11,7 @@ import 'package:keviiapp/Screens/FacilitiesBookingPage.dart';
 import 'package:keviiapp/Screens/accountPage.dart';
 import 'package:keviiapp/colorScheme.dart';
 
+import 'AccountInfoScreen.dart';
 import 'AddBooking.dart';
 import 'LatestNewsPage.dart';
 import 'email_login.dart';
@@ -155,8 +156,26 @@ class _HomeState extends State<Home> {
                                     HallInfoOptionScreen()));
                       },
                     ),
-                    categoryContainer("LatestNewsImage.png", "News"),
-                    categoryContainer("AccountImage.png", "Account"),
+                    InkWell(
+                      child: categoryContainer("LatestNewsImage.png", "News"),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    HallInfoOptionScreen()));
+                      },
+                    ),
+                    InkWell(
+                      child: categoryContainer("AccountImage.png", "Account"),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    AccountInfoScreen()));
+                      },
+                    ),
                   ],
                 )),
           ),
