@@ -31,9 +31,23 @@ A few of the things you can do with KEVII Companion App:
 - View Student-led initiatives such as CCA fundraisings or Block Activity
 - Forum/ MarketPlace for students to post questions or look for items they need
 
-## Application Programme Flow
+### Software Architecture
+<p align="center">
+  <img alt="Software Architecture" title="Software Architecture Diagram" src = "https://i.imgur.com/UxTP7jY.png" width=700>
+</p>
 
-## Software Architecture
+### Application Programme Flow
+
+### Data Structures Used
+<p align="center">
+  <img alt="Available Facilites DS" title="Available Facilites DS" src = "https://i.imgur.com/0HK2QlF.png" width=700>
+</p>
+
+---
+
+<p align="center">
+  <img alt="Facilities DS" title="Facilities DS Diagram" src = "https://i.imgur.com/GwCC207.png" width=700>
+</p>
 
 ## Screen Shots
 <p align="center">

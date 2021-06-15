@@ -157,6 +157,7 @@ class _HomeState extends State<Home> {
                       },
                     ),
                     InkWell(
+<<<<<<< HEAD
                       child: categoryContainer("LatestNewsImage.png", "News"),
                       onTap: () {
                         Navigator.push(
@@ -165,6 +166,12 @@ class _HomeState extends State<Home> {
                                 builder: (context) =>
                                     HallInfoOptionScreen()));
                       },
+=======
+                        child: categoryContainer("LatestNewsImage.png", "News"),
+                        onTap: () {
+                          //TODO
+                        },
+>>>>>>> f920833ce353ff850d069e22340104bf75caf3b4
                     ),
                     InkWell(
                       child: categoryContainer("AccountImage.png", "Account"),
@@ -172,8 +179,12 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
+<<<<<<< HEAD
                                 builder: (context) =>
                                     AccountInfoScreen()));
+=======
+                                builder: (context) => accountPage()));
+>>>>>>> f920833ce353ff850d069e22340104bf75caf3b4
                       },
                     ),
                   ],
@@ -218,7 +229,7 @@ class _HomeState extends State<Home> {
                               document['Subheading'],
                               document['News'],
                               LatestNewsPage(document['Headline'],
-                                  document['Subheading']));
+                                  document['Subheading'], document['News'], document['ImageURL']));
                         },
                       );
                     },
