@@ -37,6 +37,9 @@ A few of the things you can do with KEVII Companion App:
 </p>
 
 ### Application Programme Flow
+<p align="center">
+  <img alt="Program Flow" title="Program Flow Diagram" src = "https://i.imgur.com/nRnfWs8.png" width=700>
+</p>
 
 ### Data Structures Used
 <p align="center">
