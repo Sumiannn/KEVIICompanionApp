@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../CommitteeCCA.dart';
+import '../CulturalCCA.dart';
+import '../SportsCCA.dart';
 import '../colorScheme.dart';
 import 'email_login.dart';
 import 'home.dart';
@@ -8,6 +11,29 @@ import 'home.dart';
 class CCAInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Widget CcaCategory(String Img, String Category) {
+      return Container(
+        margin: EdgeInsets.only(bottom: 20),
+        padding: EdgeInsets.all(10),
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 0.2,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: KELightRed,
+        ),
+        child: Row(
+          children: [
+            Image.asset(Img, fit: BoxFit.fitHeight,),
+            SizedBox(width:20),
+            Center(
+              child: Text(
+                Category, style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500, color: KERed),
+              ),
+            )
+          ],
+        ),
+      );
+    }
     return Scaffold(
       backgroundColor: bgColor,
       body: Stack(
@@ -66,7 +92,7 @@ class CCAInfo extends StatelessWidget {
               top: 75,
               left: 25,
               child: Text(
-                "KE7 CCAs",
+                "CCA Information",
                 style: TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 30,
@@ -82,7 +108,7 @@ class CCAInfo extends StatelessWidget {
                 padding: EdgeInsets.only(right: 12),
                 width: MediaQuery.of(context).size.width,
                 child: Text(
-                  "Hello!",
+                  "Our CCAs are categorised into 3 main categories! Click any to check out the various CCAs!",
                   style: TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 18,
@@ -91,11 +117,52 @@ class CCAInfo extends StatelessWidget {
                 ),
               ),
             ),
+            Positioned(
+              top: 230,
+              left: 20,
+              right: 20,
+              child: InkWell(
+                onTap: (){
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: (builder) => CommitteeCCA())
+                  );
+                },
+                child:
+                    CcaCategory('assets/image/CommitteeCca.png', 'Committee'),
+                ),
+              ),
+            Positioned(
+              top: 400,
+              left: 20,
+                right: 20,
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (builder) => CulturalCCA())
+                  );
+                },
+                child: CcaCategory('assets/image/CulturalCca1.png', 'Cultural'),
+              ),
+            ),
+            Positioned(
+              top: 570,
+              left: 20,
+              right: 20,
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (builder) => SportsCCA())
+                  );
+                },
+                child: CcaCategory('assets/image/SportCCA.png', 'Sports'),
+              ),
+            )
 
           ]
       ),
     );
   }
+
 }
 
 
@@ -122,4 +189,6 @@ class PathPainter extends CustomPainter {
     return true;
   }
 }
+
+
 
