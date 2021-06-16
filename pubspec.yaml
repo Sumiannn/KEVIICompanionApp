@@ -78,6 +78,13 @@ flutter:
     - assets/image/KE7HallRoom.png
     - assets/image/KingEdwardFMS.jpg
     - assets/image/KingEdwardHolneChase.jpg
+    - assets/image/CulturalCca.png
+    - assets/image/CulturalCca1.png
+    - assets/image/CommitteeCca.png
+    - assets/image/SportCCA.png
+    - assets/image/CommPhoto.jpeg
+    - assets/image/CulturePhoto.jpeg
+    - assets/image/SportsPhoto.jpeg
     - assets/image/KingEdwardOld.jpg
 
       # An image asset can refer to one or more resolution-specific "variants", see

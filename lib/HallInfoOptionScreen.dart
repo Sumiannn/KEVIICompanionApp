@@ -3,14 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:keviiapp/colorScheme.dart';
 
-<<<<<<< HEAD
-import 'Screens/HallHistory.dart';
-=======
-import 'Screens/BookingDataPage.dart';
 import 'Screens/CCAInfo.dart';
 import 'Screens/Hall History/HallHistory.dart';
 import 'Screens/RoomInfo.dart';
->>>>>>> 6a35c99e3c458cbcc43de34206b7e33e7b4f2125
 import 'Screens/email_login.dart';
 import 'Screens/home.dart';
 
@@ -133,12 +128,14 @@ class HallInfoOptionScreen extends StatelessWidget {
                                   AssetImage('assets/image/KE7HallHistory.jpg'),
                                   fit: BoxFit.cover),
                             ),
-                            child: Text(
-                              "Hall History",
-                              style: TextStyle(
-                                  fontSize: 21,
-                                  fontWeight: FontWeight.w700,
-                                  color: bgColor),
+                            child: Center(
+                              child: Text(
+                                "Hall History",
+                                style: TextStyle(
+                                    fontSize: 21,
+                                    fontWeight: FontWeight.w700,
+                                    color: bgColor),
+                              ),
                             ),
                           ),
                         ),
@@ -164,12 +161,14 @@ class HallInfoOptionScreen extends StatelessWidget {
                                     'assets/image/CheckBookingsImage.jpg'),
                                 fit: BoxFit.cover),
                           ),
-                          child: Text(
-                            "CCA Information",
-                            style: TextStyle(
-                                fontSize: 21,
-                                fontWeight: FontWeight.w700,
-                                color: bgColor),
+                          child: Center(
+                            child: Text(
+                              "CCA Information",
+                              style: TextStyle(
+                                  fontSize: 21,
+                                  fontWeight: FontWeight.w700,
+                                  color: bgColor),
+                            ),
                           ),
                         ),
                       ),
@@ -195,12 +194,14 @@ class HallInfoOptionScreen extends StatelessWidget {
                                     'assets/image/KE7HallRoom.png'),
                                 fit: BoxFit.cover),
                           ),
-                          child: Text(
-                            "Room Information",
-                            style: TextStyle(
-                                fontSize: 21,
-                                fontWeight: FontWeight.w700,
-                                color: bgColor),
+                          child: Center(
+                            child: Text(
+                              "Room Information",
+                              style: TextStyle(
+                                  fontSize: 21,
+                                  fontWeight: FontWeight.w700,
+                                  color: bgColor),
+                            ),
                           ),
                         ),
                       ),
