@@ -214,7 +214,10 @@ class _HomeState extends State<Home> {
                   ))),
         ],
       ),
+<<<<<<< HEAD
 
+=======
+>>>>>>> f97ebc26afae03359e72980ecec4dd3e76443a7f
     );
   }
 
