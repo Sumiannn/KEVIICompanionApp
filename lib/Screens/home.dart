@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: CustomPaint(
-              painter: pathPainter(),
+              painter: PathPainter(),
             ),
           ),
           Positioned(
@@ -138,20 +138,20 @@ class _HomeState extends State<Home> {
                       },
                     ),
                     InkWell(
-                      child: categoryContainer("HallInfoImage.png", "Hall Info"),
+                      child:
+                          categoryContainer("HallInfoImage.png", "Hall Info"),
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    HallInfoOptionScreen()));
+                                builder: (context) => HallInfoOptionScreen()));
                       },
                     ),
                     InkWell(
-                        child: categoryContainer("LatestNewsImage.png", "News"),
-                        onTap: () {
-                          //TODO
-                        },
+                      child: categoryContainer("LatestNewsImage.png", "News"),
+                      onTap: () {
+                        //TODO
+                      },
                     ),
                     InkWell(
                       child: categoryContainer("AccountImage.png", "Account"),
@@ -203,8 +203,11 @@ class _HomeState extends State<Home> {
                               document['Headline'],
                               document['Subheading'],
                               document['News'],
-                              LatestNewsPage(document['Headline'],
-                                  document['Subheading'], document['News'], document['ImageURL']));
+                              LatestNewsPage(
+                                  document['Headline'],
+                                  document['Subheading'],
+                                  document['News'],
+                                  document['ImageURL']));
                         },
                       );
                     },
@@ -237,7 +240,7 @@ class _HomeState extends State<Home> {
   }
 }
 
-class pathPainter extends CustomPainter {
+class PathPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = new Paint();
