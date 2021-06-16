@@ -37,16 +37,35 @@ A few of the things you can do with KEVII Companion App:
 </p>
 
 ### Application Programme Flow
+<p align="center">
+  <img alt="Program Flow" title="Program Flow Diagram" src = "https://i.imgur.com/nRnfWs8.png" width=700>
+</p>
 
 ### Data Structures Used
+#### For Available Facilities
 <p align="center">
   <img alt="Available Facilites DS" title="Available Facilites DS" src = "https://i.imgur.com/0HK2QlF.png" width=700>
 </p>
 
 ---
 
+#### For Current Bookings
 <p align="center">
   <img alt="Facilities DS" title="Facilities DS Diagram" src = "https://i.imgur.com/GwCC207.png" width=700>
+</p>
+
+---
+
+#### For CCA Information
+<p align="center">
+  <img alt="CCA Info DS" title="CCA Info DS Diagram" src = "https://i.imgur.com/DcN7qet.png" width=700>
+</p>
+
+---
+
+#### For User Information
+<p align="center">
+  <img alt="User Info DS" title="User Info DS Diagram" src = "https://i.imgur.com/dwnJeKK.png" width=700>
 </p>
 
 ## Screen Shots
