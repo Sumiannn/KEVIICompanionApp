@@ -18,7 +18,9 @@ class HallHistoryPart3 extends StatelessWidget {
                 Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
-                  child: Image.asset('assets/image/KingEdwardFMS.jpg'),
+                    child: Image.asset('assets/image/KingEdwardOld.jpg',
+                      alignment: Alignment.topLeft,
+                      fit: BoxFit.fitWidth,)
                 ),
                 Positioned(
                   top: 25,

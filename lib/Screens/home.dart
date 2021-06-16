@@ -148,7 +148,7 @@ class _HomeState extends State<Home> {
                       },
                     ),
                     InkWell(
-                      child: categoryContainer("LatestNewsImage.png", "News"),
+                      child: categoryContainer("StudentInitiatives.png", "Initiatives"),
                       onTap: () {
                         //TODO
                       },
@@ -214,10 +214,6 @@ class _HomeState extends State<Home> {
                   ))),
         ],
       ),
-<<<<<<< HEAD
-
-=======
->>>>>>> f97ebc26afae03359e72980ecec4dd3e76443a7f
     );
   }
 
