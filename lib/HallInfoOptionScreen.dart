@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:keviiapp/colorScheme.dart';
 
 import 'Screens/BookingDataPage.dart';
-import 'Screens/HallHistory.dart';
+import 'Screens/CCAInfo.dart';
+import 'Screens/Hall History/HallHistory.dart';
+import 'Screens/RoomInfo.dart';
 import 'Screens/email_login.dart';
 import 'Screens/home.dart';
 
@@ -100,7 +102,7 @@ class HallInfoOptionScreen extends StatelessWidget {
             right: 25,
             child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: 500,
+                height: 520,
                 margin: EdgeInsets.only(top: 10.0),
                 child: ListView(
                     physics: BouncingScrollPhysics(),
@@ -138,6 +140,15 @@ class HallInfoOptionScreen extends StatelessWidget {
                         ),
                       SizedBox(height: 10),
                       InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  CCAInfo(),
+                            ),
+                          );
+                        },
                         child: Container(
                           padding: EdgeInsets.only(right: 10, top: 5, left: 10),
                           height: MediaQuery.of(context).size.height * 0.25,
@@ -160,6 +171,15 @@ class HallInfoOptionScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  RoomInfo(),
+                            ),
+                          );
+                        },
                         child: Container(
                           padding: EdgeInsets.only(right: 10, top: 5, left: 10),
                           height: MediaQuery.of(context).size.height * 0.25,

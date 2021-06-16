@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HallHistory extends StatelessWidget {
+class HallHistoryPart3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -8,12 +8,11 @@ class HallHistory extends StatelessWidget {
           title: Text("Garen, The Might of Demacia",
               style: TextStyle(fontFamily: 'Raleway')
           ),
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.white,
         ),
         body: Center(
-          child: Text('Hello there', style: TextStyle(fontSize: 30.0),),
+            child: Text("Hello")
         )
     );
   }
 }
-
