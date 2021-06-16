@@ -148,7 +148,7 @@ class _HomeState extends State<Home> {
                       },
                     ),
                     InkWell(
-                      child: categoryContainer("LatestNewsImage.png", "News"),
+                      child: categoryContainer("StudentInitiatives.png", "Initiatives"),
                       onTap: () {
                         //TODO
                       },
