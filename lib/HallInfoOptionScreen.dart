@@ -3,10 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:keviiapp/colorScheme.dart';
 
+<<<<<<< HEAD
+import 'Screens/HallHistory.dart';
+=======
 import 'Screens/BookingDataPage.dart';
 import 'Screens/CCAInfo.dart';
 import 'Screens/Hall History/HallHistory.dart';
 import 'Screens/RoomInfo.dart';
+>>>>>>> 6a35c99e3c458cbcc43de34206b7e33e7b4f2125
 import 'Screens/email_login.dart';
 import 'Screens/home.dart';
 
