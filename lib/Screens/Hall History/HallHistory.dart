@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:keviiapp/Screens/Hall%20History/HallHistoryPart1.dart';
 
-import '../../HallInfoOptionScreen.dart';
 import '../../colorScheme.dart';
 import '../email_login.dart';
 import '../home.dart';
@@ -14,6 +13,62 @@ import 'HallHistoryPart4.dart';
 class HallHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Widget hallHistoryBlocks(String imgName, String title, String subtitle, StatelessWidget Page) {
+      return Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Image.asset(
+              'assets/image/$imgName',
+              width: 170,
+            ),
+            SizedBox(width: 10.0),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: KELightRed,
+              ),
+              child: Container(
+                  width: 160.0,
+                  height: 120.0,
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(height: 2.0),
+                      Text(title,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 14,
+                              color: KERed)),
+                      SizedBox(height: 5.0),
+                      Text(subtitle,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 14,
+                              color: KERed)),
+                      SizedBox(height: 10.0),
+                      Expanded(
+                        child: Container(
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: Text("view more >>",
+                              style: TextStyle(
+                                color: KERed,
+                              ),),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Page));
+              },
+            ),
+          ]
+      );
+    }
     return Scaffold(
       backgroundColor: bgColor,
       body: Stack(children: [
@@ -102,202 +157,25 @@ class HallHistory extends StatelessWidget {
             right: 10,
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: 500,
+              height: MediaQuery.of(context).size.height*0.70,
               margin: EdgeInsets.only(top: 10.0),
               child: ListView(
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   children: <Widget>[
-                    Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image.asset(
-                            'assets/image/KingEdwardFMS.jpg',
-                            width: 170,
-                          ),
-                          SizedBox(width: 10.0),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Color(0xFFF8CF3E),
-                            ),
-                            child: Container(
-                                width: 160.0,
-                                height: 115.0,
-                                child: Column(
-                                  children: <Widget>[
-                                    SizedBox(height: 2.0),
-                                    Text("Federated Malay States Hostel",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 15,
-                                            color: Colors.black)),
-                                    SizedBox(height: 5.0),
-                                    Text("Sepoy Lines (1916-1956)",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 15,
-                                            color: Colors.black)),
-                                    SizedBox(height: 10.0),
-                                    Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: Text("view more >>"),
-                                    )
-                                  ],
-                                )),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          HallHistoryPart1()));
-                            },
-                          ),
-                        ]),
+                    hallHistoryBlocks("KingEdwardFMS.jpg", "Federated Malay States Hostel", "Sepoy Lines (1916-1956)", HallHistoryPart1()),
                     SizedBox(
-                      height: 50.0,
+                      height: 40.0,
                     ),
-                    Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image.asset(
-                            'assets/image/KingEdwardHolneChase.jpg',
-                            width: 170,
-                          ),
-                          SizedBox(width: 10.0),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Color(0xFFF8CF3E),
-                            ),
-                            child: Container(
-                                width: 160.0,
-                                height: 115.0,
-                                child: Column(
-                                  children: <Widget>[
-                                    SizedBox(height: 2.0),
-                                    Text("Holne Chase",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 15,
-                                            color: Colors.black)),
-                                    SizedBox(height: 5.0),
-                                    Text("Grange Road (1938-1956)",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 15,
-                                            color: Colors.black)),
-                                    SizedBox(height: 25.0),
-                                    Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: Text("view more >>"),
-                                    )
-                                  ],
-                                )),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          HallHistoryPart2()));
-                            },
-                          ),
-                        ]),
+                    hallHistoryBlocks("KingEdwardHolneChase.jpg", "Holne Chase", "Grange Road (1938-1956)", HallHistoryPart2()),
                     SizedBox(
-                      height: 50.0,
+                      height: 40.0,
                     ),
-                    Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image.asset(
-                            'assets/image/KingEdwardOld.jpg',
-                            width: 170,
-                          ),
-                          SizedBox(width: 10.0),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Color(0xFFF8CF3E),
-                            ),
-                            child: Container(
-                                width: 160.0,
-                                height: 115.0,
-                                child: Column(
-                                  children: <Widget>[
-                                    SizedBox(height: 2.0),
-                                    Text("King Edward VII Hall",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 15,
-                                            color: Colors.black)),
-                                    SizedBox(height: 5.0),
-                                    Text(
-                                        "Sepoy Lines, 12 College Road (1957-1987)",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 15,
-                                            color: Colors.black)),
-                                    SizedBox(height: 10.0),
-                                    Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: Text("view more >>"),
-                                    )
-                                  ],
-                                )),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          HallHistoryPart3()));
-                            },
-                          ),
-                        ]),
+                    hallHistoryBlocks("KingEdwardOld.jpg", "King Edward VII Hall", "Sepoy Lines, 12 College Road (1957-1987)", HallHistoryPart3()),
                     SizedBox(
-                      height: 50.0,
+                      height: 40.0,
                     ),
-                    Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image.asset(
-                            'assets/image/KE7HallHistory.jpg',
-                            width: 170,
-                          ),
-                          SizedBox(width: 10.0),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Color(0xFFF8CF3E),
-                            ),
-                            child: Container(
-                                width: 160.0,
-                                height: 115.0,
-                                child: Column(
-                                  children: <Widget>[
-                                    SizedBox(height: 2.0),
-                                    Text("King Edward VII Hall",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 15,
-                                            color: Colors.black)),
-                                    SizedBox(height: 5.0),
-                                    Text("1A Kent Ridge Road (1987-Present)",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w300,
-                                            fontSize: 15,
-                                            color: Colors.black)),
-                                    SizedBox(height: 25.0),
-                                    Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: Text("view more >>"),
-                                    )
-                                  ],
-                                )),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          HallHistoryPart4()));
-                            },
-                          ),
-                        ]),
+                    hallHistoryBlocks("KE7HallHistory.jpg", "King Edward VII Hall", "1A Kent Ridge Road (1987-Present)", HallHistoryPart4()),
                   ]),
             ))
       ]),
@@ -347,3 +225,4 @@ Container categoryContainer(String imgName, String title) {
         ],
       ));
 }
+
