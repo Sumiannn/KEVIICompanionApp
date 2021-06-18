@@ -8,7 +8,7 @@ import '../home.dart';
 import 'HallHistoryPart2.dart';
 import 'HallHistoryPart3.dart';
 import 'HallHistoryPart4.dart';
-
+import 'dart:math';
 
 class HallHistory extends StatelessWidget {
   @override
@@ -164,16 +164,40 @@ class HallHistory extends StatelessWidget {
                   scrollDirection: Axis.vertical,
                   children: <Widget>[
                     hallHistoryBlocks("KingEdwardFMS.jpg", "Federated Malay States Hostel", "Sepoy Lines (1916-1956)", HallHistoryPart1()),
-                    SizedBox(
-                      height: 40.0,
+                    Container(
+                        child: Align(
+                          alignment: Alignment(0.6, 0.6),
+                          child: Transform.rotate(
+                              angle: 270 * pi/180,
+                              child: Icon(
+                                Icons.arrow_back_rounded, size: 50,
+                              )
+                          ),
+                        )
                     ),
                     hallHistoryBlocks("KingEdwardHolneChase.jpg", "Holne Chase", "Grange Road (1938-1956)", HallHistoryPart2()),
-                    SizedBox(
-                      height: 40.0,
+                    Container(
+                        child: Align(
+                          alignment: Alignment(0.6, 0.6),
+                          child: Transform.rotate(
+                              angle: 270 * pi/180,
+                              child: Icon(
+                                Icons.arrow_back_rounded, size: 50,
+                              )
+                          ),
+                        )
                     ),
                     hallHistoryBlocks("KingEdwardOld.jpg", "King Edward VII Hall", "Sepoy Lines, 12 College Road (1957-1987)", HallHistoryPart3()),
-                    SizedBox(
-                      height: 40.0,
+                    Container(
+                      child: Align(
+                        alignment: Alignment(0.6, 0.6),
+                        child: Transform.rotate(
+                            angle: 270 * pi/180,
+                            child: Icon(
+                              Icons.arrow_back_rounded, size: 50,
+                            )
+                        ),
+                      )
                     ),
                     hallHistoryBlocks("KE7HallHistory.jpg", "King Edward VII Hall", "1A Kent Ridge Road (1987-Present)", HallHistoryPart4()),
                   ]),
@@ -198,6 +222,10 @@ class PathPainter extends CustomPainter {
         size.width * 0.35, size.height * 0.32, 0, size.height * 0.29);
     path.close();
     canvas.drawPath(path, paint);
+    Paint linePaint = Paint()..strokeWidth = 3;
+    // canvas.drawLine(Offset(300,200), Offset(300,300), linePaint);
+    // canvas.drawLine(Offset(250,250), Offset(300,300), linePaint);
+    // canvas.drawLine(Offset(350,250), Offset(300,300), linePaint);
   }
 
   @override
