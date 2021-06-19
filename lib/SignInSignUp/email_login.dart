@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/Screens/email_signup.dart';
-import 'package:keviiapp/signup.dart';
+import 'package:keviiapp/SignInSignUp/email_signup.dart';
 import 'package:keviiapp/colorScheme.dart';
-import 'home.dart';
+import '../HomePage/home.dart';
 
 class EmailLogIn extends StatefulWidget {
   @override

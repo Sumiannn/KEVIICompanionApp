@@ -2,10 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:keviiapp/colorScheme.dart';
 
-import '../email_login.dart';
-import '../home.dart';
+import '../../SignInSignUp/email_login.dart';
+import '../../HomePage/home.dart';
 
-class HallHistoryPart1 extends StatelessWidget {
+class HallHistoryPart3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,16 +18,16 @@ class HallHistoryPart1 extends StatelessWidget {
                 Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
-                  child: Image.asset("assets/image/KingEdwardFMS.jpg",
-                    alignment: Alignment.topLeft,
-                    fit: BoxFit.fitWidth,),
+                    child: Image.asset('assets/image/KingEdwardOld.jpg',
+                      alignment: Alignment.topLeft,
+                      fit: BoxFit.fitWidth,)
                 ),
                 Positioned(
                   top: 25,
                   left: 15,
                   child: IconButton(
                     icon:
-                        Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
+                    Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -42,7 +42,7 @@ class HallHistoryPart1 extends StatelessWidget {
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(builder: (context) => Home()),
-                          (Route<dynamic> route) => false);
+                              (Route<dynamic> route) => false);
                     },
                   ),
                 ),
@@ -62,7 +62,7 @@ class HallHistoryPart1 extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => EmailLogIn()),
-                            (Route<dynamic> route) => false);
+                                (Route<dynamic> route) => false);
                       });
                     },
                   ),
@@ -92,7 +92,7 @@ class HallHistoryPart1 extends StatelessWidget {
                           ),
                           Center(
                             child: Text(
-                              "Federated Malay States (F.M.S.) Hostel",
+                              "King Edward VII Hall",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 26,
@@ -105,7 +105,7 @@ class HallHistoryPart1 extends StatelessWidget {
                           ),
                           Center(
                             child: Text(
-                              "Sepoy Lines (1916-1956)",
+                              "Sepoy Lines, 12 College Road (1957-1987)",
                               textAlign: TextAlign.center,
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: KEYellow),
                             ),
@@ -117,7 +117,7 @@ class HallHistoryPart1 extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                                 color: KELightRed),
                             child: Text(
-                              "The forerunner of King Edward VII Hall was the old F.M.S. Hostel at Sepoy Lines. This was built in 1916 by the government of the Federated Malay States. The hostel was an imposing four-storey building on top of a hill overlooking the General Hospital. It had rooms for 72 male students, most of whom were attending courses at the King Edward VII College of Medicine, Singapore. The hostel was closed in 1956.",
+                              "On 30th November 1957, a new hostel was declared open by the Prime Minister of Malaya, Tunku Abdul Rahman. The new Hall of Residence was named “King Edward VII Hall” in honour of the old KEVII College of Medicine, which had ceased to exist as it had become the Faculty of Medicine for the University of Malaya. The Hall housed more than 250 students in two blocks.",
                               textAlign: TextAlign.start,
                               style: TextStyle(fontSize: 18),
                             ),

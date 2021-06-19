@@ -2,12 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'Screens/email_login.dart';
-import 'Screens/home.dart';
-import 'colorScheme.dart';
+import '../SignInSignUp/email_login.dart';
+import '../HomePage/home.dart';
+import '../colorScheme.dart';
 
 class SportsCCA extends StatefulWidget {
   SportsCCA();
+
   @override
   _SportsCCAState createState() => _SportsCCAState();
 }
@@ -31,7 +32,10 @@ class _SportsCCAState extends State<SportsCCA> {
                 child: Container(
                     height: MediaQuery.of(context).size.height * 0.4,
                     width: MediaQuery.of(context).size.width,
-                    child: Image.asset('assets/image/SportsPhoto.jpeg', fit: BoxFit.cover,)),
+                    child: Image.asset(
+                      'assets/image/SportsPhoto.jpeg',
+                      fit: BoxFit.cover,
+                    )),
               ),
               Positioned(
                 top: 25,
@@ -52,7 +56,7 @@ class _SportsCCAState extends State<SportsCCA> {
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(builder: (context) => Home()),
-                            (Route<dynamic> route) => false);
+                        (Route<dynamic> route) => false);
                   },
                 ),
               ),
@@ -71,7 +75,7 @@ class _SportsCCAState extends State<SportsCCA> {
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(builder: (context) => EmailLogIn()),
-                              (Route<dynamic> route) => false);
+                          (Route<dynamic> route) => false);
                     });
                   },
                 ),
@@ -110,55 +114,122 @@ class _SportsCCAState extends State<SportsCCA> {
                 top: 300,
                 child: Container(
                     child: StreamBuilder(
-                        stream: FirebaseFirestore.instance.collection('CCA Information').where('Type', isEqualTo: 'Sports').snapshots(),
+                        stream: FirebaseFirestore.instance
+                            .collection('CCA Information')
+                            .where('Type', isEqualTo: 'Sports')
+                            .snapshots(),
                         builder: (context, snapshot) {
-
-                          if (!snapshot.hasData || snapshot.data.docs.length == 0) {
+                          if (!snapshot.hasData ||
+                              snapshot.data.docs.length == 0) {
                             return Text('Loading Please Wait');
                           }
-                          List<Tab> tabs= [];
+                          List<Tab> tabs = [];
                           List<Widget> tabBarViews = [];
 
                           snapshot.data.docs.forEach((doc) {
-                            tabs.add(Tab(text:doc['CCA Name']));
+                            tabs.add(Tab(text: doc['CCA Name']));
                             tabBarViews.add(
                               ListView(
                                 children: [
                                   Container(
-                                    margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
+                                    margin: EdgeInsets.only(
+                                        left: 20, right: 20, bottom: 10),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10),
                                       child: Image.network(
                                         doc['ImageURL'],
-                                        height: MediaQuery.of(context).size.height * 0.22,
-                                        width: MediaQuery.of(context).size.width,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.22,
+                                        width:
+                                            MediaQuery.of(context).size.width,
                                         fit: BoxFit.cover,
                                       ),
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(left:20, right: 20, bottom: 10),
-                                    child: Center(
-                                      child: Text(doc['CCA Name'], style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30, color: KERed), textAlign: TextAlign.center,),
+                                    height: MediaQuery.of(context).size.height *
+                                        0.005,
+                                    decoration:
+                                        BoxDecoration(color: KELightYellow),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(
+                                      left: 20,
+                                      right: 20,
+                                    ),
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.10,
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                            alignment: Alignment.centerLeft,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.5,
+                                            child: FittedBox(
+                                                fit: BoxFit.scaleDown,
+                                                child: Text(
+                                                  doc['CCA Name'],
+                                                  style: TextStyle(
+                                                      fontSize: 30,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: KERed),
+                                                  textAlign: TextAlign.left,
+                                                ))),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.38,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'CCA Type',
+                                                textAlign: TextAlign.right,
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              Text(doc['Commitment'],
+                                                  style:
+                                                      TextStyle(fontSize: 16))
+                                            ],
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
                                   Container(
-                                      margin: EdgeInsets.only(left: 20,),
-                                      child: buildTextField('CCA Type', doc['Commitment'])
+                                    height: MediaQuery.of(context).size.height *
+                                        0.005,
+                                    decoration:
+                                        BoxDecoration(color: KELightYellow),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(left: 20, right: 20),
+                                    margin: EdgeInsets.only(
+                                        left: 20, right: 20, top: 10),
                                     padding: EdgeInsets.all(20),
                                     decoration: BoxDecoration(
                                       color: KELightRed,
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     width: MediaQuery.of(context).size.width,
-                                    child: Text(doc['Description'], style: TextStyle(
-                                      fontSize: 18,
-                                      color: KERed,
+                                    child: Text(
+                                      doc['Description'],
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: KERed,
+                                      ),
+                                      textAlign: TextAlign.justify,
                                     ),
-                                      textAlign: TextAlign.left,),
                                   )
                                 ],
                               ),
@@ -176,15 +247,14 @@ class _SportsCCAState extends State<SportsCCA> {
                                   indicatorColor: KEYellow,
                                   unselectedLabelColor: KELightRed,
                                   labelColor: KERed,
-                                  labelPadding: EdgeInsets.symmetric(horizontal: 8.0),
+                                  labelPadding:
+                                      EdgeInsets.symmetric(horizontal: 8.0),
                                   tabs: tabs,
                                 ),
                                 Container(
-                                  height: MediaQuery.of(context).size.height * 0.45,
-                                  child: TabBarView(
-                                      children: tabBarViews
-                                  ),
-
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.45,
+                                  child: TabBarView(children: tabBarViews),
                                 )
                                 /*
                               Container(
@@ -485,18 +555,16 @@ class _SportsCCAState extends State<SportsCCA> {
                               ],
                             ),
                           );
-                        }
-                    )),
+                        })),
               ),
             ],
           ),
         ],
       ),
     );
-
   }
-  Widget buildTextField(
-      String labelText, String placeHolder) {
+
+  Widget buildTextField(String labelText, String placeHolder) {
     return Padding(
       padding: EdgeInsets.only(bottom: 14.5),
       child: TextField(
