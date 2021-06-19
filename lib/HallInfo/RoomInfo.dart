@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../HallInfoOptionScreen.dart';
+import 'HallInfoOptionScreen.dart';
 import '../colorScheme.dart';
-import 'email_login.dart';
-import 'home.dart';
+import '../SignInSignUp/email_login.dart';
+import '../HomePage/home.dart';
 
 class RoomInfo extends StatelessWidget {
   @override

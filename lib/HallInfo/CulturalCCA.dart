@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'Screens/email_login.dart';
-import 'Screens/home.dart';
-import 'colorScheme.dart';
+import '../SignInSignUp/email_login.dart';
+import '../HomePage/home.dart';
+import '../colorScheme.dart';
 
 class CulturalCCA extends StatefulWidget {
   CulturalCCA();
@@ -137,17 +137,73 @@ class _CulturalCCAState extends State<CulturalCCA> {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(left:20, right: 20, bottom: 10),
-                                    child: Center(
-                                      child: Text(doc['CCA Name'], style: TextStyle(fontWeight: FontWeight.w600, fontSize: 30, color: KERed), textAlign: TextAlign.center,),
+                                    height: MediaQuery.of(context).size.height *
+                                        0.005,
+                                    decoration:
+                                    BoxDecoration(color: KELightYellow),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(
+                                      left: 20,
+                                      right: 20,
+                                    ),
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.10,
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                            alignment: Alignment.centerLeft,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width *
+                                                0.5,
+                                            child: FittedBox(
+                                                fit: BoxFit.scaleDown,
+                                                child: Text(
+                                                  doc['CCA Name'],
+                                                  style: TextStyle(
+                                                      fontSize: 30,
+                                                      fontWeight:
+                                                      FontWeight.w600,
+                                                      color: KERed),
+                                                  textAlign: TextAlign.left,
+                                                ))),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                              .size
+                                              .width *
+                                              0.38,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'CCA Type',
+                                                textAlign: TextAlign.right,
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                    FontWeight.bold),
+                                              ),
+                                              Text(doc['Commitment'],
+                                                  style:
+                                                  TextStyle(fontSize: 16))
+                                            ],
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
                                   Container(
-                                      margin: EdgeInsets.only(left: 20,),
-                                      child: buildTextField('CCA Type', doc['Commitment'])
+                                    height: MediaQuery.of(context).size.height *
+                                        0.005,
+                                    decoration:
+                                    BoxDecoration(color: KELightYellow),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(left: 20, right: 20),
+                                    margin: EdgeInsets.only(left: 20, right: 20, top: 10,),
                                     padding: EdgeInsets.all(20),
                                     decoration: BoxDecoration(
                                       color: KELightRed,
@@ -158,7 +214,7 @@ class _CulturalCCAState extends State<CulturalCCA> {
                                       fontSize: 18,
                                       color: KERed,
                                     ),
-                                      textAlign: TextAlign.left,),
+                                      textAlign: TextAlign.justify,),
                                   )
                                 ],
                               ),

@@ -5,12 +5,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:keviiapp/Screens/FacilitiesBookingPage.dart';
-import 'package:keviiapp/signup.dart';
+import 'package:keviiapp/Facilities/FacilitiesBookingPage.dart';
 
 import '../colorScheme.dart';
-import 'email_login.dart';
-import 'home.dart';
+import '../SignInSignUp/email_login.dart';
+import '../HomePage/home.dart';
 
 class AddBooking extends StatefulWidget {
   @override
