@@ -10,6 +10,14 @@ An application targetted at helping King Edward VII residents be in the know abo
 ## Motivation
 
 As residents of KEVII, we hope to have an integrated environment where we can access any hall information with a few swipes on our phones. We believe that there is potential to make KEVIIans' lives more comfortable and convenient through a residential application. This also has the potential to provide a lot more transparency in the hall.
+### User stories
+- As a KEVIIan, I can access the latest news page so that I know what is going on around me in the hall
+- As a KEVIIan, I can check what facilities are available for booking so that I can aboid potential conflict
+- As a KEVIIan, I can read about the hall's history and current information so that I resonate better with the community
+- As a KEVIIan, I can check what student/ CCA led initiatives are ongoing so that I can support my peers
+- As a KEVIIan, I can post questions to the KEVII community via the Forum so that I can get help/ support
+- As an Admin/ JCRC, I can broadcast the latest happenings of the hall so that residents are up to date
+- As an Admin/ JCRC, I can moderate the bookings of facilities so that we comply with any restrictions due to the current pandemic
 
 ## Tech/ Framework used
 - [Flutter](https://flutter.dev/?gclid=CjwKCAjwzMeFBhBwEiwAzwS8zOlVhQ4XY-OWtlHr5eAtJrca4f0cAZLwOB08biQ04MgjChUnlUzL7RoCxaQQAvD_BwE&gclsrc=aw.ds)
@@ -20,14 +28,74 @@ A few of the things you can do with KEVII Companion App:
 - Obtain news on latest hall events
 - Facilities checking and booking
 - Check out Hall Information
-- View Student-led initiatives
+- View Student-led initiatives such as CCA fundraisings or Block Activity
+- Forum/ MarketPlace for students to post questions or look for items they need
 
+### Software Architecture
 <p align="center">
-  <img src = "https://i.imgur.com/K1FwOwf.png" width=350>
-  <img src = "https://i.imgur.com/jIR68iW.png" width=350>
+  <img alt="Software Architecture" title="Software Architecture Diagram" src = "https://i.imgur.com/UxTP7jY.png" width=700>
+</p>
+
+### Application Programme Flow
+<p align="center">
+  <img alt="Program Flow" title="Program Flow Diagram" src = "https://i.imgur.com/nRnfWs8.png" width=700>
+</p>
+
+### Data Structures Used
+#### For Available Facilities
+<p align="center">
+  <img alt="Available Facilites DS" title="Available Facilites DS" src = "https://i.imgur.com/0HK2QlF.png" width=700>
+</p>
+
+---
+
+#### For Current Bookings
+<p align="center">
+  <img alt="Facilities DS" title="Facilities DS Diagram" src = "https://i.imgur.com/GwCC207.png" width=700>
+</p>
+
+---
+
+#### For CCA Information
+<p align="center">
+  <img alt="CCA Info DS" title="CCA Info DS Diagram" src = "https://i.imgur.com/DcN7qet.png" width=700>
+</p>
+
+---
+
+#### For User Information
+<p align="center">
+  <img alt="User Info DS" title="User Info DS Diagram" src = "https://i.imgur.com/dwnJeKK.png" width=700>
+</p>
+
+## Screen Shots
+<p align="center">
+  <img alt="Login Page Screenshot" title="Login Page Screenshot" src = "https://i.imgur.com/lD2ahcE.png" height=500>
+  <img alt="SignUp Page Screenshot" title="SignUp Page Screenshot" src = "https://i.imgur.com/S2Nn9h2.png" height=500>
+  <img alt="HomePage Screenshot" title="HomePage Screenshot" src = "https://i.imgur.com/zy9KfOx.png" height=500>
+
+</p>
+<p align="center">
+  <img alt="Facilities Page Screenshot" title="Facilities Page Screenshot" src = "https://i.imgur.com/UiU76Xx.png" height=500>
+  <img alt="Check Current Bookings Page Screenshot" title="Check Current Bookings Page Screenshot" src = "https://i.imgur.com/TvVINo0.png" height=500>
+  <img alt="Booking Details Page Screenshot" title="Booking Detail Page Screenshot" src = "https://i.imgur.com/Fu6M8mH.png" height=500>
+  <img alt="Booking Page Screenshot" title="Booking Page Screenshot" src = "https://i.imgur.com/So4j9Dy.png" height=500>
 
 </p>
 
+## Potential Features
+- KEIPS points system
+- Open Jio Function for KEVII residents for block events
+
+## Current Progress
+- Established link between front-end and backend using FIreFlutter
+- First draft of how Home Page and Facilities page will look like
+- Draft and rough outline of registration page/ signup page/ facilities booking page which utilise Firebase
+
+## Development Plan
+- 31/05 - 13/06: Create all relevant pages and links in the application
+- 14/06 - 28/06: Work on desired UI, Implement the protoype and do system testing 
+- Remaining: Continue system testing, implement the features under Potential Features
 
 ## Build Process
 1) Follow the [Flutter Installation Guide](https://flutter.dev/docs/get-started/install) to set up the environment needed. 
