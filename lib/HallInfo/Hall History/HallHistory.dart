@@ -157,7 +157,7 @@ class HallHistory extends StatelessWidget {
             right: 10,
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height*0.75,
+              height: MediaQuery.of(context).size.height*0.78,
               margin: EdgeInsets.only(top: 10.0),
               child: ListView(
                   physics: BouncingScrollPhysics(),

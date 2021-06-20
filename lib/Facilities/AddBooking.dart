@@ -6,7 +6,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:keviiapp/Facilities/FacilitiesBookingPage.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../colorScheme.dart';
 import '../SignInSignUp/email_login.dart';
@@ -23,9 +22,10 @@ class _AddBookingState extends State<AddBooking> {
   final _formKey = GlobalKey<FormState>();
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   DatabaseReference dbRef =
-  FirebaseDatabase.instance.reference().child("Facilities");
+      FirebaseDatabase.instance.reference().child("Facilities");
   String title = 'Add a Booking', venueChoose;
-  TextEditingController ccaField = new TextEditingController(), numOfPax = new TextEditingController();
+  TextEditingController ccaField = new TextEditingController(),
+      numOfPax = new TextEditingController();
   DateTime dateChosen, start;
   TimeOfDay startTime, endTime;
   static final DateTime isNow = DateTime(
@@ -188,12 +188,17 @@ class _AddBookingState extends State<AddBooking> {
                             height: 40.0,
                             width: 40,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
                                 color: KERed),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.location_on_rounded, color: bgColor, size: 30,)
+                                Icon(
+                                  Icons.location_on_rounded,
+                                  color: bgColor,
+                                  size: 30,
+                                )
                               ],
                             ),
                           ),
@@ -248,8 +253,7 @@ class _AddBookingState extends State<AddBooking> {
                                               });
                                             },
                                             items: snapshot.data.docs.map<
-                                                DropdownMenuItem<
-                                                    String>>(
+                                                    DropdownMenuItem<String>>(
                                                 (DocumentSnapshot document) {
                                               return new DropdownMenuItem<
                                                   String>(
@@ -302,12 +306,17 @@ class _AddBookingState extends State<AddBooking> {
                             height: 40.0,
                             width: 40,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
                                 color: KERed),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.date_range_rounded, color: bgColor, size: 30,)
+                                Icon(
+                                  Icons.date_range_rounded,
+                                  color: bgColor,
+                                  size: 30,
+                                )
                               ],
                             ),
                           ),
@@ -362,12 +371,17 @@ class _AddBookingState extends State<AddBooking> {
                             height: 40.0,
                             width: 40,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
                                 color: KERed),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.access_time_rounded, color: bgColor, size: 30,)
+                                Icon(
+                                  Icons.access_time_rounded,
+                                  color: bgColor,
+                                  size: 30,
+                                )
                               ],
                             ),
                           ),
@@ -418,12 +432,17 @@ class _AddBookingState extends State<AddBooking> {
                             height: 40.0,
                             width: 40,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
                                 color: KERed),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.access_time_rounded, color: bgColor, size: 30,)
+                                Icon(
+                                  Icons.access_time_rounded,
+                                  color: bgColor,
+                                  size: 30,
+                                )
                               ],
                             ),
                           ),
@@ -475,7 +494,11 @@ class _AddBookingState extends State<AddBooking> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.sports_tennis_rounded, color: bgColor, size: 30,)
+                            Icon(
+                              Icons.sports_tennis_rounded,
+                              color: bgColor,
+                              size: 30,
+                            )
                           ],
                         ),
                       ),
@@ -538,7 +561,11 @@ class _AddBookingState extends State<AddBooking> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.people_outline_rounded, color: bgColor, size: 30,)
+                            Icon(
+                              Icons.people_outline_rounded,
+                              color: bgColor,
+                              size: 30,
+                            )
                           ],
                         ),
                       ),
@@ -588,13 +615,30 @@ class _AddBookingState extends State<AddBooking> {
                             builder: (BuildContext context) {
                               return AlertDialog(
                                 backgroundColor: KELightYellow,
-                                title: Text("Error", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: KERed),),
-                                content: Text('Choose a valid venue', style: TextStyle(fontSize: 18, color: KERed), textAlign: TextAlign.left,),
+                                title: Text(
+                                  "Error",
+                                  style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      color: KERed),
+                                ),
+                                content: Text(
+                                  'Choose a valid venue',
+                                  style: TextStyle(fontSize: 18, color: KERed),
+                                  textAlign: TextAlign.left,
+                                ),
                                 actions: [
                                   ElevatedButton(
-                                    style: ButtonStyle(backgroundColor:  MaterialStateProperty.all<Color>(
-                                        KERed)),
-                                    child: Text("Ok", style: TextStyle(fontSize: 18, color: KELightYellow, fontWeight: FontWeight.bold), textAlign: TextAlign.left),
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                KERed)),
+                                    child: Text("Ok",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: KELightYellow,
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.left),
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
@@ -616,13 +660,31 @@ class _AddBookingState extends State<AddBooking> {
                               builder: (BuildContext context) {
                                 return AlertDialog(
                                   backgroundColor: KELightYellow,
-                                  title: Text("Error", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: KERed),),
-                                  content: Text('Choose a valid Date/ Start/ End Time', style: TextStyle(fontSize: 18, color: KERed), textAlign: TextAlign.left,),
+                                  title: Text(
+                                    "Error",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: KERed),
+                                  ),
+                                  content: Text(
+                                    'Choose a valid Date/ Start/ End Time',
+                                    style:
+                                        TextStyle(fontSize: 18, color: KERed),
+                                    textAlign: TextAlign.left,
+                                  ),
                                   actions: [
                                     ElevatedButton(
-                                      style: ButtonStyle(backgroundColor:  MaterialStateProperty.all<Color>(
-                                          KERed)),
-                                      child: Text("Ok", style: TextStyle(fontSize: 18, color: KELightYellow, fontWeight: FontWeight.bold), textAlign: TextAlign.left),
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  KERed)),
+                                      child: Text("Ok",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: KELightYellow,
+                                              fontWeight: FontWeight.bold),
+                                          textAlign: TextAlign.left),
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
@@ -663,17 +725,21 @@ class _AddBookingState extends State<AddBooking> {
             '-' +
             dateChosen.year.toString(),
         'Start time':
-        TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
-            .format(context),
+            TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
+                .format(context),
         'End time': TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
             .format(context),
         'Venue': venueChoose,
-        'Start Time (Timestamp)': chosenStart.subtract(const Duration(hours: 8)),
+        'Start Time (Timestamp)':
+            chosenStart.subtract(const Duration(hours: 8)),
         'End Time (Timestamp)': chosenEnd.subtract(const Duration(hours: 8)),
         'CcaBlock': ccaField.text,
         'Number of Pax': numOfPax.text,
-        'user' : this.user.uid,
-      }).then((value) => FirebaseFirestore.instance.collection('Facilities').doc(value.id).update({'Reference Code' : value.id}));
+        'user': this.user.uid,
+      }).then((value) => FirebaseFirestore.instance
+          .collection('Facilities')
+          .doc(value.id)
+          .update({'Reference Code': value.id}));
       Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => FacilitiesBookingPage()));
     } else {
@@ -682,32 +748,40 @@ class _AddBookingState extends State<AddBooking> {
           builder: (BuildContext context) {
             return AlertDialog(
               backgroundColor: KELightYellow,
-              title: Text("Do you know your timings?", style: TextStyle(
-                  fontSize: 30, fontWeight: FontWeight.bold, color: KERed),),
-              content: Text('Start Time is after End Time!',
+              title: Text(
+                "Do you know your timings?",
+                style: TextStyle(
+                    fontSize: 30, fontWeight: FontWeight.bold, color: KERed),
+              ),
+              content: Text(
+                'Start Time is after End Time!',
                 style: TextStyle(fontSize: 18, color: KERed),
-                textAlign: TextAlign.left,),
+                textAlign: TextAlign.left,
+              ),
               actions: [
                 ElevatedButton(
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          KERed)),
-                  child: Text("Ok", style: TextStyle(fontSize: 18,
-                      color: KELightYellow,
-                      fontWeight: FontWeight.bold), textAlign: TextAlign.left),
+                      backgroundColor: MaterialStateProperty.all<Color>(KERed)),
+                  child: Text("Ok",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: KELightYellow,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.left),
                   onPressed: () {
-                    startTime = null;
-                    endTime = null;
+                    setState(() {
+                      startTime = null;
+                      endTime = null;
+                    });
                     Navigator.of(context).pop();
-
                   },
                 )
               ],
             );
           });
     }
-    }
-    /*
+  }
+/*
     Future<int> StartInBetween = FirebaseFirestore.instance
         .collection('Facilities')
         .where('Venue', isEqualTo: venueChoose)
@@ -724,8 +798,6 @@ class _AddBookingState extends State<AddBooking> {
         .length;
 
      */
-
-
 
 }
 
