@@ -9,7 +9,7 @@ import '../Facilities/BookingDataPage.dart';
 class bookingPagePanel extends StatelessWidget {
   final Color boxColor = Colors.amberAccent;
   final Color textColor = Colors.white;
-  String venue, date, StartTime, EndTime, numOfPax, ccaBlock;
+  String venue, date, StartTime, EndTime, numOfPax, ccaBlock, referenceCode;
   Timestamp StartTimeStamp;
   DateTime newDate;
   List<String> months = [
@@ -31,7 +31,7 @@ class bookingPagePanel extends StatelessWidget {
   // StatelessWidget nextPage (put in constructor also)
 
   bookingPagePanel(this.venue, this.date, this.StartTime, this.EndTime,
-      this.StartTimeStamp, this.numOfPax, this.ccaBlock) {
+      this.StartTimeStamp, this.numOfPax, this.ccaBlock, this.referenceCode) {
     newDate = StartTimeStamp.toDate();
   }
 
@@ -44,7 +44,7 @@ class bookingPagePanel extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) =>
-                    BookingDataPage(venue, StartTime, EndTime, date, numOfPax, ccaBlock),
+                    BookingDataPage(venue, StartTime, EndTime, date, numOfPax, ccaBlock, referenceCode),
               ));
         },
         child: Container(

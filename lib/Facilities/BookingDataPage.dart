@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import '../colorScheme.dart';
 
 class BookingDataPage extends StatefulWidget {
-  String venue, startTime, endTime, date, numberOfPax, ccaBlock;
+  String venue, startTime, endTime, date, numberOfPax, ccaBlock, referenceCode;
 
-  BookingDataPage(this.venue, this.startTime, this.endTime, this.date, this.numberOfPax, this.ccaBlock);
+  BookingDataPage(this.venue, this.startTime, this.endTime, this.date, this.numberOfPax, this.ccaBlock, this.referenceCode);
 
   _BookingDataPageState createState() =>
-      _BookingDataPageState(venue, startTime, endTime, date, numberOfPax, ccaBlock);
+      _BookingDataPageState(venue, startTime, endTime, date, numberOfPax, ccaBlock, referenceCode);
 }
 
 class _BookingDataPageState extends State<BookingDataPage> {
-  String userID, usedBy, venue, startTime, endTime, date, numberOfPax, ccaBlock;
+  String userID, usedBy, venue, startTime, endTime, date, numberOfPax, ccaBlock, referenceCode;
   Timestamp startDateTime, endDateTime;
   int MPC = 0, CommHall = 1, SquashCourt = 2, TennisCourt = 3, DanceStudio = 4, HeritageRoom = 5, DiningHall = 6, index;
   List<String> imgURL = [
@@ -26,7 +26,7 @@ class _BookingDataPageState extends State<BookingDataPage> {
     'https://scontent.fsin7-1.fna.fbcdn.net/v/t1.6435-9/118727987_1269657280050077_6685992467446830307_n.jpg?_nc_cat=109&ccb=1-3&_nc_sid=0debeb&_nc_ohc=Yzi5DBi8Y9QAX8sHIos&tn=g9Z8h1jx25xvmq03&_nc_ht=scontent.fsin7-1.fna&oh=c57c8d72201f8cbbc556cc74123556ad&oe=60C8A16B',
   ];
 
-  _BookingDataPageState(this.venue, this.startTime, this.endTime, this.date, this.numberOfPax, this.ccaBlock) {
+  _BookingDataPageState(this.venue, this.startTime, this.endTime, this.date, this.numberOfPax, this.ccaBlock, this.referenceCode) {
     if (this.venue == 'MPC') {
       index = MPC;
     } else if (this.venue == 'Comm Hall') {
@@ -104,15 +104,15 @@ class _BookingDataPageState extends State<BookingDataPage> {
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Text(
-                                  'To be added',
+                                  referenceCode,
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 16,
                                     fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w500,
                                   ),
                                 )
                               ],

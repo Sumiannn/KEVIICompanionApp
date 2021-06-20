@@ -187,6 +187,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                             bookings['Start Time (Timestamp)'],
                                             bookings['Number of Pax'],
                                             bookings['CcaBlock'],
+                                            bookings['Reference Code'],
                                           );
                                         },
                                       );
@@ -228,6 +229,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                           bookings['Start Time (Timestamp)'],
                                           bookings['Number of Pax'],
                                           bookings['CcaBlock'],
+                                          bookings['Reference Code'],
                                         );
                                       },
                                     );
@@ -269,6 +271,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                           bookings['Start Time (Timestamp)'],
                                           bookings['Number of Pax'],
                                           bookings['CcaBlock'],
+                                          bookings['Reference Code'],
                                         );
                                       },
                                     );
@@ -280,41 +283,42 @@ class FacilitiesBookingPage extends StatelessWidget {
                               child: StreamBuilder(
                                   stream: FirebaseFirestore.instance
                                       .collection("Facilities")
-                                      .where('Venue',
-                                          isEqualTo: 'Tennis Courts')
+                                      .where('Venue', isEqualTo: 'Tennis Courts')
                                       .orderBy('Start Time (Timestamp)')
                                       .snapshots(),
                                   builder: (context, snapshot) {
-                                    if (snapshot.hasData) {
-                                      return ListView.builder(
-                                        shrinkWrap: true,
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 10.0, horizontal: 16.0),
-                                        itemCount: snapshot.data.docs.length,
-                                        itemBuilder: (context, index) {
-                                          DocumentSnapshot bookings =
-                                              snapshot.data.docs[index];
-                                          return bookingPagePanel(
-                                            bookings['Venue'],
-                                            bookings['Date'],
-                                            bookings['Start time'],
-                                            bookings['End time'],
-                                            bookings['Start Time (Timestamp)'],
-                                            bookings['Number of Pax'],
-                                            bookings['CcaBlock'],
-                                          );
-                                        },
-                                      );
+                                    if (!snapshot.hasData || snapshot.data.docs.length == 0) {
+                                      return Center(
+                                          child: Text(
+                                            'No bookings currently',
+                                            style: TextStyle(
+                                                color: KERed,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 25),
+                                          ));
                                     }
-                                    return Center(
-                                        child: Text(
-                                      'No bookings currently',
-                                      style: TextStyle(
-                                          color: KERed,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 30),
-                                    ));
-                                  }),
+                                    return ListView.builder(
+                                      shrinkWrap: true,
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 10.0, horizontal: 16.0),
+                                      itemCount: snapshot.data.docs.length,
+                                      itemBuilder: (context, index) {
+                                        DocumentSnapshot bookings =
+                                        snapshot.data.docs[index];
+                                        return bookingPagePanel(
+                                          bookings['Venue'],
+                                          bookings['Date'],
+                                          bookings['Start time'],
+                                          bookings['End time'],
+                                          bookings['Start Time (Timestamp)'],
+                                          bookings['Number of Pax'],
+                                          bookings['CcaBlock'],
+                                          bookings['Reference Code'],
+                                        );
+                                      },
+                                    );
+                                  }
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(5.0),
@@ -351,6 +355,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                           bookings['Start Time (Timestamp)'],
                                           bookings['Number of Pax'],
                                           bookings['CcaBlock'],
+                                          bookings['Reference Code'],
                                         );
                                       },
                                     );
@@ -392,6 +397,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                           bookings['Start Time (Timestamp)'],
                                           bookings['Number of Pax'],
                                           bookings['CcaBlock'],
+                                          bookings['Reference Code'],
                                         );
                                       },
                                     );
@@ -433,6 +439,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                           bookings['Start Time (Timestamp)'],
                                           bookings['Number of Pax'],
                                           bookings['CcaBlock'],
+                                          bookings['Reference Code'],
                                         );
                                       },
                                     );
