@@ -782,6 +782,15 @@ class _AddBookingState extends State<AddBooking> {
     }
   }
 /*
+Logic:
+1) Get the documents corresponding to the venue
+2) For each document:
+     Obtain a start adn end time (timestamp) pair,
+     store them in a list
+3) For each pair in the list:
+     if (chosenStart is between start and end time) throwError
+     if (chosenEnd is between start and end time) throwError
+     
     Future<int> StartInBetween = FirebaseFirestore.instance
         .collection('Facilities')
         .where('Venue', isEqualTo: venueChoose)
