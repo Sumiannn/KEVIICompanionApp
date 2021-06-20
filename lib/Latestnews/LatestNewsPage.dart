@@ -2,9 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../colorScheme.dart';
-import '../signup.dart';
-import 'email_login.dart';
-import 'home.dart';
+import '../SignInSignUp/email_login.dart';
+import '../HomePage/home.dart';
 
 class LatestNewsPage extends StatelessWidget {
   String headline, subheading, news, imageURL;
@@ -117,7 +116,7 @@ class LatestNewsPage extends StatelessWidget {
                               ),
                               child: Text(
                                   news,
-                                  textAlign: TextAlign.start,
+                                  textAlign: TextAlign.justify,
                                   style: TextStyle(fontSize: 18),
                                 ),
                               ),

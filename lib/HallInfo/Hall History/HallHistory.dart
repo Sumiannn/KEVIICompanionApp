@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/Screens/Hall%20History/HallHistoryPart1.dart';
+import 'package:keviiapp/HallInfo/Hall%20History/HallHistoryPart1.dart';
 
 import '../../colorScheme.dart';
-import '../email_login.dart';
-import '../home.dart';
+import '../../SignInSignUp/email_login.dart';
+import '../../HomePage/home.dart';
 import 'HallHistoryPart2.dart';
 import 'HallHistoryPart3.dart';
 import 'HallHistoryPart4.dart';

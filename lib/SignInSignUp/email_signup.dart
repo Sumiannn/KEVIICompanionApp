@@ -2,10 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/Screens/email_login.dart';
 import 'package:keviiapp/colorScheme.dart';
 
-import 'home.dart';
+import '../HomePage/home.dart';
 
 class EmailSignUp extends StatefulWidget {
   @override
@@ -205,8 +204,8 @@ class _EmailSignUpState extends State<EmailSignUp> {
                   ),
                   // The validator receives the text that the user has entered.
                   validator: (value) {
-                    if (value.length != 4) {
-                      return 'Not a valid Room Number';
+                    if (value.length < 6) {
+                      return 'Password must be at least 6 characters';
                     }
                     return null;
                   },
@@ -251,7 +250,31 @@ class _EmailSignUpState extends State<EmailSignUp> {
     firebaseAuth
         .createUserWithEmailAndPassword(
             email: emailController.text, password: passwordController.text)
-        .then((result) {
+        .catchError((err) {
+      setState(() {
+        isLoading = false;
+      });
+      print(err.message);
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              backgroundColor: KELightYellow,
+              title: Text("Error", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: KERed),),
+              content: Text(err.message, style: TextStyle(fontSize: 18, color: KERed), textAlign: TextAlign.left,),
+              actions: [
+                ElevatedButton(
+                  style: ButtonStyle(backgroundColor:  MaterialStateProperty.all<Color>(
+                      KERed)),
+                  child: Text("Retry", style: TextStyle(fontSize: 18, color: KELightYellow, fontWeight: FontWeight.bold), textAlign: TextAlign.left),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    }).then((result) {
       FirebaseFirestore.instance
           .collection("users")
           .doc(firebaseAuth.currentUser.uid)
@@ -271,6 +294,10 @@ class _EmailSignUpState extends State<EmailSignUp> {
           );
         });
       }).catchError((err) {
+        setState(() {
+          isLoading = false;
+        });
+        print(err.message);
         showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -300,6 +327,7 @@ class _EmailSignUpState extends State<EmailSignUp> {
     roomController.dispose();
   }
 }
+
 class pathPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
