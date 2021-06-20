@@ -86,7 +86,7 @@ class HallInfoOptionScreen extends StatelessWidget {
               padding: EdgeInsets.only(right: 12),
               width: MediaQuery.of(context).size.width,
               child: Text(
-                "New to KE7? Or simply want to know more about our Hall? Here's all things you need to know!",
+                "New to KE7?? Or simply want to know more about our Hall? Here's all things you need to know!",
                 style: TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 18,
@@ -101,7 +101,7 @@ class HallInfoOptionScreen extends StatelessWidget {
             right: 25,
             child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height*0.73,
+                height: MediaQuery.of(context).size.height*0.70,
                 margin: EdgeInsets.only(top: 10.0),
                 child: ListView(
                     physics: BouncingScrollPhysics(),
