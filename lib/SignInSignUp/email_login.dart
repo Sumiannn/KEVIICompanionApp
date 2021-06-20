@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/Screens/email_signup.dart';
-import 'package:keviiapp/signup.dart';
+import 'package:keviiapp/SignInSignUp/email_signup.dart';
 import 'package:keviiapp/colorScheme.dart';
-import 'home.dart';
+import '../HomePage/home.dart';
 
 class EmailLogIn extends StatefulWidget {
   @override
@@ -186,16 +185,22 @@ class _EmailLogInState extends State<EmailLogIn> {
         MaterialPageRoute(builder: (context) => Home(uid: result.user.uid)),
       );
     }).catchError((err) {
+      setState(() {
+        isLoading = false;
+      });
       print(err.message);
       showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("Error"),
-              content: Text(err.message),
+              backgroundColor: KELightYellow,
+              title: Text("Error", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: KERed),),
+              content: Text(err.message, style: TextStyle(fontSize: 18, color: KERed), textAlign: TextAlign.left,),
               actions: [
                 ElevatedButton(
-                  child: Text("Ok"),
+                  style: ButtonStyle(backgroundColor:  MaterialStateProperty.all<Color>(
+                      KERed)),
+                  child: Text("Retry", style: TextStyle(fontSize: 18, color: KELightYellow, fontWeight: FontWeight.bold), textAlign: TextAlign.left),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },

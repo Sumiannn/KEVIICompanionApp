@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:keviiapp/colorScheme.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-import '../email_login.dart';
-import '../home.dart';
+import '../../SignInSignUp/email_login.dart';
+import '../../HomePage/home.dart';
 
-class HallHistoryPart2 extends StatelessWidget {
+class HallHistoryPart4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,7 @@ class HallHistoryPart2 extends StatelessWidget {
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   child: Image.asset(
-                    "assets/image/KingEdwardHolneChase.jpg",
+                    "assets/image/KE7HallHistory.jpg",
                     alignment: Alignment.topLeft,
                     fit: BoxFit.fitWidth,
                   ),
@@ -122,7 +122,7 @@ class TabWidget extends StatelessWidget {
                   ),
                   Center(
                     child: Text(
-                      "Holne Chase",
+                      "King Edward VII Hall",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 26,
@@ -135,7 +135,7 @@ class TabWidget extends StatelessWidget {
                   ),
                   Center(
                     child: Text(
-                      "Grange Road (1938-1956)",
+                      "1A Kent Ridge Road (1987-Present)",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 20,
@@ -150,7 +150,7 @@ class TabWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         color: KELightRed),
                     child: Text(
-                      "Female students during the F.M.S. years stayed in a bungalow at Grange Road, quaintly called “Holne Chase”, an all-female hostel. The grounds were beautiful with huge trees and flowering shrubs. There were also tennis and badminton courts.",
+                      "25th November 1988 marked the official grand opening ceremony of KEVII Hall at the NUS Kent Ridge campus, graced by their President Wee Kim Wee amidst much celebrations. The new King Edward VII Hall took in the most number of non-medical students in its history in order to broaden the student profile of its residents, a practice evident in the diversity of current KEVII hall residents. The sprawling new hostel overlooks the National University Hospital.",
                       textAlign: TextAlign.start,
                       style: TextStyle(fontSize: 20),
                     ),
@@ -161,4 +161,3 @@ class TabWidget extends StatelessWidget {
       ]
   );
 }
-

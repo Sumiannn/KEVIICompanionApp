@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:keviiapp/colorScheme.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-import '../email_login.dart';
-import '../home.dart';
+import '../../SignInSignUp/email_login.dart';
+import '../../HomePage/home.dart';
 
-class HallHistoryPart3 extends StatelessWidget {
+class HallHistoryPart2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,7 @@ class HallHistoryPart3 extends StatelessWidget {
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   child: Image.asset(
-                    "assets/image/KingEdwardOld.jpg",
+                    "assets/image/KingEdwardHolneChase.jpg",
                     alignment: Alignment.topLeft,
                     fit: BoxFit.fitWidth,
                   ),
@@ -122,7 +122,7 @@ class TabWidget extends StatelessWidget {
                   ),
                   Center(
                     child: Text(
-                      "King Edward VII Hall",
+                      "Holne Chase",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 26,
@@ -135,7 +135,7 @@ class TabWidget extends StatelessWidget {
                   ),
                   Center(
                     child: Text(
-                      "Sepoy Lines, 12 College Road (1957-1987)",
+                      "Grange Road (1938-1956)",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 20,
@@ -150,7 +150,7 @@ class TabWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         color: KELightRed),
                     child: Text(
-                      "On 30th November 1957, a new hostel was declared open by the Prime Minister of Malaya, Tunku Abdul Rahman. The new Hall of Residence was named “King Edward VII Hall” in honour of the old KEVII College of Medicine, which had ceased to exist as it had become the Faculty of Medicine for the University of Malaya. The Hall housed more than 250 students in two blocks.",
+                      "Female students during the F.M.S. years stayed in a bungalow at Grange Road, quaintly called “Holne Chase”, an all-female hostel. The grounds were beautiful with huge trees and flowering shrubs. There were also tennis and badminton courts.",
                       textAlign: TextAlign.start,
                       style: TextStyle(fontSize: 20),
                     ),

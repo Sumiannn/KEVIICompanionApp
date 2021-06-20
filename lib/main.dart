@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/Screens/email_login.dart';
+import 'package:keviiapp/SignInSignUp/email_login.dart';
 import 'package:keviiapp/colorScheme.dart';
 
-import 'Screens/home.dart';
+import 'HomePage/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
