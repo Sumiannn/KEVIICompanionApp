@@ -12,8 +12,8 @@ class HallHistoryPart1 extends StatelessWidget {
     return Scaffold(
         backgroundColor: bgColor,
         body: SlidingUpPanel(
-            minHeight: 485.0,
-            maxHeight: MediaQuery.of(context).size.height,
+            minHeight: MediaQuery.of(context).size.height*0.69,
+            maxHeight: MediaQuery.of(context).size.height*0.69,
             borderRadius: BorderRadius.all(Radius.circular(20.0)),
             panelBuilder: (scrollController) => buildSlidingPanel(
                   scrollController: scrollController,
