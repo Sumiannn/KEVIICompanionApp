@@ -6,6 +6,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:keviiapp/Facilities/FacilitiesBookingPage.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../colorScheme.dart';
 import '../SignInSignUp/email_login.dart';
@@ -247,7 +248,8 @@ class _AddBookingState extends State<AddBooking> {
                                               });
                                             },
                                             items: snapshot.data.docs.map<
-                                                    DropdownMenuItem<String>>(
+                                                DropdownMenuItem<
+                                                    String>>(
                                                 (DocumentSnapshot document) {
                                               return new DropdownMenuItem<
                                                   String>(
@@ -264,10 +266,9 @@ class _AddBookingState extends State<AddBooking> {
                                               );
                                             }).toList(),
                                             validator: (value) {
-                                              if (value.isEmpty) {
-                                                return 'Please choose a venue';
+                                              if (value == null) {
+                                                return 'Required';
                                               }
-                                              return null;
                                             },
                                           ),
                                         ),
@@ -581,11 +582,55 @@ class _AddBookingState extends State<AddBooking> {
                   right: 20,
                   child: ElevatedButton(
                     onPressed: () {
+                      if (venueChoose == null) {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor: KELightYellow,
+                                title: Text("Error", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: KERed),),
+                                content: Text('Choose a valid venue', style: TextStyle(fontSize: 18, color: KERed), textAlign: TextAlign.left,),
+                                actions: [
+                                  ElevatedButton(
+                                    style: ButtonStyle(backgroundColor:  MaterialStateProperty.all<Color>(
+                                        KERed)),
+                                    child: Text("Ok", style: TextStyle(fontSize: 18, color: KELightYellow, fontWeight: FontWeight.bold), textAlign: TextAlign.left),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  )
+                                ],
+                              );
+                            });
+                      }
+                      _formKey.currentState.validate();
                       if (_formKey.currentState.validate()) {
                         setState(() {
                           isLoading = true;
                         });
-                        addBooking();
+                        try {
+                          addBooking();
+                        } catch (exception) {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  backgroundColor: KELightYellow,
+                                  title: Text("Error", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: KERed),),
+                                  content: Text('Choose a valid Date/ Start/ End Time', style: TextStyle(fontSize: 18, color: KERed), textAlign: TextAlign.left,),
+                                  actions: [
+                                    ElevatedButton(
+                                      style: ButtonStyle(backgroundColor:  MaterialStateProperty.all<Color>(
+                                          KERed)),
+                                      child: Text("Ok", style: TextStyle(fontSize: 18, color: KELightYellow, fontWeight: FontWeight.bold), textAlign: TextAlign.left),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    )
+                                  ],
+                                );
+                              });
+                        }
                       }
                     },
                     child: Center(
@@ -610,6 +655,59 @@ class _AddBookingState extends State<AddBooking> {
         dateChosen.day, startTime.hour, startTime.minute);
     DateTime chosenEnd = DateTime(dateChosen.year, dateChosen.month,
         dateChosen.day, endTime.hour, endTime.minute);
+    if (!chosenStart.isAfter(chosenEnd)) {
+      FirebaseFirestore.instance.collection('Facilities').add({
+        'Date': dateChosen.day.toString() +
+            '-' +
+            dateChosen.month.toString() +
+            '-' +
+            dateChosen.year.toString(),
+        'Start time':
+        TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
+            .format(context),
+        'End time': TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
+            .format(context),
+        'Venue': venueChoose,
+        'Start Time (Timestamp)': chosenStart.subtract(const Duration(hours: 8)),
+        'End Time (Timestamp)': chosenEnd.subtract(const Duration(hours: 8)),
+        'CcaBlock': ccaField.text,
+        'Number of Pax': numOfPax.text,
+        'user' : this.user.uid,
+      }).then((value) => FirebaseFirestore.instance.collection('Facilities').doc(value.id).update({'Reference Code' : value.id}));
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => FacilitiesBookingPage()));
+    } else {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              backgroundColor: KELightYellow,
+              title: Text("Do you know your timings?", style: TextStyle(
+                  fontSize: 30, fontWeight: FontWeight.bold, color: KERed),),
+              content: Text('Start Time is after End Time!',
+                style: TextStyle(fontSize: 18, color: KERed),
+                textAlign: TextAlign.left,),
+              actions: [
+                ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          KERed)),
+                  child: Text("Ok", style: TextStyle(fontSize: 18,
+                      color: KELightYellow,
+                      fontWeight: FontWeight.bold), textAlign: TextAlign.left),
+                  onPressed: () {
+                    startTime = null;
+                    endTime = null;
+                    Navigator.of(context).pop();
+
+                  },
+                )
+              ],
+            );
+          });
+    }
+    }
+    /*
     Future<int> StartInBetween = FirebaseFirestore.instance
         .collection('Facilities')
         .where('Venue', isEqualTo: venueChoose)
@@ -625,27 +723,10 @@ class _AddBookingState extends State<AddBooking> {
         .snapshots()
         .length;
 
-    FirebaseFirestore.instance.collection('Facilities').add({
-      'Date': dateChosen.day.toString() +
-          '-' +
-          dateChosen.month.toString() +
-          '-' +
-          dateChosen.year.toString(),
-      'Start time':
-          TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
-              .format(context),
-      'End time': TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
-          .format(context),
-      'Venue': venueChoose,
-      'Start Time (Timestamp)': chosenStart.subtract(const Duration(hours: 8)),
-      'End Time (Timestamp)': chosenEnd.subtract(const Duration(hours: 8)),
-      'CcaBlock': ccaField.text,
-      'Number of Pax': numOfPax.text,
-      'user' : this.user.uid,
-    });
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => FacilitiesBookingPage()));
-  }
+     */
+
+
+
 }
 
 class pathPainter extends CustomPainter {

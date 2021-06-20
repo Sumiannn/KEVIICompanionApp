@@ -187,6 +187,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                             bookings['Start Time (Timestamp)'],
                                             bookings['Number of Pax'],
                                             bookings['CcaBlock'],
+                                            bookings['Reference Code'],
                                           );
                                         },
                                       );
@@ -228,6 +229,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                           bookings['Start Time (Timestamp)'],
                                           bookings['Number of Pax'],
                                           bookings['CcaBlock'],
+                                          bookings['Reference Code'],
                                         );
                                       },
                                     );
@@ -269,6 +271,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                           bookings['Start Time (Timestamp)'],
                                           bookings['Number of Pax'],
                                           bookings['CcaBlock'],
+                                          bookings['Reference Code'],
                                         );
                                       },
                                     );
@@ -302,6 +305,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                             bookings['Start Time (Timestamp)'],
                                             bookings['Number of Pax'],
                                             bookings['CcaBlock'],
+                                            bookings['Reference Code'],
                                           );
                                         },
                                       );
@@ -351,6 +355,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                           bookings['Start Time (Timestamp)'],
                                           bookings['Number of Pax'],
                                           bookings['CcaBlock'],
+                                          bookings['Reference Code'],
                                         );
                                       },
                                     );
@@ -392,6 +397,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                           bookings['Start Time (Timestamp)'],
                                           bookings['Number of Pax'],
                                           bookings['CcaBlock'],
+                                          bookings['Reference Code'],
                                         );
                                       },
                                     );
@@ -433,6 +439,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                           bookings['Start Time (Timestamp)'],
                                           bookings['Number of Pax'],
                                           bookings['CcaBlock'],
+                                          bookings['Reference Code'],
                                         );
                                       },
                                     );
