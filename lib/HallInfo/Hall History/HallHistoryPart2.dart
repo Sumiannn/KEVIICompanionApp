@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:keviiapp/colorScheme.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-import '../email_login.dart';
-import '../home.dart';
+import '../../SignInSignUp/email_login.dart';
+import '../../HomePage/home.dart';
 
 class HallHistoryPart2 extends StatelessWidget {
   @override

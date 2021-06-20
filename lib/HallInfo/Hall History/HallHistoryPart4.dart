@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:keviiapp/colorScheme.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-import '../email_login.dart';
-import '../home.dart';
+import '../../SignInSignUp/email_login.dart';
+import '../../HomePage/home.dart';
 
-class HallHistoryPart3 extends StatelessWidget {
+class HallHistoryPart4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,7 @@ class HallHistoryPart3 extends StatelessWidget {
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   child: Image.asset(
-                    "assets/image/KingEdwardOld.jpg",
+                    "assets/image/KE7HallHistory.jpg",
                     alignment: Alignment.topLeft,
                     fit: BoxFit.fitWidth,
                   ),
@@ -135,7 +135,7 @@ class TabWidget extends StatelessWidget {
                   ),
                   Center(
                     child: Text(
-                      "Sepoy Lines, 12 College Road (1957-1987)",
+                      "1A Kent Ridge Road (1987-Present)",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 20,
@@ -150,7 +150,7 @@ class TabWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         color: KELightRed),
                     child: Text(
-                      "On 30th November 1957, a new hostel was declared open by the Prime Minister of Malaya, Tunku Abdul Rahman. The new Hall of Residence was named “King Edward VII Hall” in honour of the old KEVII College of Medicine, which had ceased to exist as it had become the Faculty of Medicine for the University of Malaya. The Hall housed more than 250 students in two blocks.",
+                      "25th November 1988 marked the official grand opening ceremony of KEVII Hall at the NUS Kent Ridge campus, graced by their President Wee Kim Wee amidst much celebrations. The new King Edward VII Hall took in the most number of non-medical students in its history in order to broaden the student profile of its residents, a practice evident in the diversity of current KEVII hall residents. The sprawling new hostel overlooks the National University Hospital.",
                       textAlign: TextAlign.start,
                       style: TextStyle(fontSize: 20),
                     ),
@@ -161,4 +161,3 @@ class TabWidget extends StatelessWidget {
       ]
   );
 }
-

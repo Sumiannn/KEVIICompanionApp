@@ -3,17 +3,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/FacilitiesOptionScreen.dart';
-import 'package:keviiapp/HallInfoOptionScreen.dart';
-import 'package:keviiapp/Screens/AddBooking.dart';
+import 'package:keviiapp/Facilities/FacilitiesOptionScreen.dart';
+import 'package:keviiapp/HallInfo/HallInfoOptionScreen.dart';
+import 'package:keviiapp/Facilities/AddBooking.dart';
 import 'package:keviiapp/Panels/homePanel.dart';
-import 'package:keviiapp/Screens/FacilitiesBookingPage.dart';
-import 'package:keviiapp/Screens/accountPage.dart';
+import 'package:keviiapp/Facilities/FacilitiesBookingPage.dart';
+import 'package:keviiapp/AccountPage/accountPage.dart';
 import 'package:keviiapp/colorScheme.dart';
 
-import 'AddBooking.dart';
-import 'LatestNewsPage.dart';
-import 'email_login.dart';
+import '../Facilities/AddBooking.dart';
+import '../Latestnews/LatestNewsPage.dart';
+import '../SignInSignUp/email_login.dart';
 
 class Home extends StatefulWidget {
   Home({this.uid});
