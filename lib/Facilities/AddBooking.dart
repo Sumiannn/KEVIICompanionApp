@@ -711,38 +711,128 @@ class _AddBookingState extends State<AddBooking> {
         ));
   }
 
-  void addBooking() {
-    isLoading = false;
+  void addBooking() async {
     DateTime chosenStart = DateTime(dateChosen.year, dateChosen.month,
         dateChosen.day, startTime.hour, startTime.minute);
     DateTime chosenEnd = DateTime(dateChosen.year, dateChosen.month,
         dateChosen.day, endTime.hour, endTime.minute);
-    if (!chosenStart.isAfter(chosenEnd)) {
-      FirebaseFirestore.instance.collection('Facilities').add({
-        'Date': dateChosen.day.toString() +
-            '-' +
-            dateChosen.month.toString() +
-            '-' +
-            dateChosen.year.toString(),
-        'Start time':
-            TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
-                .format(context),
-        'End time': TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
-            .format(context),
-        'Venue': venueChoose,
-        'Start Time (Timestamp)':
-            chosenStart.subtract(const Duration(hours: 8)),
-        'End Time (Timestamp)': chosenEnd.subtract(const Duration(hours: 8)),
-        'CcaBlock': ccaField.text,
-        'Number of Pax': numOfPax.text,
-        'user': this.user.uid,
-      }).then((value) => FirebaseFirestore.instance
-          .collection('Facilities')
-          .doc(value.id)
-          .update({'Reference Code': value.id}));
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => FacilitiesBookingPage()));
-    } else {
+    List<TimePair> ListOfTimes = [];
+    FirebaseFirestore.instance
+        .collection('Facilities')
+        .where('Venue', isEqualTo: venueChoose)
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      if (querySnapshot.docs.isNotEmpty) {
+        querySnapshot.docs.forEach((doc) {
+          Timestamp docStartTime = doc['Start Time (Timestamp)'];
+          Timestamp docEndTime = doc['End Time (Timestamp)'];
+          TimePair docTimePair = new TimePair(docStartTime, docEndTime);
+          ListOfTimes.add(docTimePair);
+          print(ListOfTimes.length);
+        });
+        for (TimePair pair in ListOfTimes) {
+          pair.printTimes();
+          print(chosenStart);
+          if (pair.isBetween(chosenStart) || pair.isBetween(chosenEnd)) {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    backgroundColor: KELightYellow,
+                    title: Text(
+                      "Slot already taken!",
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: KERed),
+                    ),
+                    content: Text(
+                      'Choose another time slot please',
+                      style: TextStyle(fontSize: 18, color: KERed),
+                      textAlign: TextAlign.left,
+                    ),
+                    actions: [
+                      ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(KERed)),
+                        child: Text("Ok",
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: KELightYellow,
+                                fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.left),
+                        onPressed: () {
+                          setState(() {
+                            startTime = null;
+                            endTime = null;
+                          });
+                          Navigator.of(context).pop();
+                        },
+                      )
+                    ],
+                  );
+                });
+            break;
+          } else {
+            FirebaseFirestore.instance.collection('Facilities').add({
+              'Date': dateChosen.day.toString() +
+                  '-' +
+                  dateChosen.month.toString() +
+                  '-' +
+                  dateChosen.year.toString(),
+              'Start time':
+                  TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
+                      .format(context),
+              'End time':
+                  TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
+                      .format(context),
+              'Venue': venueChoose,
+              'Start Time (Timestamp)':
+                  chosenStart.subtract(const Duration(hours: 8)),
+              'End Time (Timestamp)':
+                  chosenEnd.subtract(const Duration(hours: 8)),
+              'CcaBlock': ccaField.text,
+              'Number of Pax': numOfPax.text,
+              'user': this.user.uid,
+            }).then((value) => FirebaseFirestore.instance
+                .collection('Facilities')
+                .doc(value.id)
+                .update({'Reference Code': value.id}));
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => FacilitiesBookingPage()));
+          }
+        }
+      } else {
+        FirebaseFirestore.instance.collection('Facilities').add({
+          'Date': dateChosen.day.toString() +
+              '-' +
+              dateChosen.month.toString() +
+              '-' +
+              dateChosen.year.toString(),
+          'Start time':
+              TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
+                  .format(context),
+          'End time': TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
+              .format(context),
+          'Venue': venueChoose,
+          'Start Time (Timestamp)':
+              chosenStart.subtract(const Duration(hours: 8)),
+          'End Time (Timestamp)': chosenEnd.subtract(const Duration(hours: 8)),
+          'CcaBlock': ccaField.text,
+          'Number of Pax': numOfPax.text,
+          'user': this.user.uid,
+        }).then((value) => FirebaseFirestore.instance
+            .collection('Facilities')
+            .doc(value.id)
+            .update({'Reference Code': value.id}));
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => FacilitiesBookingPage()));
+      }
+    });
+    if (chosenStart.isAfter(chosenEnd)) {
       showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -781,7 +871,10 @@ class _AddBookingState extends State<AddBooking> {
           });
     }
   }
+}
+
 /*
+Handle the case where chose start and end is beyond both timepairs.
 Logic:
 1) Get the documents corresponding to the venue
 2) For each document:
@@ -790,7 +883,7 @@ Logic:
 3) For each pair in the list:
      if (chosenStart is between start and end time) throwError
      if (chosenEnd is between start and end time) throwError
-     
+
     Future<int> StartInBetween = FirebaseFirestore.instance
         .collection('Facilities')
         .where('Venue', isEqualTo: venueChoose)
@@ -808,6 +901,23 @@ Logic:
 
      */
 
+class TimePair {
+  Timestamp startTime, endTime;
+  DateTime start, end;
+
+  TimePair(this.startTime, this.endTime) {
+    this.start = startTime.toDate().add(const Duration(hours: 8));
+    this.end = endTime.toDate().add(const Duration(hours: 8));
+  }
+
+  void printTimes() {
+    print(start);
+    print(end);
+  }
+
+  bool isBetween(DateTime chosenTime) {
+    return (chosenTime.isAfter(start) && chosenTime.isBefore(end));
+  }
 }
 
 class pathPainter extends CustomPainter {
