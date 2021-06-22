@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/Screens/AddBooking.dart';
-import 'package:keviiapp/Screens/FacilitiesBookingPage.dart';
+import 'package:keviiapp/Facilities/AddBooking.dart';
+import 'package:keviiapp/Facilities/FacilitiesBookingPage.dart';
 import 'package:keviiapp/colorScheme.dart';
 
-import '../Screens/BookingDataPage.dart';
+import '../Facilities/BookingDataPage.dart';
 
 class bookingPagePanel extends StatelessWidget {
   final Color boxColor = Colors.amberAccent;
   final Color textColor = Colors.white;
-  String venue, date, StartTime, EndTime, numOfPax, ccaBlock;
+  String venue, date, StartTime, EndTime, numOfPax, ccaBlock, referenceCode;
   Timestamp StartTimeStamp;
   DateTime newDate;
   List<String> months = [
@@ -31,7 +31,7 @@ class bookingPagePanel extends StatelessWidget {
   // StatelessWidget nextPage (put in constructor also)
 
   bookingPagePanel(this.venue, this.date, this.StartTime, this.EndTime,
-      this.StartTimeStamp, this.numOfPax, this.ccaBlock) {
+      this.StartTimeStamp, this.numOfPax, this.ccaBlock, this.referenceCode) {
     newDate = StartTimeStamp.toDate();
   }
 
@@ -44,7 +44,7 @@ class bookingPagePanel extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) =>
-                    BookingDataPage(venue, StartTime, EndTime, date, numOfPax, ccaBlock),
+                    BookingDataPage(venue, StartTime, EndTime, date, numOfPax, ccaBlock, referenceCode),
               ));
         },
         child: Container(

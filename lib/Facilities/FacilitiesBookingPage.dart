@@ -3,12 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:keviiapp/Panels/bookingPagePanel.dart';
-import 'package:keviiapp/Screens/AddBooking.dart';
+import 'package:keviiapp/Facilities/AddBooking.dart';
 import 'package:keviiapp/colorScheme.dart';
-import 'package:keviiapp/signup.dart';
 
-import 'email_login.dart';
-import 'home.dart';
+import '../SignInSignUp/email_login.dart';
+import '../HomePage/home.dart';
 
 class FacilitiesBookingPage extends StatelessWidget {
   final title = "Check current bookings";
@@ -159,6 +158,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                   stream: FirebaseFirestore.instance
                                       .collection("Facilities")
                                       .where('Venue', isEqualTo: 'MPC')
+                                      .where('Start Time (Timestamp)', isGreaterThanOrEqualTo: Timestamp.fromDate(DateTime.now()))
                                       .orderBy('Start Time (Timestamp)')
                                       .snapshots(),
                                   builder: (context, snapshot) {
@@ -188,6 +188,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                             bookings['Start Time (Timestamp)'],
                                             bookings['Number of Pax'],
                                             bookings['CcaBlock'],
+                                            bookings['Reference Code'],
                                           );
                                         },
                                       );
@@ -200,6 +201,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                   stream: FirebaseFirestore.instance
                                       .collection("Facilities")
                                       .where('Venue', isEqualTo: 'Comm Hall')
+                                      .where('Start Time (Timestamp)', isGreaterThanOrEqualTo: Timestamp.fromDate(DateTime.now()))
                                       .orderBy('Start Time (Timestamp)')
                                       .snapshots(),
                                   builder: (context, snapshot) {
@@ -229,6 +231,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                           bookings['Start Time (Timestamp)'],
                                           bookings['Number of Pax'],
                                           bookings['CcaBlock'],
+                                          bookings['Reference Code'],
                                         );
                                       },
                                     );
@@ -241,6 +244,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                   stream: FirebaseFirestore.instance
                                       .collection("Facilities")
                                       .where('Venue', isEqualTo: 'Squash Courts')
+                                      .where('Start Time (Timestamp)', isGreaterThanOrEqualTo: Timestamp.fromDate(DateTime.now()))
                                       .orderBy('Start Time (Timestamp)')
                                       .snapshots(),
                                   builder: (context, snapshot) {
@@ -270,6 +274,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                           bookings['Start Time (Timestamp)'],
                                           bookings['Number of Pax'],
                                           bookings['CcaBlock'],
+                                          bookings['Reference Code'],
                                         );
                                       },
                                     );
@@ -281,48 +286,11 @@ class FacilitiesBookingPage extends StatelessWidget {
                               child: StreamBuilder(
                                   stream: FirebaseFirestore.instance
                                       .collection("Facilities")
-                                      .where('Venue',
-                                          isEqualTo: 'Tennis Courts')
-                                      .orderBy('Start Time (Timestamp)')
-                                      .snapshots(),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.hasData) {
-                                      return ListView.builder(
-                                        shrinkWrap: true,
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 10.0, horizontal: 16.0),
-                                        itemCount: snapshot.data.docs.length,
-                                        itemBuilder: (context, index) {
-                                          DocumentSnapshot bookings =
-                                              snapshot.data.docs[index];
-                                          return bookingPagePanel(
-                                            bookings['Venue'],
-                                            bookings['Date'],
-                                            bookings['Start time'],
-                                            bookings['End time'],
-                                            bookings['Start Time (Timestamp)'],
-                                            bookings['Number of Pax'],
-                                            bookings['CcaBlock'],
-                                          );
-                                        },
-                                      );
-                                    }
-                                    return Center(
-                                        child: Text(
-                                      'No bookings currently',
-                                      style: TextStyle(
-                                          color: KERed,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 30),
-                                    ));
-                                  }),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: StreamBuilder(
-                                  stream: FirebaseFirestore.instance
-                                      .collection("Facilities")
-                                      .where('Venue', isEqualTo: 'Dance Studio')
+                                      .where('Venue', isEqualTo: 'Tennis Courts')
+
+
+                                      .where('Start Time (Timestamp)', isGreaterThanOrEqualTo: Timestamp.fromDate(DateTime.now()))
+
                                       .orderBy('Start Time (Timestamp)')
                                       .snapshots(),
                                   builder: (context, snapshot) {
@@ -352,6 +320,53 @@ class FacilitiesBookingPage extends StatelessWidget {
                                           bookings['Start Time (Timestamp)'],
                                           bookings['Number of Pax'],
                                           bookings['CcaBlock'],
+
+
+                                          bookings['Reference Code'],
+
+                                        );
+                                      },
+                                    );
+                                  }
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: StreamBuilder(
+                                  stream: FirebaseFirestore.instance
+                                      .collection("Facilities")
+                                      .where('Venue', isEqualTo: 'Dance Studio')
+                                      .where('Start Time (Timestamp)', isGreaterThanOrEqualTo: Timestamp.fromDate(DateTime.now()))
+                                      .orderBy('Start Time (Timestamp)')
+                                      .snapshots(),
+                                  builder: (context, snapshot) {
+                                    if (!snapshot.hasData || snapshot.data.docs.length == 0) {
+                                      return Center(
+                                          child: Text(
+                                            'No bookings currently',
+                                            style: TextStyle(
+                                                color: KERed,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 25),
+                                          ));
+                                    }
+                                    return ListView.builder(
+                                      shrinkWrap: true,
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 10.0, horizontal: 16.0),
+                                      itemCount: snapshot.data.docs.length,
+                                      itemBuilder: (context, index) {
+                                        DocumentSnapshot bookings =
+                                        snapshot.data.docs[index];
+                                        return bookingPagePanel(
+                                          bookings['Venue'],
+                                          bookings['Date'],
+                                          bookings['Start time'],
+                                          bookings['End time'],
+                                          bookings['Start Time (Timestamp)'],
+                                          bookings['Number of Pax'],
+                                          bookings['CcaBlock'],
+                                          bookings['Reference Code'],
                                         );
                                       },
                                     );
@@ -364,6 +379,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                   stream: FirebaseFirestore.instance
                                       .collection("Facilities")
                                       .where('Venue', isEqualTo: 'Heritage Room')
+                                      .where('Start Time (Timestamp)', isGreaterThanOrEqualTo: Timestamp.fromDate(DateTime.now()))
                                       .orderBy('Start Time (Timestamp)')
                                       .snapshots(),
                                   builder: (context, snapshot) {
@@ -393,6 +409,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                           bookings['Start Time (Timestamp)'],
                                           bookings['Number of Pax'],
                                           bookings['CcaBlock'],
+                                          bookings['Reference Code'],
                                         );
                                       },
                                     );
@@ -405,6 +422,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                   stream: FirebaseFirestore.instance
                                       .collection("Facilities")
                                       .where('Venue', isEqualTo: 'Dining Hall')
+                                      .where('Start Time (Timestamp)', isGreaterThanOrEqualTo: Timestamp.fromDate(DateTime.now()))
                                       .orderBy('Start Time (Timestamp)')
                                       .snapshots(),
                                   builder: (context, snapshot) {
@@ -434,6 +452,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                                           bookings['Start Time (Timestamp)'],
                                           bookings['Number of Pax'],
                                           bookings['CcaBlock'],
+                                          bookings['Reference Code'],
                                         );
                                       },
                                     );

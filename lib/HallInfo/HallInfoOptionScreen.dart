@@ -3,11 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:keviiapp/colorScheme.dart';
 
-import 'Screens/CCAInfo.dart';
-import 'Screens/Hall History/HallHistory.dart';
-import 'Screens/RoomInfo.dart';
-import 'Screens/email_login.dart';
-import 'Screens/home.dart';
+import 'CCAInfo.dart';
+import 'Hall History/HallHistory.dart';
+import 'RoomInfo.dart';
+import '../SignInSignUp/email_login.dart';
+import '../HomePage/home.dart';
 
 class HallInfoOptionScreen extends StatelessWidget {
   @override
@@ -86,7 +86,7 @@ class HallInfoOptionScreen extends StatelessWidget {
               padding: EdgeInsets.only(right: 12),
               width: MediaQuery.of(context).size.width,
               child: Text(
-                "New to KE7? Or simply want to know more about our Hall? Here's all things you need to know!",
+                "New to KE7?? Or simply want to know more about our Hall? Here's all things you need to know!",
                 style: TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 18,
@@ -101,7 +101,7 @@ class HallInfoOptionScreen extends StatelessWidget {
             right: 25,
             child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: 520,
+                height: MediaQuery.of(context).size.height*0.73,
                 margin: EdgeInsets.only(top: 10.0),
                 child: ListView(
                     physics: BouncingScrollPhysics(),

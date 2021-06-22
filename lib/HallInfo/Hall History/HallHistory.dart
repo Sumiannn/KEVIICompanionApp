@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/Screens/Hall%20History/HallHistoryPart1.dart';
+import 'package:keviiapp/HallInfo/Hall%20History/HallHistoryPart1.dart';
 
 import '../../colorScheme.dart';
-import '../email_login.dart';
-import '../home.dart';
+import '../../SignInSignUp/email_login.dart';
+import '../../HomePage/home.dart';
 import 'HallHistoryPart2.dart';
 import 'HallHistoryPart3.dart';
 import 'HallHistoryPart4.dart';
-
+import 'dart:math';
 
 class HallHistory extends StatelessWidget {
   @override
@@ -157,23 +157,47 @@ class HallHistory extends StatelessWidget {
             right: 10,
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height*0.75,
+              height: MediaQuery.of(context).size.height*0.78,
               margin: EdgeInsets.only(top: 10.0),
               child: ListView(
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   children: <Widget>[
                     hallHistoryBlocks("KingEdwardFMS.jpg", "Federated Malay States Hostel", "Sepoy Lines (1916-1956)", HallHistoryPart1()),
-                    SizedBox(
-                      height: 40.0,
+                    Container(
+                        child: Align(
+                          alignment: Alignment(0.6, 0.6),
+                          child: Transform.rotate(
+                              angle: 270 * pi/180,
+                              child: Icon(
+                                Icons.arrow_back_rounded, size: 50,
+                              )
+                          ),
+                        )
                     ),
                     hallHistoryBlocks("KingEdwardHolneChase.jpg", "Holne Chase", "Grange Road (1938-1956)", HallHistoryPart2()),
-                    SizedBox(
-                      height: 40.0,
+                    Container(
+                        child: Align(
+                          alignment: Alignment(0.6, 0.6),
+                          child: Transform.rotate(
+                              angle: 270 * pi/180,
+                              child: Icon(
+                                Icons.arrow_back_rounded, size: 50,
+                              )
+                          ),
+                        )
                     ),
                     hallHistoryBlocks("KingEdwardOld.jpg", "King Edward VII Hall", "Sepoy Lines, 12 College Road (1957-1987)", HallHistoryPart3()),
-                    SizedBox(
-                      height: 40.0,
+                    Container(
+                      child: Align(
+                        alignment: Alignment(0.6, 0.6),
+                        child: Transform.rotate(
+                            angle: 270 * pi/180,
+                            child: Icon(
+                              Icons.arrow_back_rounded, size: 50,
+                            )
+                        ),
+                      )
                     ),
                     hallHistoryBlocks("KE7HallHistory.jpg", "King Edward VII Hall", "1A Kent Ridge Road (1987-Present)", HallHistoryPart4()),
                   ]),
@@ -198,6 +222,10 @@ class PathPainter extends CustomPainter {
         size.width * 0.35, size.height * 0.32, 0, size.height * 0.29);
     path.close();
     canvas.drawPath(path, paint);
+    Paint linePaint = Paint()..strokeWidth = 3;
+    // canvas.drawLine(Offset(300,200), Offset(300,300), linePaint);
+    // canvas.drawLine(Offset(250,250), Offset(300,300), linePaint);
+    // canvas.drawLine(Offset(350,250), Offset(300,300), linePaint);
   }
 
   @override

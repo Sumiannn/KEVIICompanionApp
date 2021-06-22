@@ -27,6 +27,7 @@ dependencies:
   firebase_auth: "^0.20.1"
   firebase_dynamic_links: ^0.5.1
   provider: ^4.3.2+1
+  sliding_up_panel: ^2.0.0+1
 
 
 
@@ -40,6 +41,7 @@ dependencies:
   table_calendar: ^2.3.3
   dropdown_date_picker: ^0.1.1+2
   f_datetimerangepicker: ^0.1.4
+  flutter_form_builder: ^3.14.1
 
 dev_dependencies:
   flutter_test:
@@ -86,6 +88,13 @@ flutter:
     - assets/image/CulturePhoto.jpeg
     - assets/image/SportsPhoto.jpeg
     - assets/image/KingEdwardOld.jpg
+    - assets/BookingVenues/MPC.jpg
+    - assets/BookingVenues/CommHall.jpg
+    - assets/BookingVenues/SquashCourt.jpg
+    - assets/BookingVenues/TennisCourt.jpg
+    - assets/BookingVenues/DanceStudio.jpg
+    - assets/BookingVenues/HeritageRoom.jpg
+    - assets/BookingVenues/DiningHall.jpg
     - assets/image/StudentInitiatives.png
 
       # An image asset can refer to one or more resolution-specific "variants", see
