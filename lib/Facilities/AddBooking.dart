@@ -28,13 +28,17 @@ class _AddBookingState extends State<AddBooking> {
       numOfPax = new TextEditingController();
   DateTime dateChosen, start;
   TimeOfDay startTime, endTime;
-  static final DateTime isNow = DateTime(
-    DateTime.now().year,
-    DateTime.now().month,
-    DateTime.now().day,
-    DateTime.now().hour,
-    DateTime.now().minute,
-  ).add(const Duration(hours: 8));
+
+  DateTime isNow() {
+    return DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day,
+      DateTime.now().hour,
+      DateTime.now().minute,
+    );
+  }
+
 
   _AddBookingState();
 
@@ -44,11 +48,12 @@ class _AddBookingState extends State<AddBooking> {
   }
 
   Future<Null> selectDatePicker(BuildContext context) async {
+    DateTime now = isNow();
     final DateTime datePicked = await showDatePicker(
         context: context,
-        initialDate: isNow,
-        firstDate: isNow,
-        lastDate: isNow.add(const Duration(days: 365)));
+        initialDate: now,
+        firstDate: now,
+        lastDate: now.add(const Duration(days: 365)));
     if (datePicked != null) {
       setState(() {
         dateChosen = datePicked;
@@ -57,9 +62,10 @@ class _AddBookingState extends State<AddBooking> {
   }
 
   Future<Null> selectStartTimePicker(BuildContext context) async {
+    DateTime now = isNow();
     final TimeOfDay timePicked = await showTimePicker(
       context: context,
-      initialTime: TimeOfDay.fromDateTime(isNow),
+      initialTime: TimeOfDay.fromDateTime(now),
     );
     if (timePicked != null) {
       setState(() {
@@ -69,8 +75,9 @@ class _AddBookingState extends State<AddBooking> {
   }
 
   Future<Null> selectEndTimePicker(BuildContext context) async {
+    DateTime now = isNow();
     final TimeOfDay timePicked = await showTimePicker(
-        context: context, initialTime: TimeOfDay.fromDateTime(isNow));
+        context: context, initialTime: TimeOfDay.fromDateTime(now));
     if (timePicked != null) {
       setState(() {
         endTime = timePicked;
@@ -646,53 +653,51 @@ class _AddBookingState extends State<AddBooking> {
                                 ],
                               );
                             });
+                      } else if (dateChosen == null || startTime == null || endTime == null) {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor: KELightYellow,
+                                title: Text(
+                                  "Error",
+                                  style: TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                      color: KERed),
+                                ),
+                                content: Text(
+                                  'Choose a valid Date/ Start/ End Time',
+                                  style:
+                                  TextStyle(fontSize: 18, color: KERed),
+                                  textAlign: TextAlign.left,
+                                ),
+                                actions: [
+                                  ElevatedButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            KERed)),
+                                    child: Text("Ok",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: KELightYellow,
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.left),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  )
+                                ],
+                              );
+                            });
                       }
                       _formKey.currentState.validate();
                       if (_formKey.currentState.validate()) {
                         setState(() {
                           isLoading = true;
                         });
-                        try {
-                          addBooking();
-                        } catch (exception) {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  backgroundColor: KELightYellow,
-                                  title: Text(
-                                    "Error",
-                                    style: TextStyle(
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold,
-                                        color: KERed),
-                                  ),
-                                  content: Text(
-                                    'Choose a valid Date/ Start/ End Time',
-                                    style:
-                                        TextStyle(fontSize: 18, color: KERed),
-                                    textAlign: TextAlign.left,
-                                  ),
-                                  actions: [
-                                    ElevatedButton(
-                                      style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all<Color>(
-                                                  KERed)),
-                                      child: Text("Ok",
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              color: KELightYellow,
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.left),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    )
-                                  ],
-                                );
-                              });
-                        }
+                        addBooking();
                       }
                     },
                     child: Center(
@@ -717,121 +722,6 @@ class _AddBookingState extends State<AddBooking> {
     DateTime chosenEnd = DateTime(dateChosen.year, dateChosen.month,
         dateChosen.day, endTime.hour, endTime.minute);
     List<TimePair> ListOfTimes = [];
-    FirebaseFirestore.instance
-        .collection('Facilities')
-        .where('Venue', isEqualTo: venueChoose)
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      if (querySnapshot.docs.isNotEmpty) {
-        querySnapshot.docs.forEach((doc) {
-          Timestamp docStartTime = doc['Start Time (Timestamp)'];
-          Timestamp docEndTime = doc['End Time (Timestamp)'];
-          TimePair docTimePair = new TimePair(docStartTime, docEndTime);
-          ListOfTimes.add(docTimePair);
-          print(ListOfTimes.length);
-        });
-        for (TimePair pair in ListOfTimes) {
-          pair.printTimes();
-          print(chosenStart);
-          if (pair.isBetween(chosenStart) || pair.isBetween(chosenEnd)) {
-            showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    backgroundColor: KELightYellow,
-                    title: Text(
-                      "Slot already taken!",
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: KERed),
-                    ),
-                    content: Text(
-                      'Choose another time slot please',
-                      style: TextStyle(fontSize: 18, color: KERed),
-                      textAlign: TextAlign.left,
-                    ),
-                    actions: [
-                      ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(KERed)),
-                        child: Text("Ok",
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: KELightYellow,
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.left),
-                        onPressed: () {
-                          setState(() {
-                            startTime = null;
-                            endTime = null;
-                          });
-                          Navigator.of(context).pop();
-                        },
-                      )
-                    ],
-                  );
-                });
-            break;
-          } else {
-            FirebaseFirestore.instance.collection('Facilities').add({
-              'Date': dateChosen.day.toString() +
-                  '-' +
-                  dateChosen.month.toString() +
-                  '-' +
-                  dateChosen.year.toString(),
-              'Start time':
-                  TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
-                      .format(context),
-              'End time':
-                  TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
-                      .format(context),
-              'Venue': venueChoose,
-              'Start Time (Timestamp)':
-                  chosenStart.subtract(const Duration(hours: 8)),
-              'End Time (Timestamp)':
-                  chosenEnd.subtract(const Duration(hours: 8)),
-              'CcaBlock': ccaField.text,
-              'Number of Pax': numOfPax.text,
-              'user': this.user.uid,
-            }).then((value) => FirebaseFirestore.instance
-                .collection('Facilities')
-                .doc(value.id)
-                .update({'Reference Code': value.id}));
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => FacilitiesBookingPage()));
-          }
-        }
-      } else {
-        FirebaseFirestore.instance.collection('Facilities').add({
-          'Date': dateChosen.day.toString() +
-              '-' +
-              dateChosen.month.toString() +
-              '-' +
-              dateChosen.year.toString(),
-          'Start time':
-              TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
-                  .format(context),
-          'End time': TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
-              .format(context),
-          'Venue': venueChoose,
-          'Start Time (Timestamp)':
-              chosenStart.subtract(const Duration(hours: 8)),
-          'End Time (Timestamp)': chosenEnd.subtract(const Duration(hours: 8)),
-          'CcaBlock': ccaField.text,
-          'Number of Pax': numOfPax.text,
-          'user': this.user.uid,
-        }).then((value) => FirebaseFirestore.instance
-            .collection('Facilities')
-            .doc(value.id)
-            .update({'Reference Code': value.id}));
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => FacilitiesBookingPage()));
-      }
-    });
     if (chosenStart.isAfter(chosenEnd)) {
       showDialog(
           context: context,
@@ -869,6 +759,119 @@ class _AddBookingState extends State<AddBooking> {
               ],
             );
           });
+    } else {
+      FirebaseFirestore.instance
+          .collection('Facilities')
+          .where('Venue', isEqualTo: venueChoose)
+          .get()
+          .then((QuerySnapshot querySnapshot) {
+        if (querySnapshot.docs.isNotEmpty) {
+          int count = querySnapshot.docs.length;
+          querySnapshot.docs.forEach((doc) {
+            Timestamp docStartTime = doc['Start Time (Timestamp)'];
+            Timestamp docEndTime = doc['End Time (Timestamp)'];
+            TimePair docTimePair = new TimePair(docStartTime, docEndTime);
+            ListOfTimes.add(docTimePair);
+          });
+          for (TimePair pair in ListOfTimes) {
+            if (pair.isBetween(chosenStart) || pair.isBetween(chosenEnd)) {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      backgroundColor: KELightYellow,
+                      title: Text(
+                        "Slot already taken!",
+                        style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: KERed),
+                      ),
+                      content: Text(
+                        'Choose another time slot please',
+                        style: TextStyle(fontSize: 18, color: KERed),
+                        textAlign: TextAlign.left,
+                      ),
+                      actions: [
+                        ElevatedButton(
+                          style: ButtonStyle(
+                              backgroundColor:
+                              MaterialStateProperty.all<Color>(KERed)),
+                          child: Text("Ok",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: KELightYellow,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.left),
+                          onPressed: () {
+                            setState(() {
+                              startTime = null;
+                              endTime = null;
+                            });
+                            Navigator.of(context).pop();
+                          },
+                        )
+                      ],
+                    );
+                  });
+              break;
+            } else {
+              count--; // minus the document count
+            }
+          }
+          if (count == 0){ // only if all documents traversed, then add booking
+            FirebaseFirestore.instance.collection('Facilities').add({
+              'Date': dateChosen.day.toString() +
+                  '-' +
+                  dateChosen.month.toString() +
+                  '-' +
+                  dateChosen.year.toString(),
+              'Start time':
+              TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
+                  .format(context),
+              'End time': TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
+                  .format(context),
+              'Venue': venueChoose,
+              'Start Time (Timestamp)':
+              chosenStart,
+              'End Time (Timestamp)': chosenEnd,
+              'CcaBlock': ccaField.text,
+              'Number of Pax': numOfPax.text,
+              'user': this.user.uid,
+            }).then((value) => FirebaseFirestore.instance
+                .collection('Facilities')
+                .doc(value.id)
+                .update({'Reference Code': value.id}));
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => FacilitiesBookingPage()));
+          }
+        } else { // list is empty
+          FirebaseFirestore.instance.collection('Facilities').add({
+            'Date': dateChosen.day.toString() +
+                '-' +
+                dateChosen.month.toString() +
+                '-' +
+                dateChosen.year.toString(),
+            'Start time':
+            TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
+                .format(context),
+            'End time': TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
+                .format(context),
+            'Venue': venueChoose,
+            'Start Time (Timestamp)':
+            chosenStart.subtract(const Duration(hours: 8)),
+            'End Time (Timestamp)': chosenEnd.subtract(const Duration(hours: 8)),
+            'CcaBlock': ccaField.text,
+            'Number of Pax': numOfPax.text,
+            'user': this.user.uid,
+          }).then((value) => FirebaseFirestore.instance
+              .collection('Facilities')
+              .doc(value.id)
+              .update({'Reference Code': value.id}));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => FacilitiesBookingPage()));
+        }
+      });
     }
   }
 }
@@ -906,8 +909,8 @@ class TimePair {
   DateTime start, end;
 
   TimePair(this.startTime, this.endTime) {
-    this.start = startTime.toDate().add(const Duration(hours: 8));
-    this.end = endTime.toDate().add(const Duration(hours: 8));
+    this.start = startTime.toDate();
+    this.end = endTime.toDate();
   }
 
   void printTimes() {
