@@ -287,8 +287,6 @@ class FacilitiesBookingPage extends StatelessWidget {
                                   stream: FirebaseFirestore.instance
                                       .collection("Facilities")
                                       .where('Venue', isEqualTo: 'Tennis Courts')
-
-
                                       .where('Start Time (Timestamp)', isGreaterThanOrEqualTo: Timestamp.fromDate(DateTime.now()))
 
                                       .orderBy('Start Time (Timestamp)')
@@ -320,8 +318,6 @@ class FacilitiesBookingPage extends StatelessWidget {
                                           bookings['Start Time (Timestamp)'],
                                           bookings['Number of Pax'],
                                           bookings['CcaBlock'],
-
-
                                           bookings['Reference Code'],
 
                                         );
