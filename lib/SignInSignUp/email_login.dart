@@ -93,44 +93,6 @@ class _EmailLogInState extends State<EmailLogIn> {
                       },
                     ),
                   ),
-<<<<<<< HEAD
-                  // The validator receives the text that the user has entered.
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Enter Password';
-                    } else if (value.length < 6) {
-                      return 'Password must be at least 6 characters!';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              Positioned(
-                bottom: MediaQuery.of(context).size.height * 0.22,
-                child: isLoading
-                    ? CircularProgressIndicator()
-                    : ElevatedButton(
-                        style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              side: BorderSide.none,
-                            )),
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(KERed)),
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            setState(() {
-                              isLoading = true;
-                            });
-                            logInToFb();
-                          }
-                        },
-                        child: Text(
-                          'Log In',
-                          style: TextStyle(
-                              color: KELightYellow, fontFamily: 'Montserrat'),
-=======
                   Positioned(
                     width: MediaQuery.of(context).size.width * 0.8,
                     bottom: MediaQuery.of(context).size.height * 0.3,
@@ -151,7 +113,6 @@ class _EmailLogInState extends State<EmailLogIn> {
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: BorderSide.none,
->>>>>>> 68a020971bc6f836e3cee3b2953fb84399b7de4e
                         ),
                       ),
                       // The validator receives the text that the user has entered.
