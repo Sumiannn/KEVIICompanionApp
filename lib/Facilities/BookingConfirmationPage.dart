@@ -119,12 +119,10 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
             ),
           ),
         Positioned(
-          top: 300,
+          top: 280,
           left: 25,
           right: 25,
-          child: ListView(
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical,
+          child: Column(
             children: [
               infoPanel(Icons.location_on_rounded, 'Venue', venue),
               infoPanel(Icons.date_range_rounded, 'Date', date),
@@ -157,7 +155,7 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
   }
   Widget infoPanel(IconData iconImage, String label, String labelText) {
     return Container(
-      margin: EdgeInsets.only(top: 15,),
+      margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.02,),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.width * 0.13,
       decoration: BoxDecoration(
