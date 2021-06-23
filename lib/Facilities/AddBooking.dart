@@ -896,23 +896,22 @@ class _AddBookingState extends State<AddBooking> {
               context,
               MaterialPageRoute(
                   builder: (context) => BookingConfirmationPage(
-                    venueChoose,
-                    dateChosen.day.toString() +
-                        '-' +
-                        dateChosen.month.toString() +
-                        '-' +
-                        dateChosen.year.toString(),
-                    TimeOfDay(
-                        hour: chosenStart.hour,
-                        minute: chosenStart.minute)
-                        .format(context),
-                    TimeOfDay(
-                        hour: chosenEnd.hour,
-                        minute: chosenEnd.minute)
-                        .format(context),
-                    numOfPax.text,
-                    ccaField.text,
-                  )));
+                        venueChoose,
+                        dateChosen.day.toString() +
+                            '-' +
+                            dateChosen.month.toString() +
+                            '-' +
+                            dateChosen.year.toString(),
+                        TimeOfDay(
+                                hour: chosenStart.hour,
+                                minute: chosenStart.minute)
+                            .format(context),
+                        TimeOfDay(
+                                hour: chosenEnd.hour, minute: chosenEnd.minute)
+                            .format(context),
+                        numOfPax.text,
+                        ccaField.text,
+                      )));
         }
       });
     }
