@@ -66,6 +66,7 @@ class _EmailLogInState extends State<EmailLogIn> {
                     bottom: MediaQuery.of(context).size.height * 0.4,
                     left: MediaQuery.of(context).size.width * 0.1,
                     child: TextFormField(
+                      key: Key('Email Field'),
                       controller: emailController,
                       decoration: InputDecoration(
                         filled: true,
@@ -98,6 +99,7 @@ class _EmailLogInState extends State<EmailLogIn> {
                     bottom: MediaQuery.of(context).size.height * 0.3,
                     left: MediaQuery.of(context).size.width * 0.1,
                     child: TextFormField(
+                      key: Key('Password Field'),
                       obscureText: true,
                       controller: passwordController,
                       decoration: InputDecoration(
@@ -157,6 +159,7 @@ class _EmailLogInState extends State<EmailLogIn> {
                   Positioned(
                     bottom: MediaQuery.of(context).size.height * 0.15,
                     child: GestureDetector(
+                      key: Key('Sign Up Link'),
                         child: Text("New KEViian? Sign Up Here",
                             style: TextStyle(
                                 fontSize: 12.0,

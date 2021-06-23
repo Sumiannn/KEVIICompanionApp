@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:keviiapp/Facilities/BookingConfirmationPage.dart';
 import 'package:keviiapp/Facilities/FacilitiesBookingPage.dart';
 
 import '../colorScheme.dart';
@@ -38,7 +39,6 @@ class _AddBookingState extends State<AddBooking> {
       DateTime.now().minute,
     );
   }
-
 
   _AddBookingState();
 
@@ -653,7 +653,9 @@ class _AddBookingState extends State<AddBooking> {
                                 ],
                               );
                             });
-                      } else if (dateChosen == null || startTime == null || endTime == null) {
+                      } else if (dateChosen == null ||
+                          startTime == null ||
+                          endTime == null) {
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
@@ -668,16 +670,15 @@ class _AddBookingState extends State<AddBooking> {
                                 ),
                                 content: Text(
                                   'Choose a valid Date/ Start/ End Time',
-                                  style:
-                                  TextStyle(fontSize: 18, color: KERed),
+                                  style: TextStyle(fontSize: 18, color: KERed),
                                   textAlign: TextAlign.left,
                                 ),
                                 actions: [
                                   ElevatedButton(
                                     style: ButtonStyle(
                                         backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            KERed)),
+                                            MaterialStateProperty.all<Color>(
+                                                KERed)),
                                     child: Text("Ok",
                                         style: TextStyle(
                                             fontSize: 18,
@@ -796,7 +797,7 @@ class _AddBookingState extends State<AddBooking> {
                         ElevatedButton(
                           style: ButtonStyle(
                               backgroundColor:
-                              MaterialStateProperty.all<Color>(KERed)),
+                                  MaterialStateProperty.all<Color>(KERed)),
                           child: Text("Ok",
                               style: TextStyle(
                                   fontSize: 18,
@@ -819,7 +820,8 @@ class _AddBookingState extends State<AddBooking> {
               count--; // minus the document count
             }
           }
-          if (count == 0){ // only if all documents traversed, then add booking
+          if (count == 0) {
+            // only if all documents traversed, then add booking
             FirebaseFirestore.instance.collection('Facilities').add({
               'Date': dateChosen.day.toString() +
                   '-' +
@@ -827,13 +829,13 @@ class _AddBookingState extends State<AddBooking> {
                   '-' +
                   dateChosen.year.toString(),
               'Start time':
-              TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
-                  .format(context),
-              'End time': TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
-                  .format(context),
+                  TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
+                      .format(context),
+              'End time':
+                  TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
+                      .format(context),
               'Venue': venueChoose,
-              'Start Time (Timestamp)':
-              chosenStart,
+              'Start Time (Timestamp)': chosenStart,
               'End Time (Timestamp)': chosenEnd,
               'CcaBlock': ccaField.text,
               'Number of Pax': numOfPax.text,
@@ -842,10 +844,30 @@ class _AddBookingState extends State<AddBooking> {
                 .collection('Facilities')
                 .doc(value.id)
                 .update({'Reference Code': value.id}));
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => FacilitiesBookingPage()));
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => BookingConfirmationPage(
+                          venueChoose,
+                          dateChosen.day.toString() +
+                              '-' +
+                              dateChosen.month.toString() +
+                              '-' +
+                              dateChosen.year.toString(),
+                          TimeOfDay(
+                                  hour: chosenStart.hour,
+                                  minute: chosenStart.minute)
+                              .format(context),
+                          TimeOfDay(
+                                  hour: chosenEnd.hour,
+                                  minute: chosenEnd.minute)
+                              .format(context),
+                          numOfPax.text,
+                          ccaField.text,
+                        )));
           }
-        } else { // list is empty
+        } else {
+          // list is empty
           FirebaseFirestore.instance.collection('Facilities').add({
             'Date': dateChosen.day.toString() +
                 '-' +
@@ -853,14 +875,16 @@ class _AddBookingState extends State<AddBooking> {
                 '-' +
                 dateChosen.year.toString(),
             'Start time':
-            TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
-                .format(context),
-            'End time': TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
-                .format(context),
+                TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
+                    .format(context),
+            'End time':
+                TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
+                    .format(context),
             'Venue': venueChoose,
             'Start Time (Timestamp)':
-            chosenStart.subtract(const Duration(hours: 8)),
-            'End Time (Timestamp)': chosenEnd.subtract(const Duration(hours: 8)),
+                chosenStart.subtract(const Duration(hours: 8)),
+            'End Time (Timestamp)':
+                chosenEnd.subtract(const Duration(hours: 8)),
             'CcaBlock': ccaField.text,
             'Number of Pax': numOfPax.text,
             'user': this.user.uid,
@@ -868,8 +892,27 @@ class _AddBookingState extends State<AddBooking> {
               .collection('Facilities')
               .doc(value.id)
               .update({'Reference Code': value.id}));
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => FacilitiesBookingPage()));
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => BookingConfirmationPage(
+                    venueChoose,
+                    dateChosen.day.toString() +
+                        '-' +
+                        dateChosen.month.toString() +
+                        '-' +
+                        dateChosen.year.toString(),
+                    TimeOfDay(
+                        hour: chosenStart.hour,
+                        minute: chosenStart.minute)
+                        .format(context),
+                    TimeOfDay(
+                        hour: chosenEnd.hour,
+                        minute: chosenEnd.minute)
+                        .format(context),
+                    numOfPax.text,
+                    ccaField.text,
+                  )));
         }
       });
     }
