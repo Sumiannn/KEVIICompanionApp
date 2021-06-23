@@ -104,6 +104,7 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
           Positioned(
             top: 220,
             child: Container(
+              margin: EdgeInsets.all(15),
               padding: EdgeInsets.only(right: 12),
               width: MediaQuery.of(context).size.width,
               child: Text(
@@ -118,7 +119,7 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
             ),
           ),
         Positioned(
-          top: 250,
+          top: 300,
           left: 25,
           right: 25,
           child: ListView(
