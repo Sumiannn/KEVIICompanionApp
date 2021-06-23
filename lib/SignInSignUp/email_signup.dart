@@ -56,6 +56,7 @@ class _EmailSignUpState extends State<EmailSignUp> {
                   top: 25,
                   left: 15,
                   child: IconButton(
+                    key: Key('Back button'),
                       icon: Icon(
                         Icons.arrow_back_outlined,
                         size: 30,

@@ -14,15 +14,17 @@ void main() {
     expect(logo, findsOneWidget);
 
     //Test for Email and Password Fields
-    var textField = find.byType(TextField);
-    expect(textField, findsNWidgets(2));
+    var emailTextField = find.byKey(Key('Email Field'));
+    expect(emailTextField, findsOneWidget);
+    var pwTextField = find.byKey(Key('Password Field'));
+    expect(pwTextField, findsOneWidget);
 
     // Test for Log In button
     var button = find.byType(ElevatedButton);
     expect(button, findsOneWidget);
 
     // Test for Sign Up Link
-    var SignUpLink = find.byType(GestureDetector);
+    var SignUpLink = find.byKey(Key('Sign Up Link'));
     expect(SignUpLink, findsWidgets);
   });
 }
