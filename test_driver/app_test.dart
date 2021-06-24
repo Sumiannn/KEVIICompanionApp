@@ -22,6 +22,7 @@ void main() {
     var SignUpLink = find.byValueKey('Sign Up Link');
 
     test('Test Sign Up link', () async {
+      await Future.delayed(Duration(seconds: 1));
       await driver.tap(SignUpLink);
       await Future.delayed(Duration(seconds: 1));
       var SignUpText = find.text('Sign Up');
@@ -32,6 +33,17 @@ void main() {
       await driver.tap(backButton);
       await Future.delayed(Duration(seconds: 1));
     });
+
+    test('Test invalid Log In details', () async {
+      await driver.tap(button);
+      await Future.delayed(Duration(seconds: 1));
+      var emailValidation = find.text('Enter Email Address');
+      assert(emailValidation != null);
+      var pwValidation = find.text('Enter Password');
+      assert(pwValidation != null);
+      await Future.delayed(Duration(seconds: 3));
+
+    }, timeout: Timeout.none);
 
     test('Test Sign in function', () async {
 
@@ -51,6 +63,26 @@ void main() {
       await Future.delayed(Duration(seconds: 5));
 
     }, timeout: Timeout.none);
+    
+    var homeSlidingPanel = find.byValueKey('Home sliding panel');
+    var latestNewsPanel = find.byValueKey('Latest News Panel');
+    var facilitesButton = find.byValueKey('Facilities Button');
+    var accountButton = find.byValueKey('Account Info Button');
+    var news = find.text('Just kidding LOL');
+    var newsImage = find.byValueKey('News panel');
 
+
+    test('Test Home Page', () async {
+      await driver.scrollUntilVisible(homeSlidingPanel, accountButton);
+      await Future.delayed(Duration(seconds: 3));
+      await driver.scrollUntilVisible(homeSlidingPanel, facilitesButton);
+      await Future.delayed(Duration(seconds: 3));
+      await driver.scrollUntilVisible(latestNewsPanel, news);
+      await driver.tap(newsImage);
+      await Future.delayed(Duration(seconds: 2));
+      var backButton = find.byValueKey('Back Button');
+      await driver.tap(backButton);
+      await Future.delayed(Duration(seconds: 3));
+    });
   });
 }

@@ -12,7 +12,8 @@ import '../HomePage/home.dart';
 class FacilitiesBookingPage extends StatelessWidget {
   final title = "Check current bookings";
 
-  FacilitiesBookingPage();
+  FacilitiesBookingPage({this.firestore});
+  final FirebaseFirestore firestore;
 
   DateTime isNow() {
     return DateTime(
@@ -35,6 +36,7 @@ class FacilitiesBookingPage extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               Container(
+                key: Key('Cover Image'),
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 child: Image.network(
