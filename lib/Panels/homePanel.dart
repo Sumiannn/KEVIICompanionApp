@@ -16,6 +16,7 @@ class homePanel extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
+          key: Key('News panel'),
           padding: EdgeInsets.only(bottom: 3),
           height: 200,
           child: InkWell(
@@ -24,6 +25,7 @@ class homePanel extends StatelessWidget {
                   context, MaterialPageRoute(builder: (context) => nextPage));
             },
             child: Container(
+              key: Key('News Image'),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
