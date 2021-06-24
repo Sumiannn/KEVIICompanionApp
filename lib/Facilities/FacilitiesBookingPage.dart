@@ -307,21 +307,12 @@ class FacilitiesBookingPage extends StatelessWidget {
                               child: StreamBuilder(
                                   stream: FirebaseFirestore.instance
                                       .collection("Facilities")
-
-                                      .where('Venue', isEqualTo: 'Tennis Courts')
-                                      .where('Start Time (Timestamp)', isGreaterThanOrEqualTo: Timestamp.fromDate(DateTime.now()))
-
-
-                                      .where('Start Time (Timestamp)', isGreaterThanOrEqualTo: Timestamp.fromDate(Today))
-
-
-
                                       .where('Venue',
                                           isEqualTo: 'Tennis Courts')
                                       .where('Start Time (Timestamp)',
                                           isGreaterThanOrEqualTo:
-                                              Timestamp.fromDate(Today))
-
+                                              Timestamp.fromDate(
+                                                  DateTime.now()))
                                       .orderBy('Start Time (Timestamp)')
                                       .snapshots(),
                                   builder: (context, snapshot) {

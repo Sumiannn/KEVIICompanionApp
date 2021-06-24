@@ -27,6 +27,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
             top: 25,
             left: 15,
             child: IconButton(
+              key: Key('Back Button'),
               icon: Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
               onPressed: () {
                 Navigator.pop(context);
@@ -37,6 +38,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
             top: 25,
             right: 55,
             child: IconButton(
+              key: Key('Home Button'),
               icon: Icon(Icons.home_rounded, color: KERed, size: 30),
               onPressed: () {
                 Navigator.pushAndRemoveUntil(
@@ -50,6 +52,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
             top: 25,
             right: 15,
             child: IconButton(
+              key: Key('Sign Out Button'),
               icon: Icon(
                 Icons.exit_to_app_rounded,
                 color: KERed,
