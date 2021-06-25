@@ -108,6 +108,7 @@ class HallInfoOptionScreen extends StatelessWidget {
                     scrollDirection: Axis.vertical,
                     children: <Widget>[
                         InkWell(
+                          key: Key('Hall History Button'),
                           onTap: () {
                             Navigator.push(
                               context,
@@ -141,6 +142,7 @@ class HallInfoOptionScreen extends StatelessWidget {
                         ),
                       SizedBox(height: 10),
                       InkWell(
+                        key: Key('CCA Info Button'),
                         onTap: () {
                           Navigator.push(
                             context,

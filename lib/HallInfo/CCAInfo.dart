@@ -122,6 +122,7 @@ class CCAInfo extends StatelessWidget {
               left: 20,
               right: 20,
               child: InkWell(
+                key: Key('Committee CCA Button'),
                 onTap: (){
                   Navigator.push(context,
                     MaterialPageRoute(builder: (builder) => CommitteeCCA())
@@ -136,6 +137,7 @@ class CCAInfo extends StatelessWidget {
               left: 20,
                 right: 20,
               child: InkWell(
+                key: Key('Cultural CCA Button'),
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (builder) => CulturalCCA())
@@ -149,6 +151,7 @@ class CCAInfo extends StatelessWidget {
               left: 20,
               right: 20,
               child: InkWell(
+                key: Key('Sports CCA Button'),
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (builder) => SportsCCA())

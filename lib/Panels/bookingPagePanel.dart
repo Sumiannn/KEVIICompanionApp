@@ -49,8 +49,8 @@ class bookingPagePanel extends StatelessWidget {
         },
         child: Container(
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          height: MediaQuery.of(context).size.height * 0.09,
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          height: MediaQuery.of(context).size.height * 0.10,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -69,7 +69,7 @@ class bookingPagePanel extends StatelessWidget {
                         newDate.day.toString(),
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
-                            fontSize: 25,
+                            fontSize: 25.0,
                             color: KERed),
                       ),
                       Text(
@@ -96,7 +96,7 @@ class bookingPagePanel extends StatelessWidget {
                       Text(StartTime + ' to ' + EndTime,
                           style: TextStyle(
                               fontWeight: FontWeight.w300,
-                              fontSize: 13,
+                              fontSize: MediaQuery.of(context).size.height*0.016,
                               color: KERed))
                     ],
                   ),

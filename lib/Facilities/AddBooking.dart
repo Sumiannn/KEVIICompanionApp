@@ -896,23 +896,22 @@ class _AddBookingState extends State<AddBooking> {
               context,
               MaterialPageRoute(
                   builder: (context) => BookingConfirmationPage(
-                    venueChoose,
-                    dateChosen.day.toString() +
-                        '-' +
-                        dateChosen.month.toString() +
-                        '-' +
-                        dateChosen.year.toString(),
-                    TimeOfDay(
-                        hour: chosenStart.hour,
-                        minute: chosenStart.minute)
-                        .format(context),
-                    TimeOfDay(
-                        hour: chosenEnd.hour,
-                        minute: chosenEnd.minute)
-                        .format(context),
-                    numOfPax.text,
-                    ccaField.text,
-                  )));
+                        venueChoose,
+                        dateChosen.day.toString() +
+                            '-' +
+                            dateChosen.month.toString() +
+                            '-' +
+                            dateChosen.year.toString(),
+                        TimeOfDay(
+                                hour: chosenStart.hour,
+                                minute: chosenStart.minute)
+                            .format(context),
+                        TimeOfDay(
+                                hour: chosenEnd.hour, minute: chosenEnd.minute)
+                            .format(context),
+                        numOfPax.text,
+                        ccaField.text,
+                      )));
         }
       });
     }
@@ -924,7 +923,7 @@ Handle the case where chose start and end is beyond both timepairs.
 Logic:
 1) Get the documents corresponding to the venue
 2) For each document:
-     Obtain a start adn end time (timestamp) pair,
+     Obtain a start and end time (timestamp) pair,
      store them in a list
 3) For each pair in the list:
      if (chosenStart is between start and end time) throwError

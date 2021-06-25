@@ -23,6 +23,7 @@ class HallHistory extends StatelessWidget {
             ),
             SizedBox(width: 10.0),
             ElevatedButton(
+              key: Key('Sample history button'),
               style: ElevatedButton.styleFrom(
                 primary: KELightRed,
               ),
@@ -83,6 +84,7 @@ class HallHistory extends StatelessWidget {
           top: 25,
           left: 15,
           child: IconButton(
+            key: Key('Back Button'),
             icon: Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
             onPressed: () {
               Navigator.pop(context);
@@ -160,6 +162,7 @@ class HallHistory extends StatelessWidget {
               height: MediaQuery.of(context).size.height*0.78,
               margin: EdgeInsets.only(top: 10.0),
               child: ListView(
+                key: Key('Scrollable History'),
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   children: <Widget>[

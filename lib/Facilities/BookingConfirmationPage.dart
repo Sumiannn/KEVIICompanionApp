@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,46 +12,32 @@ class BookingConfirmationPage extends StatefulWidget {
   String venue, date, start, end, numPax, cca;
 
   BookingConfirmationPage(
-      this.venue,
-      this.date,
-      this.start,
-      this.end,
-      this.numPax,
-      this.cca
-      );
+      this.venue, this.date, this.start, this.end, this.numPax, this.cca);
+
   @override
   _BookingConfirmationPageState createState() => _BookingConfirmationPageState(
-    this.venue,
-    this.date,
-    this.start,
-    this.end,
-    this.numPax,
-    this.cca
-  );
+      this.venue, this.date, this.start, this.end, this.numPax, this.cca);
 }
 
 class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
   String venue, date, start, end, numPax, cca;
 
   _BookingConfirmationPageState(
-      this.venue,
-      this.date,
-      this.start,
-      this.end,
-      this.numPax,
-      this.cca);
+      this.venue, this.date, this.start, this.end, this.numPax, this.cca);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
       body: Stack(
-        children: [Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: CustomPaint(
-            painter: pathPainter(),
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: CustomPaint(
+              painter: pathPainter(),
+            ),
           ),
-        ),
           Positioned(
             top: 25,
             left: 15,
@@ -98,7 +85,11 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
             top: 80,
             left: 135,
             child: Center(
-              child: Icon(Icons.assignment_turned_in_rounded, size: 130, color: KERed,),
+              child: Icon(
+                Icons.assignment_turned_in_rounded,
+                size: 130,
+                color: KERed,
+              ),
             ),
           ),
           Positioned(
@@ -118,44 +109,49 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
               ),
             ),
           ),
-        Positioned(
-          top: 280,
-          left: 25,
-          right: 25,
-          child: Column(
-            children: [
-              infoPanel(Icons.location_on_rounded, 'Venue', venue),
-              infoPanel(Icons.date_range_rounded, 'Date', date),
-              infoPanel(Icons.watch_later_outlined, 'Start Time', start),
-              infoPanel(Icons.watch_later_outlined, 'End Time', end),
-              infoPanel(Icons.sports_tennis_rounded, 'Booked by', cca),
-              infoPanel(Icons.group, 'Number of Pax', numPax),
-              SizedBox(height: 10,),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => FacilitiesBookingPage()));
-                  },
-                child: Center(
-                    child: Text(
-                      'Go to bookings',
-                      style: TextStyle(
-                          color: KERed,
-                          fontSize: 19,
-                          fontWeight: FontWeight.w700),
-                    )),)
-            ],
-          )
-        ),
+          Positioned(
+              top: 280,
+              left: 25,
+              right: 25,
+              child: Column(
+                children: [
+                  infoPanel(Icons.location_on_rounded, 'Venue', venue),
+                  infoPanel(Icons.date_range_rounded, 'Date', date),
+                  infoPanel(Icons.watch_later_outlined, 'Start Time', start),
+                  infoPanel(Icons.watch_later_outlined, 'End Time', end),
+                  infoPanel(Icons.sports_tennis_rounded, 'Booked by', cca),
+                  infoPanel(Icons.group, 'Number of Pax', numPax),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FacilitiesBookingPage()));
+                    },
+                    child: Center(
+                        child: Text(
+                          'Go to bookings',
+                          style: TextStyle(
+                              color: KERed,
+                              fontSize: 19,
+                              fontWeight: FontWeight.w700),
+                        )),
+                  )
+                ],
+              )),
         ],
-
       ),
-
     );
   }
+
   Widget infoPanel(IconData iconImage, String label, String labelText) {
     return Container(
-      margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.02,),
+      margin: EdgeInsets.only(
+        top: MediaQuery.of(context).size.height * 0.02,
+      ),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.width * 0.13,
       decoration: BoxDecoration(
@@ -174,15 +170,27 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
               color: KERed,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Icon(iconImage, color: bgColor, size: 25,),
+            child: Icon(
+              iconImage,
+              color: bgColor,
+              size: 25,
+            ),
           ),
-          SizedBox(width:10),
+          SizedBox(width: 10),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(label, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16), textAlign: TextAlign.start,),
-              Text(labelText,style: TextStyle(fontWeight: FontWeight.w300, fontSize: 13), textAlign: TextAlign.start,)
+              Text(
+                label,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                textAlign: TextAlign.start,
+              ),
+              Text(
+                labelText,
+                style: TextStyle(fontWeight: FontWeight.w300, fontSize: 13),
+                textAlign: TextAlign.start,
+              )
             ],
           )
         ],
@@ -190,8 +198,6 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
     );
   }
 }
-
-
 
 Widget buildTextField(String labelText, String placeHolder) {
   return Padding(

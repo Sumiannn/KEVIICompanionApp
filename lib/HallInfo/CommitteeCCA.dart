@@ -239,6 +239,7 @@ class _CommitteeCCAState extends State<CommitteeCCA> {
                             child: Column(
                               children: [
                                 TabBar(
+                                  key: Key('Tab bar'),
                                   isScrollable: true,
                                   labelStyle: TextStyle(
                                       fontFamily: 'Montserrat',
@@ -253,7 +254,9 @@ class _CommitteeCCAState extends State<CommitteeCCA> {
                                 Container(
                                   height:
                                       MediaQuery.of(context).size.height * 0.45,
-                                  child: TabBarView(children: tabBarViews),
+                                  child: TabBarView(
+                                      key: Key('tabBarView'),
+                                      children: tabBarViews),
                                 )
                                 /*
                               Container(
