@@ -110,6 +110,7 @@ class TabWidget extends StatelessWidget {
                     color: bgColor,
                   ),
                   child: ListView(
+                    key: Key('History Page'),
                     physics: BouncingScrollPhysics(),
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,

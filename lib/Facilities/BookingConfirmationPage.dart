@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -58,7 +57,7 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => Home()),
-                    (Route<dynamic> route) => false);
+                        (Route<dynamic> route) => false);
               },
             ),
           ),
@@ -77,7 +76,7 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (context) => EmailLogIn()),
-                      (Route<dynamic> route) => false);
+                          (Route<dynamic> route) => false);
                 });
               },
             ),
@@ -134,12 +133,12 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
                     },
                     child: Center(
                         child: Text(
-                      'Go to bookings',
-                      style: TextStyle(
-                          color: KERed,
-                          fontSize: 19,
-                          fontWeight: FontWeight.w700),
-                    )),
+                          'Go to bookings',
+                          style: TextStyle(
+                              color: KERed,
+                              fontSize: 19,
+                              fontWeight: FontWeight.w700),
+                        )),
                   )
                 ],
               )),

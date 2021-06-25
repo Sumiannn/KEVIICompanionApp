@@ -7,7 +7,6 @@ import '../lib/HallInfo/Hall_History/HallHistory.dart';
 void main() {
 
   testWidgets("Go to Hall History pages", (WidgetTester tester) async {
-    // find all widgets needed
 
     await tester.pumpWidget(MaterialApp(home: HallHistoryPart1()));
 

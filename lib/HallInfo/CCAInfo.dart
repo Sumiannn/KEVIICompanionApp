@@ -49,6 +49,7 @@ class CCAInfo extends StatelessWidget {
               top: 25,
               left: 15,
               child: IconButton(
+                key: Key('Back Button'),
                 icon: Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
                 onPressed: () {
                   Navigator.pop(context);
@@ -122,6 +123,7 @@ class CCAInfo extends StatelessWidget {
               left: 20,
               right: 20,
               child: InkWell(
+                key: Key('Committee CCA Button'),
                 onTap: (){
                   Navigator.push(context,
                     MaterialPageRoute(builder: (builder) => CommitteeCCA())
@@ -136,6 +138,7 @@ class CCAInfo extends StatelessWidget {
               left: 20,
                 right: 20,
               child: InkWell(
+                key: Key('Cultural CCA Button'),
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (builder) => CulturalCCA())
@@ -149,6 +152,7 @@ class CCAInfo extends StatelessWidget {
               left: 20,
               right: 20,
               child: InkWell(
+                key: Key('Sports CCA Button'),
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (builder) => SportsCCA())

@@ -105,6 +105,7 @@ class _AddBookingState extends State<AddBooking> {
                   top: 25,
                   left: 15,
                   child: IconButton(
+                    key: Key('Back Button'),
                     icon:
                         Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
                     onPressed: () {
