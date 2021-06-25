@@ -22,6 +22,7 @@ class HallHistoryPart1 extends StatelessWidget {
               clipBehavior: Clip.none,
               children: [
                 Container(
+                  key: Key('FMS Image'),
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   child: Image.asset(
@@ -34,6 +35,7 @@ class HallHistoryPart1 extends StatelessWidget {
                   top: 25,
                   left: 15,
                   child: IconButton(
+                    key: Key('Back Button'),
                     icon:
                         Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
                     onPressed: () {
@@ -97,12 +99,7 @@ class TabWidget extends StatelessWidget {
           padding: EdgeInsets.all(0),
           controller: scrollController,
           children: [
-            Positioned(
-              top: 230,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
+              Container(
                   height: MediaQuery.of(context).size.height * 0.8,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
@@ -144,6 +141,7 @@ class TabWidget extends StatelessWidget {
                         ),
                       ),
                       Container(
+                        key: Key('Long Text'),
                         margin: EdgeInsets.all(20),
                         padding: EdgeInsets.all(20),
                         decoration: BoxDecoration(
@@ -157,6 +155,5 @@ class TabWidget extends StatelessWidget {
                       ),
                     ],
                   )),
-            ),
           ]);
 }
