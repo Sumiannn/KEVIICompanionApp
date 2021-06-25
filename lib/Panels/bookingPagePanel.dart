@@ -39,6 +39,7 @@ class bookingPagePanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(children: [
       InkWell(
+        key: Key('Panel'),
         onTap: () {
           Navigator.push(
               context,

@@ -49,6 +49,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                 top: 25,
                 left: 15,
                 child: IconButton(
+                  key: Key('Back Button'),
                   icon: Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
                   onPressed: () {
                     Navigator.pop(context);
@@ -126,6 +127,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                   child: Column(
                     children: [
                       TabBar(
+                        key: Key('Tab bar'),
                         isScrollable: true,
                         labelStyle: TextStyle(
                             fontFamily: 'Montserrat',

@@ -61,6 +61,7 @@ class _HomeState extends State<Home> {
             top: 25,
             right: 15,
             child: IconButton(
+              key: Key('Sign out button'),
               icon: Icon(
                 Icons.exit_to_app_rounded,
                 color: KERed,
