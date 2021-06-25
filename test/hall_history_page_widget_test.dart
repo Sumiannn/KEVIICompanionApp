@@ -20,6 +20,12 @@ void main() {
     var backButton = find.byKey(Key('Back Button'));
     expect(backButton, findsOneWidget);
 
+    var homeButton = find.byIcon(Icons.home_rounded);
+    expect(homeButton, findsOneWidget);
+
+    var logoutButton = find.byIcon(Icons.exit_to_app_rounded);
+    expect(logoutButton, findsOneWidget);
+
     var firstStage = find.byKey(Key('first stage'));
     expect(firstStage, findsOneWidget);
 
