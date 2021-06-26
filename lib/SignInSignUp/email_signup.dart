@@ -217,6 +217,7 @@ class _EmailSignUpState extends State<EmailSignUp> {
                 child: isLoading
                     ? CircularProgressIndicator()
                     : ElevatedButton(
+                        key: Key('Sign Up Button'),
                         style: ButtonStyle(
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(RoundedRectangleBorder(

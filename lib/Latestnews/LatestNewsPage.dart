@@ -21,11 +21,15 @@ class LatestNewsPage extends StatelessWidget {
                 Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
-                  child: Image.network(
-                    imageURL,
-                    alignment: Alignment.topLeft,
-                    fit: BoxFit.fitWidth,
-                  ),
+                ),
+                Positioned(
+                  top: 0,
+                  child: Container(
+                      height: MediaQuery.of(context).size.height * 0.4,
+                      child: Image.network(
+                        imageURL,
+                        fit: BoxFit.fitHeight,
+                      )),
                 ),
                 Positioned(
                   top: 25,
