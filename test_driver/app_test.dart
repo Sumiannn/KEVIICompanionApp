@@ -23,13 +23,20 @@ void main() {
     var backButton = find.byValueKey('Back Button');
 
     test('Test Sign Up link', () async {
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(Duration(seconds: 2));
       await driver.tap(SignUpLink);
       await Future.delayed(Duration(seconds: 1));
       var SignUpText = find.text('Sign Up');
       await driver.waitUntilNoTransientCallbacks();
       assert(SignUpText != null);
-      await Future.delayed(Duration(seconds: 3));
+    });
+
+    test('Test Sign Up page empty fields', () async {
+      var signUpButton = find.byValueKey('Sign Up Button');
+      await driver.tap(signUpButton);
+      var errorPrompt = find.text('Enter your NUS Email');
+      assert(errorPrompt != null);
+      await Future.delayed(Duration(seconds: 1));
       await driver.tap(backButton);
       await Future.delayed(Duration(seconds: 1));
     });
@@ -68,7 +75,7 @@ void main() {
     var latestNewsPanel = find.byValueKey('Latest News Panel');
     var facilitesButton = find.byValueKey('Facilities Button');
     var accountButton = find.byValueKey('Account Info Button');
-    var news = find.text('Just kidding LOL');
+    var news = find.text('#KEALUMNI');
     var newsImage = find.byValueKey('News panel');
 
 
@@ -78,10 +85,14 @@ void main() {
       await driver.scrollUntilVisible(homeSlidingPanel, facilitesButton);
       await Future.delayed(Duration(seconds: 3));
       await driver.scrollUntilVisible(latestNewsPanel, news);
+      await Future.delayed(Duration(seconds: 2));
+    });
+
+    test('Latest News Page', () async {
       await driver.tap(newsImage);
       await Future.delayed(Duration(seconds: 2));
       await driver.tap(backButton);
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(Duration(seconds: 2));
     });
 
     var hallInfoButton = find.byValueKey('Hall Info Button');
