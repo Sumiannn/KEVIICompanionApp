@@ -75,7 +75,7 @@ void main() {
     var latestNewsPanel = find.byValueKey('Latest News Panel');
     var facilitesButton = find.byValueKey('Facilities Button');
     var accountButton = find.byValueKey('Account Info Button');
-    var news = find.text('#KEALUMNI');
+    var news = find.text('It is no Secret - KE Chinese Drama makes its debut in Shanghai Theatre');
     var newsImage = find.byValueKey('News panel');
 
 
