@@ -89,13 +89,42 @@ A few of the things you can do with KEVII Companion App:
 
 ## Current Progress
 - Established link between front-end and backend using FIreFlutter
-- First draft of how Home Page and Facilities page will look like
-- Draft and rough outline of registration page/ signup page/ facilities booking page which utilise Firebase
+- Improved UI 
+- Finalised Login and Sign Up page
+- Finalised Hall Info Page with Hall History and CCA Info elements
+- Completed bookings of facilities function along with checking of current bookings
+- Started software testing
+
+### Milestone 1
+Here are our deliverables for the first Milestone:
+ - [Poster](https://drive.google.com/file/d/1Q_l8AgeY0iHJaawrGb3h86B4iClC5CD8/view?usp=sharing)
+ - [Demo Video](https://drive.google.com/file/d/1WKqW0lG3F52O8jz-KSIwiTx7yz9CnJOt/view?usp=sharing)
+
+### Milestone 2
+Here are our deliverables for the first Milestone:
+ - [Poster](https://drive.google.com/file/d/1Q_l8AgeY0iHJaawrGb3h86B4iClC5CD8/view?usp=sharing)
+#### Demo Video/ Application run through
+ - [Demo Video](https://drive.google.com/file/d/1yeVyjErGrtABHNUCHPUPjI3mr-3SnsyE/view?usp=sharing)
+#### Software Testing
+ - [Widget Testing](https://drive.google.com/file/d/1GzQI5ETqUH5OiwCo_IdoY4t5qsmAWZxF/view?usp=sharing)
+ - [Integrated Testing](https://drive.google.com/file/d/1iifCTaSfTBDDgW2ZIfK4B8sBSLnbeG4d/view?usp=sharing)
+
+
 
 ## Development Plan
-- 31/05 - 13/06: Create all relevant pages and links in the application
-- 14/06 - 28/06: Work on desired UI, Implement the protoype and do system testing 
-- Remaining: Continue system testing, implement the features under Potential Features
+- 28/06 - 14/07 : 
+    - Touch up on bus in existing functions
+    - Implement Student Intiatives Page
+    - Implement a Forum Page
+    - Simultaneously work on software testing
+- 14/07 - 25/07 :
+    - Focus on software testing
+    - Try implementing the application
+    - Work on relevant documentation
+
+- 26/07 - 28/07 :
+    - Finalise Milestone 3 submission
+    - Work on any potential features
 
 ## Build Process
 1) Follow the [Flutter Installation Guide](https://flutter.dev/docs/get-started/install) to set up the environment needed. 
