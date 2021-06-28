@@ -88,9 +88,9 @@ A few of the things you can do with KEVII Companion App:
 - Open Jio Function for KEVII residents for block events
 
 ## Current Progress
-- Established link between front-end and backend using FIreFlutter
+- Established link between front-end and backend using FireFlutter
 - Improved UI 
-- Finalised Login and Sign Up page
+- Finalised Login and Sign-Up page
 - Finalised Hall Info Page with Hall History and CCA Info elements
 - Completed bookings of facilities function along with checking of current bookings
 - Started software testing
@@ -101,7 +101,7 @@ Here are our deliverables for the first Milestone:
  - [Demo Video](https://drive.google.com/file/d/1WKqW0lG3F52O8jz-KSIwiTx7yz9CnJOt/view?usp=sharing)
 
 ### Milestone 2
-Here are our deliverables for the first Milestone:
+Here are our deliverables for the second Milestone:
  - [Poster](https://drive.google.com/file/d/1Q_l8AgeY0iHJaawrGb3h86B4iClC5CD8/view?usp=sharing)
 #### Demo Video/ Application run through
  - [Demo Video](https://drive.google.com/file/d/1yeVyjErGrtABHNUCHPUPjI3mr-3SnsyE/view?usp=sharing)
