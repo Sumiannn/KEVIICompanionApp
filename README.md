@@ -22,6 +22,7 @@ As residents of KEVII, we hope to have an integrated environment where we can ac
 
 #### Poster and Video for KEVII Companion App
 [Poster](https://drive.google.com/file/d/19mow_U1EuReTTWyCUIcRKHue_S2a3xzY/view?usp=sharing)
+
 [Video](https://drive.google.com/file/d/1p7UtrSRDuGdwv-FupOJKhAKPTgDP5PaJ/view?usp=sharing)
 
 ## Tech/ Framework used
