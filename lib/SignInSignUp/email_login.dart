@@ -4,13 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:keviiapp/SignInSignUp/email_signup.dart';
 import 'package:keviiapp/colorScheme.dart';
 import '../HomePage/home.dart';
+import 'package:keviiapp/Auth.dart';
 
 class EmailLogIn extends StatefulWidget {
+  final FirebaseAuth auth;
+  const EmailLogIn({
+    Key key,
+    @required this.auth,
+  }) : super(key: key);
+
   @override
   _EmailLogInState createState() => _EmailLogInState();
 }
 
 class _EmailLogInState extends State<EmailLogIn> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -141,12 +149,49 @@ class _EmailLogInState extends State<EmailLogIn> {
                           )),
                           backgroundColor:
                           MaterialStateProperty.all<Color>(KERed)),
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formKey.currentState.validate()) {
                           setState(() {
                             isLoading = true;
                           });
-                          logInToFb();
+                          String userResult = await Auth(auth: FirebaseAuth.instance).signIn(
+                            email: emailController.text,
+                            password: passwordController.text,
+                          );
+                          if (userResult =='Success') {
+                            emailController.clear();
+                            passwordController.clear();
+                            setState(() {
+                              isLoading = false;
+                            });
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => Home(uid: auth.currentUser.uid)));
+                          } else {
+                            setState(() {
+                              isLoading = false;
+                            });
+                            print(userResult);
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    backgroundColor: KELightYellow,
+                                    title: Text("Error", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: KERed),),
+                                    content: Text(userResult, style: TextStyle(fontSize: 18, color: KERed), textAlign: TextAlign.left,),
+                                    actions: [
+                                      ElevatedButton(
+                                        style: ButtonStyle(backgroundColor:  MaterialStateProperty.all<Color>(
+                                            KERed)),
+                                        child: Text("Retry", style: TextStyle(fontSize: 18, color: KELightYellow, fontWeight: FontWeight.bold), textAlign: TextAlign.left),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      )
+                                    ],
+                                  );
+                                });
+                          }
                         }
                       },
                       child: Text(

@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:keviiapp/colorScheme.dart';
+import 'package:keviiapp/Auth.dart';
+
 
 import '../HomePage/home.dart';
 
@@ -226,12 +228,56 @@ class _EmailSignUpState extends State<EmailSignUp> {
                             )),
                             backgroundColor:
                                 MaterialStateProperty.all<Color>(KERed)),
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formKey.currentState.validate()) {
                             setState(() {
                               isLoading = true;
                             });
-                            registerToFb(); //sync to firebase
+                            String userResult = await Auth(auth: FirebaseAuth.instance).createAccount(
+                              email: emailController.text,
+                              password: passwordController.text,
+                            );
+                            if (userResult == 'Success') {
+                              print(roomController.text);
+                              FirebaseFirestore.instance
+                                  .collection("users")
+                                  .doc(firebaseAuth.currentUser.uid)
+                                  .set({
+                                "email": emailController.text,
+                                "room": roomController.text,
+                                "nusid": nusidController.text,
+                              });
+                              String loginResult = await Auth(auth: FirebaseAuth.instance).signIn(
+                                email: emailController.text,
+                                password: passwordController.text,
+                              );
+                              if (loginResult == 'Success') {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => Home(uid: firebaseAuth.currentUser.uid)));
+                              }
+                            } else {
+                              print(userResult);
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      backgroundColor: KELightYellow,
+                                      title: Text("Error", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: KERed),),
+                                      content: Text(userResult, style: TextStyle(fontSize: 18, color: KERed), textAlign: TextAlign.left,),
+                                      actions: [
+                                        ElevatedButton(
+                                          style: ButtonStyle(backgroundColor:  MaterialStateProperty.all<Color>(
+                                              KERed)),
+                                          child: Text("Retry", style: TextStyle(fontSize: 18, color: KELightYellow, fontWeight: FontWeight.bold), textAlign: TextAlign.left),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        )
+                                      ],
+                                    );
+                                  });
+                            }
                           }
                         },
                         child: Text(
