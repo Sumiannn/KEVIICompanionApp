@@ -12,7 +12,8 @@ import '../HomePage/home.dart';
 class FacilitiesBookingPage extends StatelessWidget {
   final title = "Check current bookings";
 
-  FacilitiesBookingPage();
+  FacilitiesBookingPage({this.firestore});
+  final FirebaseFirestore firestore;
 
   DateTime isNow() {
     return DateTime(
@@ -35,6 +36,7 @@ class FacilitiesBookingPage extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               Container(
+                key: Key('Cover Image'),
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 child: Image.network(
@@ -47,6 +49,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                 top: 25,
                 left: 15,
                 child: IconButton(
+                  key: Key('Back Button'),
                   icon: Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
                   onPressed: () {
                     Navigator.pop(context);
@@ -124,6 +127,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                   child: Column(
                     children: [
                       TabBar(
+                        key: Key('Tab bar'),
                         isScrollable: true,
                         labelStyle: TextStyle(
                             fontFamily: 'Montserrat',
@@ -307,21 +311,12 @@ class FacilitiesBookingPage extends StatelessWidget {
                               child: StreamBuilder(
                                   stream: FirebaseFirestore.instance
                                       .collection("Facilities")
-
-                                      .where('Venue', isEqualTo: 'Tennis Courts')
-                                      .where('Start Time (Timestamp)', isGreaterThanOrEqualTo: Timestamp.fromDate(DateTime.now()))
-
-
-                                      .where('Start Time (Timestamp)', isGreaterThanOrEqualTo: Timestamp.fromDate(Today))
-
-
-
                                       .where('Venue',
                                           isEqualTo: 'Tennis Courts')
                                       .where('Start Time (Timestamp)',
                                           isGreaterThanOrEqualTo:
-                                              Timestamp.fromDate(Today))
-
+                                              Timestamp.fromDate(
+                                                  DateTime.now()))
                                       .orderBy('Start Time (Timestamp)')
                                       .snapshots(),
                                   builder: (context, snapshot) {

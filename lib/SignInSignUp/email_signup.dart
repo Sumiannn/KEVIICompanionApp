@@ -56,7 +56,7 @@ class _EmailSignUpState extends State<EmailSignUp> {
                   top: 25,
                   left: 15,
                   child: IconButton(
-                    key: Key('Back button'),
+                    key: Key('Back Button'),
                       icon: Icon(
                         Icons.arrow_back_outlined,
                         size: 30,
@@ -217,6 +217,7 @@ class _EmailSignUpState extends State<EmailSignUp> {
                 child: isLoading
                     ? CircularProgressIndicator()
                     : ElevatedButton(
+                        key: Key('Sign Up Button'),
                         style: ButtonStyle(
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(RoundedRectangleBorder(

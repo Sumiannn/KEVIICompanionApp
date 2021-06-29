@@ -21,16 +21,21 @@ class LatestNewsPage extends StatelessWidget {
                 Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
-                  child: Image.network(
-                    imageURL,
-                    alignment: Alignment.topLeft,
-                    fit: BoxFit.fitWidth,
-                  ),
+                ),
+                Positioned(
+                  top: 0,
+                  child: Container(
+                      height: MediaQuery.of(context).size.height * 0.4,
+                      child: Image.network(
+                        imageURL,
+                        fit: BoxFit.fitHeight,
+                      )),
                 ),
                 Positioned(
                   top: 25,
                   left: 15,
                   child: IconButton(
+                    key: Key('Back Button'),
                     icon: Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
                     onPressed: () {
                       Navigator.pop(context);
@@ -41,6 +46,7 @@ class LatestNewsPage extends StatelessWidget {
                   top: 25,
                   right: 55,
                   child: IconButton(
+                    key: Key('Home Button'),
                     icon: Icon(Icons.home_rounded, color: KERed, size: 30),
                     onPressed: () {
                       Navigator.pushAndRemoveUntil(
@@ -54,6 +60,7 @@ class LatestNewsPage extends StatelessWidget {
                   top: 25,
                   right: 15,
                   child: IconButton(
+                    key: Key('Sign Out Button'),
                     icon: Icon(
                       Icons.exit_to_app_rounded,
                       color: KERed,
@@ -92,10 +99,12 @@ class LatestNewsPage extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                         children: [
                             SizedBox(height: 5,),
-                            Center(
+                            Container(
+                              margin: EdgeInsets.only(left: 10, right: 10),
                                 child: Text(
                                   headline,
                                   textAlign: TextAlign.center,
+                                  key: Key('Title'),
                                   style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700, color: KERed),
                                 ),
                               ),
@@ -103,6 +112,7 @@ class LatestNewsPage extends StatelessWidget {
                             Center(
                               child: Text(
                                 subheading,
+                                key: Key('Subheading'),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: KEYellow),
                               ),
@@ -116,6 +126,7 @@ class LatestNewsPage extends StatelessWidget {
                               ),
                               child: Text(
                                   news,
+                                  key: Key('News'),
                                   textAlign: TextAlign.justify,
                                   style: TextStyle(fontSize: 18),
                                 ),

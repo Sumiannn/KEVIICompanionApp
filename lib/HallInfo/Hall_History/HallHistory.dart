@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/HallInfo/Hall%20History/HallHistoryPart1.dart';
+import 'package:keviiapp/HallInfo/Hall_History/HallHistoryPart1.dart';
 
 import '../../colorScheme.dart';
 import '../../SignInSignUp/email_login.dart';
@@ -15,6 +15,7 @@ class HallHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget hallHistoryBlocks(String imgName, String title, String subtitle, StatelessWidget Page) {
       return Row(
+        key: Key('Hall History block'),
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Image.asset(
@@ -23,6 +24,7 @@ class HallHistory extends StatelessWidget {
             ),
             SizedBox(width: 10.0),
             ElevatedButton(
+              key: Key('Sample history button'),
               style: ElevatedButton.styleFrom(
                 primary: KELightRed,
               ),
@@ -83,6 +85,7 @@ class HallHistory extends StatelessWidget {
           top: 25,
           left: 15,
           child: IconButton(
+            key: Key('Back Button'),
             icon: Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
             onPressed: () {
               Navigator.pop(context);
@@ -160,11 +163,13 @@ class HallHistory extends StatelessWidget {
               height: MediaQuery.of(context).size.height*0.78,
               margin: EdgeInsets.only(top: 10.0),
               child: ListView(
+                key: Key('Scrollable History'),
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   children: <Widget>[
                     hallHistoryBlocks("KingEdwardFMS.jpg", "Federated Malay States Hostel", "Sepoy Lines (1916-1956)", HallHistoryPart1()),
                     Container(
+                      key: Key('first stage'),
                         child: Align(
                           alignment: Alignment(0.6, 0.6),
                           child: Transform.rotate(
@@ -177,6 +182,8 @@ class HallHistory extends StatelessWidget {
                     ),
                     hallHistoryBlocks("KingEdwardHolneChase.jpg", "Holne Chase", "Grange Road (1938-1956)", HallHistoryPart2()),
                     Container(
+                        key: Key('second stage'),
+
                         child: Align(
                           alignment: Alignment(0.6, 0.6),
                           child: Transform.rotate(
@@ -189,7 +196,9 @@ class HallHistory extends StatelessWidget {
                     ),
                     hallHistoryBlocks("KingEdwardOld.jpg", "King Edward VII Hall", "Sepoy Lines, 12 College Road (1957-1987)", HallHistoryPart3()),
                     Container(
-                      child: Align(
+                        key: Key('third stage'),
+
+                        child: Align(
                         alignment: Alignment(0.6, 0.6),
                         child: Transform.rotate(
                             angle: 270 * pi/180,
@@ -199,7 +208,9 @@ class HallHistory extends StatelessWidget {
                         ),
                       )
                     ),
-                    hallHistoryBlocks("KE7HallHistory.jpg", "King Edward VII Hall", "1A Kent Ridge Road (1987-Present)", HallHistoryPart4()),
+                    Container(
+                        key: Key('fourth stage'),
+                        child: hallHistoryBlocks("KE7HallHistory.jpg", "King Edward VII Hall", "1A Kent Ridge Road (1987-Present)", HallHistoryPart4())),
                   ]),
             ))
       ]),

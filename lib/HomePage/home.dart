@@ -61,6 +61,7 @@ class _HomeState extends State<Home> {
             top: 25,
             right: 15,
             child: IconButton(
+              key: Key('Sign out button'),
               icon: Icon(
                 Icons.exit_to_app_rounded,
                 color: KERed,
@@ -119,6 +120,7 @@ class _HomeState extends State<Home> {
             top: 135,
             left: 25,
             child: Container(
+                key: Key('Home sliding panel'),
                 width: MediaQuery.of(context).size.width,
                 height: 150,
                 margin: EdgeInsets.only(top: 10),
@@ -127,6 +129,7 @@ class _HomeState extends State<Home> {
                   scrollDirection: Axis.horizontal,
                   children: [
                     InkWell(
+                      key: Key('Facilities Button'),
                       child: categoryContainer(
                           "FacilitiesImage.png", "Facilities"),
                       onTap: () {
@@ -138,6 +141,7 @@ class _HomeState extends State<Home> {
                       },
                     ),
                     InkWell(
+                      key: Key('Hall Info Button'),
                       child:
                           categoryContainer("HallInfoImage.png", "Hall Info"),
                       onTap: () {
@@ -148,12 +152,14 @@ class _HomeState extends State<Home> {
                       },
                     ),
                     InkWell(
+                      key: Key('Student Initiatives Button'),
                       child: categoryContainer("StudentInitiatives.png", "Initiatives"),
                       onTap: () {
                         //TODO
                       },
                     ),
                     InkWell(
+                      key: Key('Account Info Button'),
                       child: categoryContainer("AccountImage.png", "Account"),
                       onTap: () {
                         Navigator.push(
@@ -181,6 +187,7 @@ class _HomeState extends State<Home> {
               top: 370,
               left: 25,
               child: Container(
+                  key: Key('Latest News Panel'),
                   height: MediaQuery.of(context).size.height * 0.5,
                   width: MediaQuery.of(context).size.width * 0.875,
                   child: StreamBuilder(

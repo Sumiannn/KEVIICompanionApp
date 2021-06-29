@@ -27,6 +27,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
             top: 25,
             left: 15,
             child: IconButton(
+              key: Key('Back Button'),
               icon: Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
               onPressed: () {
                 Navigator.pop(context);
@@ -37,6 +38,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
             top: 25,
             right: 55,
             child: IconButton(
+              key: Key('Home Button'),
               icon: Icon(Icons.home_rounded, color: KERed, size: 30),
               onPressed: () {
                 Navigator.pushAndRemoveUntil(
@@ -50,6 +52,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
             top: 25,
             right: 15,
             child: IconButton(
+              key: Key('Sign Out Button'),
               icon: Icon(
                 Icons.exit_to_app_rounded,
                 color: KERed,
@@ -76,6 +79,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
                   fontSize: 30,
                   fontWeight: FontWeight.w700,
                   color: KERed),
+              key: Key('Facilities Header'),
             ),
           ),
           Positioned(
@@ -92,6 +96,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
                     fontSize: 18,
                     fontWeight: FontWeight.w300,
                     color: KERed),
+                key: Key('Subheading'),
               ),
             ),
           ),
@@ -100,6 +105,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
             left: 20,
             right: 20,
             child: InkWell(
+              key: Key('Manage my bookings option'),
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 height: MediaQuery.of(context).size.height * 0.18,
@@ -147,6 +153,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
               left: 20,
               right: 20,
               child: InkWell(
+                key: Key('Check current bookings option'),
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   height: MediaQuery.of(context).size.height * 0.18,
@@ -198,6 +205,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
               left: 20,
               right: 20,
               child: InkWell(
+                key: Key('Add a booking option'),
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   height: MediaQuery.of(context).size.height * 0.18,

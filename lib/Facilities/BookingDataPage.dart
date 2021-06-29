@@ -82,6 +82,7 @@ class _BookingDataPageState extends State<BookingDataPage> {
                   top: 15,
                   left: 15,
                   child: IconButton(
+                    key: Key('Back Button'),
                       icon: Icon(Icons.arrow_back),
                       color: Colors.white,
                       onPressed: () {
