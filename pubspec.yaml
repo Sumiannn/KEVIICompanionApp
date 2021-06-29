@@ -48,10 +48,10 @@ dev_dependencies:
   flutter_driver:
     sdk: flutter
   test: any
-  mockito: ^5.0.10
+  mockito:
   rxdart:
   flutter_automation: any
-  network_image_mock: ^2.0.1
+  network_image_mock:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
