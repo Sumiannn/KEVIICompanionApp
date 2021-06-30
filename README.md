@@ -10,6 +10,7 @@ An application targetted at helping King Edward VII residents be in the know abo
 ## Motivation
 
 As residents of KEVII, we hope to have an integrated environment where we can access any hall information with a few swipes on our phones. We believe that there is potential to make KEVIIans' lives more comfortable and convenient through a residential application. This also has the potential to provide a lot more transparency in the hall.
+
 ### User stories
 - As a KEVIIan, I can access the latest news page so that I know what is going on around me in the hall
 - As a KEVIIan, I can check what facilities are available for booking so that I can aboid potential conflict
@@ -18,6 +19,11 @@ As residents of KEVII, we hope to have an integrated environment where we can ac
 - As a KEVIIan, I can post questions to the KEVII community via the Forum so that I can get help/ support
 - As an Admin/ JCRC, I can broadcast the latest happenings of the hall so that residents are up to date
 - As an Admin/ JCRC, I can moderate the bookings of facilities so that we comply with any restrictions due to the current pandemic
+
+#### Poster and Video for KEVII Companion App
+[Poster](https://drive.google.com/file/d/19mow_U1EuReTTWyCUIcRKHue_S2a3xzY/view?usp=sharing)
+
+[Video](https://drive.google.com/file/d/1p7UtrSRDuGdwv-FupOJKhAKPTgDP5PaJ/view?usp=sharing)
 
 ## Tech/ Framework used
 - [Flutter](https://flutter.dev/?gclid=CjwKCAjwzMeFBhBwEiwAzwS8zOlVhQ4XY-OWtlHr5eAtJrca4f0cAZLwOB08biQ04MgjChUnlUzL7RoCxaQQAvD_BwE&gclsrc=aw.ds)
@@ -88,9 +94,9 @@ A few of the things you can do with KEVII Companion App:
 - Open Jio Function for KEVII residents for block events
 
 ## Current Progress
-- Established link between front-end and backend using FIreFlutter
+- Established link between front-end and backend using FireFlutter
 - Improved UI 
-- Finalised Login and Sign Up page
+- Finalised Login and Sign-Up page
 - Finalised Hall Info Page with Hall History and CCA Info elements
 - Completed bookings of facilities function along with checking of current bookings
 - Started software testing
@@ -101,12 +107,13 @@ Here are our deliverables for the first Milestone:
  - [Demo Video](https://drive.google.com/file/d/1WKqW0lG3F52O8jz-KSIwiTx7yz9CnJOt/view?usp=sharing)
 
 ### Milestone 2
-Here are our deliverables for the first Milestone:
+Here are our deliverables for the second Milestone:
  - [Poster](https://drive.google.com/file/d/1Q_l8AgeY0iHJaawrGb3h86B4iClC5CD8/view?usp=sharing)
 #### Demo Video/ Application run through
  - [Demo Video](https://drive.google.com/file/d/1yeVyjErGrtABHNUCHPUPjI3mr-3SnsyE/view?usp=sharing)
 #### Software Testing
- - [Widget Testing](https://drive.google.com/file/d/1GzQI5ETqUH5OiwCo_IdoY4t5qsmAWZxF/view?usp=sharing)
+ - [Unit Testing](https://drive.google.com/file/d/1iBWWU47vVAUANBG6uCNzOaM4pn4FslVs/view?usp=sharing)
+ - [Widget Testing](https://drive.google.com/file/d/1GbR24G8n9Jy9Q7hgM97vgfJ_y0PkaNxh/view?usp=sharing)
  - [Integrated Testing](https://drive.google.com/file/d/1iifCTaSfTBDDgW2ZIfK4B8sBSLnbeG4d/view?usp=sharing)
 
 
