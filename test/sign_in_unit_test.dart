@@ -27,23 +27,23 @@ void main() {
   test("create account", () async {
     when(
       mockFirebaseAuth.createUserWithEmailAndPassword(
-          email: "tadas@gmail.com", password: "123456"),
+          email: "123@gmail.com", password: "123456"),
     ).thenAnswer((realInvocation) => null);
 
     expect(
-        await auth.createAccount(email: "tadas@gmail.com", password: "123456"),
+        await auth.createAccount(email: "123@gmail.com", password: "123456"),
         "Success");
   });
 
   test("create account exception", () async {
     when(
       mockFirebaseAuth.createUserWithEmailAndPassword(
-          email: "tadas@gmail.com", password: "123456"),
+          email: "123@gmail.com", password: "123456"),
     ).thenAnswer((realInvocation) =>
     throw FirebaseAuthException(message: "You screwed up"));
 
     expect(
-        await auth.createAccount(email: "tadas@gmail.com", password: "123456"),
+        await auth.createAccount(email: "123@gmail.com", password: "123456"),
         "You screwed up");
   });
 
