@@ -383,7 +383,7 @@ class pathPainter extends CustomPainter {
     paint.color = KELightRed;
     paint.style = PaintingStyle.fill;
     var path = Path();
-    path.moveTo(0, size.height * 0.4);
+    path.moveTo(0, size.height * 0.45);
     path.quadraticBezierTo(size.width * 0.35, size.height * 0.40,
         size.width * 0.58, size.height * 0.6);
     path.quadraticBezierTo(size.width * 0.72, size.height * 0.8,
