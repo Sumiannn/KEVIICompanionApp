@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:keviiapp/colorScheme.dart';
 
-import 'CCAInfo.dart';
+import 'CCA_Info/CCAInfo.dart';
 import 'Hall_History/HallHistory.dart';
-import 'RoomInfo.dart';
+import 'Room_Info/RoomInfo.dart';
 import '../SignInSignUp/email_login.dart';
 import '../HomePage/home.dart';
 
