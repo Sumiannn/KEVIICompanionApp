@@ -221,6 +221,3 @@ class PathPainter extends CustomPainter {
     return true;
   }
 }
-
-
-

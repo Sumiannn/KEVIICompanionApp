@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:keviiapp/Facilities/FacilitiesOptionScreen.dart';
 import 'package:keviiapp/HallInfo/HallInfoOptionScreen.dart';
 import 'package:keviiapp/Facilities/AddBooking.dart';
+import 'package:keviiapp/Initiatives/InitiativesOptionScreen.dart';
 import 'package:keviiapp/Panels/homePanel.dart';
 import 'package:keviiapp/Facilities/FacilitiesBookingPage.dart';
 import 'package:keviiapp/AccountPage/accountPage.dart';
@@ -149,7 +150,10 @@ class _HomeState extends State<Home> {
                       key: Key('Student Initiatives Button'),
                       child: categoryContainer("StudentInitiatives.png", "Initiatives"),
                       onTap: () {
-                        //TODO
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => InitiativesOptionScreen()));
                       },
                     ),
                     InkWell(
