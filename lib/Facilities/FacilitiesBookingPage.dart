@@ -79,13 +79,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                     size: 30,
                   ),
                   onPressed: () {
-                    FirebaseAuth auth = FirebaseAuth.instance;
-                    auth.signOut().then((res) {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => EmailLogIn()),
-                          (Route<dynamic> route) => false);
-                    });
+                    logOutNotice(context);
                   },
                 ),
               ),
@@ -506,5 +500,39 @@ class FacilitiesBookingPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void logOutNotice(BuildContext context) {
+    var alertDialog = AlertDialog(
+      title: Text("Are you sure you want to Log Out?"),
+      actions: <Widget>[
+        FlatButton(
+          onPressed: () {
+            print("Cancel");
+            Navigator.of(context).pop(false);
+          },
+          child: Text('Cancel', style: TextStyle(color: Colors.black),),
+        ),
+        FlatButton(
+          onPressed: () {
+            print("Logout");
+            FirebaseAuth auth = FirebaseAuth.instance;
+            auth.signOut().then((res) {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => EmailLogIn()),
+                      (Route<dynamic> route) => false);
+            });
+          },
+          child: Text('Logout', style: TextStyle(color: Colors.black),),
+        )
+      ],
+    );
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alertDialog;
+        });
   }
 }

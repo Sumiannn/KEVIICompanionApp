@@ -13,9 +13,10 @@ import 'dart:math';
 class HallHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Widget hallHistoryBlocks(String imgName, String title, String subtitle, StatelessWidget Page) {
+    Widget hallHistoryBlocks(
+        String imgName, String title, String subtitle, StatelessWidget Page) {
       return Row(
-        key: Key('Hall History block'),
+          key: Key('Hall History block'),
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Image.asset(
@@ -50,27 +51,25 @@ class HallHistory extends StatelessWidget {
                         child: Container(
                           child: Align(
                             alignment: Alignment.bottomRight,
-                            child: Text("view more >>",
+                            child: Text(
+                              "view more >>",
                               style: TextStyle(
                                 color: KERed,
-                              ),),
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ],
-                  )
-              ),
+                  )),
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            Page));
+                    context, MaterialPageRoute(builder: (context) => Page));
               },
             ),
-          ]
-      );
+          ]);
     }
+
     return Scaffold(
       backgroundColor: bgColor,
       body: Stack(children: [
@@ -115,13 +114,7 @@ class HallHistory extends StatelessWidget {
               size: 30,
             ),
             onPressed: () {
-              FirebaseAuth auth = FirebaseAuth.instance;
-              auth.signOut().then((res) {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => EmailLogIn()),
-                    (Route<dynamic> route) => false);
-              });
+              logOutNotice(context);
             },
           ),
         ),
@@ -160,61 +153,103 @@ class HallHistory extends StatelessWidget {
             right: 10,
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height*0.78,
+              height: MediaQuery.of(context).size.height * 0.78,
               margin: EdgeInsets.only(top: 10.0),
               child: ListView(
-                key: Key('Scrollable History'),
+                  key: Key('Scrollable History'),
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   children: <Widget>[
-                    hallHistoryBlocks("KingEdwardFMS.jpg", "Federated Malay States Hostel", "Sepoy Lines (1916-1956)", HallHistoryPart1()),
+                    hallHistoryBlocks(
+                        "KingEdwardFMS.jpg",
+                        "Federated Malay States Hostel",
+                        "Sepoy Lines (1916-1956)",
+                        HallHistoryPart1()),
                     Container(
-                      key: Key('first stage'),
+                        key: Key('first stage'),
                         child: Align(
                           alignment: Alignment(0.6, 0.6),
                           child: Transform.rotate(
-                              angle: 270 * pi/180,
+                              angle: 270 * pi / 180,
                               child: Icon(
-                                Icons.arrow_back_rounded, size: 50,
-                              )
-                          ),
-                        )
-                    ),
-                    hallHistoryBlocks("KingEdwardHolneChase.jpg", "Holne Chase", "Grange Road (1938-1956)", HallHistoryPart2()),
+                                Icons.arrow_back_rounded,
+                                size: 50,
+                              )),
+                        )),
+                    hallHistoryBlocks("KingEdwardHolneChase.jpg", "Holne Chase",
+                        "Grange Road (1938-1956)", HallHistoryPart2()),
                     Container(
                         key: Key('second stage'),
-
                         child: Align(
                           alignment: Alignment(0.6, 0.6),
                           child: Transform.rotate(
-                              angle: 270 * pi/180,
+                              angle: 270 * pi / 180,
                               child: Icon(
-                                Icons.arrow_back_rounded, size: 50,
-                              )
-                          ),
-                        )
-                    ),
-                    hallHistoryBlocks("KingEdwardOld.jpg", "King Edward VII Hall", "Sepoy Lines, 12 College Road (1957-1987)", HallHistoryPart3()),
+                                Icons.arrow_back_rounded,
+                                size: 50,
+                              )),
+                        )),
+                    hallHistoryBlocks(
+                        "KingEdwardOld.jpg",
+                        "King Edward VII Hall",
+                        "Sepoy Lines, 12 College Road (1957-1987)",
+                        HallHistoryPart3()),
                     Container(
                         key: Key('third stage'),
-
                         child: Align(
-                        alignment: Alignment(0.6, 0.6),
-                        child: Transform.rotate(
-                            angle: 270 * pi/180,
-                            child: Icon(
-                              Icons.arrow_back_rounded, size: 50,
-                            )
-                        ),
-                      )
-                    ),
+                          alignment: Alignment(0.6, 0.6),
+                          child: Transform.rotate(
+                              angle: 270 * pi / 180,
+                              child: Icon(
+                                Icons.arrow_back_rounded,
+                                size: 50,
+                              )),
+                        )),
                     Container(
                         key: Key('fourth stage'),
-                        child: hallHistoryBlocks("KE7HallHistory.jpg", "King Edward VII Hall", "1A Kent Ridge Road (1987-Present)", HallHistoryPart4())),
+                        child: hallHistoryBlocks(
+                            "KE7HallHistory.jpg",
+                            "King Edward VII Hall",
+                            "1A Kent Ridge Road (1987-Present)",
+                            HallHistoryPart4())),
                   ]),
             ))
       ]),
     );
+  }
+
+  void logOutNotice(BuildContext context) {
+    var alertDialog = AlertDialog(
+      title: Text("Are you sure you want to Log Out?"),
+      actions: <Widget>[
+        FlatButton(
+          onPressed: () {
+            print("Cancel");
+            Navigator.of(context).pop(false);
+          },
+          child: Text('Cancel', style: TextStyle(color: Colors.black),),
+        ),
+        FlatButton(
+          onPressed: () {
+            print("Logout");
+            FirebaseAuth auth = FirebaseAuth.instance;
+            auth.signOut().then((res) {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => EmailLogIn()),
+                      (Route<dynamic> route) => false);
+            });
+          },
+          child: Text('Logout', style: TextStyle(color: Colors.black),),
+        )
+      ],
+    );
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alertDialog;
+        });
   }
 }
 
@@ -264,4 +299,3 @@ Container categoryContainer(String imgName, String title) {
         ],
       ));
 }
-
