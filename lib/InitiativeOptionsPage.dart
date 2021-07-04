@@ -1,15 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/Facilities/AddBooking.dart';
-import 'package:keviiapp/Facilities/FacilitiesBookingPage.dart';
-import 'package:keviiapp/Facilities/ManageBookingsPage.dart';
-import 'package:keviiapp/colorScheme.dart';
+import 'package:flutter/widgets.dart';
 
-import '../SignInSignUp/email_login.dart';
-import '../HomePage/home.dart';
+import 'Facilities/FacilitiesBookingPage.dart';
+import 'HomePage/home.dart';
+import 'SignInSignUp/email_login.dart';
+import 'colorScheme.dart';
 
-class FacilitiesOptionsScreen extends StatelessWidget {
+class InitiativeOptionsPage extends StatefulWidget {
+  const InitiativeOptionsPage({Key key}) : super(key: key);
+
+  @override
+  _InitiativeOptionsPageState createState() => _InitiativeOptionsPageState();
+}
+
+class _InitiativeOptionsPageState extends State<InitiativeOptionsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +50,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => Home()),
-                    (Route<dynamic> route) => false);
+                        (Route<dynamic> route) => false);
               },
             ),
           ),
@@ -67,7 +73,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
             top: 75,
             left: 25,
             child: Text(
-              "Facilities",
+              "Initiatives",
               style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 30,
@@ -84,103 +90,56 @@ class FacilitiesOptionsScreen extends StatelessWidget {
               padding: EdgeInsets.only(right: 12),
               width: MediaQuery.of(context).size.width,
               child: Text(
-                "You can check out who's using the facilities, manage your existing bookings or add a booking here!",
+                "Check out our hall initiative such as Fund Raisers and Block Events here!",
                 style: TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 18,
                     fontWeight: FontWeight.w300,
                     color: KERed),
+                textAlign: TextAlign.justify,
                 key: Key('Subheading'),
               ),
             ),
           ),
           Positioned(
-            top: 230,
-            left: 20,
-            right: 20,
-            child: InkWell(
-              key: Key('Manage my bookings option'),
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                height: MediaQuery.of(context).size.height * 0.18,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: KELightRed,
-                ),
-                child: Row(
-                  children: [
-                    Image.asset(
-                      'assets/image/ManageBookingsImage.png',
-                      fit: BoxFit.fill,
-                    ),
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Manage My Bookings",
-                            style: TextStyle(
-                                fontSize: 19,
-                                fontWeight: FontWeight.w700,
-                                color: KERed),
-                          ),
-                          Text(
-                            "Change or update my bookings' timings, venue, or other details",
-                            style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                color: KERed),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ManageBookingsPage()));
-              },
-            ),
-          ),
-          Positioned(
-              top: 385,
+              top: 190,
               left: 20,
               right: 20,
               child: InkWell(
-                key: Key('Check current bookings option'),
+                key: Key('Fund Raiser Button'),
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  height: MediaQuery.of(context).size.height * 0.18,
+                  height: MediaQuery.of(context).size.height * 0.35,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: KELightRed,
                   ),
-                  child: Row(
+                  child: Column(
                     children: [
-                      Image.asset(
-                        'assets/image/CurrentBookingsImage.png',
-                        fit: BoxFit.fill,
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        child: Image.asset(
+                          'assets/fundRaisersImage.png',
+                          fit: BoxFit.fill,
+                        ),
                       ),
                       Expanded(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "Check current Bookings",
+                              "Fund Raisers",
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 19,
                                   fontWeight: FontWeight.w700,
                                   color: KERed),
                             ),
                             Text(
-                              "Obtain details about current bookings",
+                              "Click to find out the ongoing fund raisers by our very own CCAs",
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w500,
@@ -193,46 +152,48 @@ class FacilitiesOptionsScreen extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => FacilitiesBookingPage()));
-                }, //TODO
+                  // TODO
+                },
               )),
           Positioned(
-              top: 540,
+              top: 470,
               left: 20,
               right: 20,
               child: InkWell(
-                key: Key('Add a booking option'),
+                key: Key('Block Event Button'),
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  height: MediaQuery.of(context).size.height * 0.18,
+                  height: MediaQuery.of(context).size.height * 0.35,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: KELightRed,
                   ),
-                  child: Row(
+                  child: Column(
                     children: [
-                      Image.asset(
-                        'assets/image/AddBookingImage.png',
-                        fit: BoxFit.fill,
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        child: Image.asset(
+                          'assets/image/BlockEventImage.png',
+                          fit: BoxFit.fill,
+                        ),
                       ),
                       Expanded(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "Add a Booking",
+                              "Block Events",
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 19,
                                   fontWeight: FontWeight.w700,
                                   color: KERed),
                             ),
                             Text(
-                              "Make bookings for facilities",
+                              "Click to find out the upcoming Block Events from your own blocks!",
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w500,
@@ -245,15 +206,13 @@ class FacilitiesOptionsScreen extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AddBooking()));
-                }, //TODO
-              ))
+                  // TODO
+                },
+              )),
         ],
       ),
     );
   }
-
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
       title: Text("Are you sure you want to Log Out?"),
@@ -288,7 +247,6 @@ class FacilitiesOptionsScreen extends StatelessWidget {
         });
   }
 }
-
 class pathPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
