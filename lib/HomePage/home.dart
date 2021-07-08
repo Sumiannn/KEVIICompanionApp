@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:keviiapp/Facilities/FacilitiesOptionScreen.dart';
 import 'package:keviiapp/HallInfo/HallInfoOptionScreen.dart';
 import 'package:keviiapp/Facilities/AddBooking.dart';
-<<<<<<< HEAD
+
 import 'package:keviiapp/Initiatives/InitiativesOptionScreen.dart';
-=======
+
 import 'package:keviiapp/InitiativeOptionsPage.dart';
->>>>>>> 775f4ef32f70311651d4439a60495f5043629684
+
 import 'package:keviiapp/Panels/homePanel.dart';
 import 'package:keviiapp/Facilities/FacilitiesBookingPage.dart';
 import 'package:keviiapp/AccountPage/accountPage.dart';
@@ -157,12 +157,11 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-<<<<<<< HEAD
+
                                 builder: (context) => InitiativesOptionScreen()));
                       },
-=======
-                                builder: (context) => InitiativeOptionsPage()));                      },
->>>>>>> 775f4ef32f70311651d4439a60495f5043629684
+
+
                     ),
                     InkWell(
                       key: Key('Account Info Button'),

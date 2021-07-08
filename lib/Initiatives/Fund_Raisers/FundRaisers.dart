@@ -136,15 +136,19 @@ class FundRaisers extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * 0.89,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Colors.green,
+                                image: DecorationImage(
+                                    image:
+                                    AssetImage('assets/image/OCIP.jpg'),
+                                    fit: BoxFit.cover),
                             ),
                             child: Center(
                               child: Text(
-                                "AB",
+                                "CCAs",
                                 style: TextStyle(
                                     fontSize: 21,
                                     fontWeight: FontWeight.w700,
-                                    color: Colors.black),
+                                    color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
@@ -160,88 +164,15 @@ class FundRaisers extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * 0.89,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Colors.yellow,
+                              color: KERed,
                             ),
                             child: Center(
                               child: Text(
-                                "CD",
+                                "Others",
                                 style: TextStyle(
                                     fontSize: 21,
                                     fontWeight: FontWeight.w700,
-                                    color: Colors.black),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        InkWell(
-                          key: Key('Block Events Button'),
-                          onTap: () {
-
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                            height: MediaQuery.of(context).size.height * 0.25,
-                            width: MediaQuery.of(context).size.width * 0.89,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.black,
-                            ),
-                            child: Center(
-                              child: Text(
-                                "E",
-                                style: TextStyle(
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w700,
-                                    color: bgColor),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        InkWell(
-                          onTap: () {
-
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                            height: MediaQuery.of(context).size.height * 0.25,
-                            width: MediaQuery.of(context).size.width * 0.89,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.blue,
-                            ),
-                            child: Center(
-                              child: Text(
-                                "F",
-                                style: TextStyle(
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w700,
-                                    color: bgColor),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        InkWell(
-                          onTap: () {
-
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                            height: MediaQuery.of(context).size.height * 0.25,
-                            width: MediaQuery.of(context).size.width * 0.89,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.red,
-                            ),
-                            child: Center(
-                              child: Text(
-                                "GH",
-                                style: TextStyle(
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w700,
-                                    color: bgColor),
+                                    color: Colors.white),
                               ),
                             ),
                           ),
@@ -249,7 +180,6 @@ class FundRaisers extends StatelessWidget {
                       ])
               ),
             ),
-
           ]
       ),
     );
