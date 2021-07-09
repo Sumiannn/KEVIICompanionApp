@@ -4,17 +4,13 @@ import 'package:keviiapp/HallInfo/CCA_Info/CommitteeCCA.dart';
 import 'package:keviiapp/HallInfo/CCA_Info/CulturalCCA.dart';
 import 'package:keviiapp/HallInfo/CCA_Info/SportsCCA.dart';
 import 'package:keviiapp/HallInfo/Hall_History/HallHistory.dart';
-import 'package:keviiapp/Initiatives/Block_Events/ABevents.dart';
+
 
 import '../../colorScheme.dart';
 import '../../SignInSignUp/email_login.dart';
 import '../../HomePage/home.dart';
-import 'CDevents.dart';
-import 'Eevents.dart';
-import 'Fevents.dart';
-import 'GHevents.dart';
 
-class BlockEvents extends StatelessWidget {
+class Fevents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget CcaCategory(String Img, String Category) {
@@ -93,7 +89,7 @@ class BlockEvents extends StatelessWidget {
               top: 75,
               left: 25,
               child: Text(
-                "Block Events",
+                "F Block",
                 style: TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 30,
@@ -109,7 +105,7 @@ class BlockEvents extends StatelessWidget {
                 padding: EdgeInsets.only(right: 12),
                 width: MediaQuery.of(context).size.width,
                 child: Text(
-                  "Which Block are you from? Check out our latest Block Events for the various Blocks! :)",
+                  "Bonjour F Blockers! :)",
                   style: TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 18,
@@ -132,96 +128,11 @@ class BlockEvents extends StatelessWidget {
                       children: <Widget>[
                         InkWell(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ABevents()));
+
                           },
                           child: Container(
                             padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                            height: MediaQuery.of(context).size.height * 0.10,
-                            width: MediaQuery.of(context).size.width * 0.89,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.green,
-                            ),
-                            child: Center(
-                              child: Text(
-                                "AB",
-                                style: TextStyle(
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.black),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 25),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CDevents()));
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                            height: MediaQuery.of(context).size.height * 0.10,
-                            width: MediaQuery.of(context).size.width * 0.89,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.yellow,
-                            ),
-                            child: Center(
-                              child: Text(
-                                "CD",
-                                style: TextStyle(
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.black),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 25),
-                        InkWell(
-                          key: Key('Block Events Button'),
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Eevents()));
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                            height: MediaQuery.of(context).size.height * 0.10,
-                            width: MediaQuery.of(context).size.width * 0.89,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.black,
-                            ),
-                            child: Center(
-                              child: Text(
-                                "E",
-                                style: TextStyle(
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w700,
-                                    color: bgColor),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 25),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Fevents()));
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                            height: MediaQuery.of(context).size.height * 0.10,
+                            height: MediaQuery.of(context).size.height * 0.25,
                             width: MediaQuery.of(context).size.width * 0.89,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
@@ -238,36 +149,10 @@ class BlockEvents extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 25),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => GHevents()));
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                            height: MediaQuery.of(context).size.height * 0.10,
-                            width: MediaQuery.of(context).size.width * 0.89,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.red,
-                            ),
-                            child: Center(
-                              child: Text(
-                                "GH",
-                                style: TextStyle(
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.black),
-                              ),
-                            ),
-                          ),
-                        ),
                       ])
               ),
             ),
+
           ]
       ),
     );
