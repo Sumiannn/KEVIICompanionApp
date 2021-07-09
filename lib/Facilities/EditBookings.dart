@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:keviiapp/Facilities/ManageBookingsPage.dart';
 import 'package:keviiapp/HomePage/home.dart';
 import 'package:keviiapp/SignInSignUp/email_login.dart';
 
@@ -90,22 +91,6 @@ class _EditBookingsState extends State<EditBookings> {
         endTime = timePicked;
       });
     }
-  }
-
-  Future getDetails() async {
-    FirebaseFirestore.instance
-        .collection('Facilities')
-        .doc(referenceCode)
-        .get()
-        .then((DocumentSnapshot thisBooking) {
-      if (!thisBooking.exists) {
-        return 'Please Wait';
-      } else {
-        venueChoose = thisBooking.get('Venue');
-        ccaFieldText = thisBooking.get('CcaBlock');
-        return Future.value("Firebase Data Downloaded");
-      }
-    });
   }
 
   DateTime getDate(Timestamp timestamp) {
@@ -219,7 +204,7 @@ class _EditBookingsState extends State<EditBookings> {
                   ),
                   Center(
                     child: Text(
-                      'You have not bad any bookings yet.',
+                      'Your booking has been deleted.',
                       style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
@@ -231,12 +216,6 @@ class _EditBookingsState extends State<EditBookings> {
             );
           }
           DocumentSnapshot bookingData = snapshot.data;
-          // setState(() {
-          //   venueChoose = bookingData['Venue'];
-          //   numOfPax.text = bookingData['Number of Pax'];
-          //   ccaField.text = bookingData['CcaBlock'];
-          // });
-
           return Scaffold(
               backgroundColor: bgColor,
               body: Form(
@@ -330,7 +309,7 @@ class _EditBookingsState extends State<EditBookings> {
                         ),
                       ),
                       Positioned(
-                        top: 230,
+                        top: 180,
                         left: 20,
                         right: 20,
                         child: Form(
@@ -467,7 +446,7 @@ class _EditBookingsState extends State<EditBookings> {
                         ),
                       ),
                       Positioned(
-                        top: 310,
+                        top: 260,
                         left: 20,
                         right: 20,
                         child: InkWell(
@@ -539,7 +518,7 @@ class _EditBookingsState extends State<EditBookings> {
                         ),
                       ),
                       Positioned(
-                        top: 390,
+                        top: 340,
                         left: 20,
                         right: 20,
                         child: InkWell(
@@ -607,7 +586,7 @@ class _EditBookingsState extends State<EditBookings> {
                         ),
                       ),
                       Positioned(
-                        top: 470,
+                        top: 420,
                         left: 20,
                         right: 20,
                         child: InkWell(
@@ -676,7 +655,7 @@ class _EditBookingsState extends State<EditBookings> {
                         ),
                       ),
                       Positioned(
-                        top: 550,
+                        top: 500,
                         left: 20,
                         right: 20,
                         child: Container(
@@ -753,7 +732,7 @@ class _EditBookingsState extends State<EditBookings> {
                         ),
                       ),
                       Positioned(
-                        top: 630,
+                        top: 580,
                         left: 20,
                         right: 20,
                         child: Container(
@@ -827,7 +806,7 @@ class _EditBookingsState extends State<EditBookings> {
                         ),
                       ),
                       Positioned(
-                        top: 700,
+                        top: 645,
                         left: 20,
                         right: 20,
                         child: ElevatedButton(
@@ -880,12 +859,12 @@ class _EditBookingsState extends State<EditBookings> {
                             }
                             _formKey.currentState.validate();
                             if (_formKey.currentState.validate()) {
-                              addBooking();
+                              editBooking();
                             }
                           },
                           child: Center(
                               child: Text(
-                                'Add Booking',
+                                'Edit Booking',
                                 style: TextStyle(
                                     color: KERed,
                                     fontSize: 19,
@@ -893,6 +872,62 @@ class _EditBookingsState extends State<EditBookings> {
                               )),
                         ),
                       ),
+                      Positioned(
+                        top: 690,
+                        left: 20,
+                        right: 20,
+                        child: ElevatedButton(onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  backgroundColor: KELightYellow,
+                                  title: Text(
+                                    "Delete Booking",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: KERed),
+                                  ),
+                                  content: Text(
+                                    'Are you sure you want to delete this booking?',
+                                    style: TextStyle(
+                                        fontSize: 18, color: KERed),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                  actions: [
+                                    ElevatedButton(
+                                      style: ButtonStyle(
+                                          backgroundColor: MaterialStateProperty
+                                              .all<Color>(KERed)),
+                                      child: Text("Ok",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: KELightYellow,
+                                              fontWeight: FontWeight.bold),
+                                          textAlign: TextAlign.left),
+                                      onPressed: () {
+                                        setState(() {
+                                          deleteBooking();
+                                        });
+                                        Navigator.popUntil(
+                                            context,
+                                            ModalRoute.withName("Manage Bookings Page"));                                      },
+                                    )
+                                  ],
+                                );
+                              });
+                        },
+                          style: ElevatedButton.styleFrom(primary: KERed),
+                          child: Center(
+                                child: Text(
+                                  'Delete Booking',
+                                  style: TextStyle(
+                                      color: KELightYellow,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w700),
+                                )),),
+                      )
                     ],
                   ),
                 ),
@@ -940,7 +975,11 @@ class _EditBookingsState extends State<EditBookings> {
         });
   }
 
-  void addBooking() async {
+  void deleteBooking() async {
+    FirebaseFirestore.instance.collection('Facilities').doc(referenceCode).delete();
+  }
+
+  void editBooking() async {
     DateTime chosenStart = DateTime(dateChosen.year, dateChosen.month,
         dateChosen.day, startTime.hour, startTime.minute);
     DateTime chosenEnd = DateTime(dateChosen.year, dateChosen.month,

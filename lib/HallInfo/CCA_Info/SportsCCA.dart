@@ -248,7 +248,7 @@ class _SportsCCAState extends State<SportsCCA> {
                                 ),
                                 Container(
                                   height:
-                                      MediaQuery.of(context).size.height * 0.45,
+                                      MediaQuery.of(context).size.height * 0.50,
                                   child: TabBarView(
                                       key: Key('tabBarView'),
                                       children: tabBarViews),

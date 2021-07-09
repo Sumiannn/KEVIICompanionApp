@@ -39,8 +39,8 @@ class FacilitiesBookingPage extends StatelessWidget {
                 key: Key('Cover Image'),
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
-                child: Image.network(
-                  'https://scontent.fsin7-1.fna.fbcdn.net/v/t1.6435-9/40773051_735925123423298_3456762337506099200_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=e3f864&_nc_ohc=cYV5LA7oRwAAX-JegYv&_nc_ht=scontent.fsin7-1.fna&oh=f6574ac78423be012faf59f4cc022025&oe=60E6D081',
+                child: Image.asset(
+                  'assets/image/KE7HallHistory.jpg',
                   alignment: Alignment.topLeft,
                   fit: BoxFit.fitWidth,
                 ),

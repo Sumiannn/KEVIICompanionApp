@@ -14,18 +14,18 @@ class ManageBookingsDataPanel extends StatelessWidget {
   Timestamp StartTimeStamp;
   DateTime newDate;
   List<String> months = [
-    'January',
-    'February',
-    'March',
-    'April',
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
     'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
   ];
 
   //might want to includew the stateless wideget nextPage

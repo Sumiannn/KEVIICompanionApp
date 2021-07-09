@@ -102,7 +102,9 @@ flutter:
     - assets/BookingVenues/HeritageRoom.jpg
     - assets/BookingVenues/DiningHall.jpg
     - assets/image/BlockEventImage.png
+    - assets/image/FundRaisersImage.png
     - assets/image/StudentInitiatives.png
+    - assets/image/OCIP.jpg
 
       # An image asset can refer to one or more resolution-specific "variants", see
       # https://flutter.dev/assets-and-images/#resolution-aware.
