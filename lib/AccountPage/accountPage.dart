@@ -250,7 +250,6 @@ class _accountPageState extends State<accountPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-
                               builder: (context) => ManageBookingsPage()));
                     }, //TODO
                   ),
