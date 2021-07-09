@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:keviiapp/Facilities/ManageBookingsPage.dart';
 import 'package:keviiapp/HomePage/home.dart';
 import 'package:keviiapp/SignInSignUp/email_login.dart';
 
@@ -31,11 +32,21 @@ class _EditBookingsState extends State<EditBookings> {
 
   DateTime isNow() {
     return DateTime(
-      DateTime.now().year,
-      DateTime.now().month,
-      DateTime.now().day,
-      DateTime.now().hour,
-      DateTime.now().minute,
+      DateTime
+          .now()
+          .year,
+      DateTime
+          .now()
+          .month,
+      DateTime
+          .now()
+          .day,
+      DateTime
+          .now()
+          .hour,
+      DateTime
+          .now()
+          .minute,
     );
   }
 
@@ -82,638 +93,846 @@ class _EditBookingsState extends State<EditBookings> {
     }
   }
 
-  Future getDetails() async {
-    FirebaseFirestore.instance.collection('Facilities').doc(referenceCode).get().then((DocumentSnapshot thisBooking) {
-      if (!thisBooking.exists) {
-        return 'Please Wait';
-      } else {
-        venueChoose = thisBooking.get('Venue');
-        ccaFieldText = thisBooking.get('CcaBlock');
-        return Future.value("Firebase Data Downloaded");
-      }
-    });
+  DateTime getDate(Timestamp timestamp) {
+    DateTime originalDate = DateTime.parse(timestamp.toDate().toString());
+    print(DateTime(originalDate.year, originalDate.month, originalDate.day).toString());
+    return DateTime(originalDate.year, originalDate.month, originalDate.day);
   }
+
+  TimeOfDay getHoursAndMin(Timestamp timestamp) {
+    DateTime originalDate = DateTime.parse(timestamp.toDate().toString());
+    print(TimeOfDay(hour: originalDate.hour, minute: originalDate.minute).toString());
+    return TimeOfDay(hour: originalDate.hour, minute: originalDate.minute);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: bgColor,
-        body: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            child: Stack(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  child: CustomPaint(
-                    painter: pathPainter(),
-                  ),
-                ),
-                Positioned(
-                  top: 25,
-                  left: 15,
-                  child: IconButton(
-                    key: Key('Back Button'),
-                    icon:
-                    Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-                Positioned(
-                  top: 25,
-                  right: 55,
-                  child: IconButton(
-                    icon: Icon(Icons.home_rounded, color: KERed, size: 30),
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => Home()),
-                              (Route<dynamic> route) => false);
-                    },
-                  ),
-                ),
-                Positioned(
-                  top: 25,
-                  right: 15,
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.exit_to_app_rounded,
-                      color: KERed,
-                      size: 30,
+    return StreamBuilder<Object>(
+        stream: FirebaseFirestore.instance
+            .collection('Facilities')
+            .doc(referenceCode)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Scaffold(
+              backgroundColor: bgColor,
+              body: Stack(
+                children: [
+                  Container(
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
+                    child: CustomPaint(
+                      painter: pathPainter(),
                     ),
-                    onPressed: () {
-                      logOutNotice(context);
-                    },
                   ),
-                ),
-                Positioned(
-                  top: 75,
-                  left: 25,
-                  child: Text(
-                    "Edit My Booking",
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontSize: 30,
-                        fontWeight: FontWeight.w700,
-                        color: KERed),
+                  Positioned(
+                    top: 25,
+                    left: 15,
+                    child: IconButton(
+                      key: Key('Back Button'),
+                      icon: Icon(Icons.arrow_back_rounded,
+                          color: KERed, size: 30),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
                   ),
-                ),
-                Positioned(
-                  top: 125,
-                  left: 25,
-                  right: 25,
-                  child: Container(
-                    padding: EdgeInsets.only(right: 12),
-                    width: MediaQuery.of(context).size.width,
+                  Positioned(
+                    top: 25,
+                    right: 55,
+                    child: IconButton(
+                      icon: Icon(Icons.home_rounded, color: KERed, size: 30),
+                      onPressed: () {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(builder: (context) => Home()),
+                                (Route<dynamic> route) => false);
+                      },
+                    ),
+                  ),
+                  Positioned(
+                    top: 25,
+                    right: 15,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.exit_to_app_rounded,
+                        color: KERed,
+                        size: 30,
+                      ),
+                      onPressed: () {
+                        logOutNotice(context);
+                      },
+                    ),
+                  ),
+                  Positioned(
+                    top: 75,
+                    left: 25,
                     child: Text(
-                      "Modify this existing booking or completely delete it.",
+                      "Edit My Booking",
                       style: TextStyle(
                           fontFamily: 'Montserrat',
-                          fontSize: 18,
-                          fontWeight: FontWeight.w300,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w700,
                           color: KERed),
                     ),
                   ),
-                ),
-                Positioned(
-                  top: 230,
-                  left: 20,
-                  right: 20,
-                  child: Form(
+                  Positioned(
+                    top: 125,
+                    left: 25,
+                    right: 25,
                     child: Container(
-                      padding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                      height: MediaQuery.of(context).size.height * 0.09,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: KELightRed,
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 40.0,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(10)),
-                                color: KERed),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.location_on_rounded,
-                                  color: bgColor,
-                                  size: 30,
-                                )
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                StreamBuilder(
-                                    stream: FirebaseFirestore.instance
-                                        .collection('Available Facilities')
-                                        .snapshots(),
-                                    builder: (context, snapshot) {
-                                      if (!snapshot.hasData) {
-                                        return Text('Loading, please wait');
-                                      }
-                                      return Expanded(
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 20.0),
-                                          child: DropdownButtonFormField(
-                                            decoration: InputDecoration(
-                                                enabledBorder:
-                                                InputBorder.none),
-                                            hint: Text(
-                                              'Select a Venue',
-                                              style: TextStyle(
-                                                  color: KERed,
-                                                  fontSize: 19.0,
-                                                  fontFamily: 'Montserrat',
-                                                  fontWeight: FontWeight.w700),
-                                            ),
-                                            dropdownColor: KELightRed,
-                                            icon: Icon(
-                                              Icons.arrow_drop_down_rounded,
-                                              color: KERed,
-                                            ),
-                                            iconSize: 25.0,
-                                            isExpanded: true,
-                                            style: TextStyle(
-                                                fontFamily: 'Montserrat',
-                                                color: KERed,
-                                                fontSize: 19.0,
-                                                fontWeight: FontWeight.w700),
-                                            value: venueChoose,
-                                            onChanged: (newValue) {
-                                              setState(() {
-                                                venueChoose = newValue;
-                                              });
-                                            },
-                                            items: snapshot.data.docs.map<
-                                                DropdownMenuItem<String>>(
-                                                    (DocumentSnapshot document) {
-                                                  return new DropdownMenuItem<
-                                                      String>(
-                                                    value: document['Value'],
-                                                    child: Text(
-                                                      document['Value'],
-                                                      style: TextStyle(
-                                                        fontFamily: 'Montserrat',
-                                                        fontSize: 19.0,
-                                                        color: KERed,
-                                                        fontWeight: FontWeight.w700,
-                                                      ),
-                                                    ),
-                                                  );
-                                                }).toList(),
-                                            validator: (value) {
-                                              if (value == null) {
-                                                return 'Required';
-                                              }
-                                            },
-                                          ),
-                                        ),
-                                      );
-                                    }),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 310,
-                  left: 20,
-                  right: 20,
-                  child: InkWell(
-                    child: Container(
-                      padding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                      height: MediaQuery.of(context).size.height * 0.09,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: KELightRed,
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 40.0,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(10)),
-                                color: KERed),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.date_range_rounded,
-                                  color: bgColor,
-                                  size: 30,
-                                )
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Container(
-                              padding: EdgeInsets.symmetric(horizontal: 20.0),
-                              child: dateChosen != null
-                                  ? Text(
-                                dateChosen.day.toString() +
-                                    ' - ' +
-                                    dateChosen.month.toString() +
-                                    ' - ' +
-                                    dateChosen.year.toString(),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 19,
-                                    color: KERed),
-                              )
-                                  : Text(
-                                "Select a Date",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 19,
-                                    color: KERed),
-                              )),
-                          SizedBox(width: 45.0),
-                        ],
-                      ),
-                    ),
-                    onTap: () {
-                      selectDatePicker(context);
-                    },
-                  ),
-                ),
-                Positioned(
-                  top: 390,
-                  left: 20,
-                  right: 20,
-                  child: InkWell(
-                    child: Container(
-                      padding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                      height: MediaQuery.of(context).size.height * 0.09,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: KELightRed,
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 40.0,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(10)),
-                                color: KERed),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.access_time_rounded,
-                                  color: bgColor,
-                                  size: 30,
-                                )
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Container(
-                              padding: EdgeInsets.symmetric(horizontal: 20.0),
-                              child: startTime != null
-                                  ? Text(
-                                'Start Time: ' +
-                                    startTime.format(context),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 19,
-                                    color: KERed),
-                              )
-                                  : Text(
-                                "Select Start Time",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 19,
-                                    color: KERed),
-                              )),
-                        ],
-                      ),
-                    ),
-                    onTap: () {
-                      selectStartTimePicker(context);
-                    },
-                  ),
-                ),
-                Positioned(
-                  top: 470,
-                  left: 20,
-                  right: 20,
-                  child: InkWell(
-                    child: Container(
-                      padding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                      height: MediaQuery.of(context).size.height * 0.09,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: KELightRed,
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 40.0,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(10)),
-                                color: KERed),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.access_time_rounded,
-                                  color: bgColor,
-                                  size: 30,
-                                )
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Container(
-                              padding: EdgeInsets.symmetric(horizontal: 20.0),
-                              child: endTime != null
-                                  ? Text(
-                                'End Time: ' + endTime.format(context),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 19,
-                                    color: KERed),
-                              )
-                                  : Text(
-                                "Select End Time",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 19,
-                                    color: KERed),
-                              )),
-                        ],
-                      ),
-                    ),
-                    onTap: () {
-                      selectEndTimePicker(context);
-                    },
-                  ),
-                ),
-                Positioned(
-                  top: 550,
-                  left: 20,
-                  right: 20,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                    height: MediaQuery.of(context).size.height * 0.09,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: KELightRed,
-                    ),
-                    child: Row(children: [
-                      Container(
-                        height: 40.0,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                      padding: EdgeInsets.only(right: 12),
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width,
+                      child: Text(
+                        "Modify this existing booking or completely delete it.",
+                        style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w300,
                             color: KERed),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.sports_tennis_rounded,
-                              color: bgColor,
-                              size: 30,
-                            )
-                          ],
-                        ),
                       ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 20.0,
-                          ),
-                          child: TextFormField(
-                            controller: ccaField,
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.zero,
-                              filled: true,
-                              fillColor: KELightRed,
-                              labelText: ccaFieldText,
-                              labelStyle: TextStyle(
-                                  color: KERed,
-                                  fontSize: 19,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w700),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                                borderSide: BorderSide.none,
-                              ),
-                            ),
-                            // The validator receives the text that the user has entered.
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Enter a CCA/ Block etc.';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ),
-                    ]),
-                  ),
-                ),
-                Positioned(
-                  top: 630,
-                  left: 20,
-                  right: 20,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                    height: MediaQuery.of(context).size.height * 0.09,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: KELightRed,
                     ),
-                    child: Row(children: [
-                      Container(
-                        height: 40.0,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: KERed),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.people_outline_rounded,
-                              color: bgColor,
-                              size: 30,
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20.0),
-                          child: TextFormField(
-                            controller: numOfPax,
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.zero,
-                              filled: true,
-                              fillColor: KELightRed,
-                              labelText: "Number of People",
-                              labelStyle: TextStyle(
-                                  color: KERed,
-                                  fontSize: 19,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w700),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                                borderSide: BorderSide.none,
-                              ),
-                            ),
-                            // The validator receives the text that the user has entered.
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return 'Enter an estimated pax.';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ),
-                    ]),
                   ),
-                ),
-                Positioned(
-                  top: 700,
-                  left: 20,
-                  right: 20,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (venueChoose == null) {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                backgroundColor: KELightYellow,
-                                title: Text(
-                                  "Error",
-                                  style: TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                      color: KERed),
-                                ),
-                                content: Text(
-                                  'Choose a valid venue',
-                                  style: TextStyle(fontSize: 18, color: KERed),
-                                  textAlign: TextAlign.left,
-                                ),
-                                actions: [
-                                  ElevatedButton(
-                                    style: ButtonStyle(
-                                        backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            KERed)),
-                                    child: Text("Ok",
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            color: KELightYellow,
-                                            fontWeight: FontWeight.bold),
-                                        textAlign: TextAlign.left),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  )
-                                ],
-                              );
-                            });
-                      } else if (dateChosen == null ||
-                          startTime == null ||
-                          endTime == null) {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                backgroundColor: KELightYellow,
-                                title: Text(
-                                  "Error",
-                                  style: TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
-                                      color: KERed),
-                                ),
-                                content: Text(
-                                  'Choose a valid Date/ Start/ End Time',
-                                  style: TextStyle(fontSize: 18, color: KERed),
-                                  textAlign: TextAlign.left,
-                                ),
-                                actions: [
-                                  ElevatedButton(
-                                    style: ButtonStyle(
-                                        backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            KERed)),
-                                    child: Text("Ok",
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            color: KELightYellow,
-                                            fontWeight: FontWeight.bold),
-                                        textAlign: TextAlign.left),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  )
-                                ],
-                              );
-                            });
-                      }
-                      _formKey.currentState.validate();
-                      if (_formKey.currentState.validate()) {
-                        addBooking();
-                      }
-                    },
-                    child: Center(
+                  Center(
+                    child: Text(
+                      'Your booking has been deleted.',
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: KERed),
+                    ),
+                  )
+                ],
+              ),
+            );
+          }
+          DocumentSnapshot bookingData = snapshot.data;
+          return Scaffold(
+              backgroundColor: bgColor,
+              body: Form(
+                key: _formKey,
+                child: SingleChildScrollView(
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: MediaQuery
+                            .of(context)
+                            .size
+                            .height,
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width,
+                        child: CustomPaint(
+                          painter: pathPainter(),
+                        ),
+                      ),
+                      Positioned(
+                        top: 25,
+                        left: 15,
+                        child: IconButton(
+                          key: Key('Back Button'),
+                          icon: Icon(Icons.arrow_back_rounded,
+                              color: KERed, size: 30),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ),
+                      Positioned(
+                        top: 25,
+                        right: 55,
+                        child: IconButton(
+                          icon:
+                          Icon(Icons.home_rounded, color: KERed, size: 30),
+                          onPressed: () {
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(builder: (context) => Home()),
+                                    (Route<dynamic> route) => false);
+                          },
+                        ),
+                      ),
+                      Positioned(
+                        top: 25,
+                        right: 15,
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.exit_to_app_rounded,
+                            color: KERed,
+                            size: 30,
+                          ),
+                          onPressed: () {
+                            logOutNotice(context);
+                          },
+                        ),
+                      ),
+                      Positioned(
+                        top: 75,
+                        left: 25,
                         child: Text(
-                          'Add Booking',
+                          "Edit My Booking",
                           style: TextStyle(
-                              color: KERed,
-                              fontSize: 19,
-                              fontWeight: FontWeight.w700),
-                        )),
+                              fontFamily: 'Montserrat',
+                              fontSize: 30,
+                              fontWeight: FontWeight.w700,
+                              color: KERed),
+                        ),
+                      ),
+                      Positioned(
+                        top: 125,
+                        left: 25,
+                        right: 25,
+                        child: Container(
+                          padding: EdgeInsets.only(right: 12),
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width,
+                          child: Text(
+                            "Modify this existing booking or completely delete it.",
+                            style: TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w300,
+                                color: KERed),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 180,
+                        left: 20,
+                        right: 20,
+                        child: Form(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 10),
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .height * 0.09,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: KELightRed,
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 40.0,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                      color: KERed),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.location_on_rounded,
+                                        color: bgColor,
+                                        size: 30,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+                                      StreamBuilder(
+                                          stream: FirebaseFirestore.instance
+                                              .collection(
+                                              'Available Facilities')
+                                              .snapshots(),
+                                          builder: (context, snapshot) {
+                                            if (!snapshot.hasData) {
+                                              return Text(
+                                                  'Loading, please wait');
+                                            }
+                                            return Expanded(
+                                              child: Container(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 20.0),
+                                                child: DropdownButtonFormField(
+                                                  decoration: InputDecoration(
+                                                      enabledBorder:
+                                                      InputBorder.none),
+                                                  hint: Text(
+                                                    bookingData['Venue'],
+                                                    style: TextStyle(
+                                                        color: KERed,
+                                                        fontSize: 19.0,
+                                                        fontFamily:
+                                                        'Montserrat',
+                                                        fontWeight:
+                                                        FontWeight.w700),
+                                                  ),
+                                                  dropdownColor: KELightRed,
+                                                  icon: Icon(
+                                                    Icons
+                                                        .arrow_drop_down_rounded,
+                                                    color: KERed,
+                                                  ),
+                                                  iconSize: 25.0,
+                                                  isExpanded: true,
+                                                  style: TextStyle(
+                                                      fontFamily: 'Montserrat',
+                                                      color: KERed,
+                                                      fontSize: 19.0,
+                                                      fontWeight:
+                                                      FontWeight.w700),
+                                                  value: venueChoose = bookingData['Venue'],
+                                                  onChanged: (newValue) {
+                                                    setState(() {
+                                                      venueChoose = newValue;
+                                                    });
+                                                  },
+                                                  items: snapshot.data.docs.map<
+                                                      DropdownMenuItem<
+                                                          String>>(
+                                                          (DocumentSnapshot
+                                                      document) {
+                                                        return new DropdownMenuItem<
+                                                            String>(
+                                                          value: document['Value'],
+                                                          child: Text(
+                                                            document['Value'],
+                                                            style: TextStyle(
+                                                              fontFamily:
+                                                              'Montserrat',
+                                                              fontSize: 19.0,
+                                                              color: KERed,
+                                                              fontWeight:
+                                                              FontWeight.w700,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }).toList(),
+                                                  validator: (value) {
+                                                    if (value == null) {
+                                                      setState(() {
+                                                        venueChoose = bookingData['Venue'];
+                                                      });
+                                                    }
+                                                  },
+                                                ),
+                                              ),
+                                            );
+                                          }),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 260,
+                        left: 20,
+                        right: 20,
+                        child: InkWell(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 10),
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .height * 0.09,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: KELightRed,
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 40.0,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                      color: KERed),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.date_range_rounded,
+                                        color: bgColor,
+                                        size: 30,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Container(
+                                    padding:
+                                    EdgeInsets.symmetric(horizontal: 20.0),
+                                    child: dateChosen != null
+                                        ? Text(
+                                      dateChosen.day.toString() +
+                                          ' - ' +
+                                          dateChosen.month.toString() +
+                                          ' - ' +
+                                          dateChosen.year.toString(),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 19,
+                                          color: KERed),
+                                    )
+                                        : Text(
+                                      bookingData['Date'],
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 19,
+                                          color: KERed),
+                                    )),
+                                SizedBox(width: 45.0),
+                              ],
+                            ),
+                          ),
+                          onTap: () {
+                            selectDatePicker(context);
+                          },
+                        ),
+                      ),
+                      Positioned(
+                        top: 340,
+                        left: 20,
+                        right: 20,
+                        child: InkWell(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 10),
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .height * 0.09,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: KELightRed,
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 40.0,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                      color: KERed),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.access_time_rounded,
+                                        color: bgColor,
+                                        size: 30,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Container(
+                                    padding:
+                                    EdgeInsets.symmetric(horizontal: 20.0),
+                                    child: startTime != null
+                                        ? Text(
+                                      'Start Time: ' +
+                                          startTime.format(context),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 19,
+                                          color: KERed),
+                                    )
+                                        : Text(
+                                      'Start Time: ' + bookingData['Start time'],
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 19,
+                                          color: KERed),
+                                    )),
+                              ],
+                            ),
+                          ),
+                          onTap: () {
+                            selectStartTimePicker(context);
+                          },
+                        ),
+                      ),
+                      Positioned(
+                        top: 420,
+                        left: 20,
+                        right: 20,
+                        child: InkWell(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 10),
+                            height: MediaQuery
+                                .of(context)
+                                .size
+                                .height * 0.09,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: KELightRed,
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 40.0,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                      color: KERed),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.access_time_rounded,
+                                        color: bgColor,
+                                        size: 30,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Container(
+                                    padding:
+                                    EdgeInsets.symmetric(horizontal: 20.0),
+                                    child: endTime != null
+                                        ? Text(
+                                      'End Time: ' +
+                                          endTime.format(context),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 19,
+                                          color: KERed),
+                                    )
+                                        :
+                                    Text(
+                                      'End Time: ' + bookingData['End time'],
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 19,
+                                          color: KERed),
+                                    )),
+                              ],
+                            ),
+                          ),
+                          onTap: () {
+                            selectEndTimePicker(context);
+                          },
+                        ),
+                      ),
+                      Positioned(
+                        top: 500,
+                        left: 20,
+                        right: 20,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 10),
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height * 0.09,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: KELightRed,
+                          ),
+                          child: Row(children: [
+                            Container(
+                              height: 40.0,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                                  color: KERed),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.sports_tennis_rounded,
+                                    color: bgColor,
+                                    size: 30,
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Expanded(
+                              child: Container(
+                                alignment: Alignment.centerLeft,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 20.0,
+                                ),
+                                child: TextFormField(
+                                  controller: ccaField..text = bookingData['CcaBlock'],
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.zero,
+                                    filled: true,
+                                    fillColor: KELightRed,
+                                    labelText: "CCA/ Block",
+                                    labelStyle: TextStyle(
+                                        color: KERed,
+                                        fontSize: 19,
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w700),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                  ),
+                                  // The validator receives the text that the user has entered.
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      setState(() {
+                                        ccaField = bookingData['CcaBlock'];
+                                      });
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ),
+                          ]),
+                        ),
+                      ),
+                      Positioned(
+                        top: 580,
+                        left: 20,
+                        right: 20,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 10),
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height * 0.09,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: KELightRed,
+                          ),
+                          child: Row(children: [
+                            Container(
+                              height: 40.0,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                                  color: KERed),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.people_outline_rounded,
+                                    color: bgColor,
+                                    size: 30,
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                                child: TextFormField(
+                                  controller: numOfPax..text = bookingData['Number of Pax'],
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.zero,
+                                    filled: true,
+                                    fillColor: KELightRed,
+                                    labelText: 'Number of People',
+                                    labelStyle: TextStyle(
+                                        color: KERed,
+                                        fontSize: 19,
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w700),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                  ),
+                                  // The validator receives the text that the user has entered.
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      setState(() {
+                                        numOfPax = bookingData['Number of Pax'];
+                                      });
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ),
+                          ]),
+                        ),
+                      ),
+                      Positioned(
+                        top: 645,
+                        left: 20,
+                        right: 20,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (venueChoose == null) {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      backgroundColor: KELightYellow,
+                                      title: Text(
+                                        "Error",
+                                        style: TextStyle(
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.bold,
+                                            color: KERed),
+                                      ),
+                                      content: Text(
+                                        'Choose a valid venue',
+                                        style: TextStyle(
+                                            fontSize: 18, color: KERed),
+                                        textAlign: TextAlign.left,
+                                      ),
+                                      actions: [
+                                        ElevatedButton(
+                                          style: ButtonStyle(
+                                              backgroundColor:
+                                              MaterialStateProperty.all<
+                                                  Color>(KERed)),
+                                          child: Text("Ok",
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: KELightYellow,
+                                                  fontWeight: FontWeight.bold),
+                                              textAlign: TextAlign.left),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        )
+                                      ],
+                                    );
+                                  });
+                            } if(dateChosen == null) {
+                                dateChosen = getDate(bookingData['Start Time (Timestamp)']);
+                            } if(startTime == null) {
+                              startTime = getHoursAndMin(bookingData['Start Time (Timestamp)']);
+                            } if(endTime == null) {
+                              endTime = getHoursAndMin(
+                                  bookingData['End Time (Timestamp)']);
+                            }
+                            _formKey.currentState.validate();
+                            if (_formKey.currentState.validate()) {
+                              editBooking();
+                            }
+                          },
+                          child: Center(
+                              child: Text(
+                                'Edit Booking',
+                                style: TextStyle(
+                                    color: KERed,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w700),
+                              )),
+                        ),
+                      ),
+                      Positioned(
+                        top: 690,
+                        left: 20,
+                        right: 20,
+                        child: ElevatedButton(onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  backgroundColor: KELightYellow,
+                                  title: Text(
+                                    "Delete Booking",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: KERed),
+                                  ),
+                                  content: Text(
+                                    'Are you sure you want to delete this booking?',
+                                    style: TextStyle(
+                                        fontSize: 18, color: KERed),
+                                    textAlign: TextAlign.left,
+                                  ),
+                                  actions: [
+                                    ElevatedButton(
+                                      style: ButtonStyle(
+                                          backgroundColor: MaterialStateProperty
+                                              .all<Color>(KERed)),
+                                      child: Text("Ok",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: KELightYellow,
+                                              fontWeight: FontWeight.bold),
+                                          textAlign: TextAlign.left),
+                                      onPressed: () {
+                                        setState(() {
+                                          deleteBooking();
+                                        });
+                                        Navigator.popUntil(
+                                            context,
+                                            ModalRoute.withName("Manage Bookings Page"));                                      },
+                                    )
+                                  ],
+                                );
+                              });
+                        },
+                          style: ElevatedButton.styleFrom(primary: KERed),
+                          child: Center(
+                                child: Text(
+                                  'Delete Booking',
+                                  style: TextStyle(
+                                      color: KELightYellow,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w700),
+                                )),),
+                      )
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ));
+              ));
+        });
   }
 
   void logOutNotice(BuildContext context) {
@@ -725,7 +944,10 @@ class _EditBookingsState extends State<EditBookings> {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text('Cancel', style: TextStyle(color: Colors.black),),
+          child: Text(
+            'Cancel',
+            style: TextStyle(color: Colors.black),
+          ),
         ),
         FlatButton(
           onPressed: () {
@@ -738,7 +960,10 @@ class _EditBookingsState extends State<EditBookings> {
                       (Route<dynamic> route) => false);
             });
           },
-          child: Text('Logout', style: TextStyle(color: Colors.black),),
+          child: Text(
+            'Logout',
+            style: TextStyle(color: Colors.black),
+          ),
         )
       ],
     );
@@ -750,7 +975,11 @@ class _EditBookingsState extends State<EditBookings> {
         });
   }
 
-  void addBooking() async {
+  void deleteBooking() async {
+    FirebaseFirestore.instance.collection('Facilities').doc(referenceCode).delete();
+  }
+
+  void editBooking() async {
     DateTime chosenStart = DateTime(dateChosen.year, dateChosen.month,
         dateChosen.day, startTime.hour, startTime.minute);
     DateTime chosenEnd = DateTime(dateChosen.year, dateChosen.month,
@@ -796,7 +1025,7 @@ class _EditBookingsState extends State<EditBookings> {
     } else {
       FirebaseFirestore.instance
           .collection('Facilities')
-          .where('Venue', isEqualTo: venueChoose)
+          .where('Venue', isEqualTo: venueChoose).where('Reference Code', isNotEqualTo: referenceCode)
           .get()
           .then((QuerySnapshot querySnapshot) {
         if (querySnapshot.docs.isNotEmpty) {
@@ -855,7 +1084,7 @@ class _EditBookingsState extends State<EditBookings> {
           }
           if (count == 0) {
             // only if all documents traversed, then add booking
-            FirebaseFirestore.instance.collection('Facilities').add({
+            FirebaseFirestore.instance.collection('Facilities').doc(referenceCode).update({
               'Date': dateChosen.day.toString() +
                   '-' +
                   dateChosen.month.toString() +
@@ -873,31 +1102,29 @@ class _EditBookingsState extends State<EditBookings> {
               'CcaBlock': ccaField.text,
               'Number of Pax': numOfPax.text,
               'user': this.user.uid,
-            }).then((value) => FirebaseFirestore.instance
-                .collection('Facilities')
-                .doc(value.id)
-                .update({'Reference Code': value.id}));
+            });
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => BookingConfirmationPage(
-                      venueChoose,
-                      dateChosen.day.toString() +
-                          '-' +
-                          dateChosen.month.toString() +
-                          '-' +
-                          dateChosen.year.toString(),
-                      TimeOfDay(
-                          hour: chosenStart.hour,
-                          minute: chosenStart.minute)
-                          .format(context),
-                      TimeOfDay(
-                          hour: chosenEnd.hour,
-                          minute: chosenEnd.minute)
-                          .format(context),
-                      numOfPax.text,
-                      ccaField.text,
-                    )));
+                    builder: (context) =>
+                        BookingConfirmationPage(
+                          venueChoose,
+                          dateChosen.day.toString() +
+                              '-' +
+                              dateChosen.month.toString() +
+                              '-' +
+                              dateChosen.year.toString(),
+                          TimeOfDay(
+                              hour: chosenStart.hour,
+                              minute: chosenStart.minute)
+                              .format(context),
+                          TimeOfDay(
+                              hour: chosenEnd.hour,
+                              minute: chosenEnd.minute)
+                              .format(context),
+                          numOfPax.text,
+                          ccaField.text,
+                        )));
           }
         } else {
           // list is empty
@@ -921,30 +1148,32 @@ class _EditBookingsState extends State<EditBookings> {
             'CcaBlock': ccaField.text,
             'Number of Pax': numOfPax.text,
             'user': this.user.uid,
-          }).then((value) => FirebaseFirestore.instance
-              .collection('Facilities')
-              .doc(value.id)
-              .update({'Reference Code': value.id}));
+          }).then((value) =>
+              FirebaseFirestore.instance
+                  .collection('Facilities')
+                  .doc(value.id)
+                  .update({'Reference Code': value.id}));
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                  builder: (context) => BookingConfirmationPage(
-                    venueChoose,
-                    dateChosen.day.toString() +
-                        '-' +
-                        dateChosen.month.toString() +
-                        '-' +
-                        dateChosen.year.toString(),
-                    TimeOfDay(
-                        hour: chosenStart.hour,
-                        minute: chosenStart.minute)
-                        .format(context),
-                    TimeOfDay(
-                        hour: chosenEnd.hour, minute: chosenEnd.minute)
-                        .format(context),
-                    numOfPax.text,
-                    ccaField.text,
-                  )));
+                  builder: (context) =>
+                      BookingConfirmationPage(
+                        venueChoose,
+                        dateChosen.day.toString() +
+                            '-' +
+                            dateChosen.month.toString() +
+                            '-' +
+                            dateChosen.year.toString(),
+                        TimeOfDay(
+                            hour: chosenStart.hour,
+                            minute: chosenStart.minute)
+                            .format(context),
+                        TimeOfDay(
+                            hour: chosenEnd.hour, minute: chosenEnd.minute)
+                            .format(context),
+                        numOfPax.text,
+                        ccaField.text,
+                      )));
         }
       });
     }

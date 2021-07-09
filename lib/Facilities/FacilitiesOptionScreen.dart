@@ -143,6 +143,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
+                        settings: RouteSettings(name: "Manage Bookings Page"),
                         builder: (context) => ManageBookingsPage()));
               },
             ),

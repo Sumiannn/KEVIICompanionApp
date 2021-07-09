@@ -101,8 +101,8 @@ flutter:
     - assets/BookingVenues/DanceStudio.jpg
     - assets/BookingVenues/HeritageRoom.jpg
     - assets/BookingVenues/DiningHall.jpg
-    - assets/FundRaisersImage.png
     - assets/image/BlockEventImage.png
+    - assets/image/FundRaisersImage.png
     - assets/image/StudentInitiatives.png
     - assets/image/OCIP.jpg
 
