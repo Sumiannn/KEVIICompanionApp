@@ -9,7 +9,7 @@ import 'package:keviiapp/Facilities/AddBooking.dart';
 
 import 'package:keviiapp/Initiatives/InitiativesOptionScreen.dart';
 
-import 'package:keviiapp/InitiativeOptionsPage.dart';
+import 'package:keviiapp/Initiatives/InitiativeOptionsPage.dart';
 
 import 'package:keviiapp/Panels/homePanel.dart';
 import 'package:keviiapp/Facilities/FacilitiesBookingPage.dart';
@@ -157,7 +157,7 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => InitiativesOptionScreen()));
+                                builder: (context) => InitiativeOptionsPage()));
                       },
 
 

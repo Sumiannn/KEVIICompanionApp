@@ -3,10 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'Facilities/FacilitiesBookingPage.dart';
-import 'HomePage/home.dart';
-import 'SignInSignUp/email_login.dart';
-import 'colorScheme.dart';
+import '../Facilities/FacilitiesBookingPage.dart';
+import '../HomePage/home.dart';
+import '../SignInSignUp/email_login.dart';
+import '../colorScheme.dart';
+import 'Block_Events/BlockEvents.dart';
+import 'Fund_Raisers/FundRaisers.dart';
 
 class InitiativeOptionsPage extends StatefulWidget {
   const InitiativeOptionsPage({Key key}) : super(key: key);
@@ -120,7 +122,7 @@ class _InitiativeOptionsPageState extends State<InitiativeOptionsPage> {
                       Container(
                         height: MediaQuery.of(context).size.height * 0.2,
                         child: Image.asset(
-                          'assets/fundRaisersImage.png',
+                          'assets/image/FundRaisersImage.png',
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -152,8 +154,13 @@ class _InitiativeOptionsPageState extends State<InitiativeOptionsPage> {
                   ),
                 ),
                 onTap: () {
-                  // TODO
-                },
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          FundRaisers(),
+                    ),
+                  );                },
               )),
           Positioned(
               top: 470,
@@ -206,8 +213,13 @@ class _InitiativeOptionsPageState extends State<InitiativeOptionsPage> {
                   ),
                 ),
                 onTap: () {
-                  // TODO
-                },
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          BlockEvents(),
+                    ),
+                  );                },
               )),
         ],
       ),
