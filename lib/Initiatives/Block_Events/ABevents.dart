@@ -154,12 +154,12 @@ class ABevents extends StatelessWidget {
               ),
             ),
             Positioned.fill(
-              top: 300,
+              top: 260,
               child: Container(
                   child: StreamBuilder(
                       stream: FirebaseFirestore.instance
                           .collection('Block Events')
-                          .where('Type', isEqualTo: 'AB')
+                          .where('Block', isEqualTo: 'AB')
                           .snapshots(),
                       builder: (context, snapshot) {
                         if (!snapshot.hasData ||
@@ -203,15 +203,17 @@ class ABevents extends StatelessWidget {
                                   ),
                                   width: MediaQuery.of(context).size.width,
                                   height: MediaQuery.of(context).size.height *
-                                      0.10,
-                                  child: Row(
+                                      0.13,
+                                  child: Column(
                                     children: [
+                                      SizedBox(
+                                          height: MediaQuery.of(context).size.height*0.005),
                                       Container(
                                           alignment: Alignment.centerLeft,
                                           width: MediaQuery.of(context)
                                               .size
                                               .width *
-                                              0.5,
+                                              0.9,
                                           child: FittedBox(
                                               fit: BoxFit.scaleDown,
                                               child: Text(
@@ -223,25 +225,27 @@ class ABevents extends StatelessWidget {
                                                     color: KERed),
                                                 textAlign: TextAlign.left,
                                               ))),
+                                      SizedBox(
+                                          height: MediaQuery.of(context).size.height*0.010),
                                       Container(
                                         width: MediaQuery.of(context)
                                             .size
                                             .width *
-                                            0.38,
+                                            0.9,
                                         child: Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.end,
+                                          CrossAxisAlignment.start,
                                           mainAxisAlignment:
                                           MainAxisAlignment.center,
                                           children: [
                                             Text(
-                                              'Type',
+                                              'Sign-Up Link:',
                                               textAlign: TextAlign.right,
                                               style: TextStyle(
                                                   fontWeight:
                                                   FontWeight.bold),
                                             ),
-                                            Text(doc['Commitment'],
+                                            Text(doc['Sign Up Link'],
                                                 style:
                                                 TextStyle(fontSize: 16))
                                           ],
@@ -296,7 +300,7 @@ class ABevents extends StatelessWidget {
                               ),
                               Container(
                                 height:
-                                MediaQuery.of(context).size.height * 0.50,
+                                MediaQuery.of(context).size.height * 0.57,
                                 child: TabBarView(
                                     key: Key('tabBarView'),
                                     children: tabBarViews),
