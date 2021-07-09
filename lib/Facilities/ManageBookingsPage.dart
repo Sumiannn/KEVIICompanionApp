@@ -118,7 +118,7 @@ class _ManageBookingsPageState extends State<ManageBookingsPage> {
               left: 25,
               right: 25,
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.8,
+                height: MediaQuery.of(context).size.height * 0.73,
                 width: MediaQuery.of(context).size.width,
                 child: StreamBuilder(
                   stream: FirebaseFirestore.instance

@@ -127,7 +127,7 @@ class TabWidget extends StatelessWidget {
           controller: scrollController,
           children: [
               Container(
-                  height: MediaQuery.of(context).size.height * 0.8,
+                  height: MediaQuery.of(context).size.height*0.80,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(

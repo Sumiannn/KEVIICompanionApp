@@ -1,14 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:keviiapp/HallInfo/CCA_Info/CommitteeCCA.dart';
+import 'package:keviiapp/HallInfo/CCA_Info/CulturalCCA.dart';
+import 'package:keviiapp/HallInfo/CCA_Info/SportsCCA.dart';
+import 'package:keviiapp/HallInfo/Hall_History/HallHistory.dart';
 
-import 'CommitteeCCA.dart';
-import 'CulturalCCA.dart';
-import 'SportsCCA.dart';
+
 import '../../colorScheme.dart';
 import '../../SignInSignUp/email_login.dart';
 import '../../HomePage/home.dart';
 
-class CCAInfo extends StatelessWidget {
+class FundRaisers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget CcaCategory(String Img, String Category) {
@@ -87,7 +89,7 @@ class CCAInfo extends StatelessWidget {
               top: 75,
               left: 25,
               child: Text(
-                "CCA Information",
+                "Fund-Raisers",
                 style: TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 30,
@@ -103,7 +105,7 @@ class CCAInfo extends StatelessWidget {
                 padding: EdgeInsets.only(right: 12),
                 width: MediaQuery.of(context).size.width,
                 child: Text(
-                  "Our CCAs are categorised into 3 main categories! Click any to check out the various CCAs!",
+                  "Raise Funds! :)",
                   style: TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 18,
@@ -113,49 +115,71 @@ class CCAInfo extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 230,
-              left: 20,
-              right: 20,
-              child: InkWell(
-                key: Key('Committee CCA Button'),
-                onTap: (){
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (builder) => CommitteeCCA())
-                  );
-                },
-                child:
-                    CcaCategory('assets/image/CommitteeCca.png', 'Committee'),
-                ),
-              ),
-            Positioned(
-              top: 400,
-              left: 20,
-                right: 20,
-              child: InkWell(
-                key: Key('Cultural CCA Button'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (builder) => CulturalCCA())
-                  );
-                },
-                child: CcaCategory('assets/image/CulturalCca1.png', 'Cultural'),
+              top: 200,
+              left: 25,
+              right: 25,
+              child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height*0.71,
+                  margin: EdgeInsets.only(top: 10.0),
+                  child: ListView(
+                      physics: BouncingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      children: <Widget>[
+                        InkWell(
+                          onTap: () {
+
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
+                            height: MediaQuery.of(context).size.height * 0.25,
+                            width: MediaQuery.of(context).size.width * 0.89,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                    image:
+                                    AssetImage('assets/image/OCIP.jpg'),
+                                    fit: BoxFit.cover),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "CCAs",
+                                style: TextStyle(
+                                    fontSize: 21,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        InkWell(
+                          onTap: () {
+
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
+                            height: MediaQuery.of(context).size.height * 0.25,
+                            width: MediaQuery.of(context).size.width * 0.89,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: KERed,
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Others",
+                                style: TextStyle(
+                                    fontSize: 21,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ])
               ),
             ),
-            Positioned(
-              top: 570,
-              left: 20,
-              right: 20,
-              child: InkWell(
-                key: Key('Sports CCA Button'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (builder) => SportsCCA())
-                  );
-                },
-                child: CcaCategory('assets/image/SportCCA.png', 'Sports'),
-              ),
-            )
-
           ]
       ),
     );
