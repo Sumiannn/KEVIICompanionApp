@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:keviiapp/Facilities/ManageBookingsDataPanel.dart';
 import 'package:keviiapp/HomePage/home.dart';
 import 'package:keviiapp/Panels/bookingPagePanel.dart';
 import 'package:keviiapp/SignInSignUp/email_login.dart';
@@ -145,7 +146,7 @@ class _ManageBookingsPageState extends State<ManageBookingsPage> {
                       itemCount: snapshot.data.docs.length,
                       itemBuilder: (context, index) {
                         DocumentSnapshot bookings = snapshot.data.docs[index];
-                        return bookingPagePanel(
+                        return ManageBookingsDataPanel(
                           bookings['Venue'],
                           bookings['Date'],
                           bookings['Start time'],
