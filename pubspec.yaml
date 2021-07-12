@@ -43,6 +43,7 @@ dependencies:
   f_datetimerangepicker: ^0.1.4
   flutter_form_builder: ^6.0.1
   fake_cloud_firestore: ^1.1.2
+  url_launcher: ^6.0.9
 
 dev_dependencies:
   flutter_driver:
@@ -102,8 +103,13 @@ flutter:
     - assets/BookingVenues/HeritageRoom.jpg
     - assets/BookingVenues/DiningHall.jpg
     - assets/image/BlockEventImage.png
-    - assets/image/FundRaisersImage.png
+    - assets/image/fundRaisersImage.png
     - assets/image/StudentInitiatives.png
+    - assets/image/Blocks/ABBlock.png
+    - assets/image/Blocks/CDBlock.png
+    - assets/image/Blocks/EBlock.png
+    - assets/image/Blocks/FBlock.png
+    - assets/image/Blocks/GHBlock.png
     - assets/image/OCIP.jpg
 
       # An image asset can refer to one or more resolution-specific "variants", see

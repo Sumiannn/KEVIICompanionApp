@@ -1,12 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/HallInfo/CCA_Info/CommitteeCCA.dart';
-import 'package:keviiapp/HallInfo/CCA_Info/CulturalCCA.dart';
-import 'package:keviiapp/HallInfo/CCA_Info/SportsCCA.dart';
-import 'package:keviiapp/HallInfo/Hall_History/HallHistory.dart';
-
-
+import 'package:url_launcher/url_launcher.dart';
 import '../../colorScheme.dart';
 import '../../SignInSignUp/email_login.dart';
 import '../../HomePage/home.dart';
@@ -14,309 +9,270 @@ import '../../HomePage/home.dart';
 class GHevents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Widget CcaCategory(String Img, String Category) {
-      return Container(
-        margin: EdgeInsets.only(bottom: 20),
-        padding: EdgeInsets.all(10),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.2,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: KELightRed,
-        ),
-        child: Row(
-          children: [
-            Image.asset(Img, fit: BoxFit.fitHeight,),
-            SizedBox(width:20),
-            Center(
-              child: Text(
-                Category, style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500, color: KERed),
-              ),
-            )
-          ],
-        ),
-      );
-    }
     return Scaffold(
       backgroundColor: bgColor,
-      body: Stack(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: CustomPaint(
-                painter: PathPainter(),
-              ),
+      body: Stack(children: [
+        Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: CustomPaint(
+            painter: PathPainter(),
+          ),
+        ),
+        Positioned(
+          top: 25,
+          left: 15,
+          child: IconButton(
+            key: Key('Back Button'),
+            icon: Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        Positioned(
+          top: 25,
+          right: 55,
+          child: IconButton(
+            icon: Icon(Icons.home_rounded, color: KERed, size: 30),
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home()),
+                  (Route<dynamic> route) => false);
+            },
+          ),
+        ),
+        Positioned(
+          top: 25,
+          right: 15,
+          child: IconButton(
+            icon: Icon(
+              Icons.exit_to_app_rounded,
+              color: KERed,
+              size: 30,
             ),
-            Positioned(
-              top: 25,
-              left: 15,
-              child: IconButton(
-                key: Key('Back Button'),
-                icon: Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
+            onPressed: () {
+              logOutNotice(context);
+            },
+          ),
+        ),
+        Positioned(
+          top: 75,
+          left: 25,
+          child: Text(
+            "GH Block",
+            style: TextStyle(
+                fontFamily: 'Montserrat',
+                fontSize: 30,
+                fontWeight: FontWeight.w700,
+                color: KERed),
+          ),
+        ),
+        Positioned(
+          top: 125,
+          left: 25,
+          right: 25,
+          child: Container(
+            padding: EdgeInsets.only(right: 12),
+            width: MediaQuery.of(context).size.width,
+            child: Text(
+              "What's up GH Blockers! Look at what your Block Committee has in store for you guys",
+              style: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w300,
+                  color: KERed),
             ),
-            Positioned(
-              top: 25,
-              right: 55,
-              child: IconButton(
-                icon: Icon(Icons.home_rounded, color: KERed, size: 30),
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => Home()),
-                          (Route<dynamic> route) => false);
-                },
-              ),
-            ),
-            Positioned(
-              top: 25,
-              right: 15,
-              child: IconButton(
-                icon: Icon(
-                  Icons.exit_to_app_rounded,
-                  color: KERed,
-                  size: 30,
-                ),
-                onPressed: () {
-                  logOutNotice(context);
-                },
-              ),
-            ),
-            Positioned(
-              top: 75,
-              left: 25,
-              child: Text(
-                "GH Block",
-                style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontSize: 30,
-                    fontWeight: FontWeight.w700,
-                    color: KERed),
-              ),
-            ),
-            Positioned(
-              top: 125,
-              left: 25,
-              right: 25,
-              child: Container(
-                padding: EdgeInsets.only(right: 12),
-                width: MediaQuery.of(context).size.width,
-                child: Text(
-                  "Nihao GH Blockers! :)",
-                  style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w300,
-                      color: KERed),
-                ),
-              ),
-            ),
-            Positioned(
-              top: 150,
-              left: 25,
-              right: 25,
-              child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height*0.71,
-                  margin: EdgeInsets.only(top: 10.0),
-                  child: ListView(
-                      physics: BouncingScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      children: <Widget>[
-                        InkWell(
-                          onTap: () {
-
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                            height: MediaQuery.of(context).size.height * 0.10,
-                            width: MediaQuery.of(context).size.width * 0.89,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.red,
-                            ),
-                            child: Center(
-                              child: Text(
-                                ":D GH Events :D",
-                                style: TextStyle(
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.black),
-                              ),
-                            ),
+          ),
+        ),
+        Positioned.fill(
+          top: 260,
+          child: Container(
+              child: StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection('Block Events')
+                      .where('Block', isEqualTo: 'GH').orderBy('Timestamp')
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData || snapshot.data.docs.length == 0) {
+                      return Center(
+                        child: Text(
+                          'Hang on! Your Block Committee is still in the process of planning some exciting stuff for you!',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: GHColor,
                           ),
+                          textAlign: TextAlign.center,
                         ),
-                      ])
-              ),
-            ),
-            Positioned.fill(
-              top: 260,
-              child: Container(
-                  child: StreamBuilder(
-                      stream: FirebaseFirestore.instance
-                          .collection('Block Events')
-                          .where('Block', isEqualTo: 'GH')
-                          .snapshots(),
-                      builder: (context, snapshot) {
-                        if (!snapshot.hasData ||
-                            snapshot.data.docs.length == 0) {
-                          return Text('Loading Please Wait');
-                        }
-                        List<Tab> tabs = [];
-                        List<Widget> tabBarViews = [];
+                      );
+                    }
+                    List<Tab> tabs = [];
+                    List<Widget> tabBarViews = [];
 
-                        snapshot.data.docs.forEach((doc) {
-                          tabs.add(Tab(text: doc['Block Event Name']));
-                          tabBarViews.add(
-                            ListView(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(
-                                      left: 20, right: 20, bottom: 10),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.network(
-                                      doc['ImageURL'],
-                                      height:
-                                      MediaQuery.of(context).size.height *
-                                          0.22,
-                                      width:
-                                      MediaQuery.of(context).size.width,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
+                    snapshot.data.docs.forEach((doc) {
+                      tabs.add(Tab(text: doc['Block Event Name']));
+                      tabBarViews.add(
+                        ListView(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(
+                                  left: 20, right: 20, bottom: 10),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.network(
+                                  doc['ImageURL'],
+                                  fit: BoxFit.cover,
                                 ),
-                                Container(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.005,
-                                  decoration:
-                                  BoxDecoration(color: KELightYellow),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(
-                                    left: 20,
-                                    right: 20,
-                                  ),
-                                  width: MediaQuery.of(context).size.width,
-                                  height: MediaQuery.of(context).size.height *
-                                      0.13,
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                          height: MediaQuery.of(context).size.height*0.005),
-                                      Container(
-                                          alignment: Alignment.centerLeft,
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width *
-                                              0.9,
-                                          child: FittedBox(
-                                              fit: BoxFit.scaleDown,
-                                              child: Text(
-                                                doc['Block Event Name'],
-                                                style: TextStyle(
-                                                    fontSize: 30,
-                                                    fontWeight:
-                                                    FontWeight.w600,
-                                                    color: KERed),
-                                                textAlign: TextAlign.left,
-                                              ))),
-                                      SizedBox(
-                                          height: MediaQuery.of(context).size.height*0.010),
-                                      Container(
-                                        width: MediaQuery.of(context)
-                                            .size
-                                            .width *
-                                            0.9,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'Sign-Up Link:',
-                                              textAlign: TextAlign.right,
-                                              style: TextStyle(
-                                                  fontWeight:
-                                                  FontWeight.bold),
-                                            ),
-                                            Text(doc['Sign Up Link'],
-                                                style:
-                                                TextStyle(fontSize: 16))
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.005,
-                                  decoration:
-                                  BoxDecoration(color: KELightYellow),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(
-                                      left: 20, right: 20, top: 10),
-                                  padding: EdgeInsets.all(20),
-                                  decoration: BoxDecoration(
-                                    color: KELightRed,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Text(
-                                    doc['Description'],
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: KERed,
-                                    ),
-                                    textAlign: TextAlign.justify,
-                                  ),
-                                )
-                              ],
-                            ),
-                          );
-                        });
-                        return DefaultTabController(
-                          length: snapshot.data.docs.length,
-                          child: Column(
-                            children: [
-                              TabBar(
-                                isScrollable: true,
-                                labelStyle: TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    fontWeight: FontWeight.w600),
-                                indicatorColor: KEYellow,
-                                unselectedLabelColor: KELightRed,
-                                labelColor: KERed,
-                                labelPadding:
-                                EdgeInsets.symmetric(horizontal: 8.0),
-                                tabs: tabs,
                               ),
-                              Container(
-                                height:
-                                MediaQuery.of(context).size.height * 0.57,
-                                child: TabBarView(
-                                    key: Key('tabBarView'),
-                                    children: tabBarViews),
-                              )
-
-                            ],
+                            ),
+                            Container(
+                              height:
+                                  MediaQuery.of(context).size.height * 0.005,
+                              decoration: BoxDecoration(color: KELightYellow),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(
+                                left: 20,
+                                right: 20,
+                              ),
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height * 0.13,
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.005),
+                                  Container(
+                                      alignment: Alignment.centerLeft,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.9,
+                                      child: FittedBox(
+                                          fit: BoxFit.scaleDown,
+                                          child: Text(
+                                            doc['Block Event Name'],
+                                            style: TextStyle(
+                                                fontSize: 23,
+                                                fontWeight: FontWeight.w600,
+                                                color: KERed),
+                                            textAlign: TextAlign.left,
+                                          ))),
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          doc['Date'],
+                                          textAlign: TextAlign.right,
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: KEYellow,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          'Sign-Up Method:',
+                                          textAlign: TextAlign.right,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(doc['Sign Up Method'],
+                                            style: TextStyle(fontSize: 16))
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height:
+                                  MediaQuery.of(context).size.height * 0.005,
+                              decoration: BoxDecoration(color: KELightYellow),
+                            ),
+                            Container(
+                              margin:
+                                  EdgeInsets.only(left: 20, right: 20, top: 10),
+                              padding: EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                color: KELightRed,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              width: MediaQuery.of(context).size.width,
+                              child: Text(
+                                doc['Description'],
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: KERed,
+                                ),
+                                textAlign: TextAlign.justify,
+                              ),
+                            ),
+                            doc['Sign Up Link'] != 'None'
+                                ? Container(
+                              margin: EdgeInsets.only(
+                                  left: 20, right: 20, top: 10),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  _launchURL(doc['Sign Up Link']);
+                                },
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        ABColor)),
+                                child: Text("Sign Up Here",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: KERed,
+                                        fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.center),
+                              ),
+                            )
+                                : SizedBox()
+                          ],
+                        ),
+                      );
+                    });
+                    return DefaultTabController(
+                      length: snapshot.data.docs.length,
+                      child: Column(
+                        children: [
+                          TabBar(
+                            isScrollable: true,
+                            labelStyle: TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w600),
+                            indicatorColor: KEYellow,
+                            unselectedLabelColor: KELightRed,
+                            labelColor: KERed,
+                            labelPadding: EdgeInsets.symmetric(horizontal: 8.0),
+                            tabs: tabs,
                           ),
-                        );
-                      })),
-            ),
-
-          ]
-      ),
+                          Container(
+                            height: MediaQuery.of(context).size.height * 0.65,
+                            child: TabBarView(
+                                key: Key('tabBarView'), children: tabBarViews),
+                          )
+                        ],
+                      ),
+                    );
+                  })),
+        ),
+      ]),
     );
   }
-
+  _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
       title: Text("Are you sure you want to Log Out?"),
@@ -326,7 +282,10 @@ class GHevents extends StatelessWidget {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text('Cancel', style: TextStyle(color: Colors.black),),
+          child: Text(
+            'Cancel',
+            style: TextStyle(color: Colors.black),
+          ),
         ),
         FlatButton(
           onPressed: () {
@@ -336,10 +295,13 @@ class GHevents extends StatelessWidget {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => EmailLogIn()),
-                      (Route<dynamic> route) => false);
+                  (Route<dynamic> route) => false);
             });
           },
-          child: Text('Logout', style: TextStyle(color: Colors.black),),
+          child: Text(
+            'Logout',
+            style: TextStyle(color: Colors.black),
+          ),
         )
       ],
     );
@@ -350,15 +312,13 @@ class GHevents extends StatelessWidget {
           return alertDialog;
         });
   }
-
 }
-
 
 class PathPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = new Paint();
-    paint.color = KELightYellow;
+    paint.color = GHColor;
 
     Path path = new Path();
     path.moveTo(0, 0);

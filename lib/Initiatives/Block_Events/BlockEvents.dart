@@ -17,24 +17,22 @@ import 'GHevents.dart';
 class BlockEvents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Widget CcaCategory(String Img, String Category) {
+    Container BlockContainer(String imgPath, String title) {
       return Container(
-        margin: EdgeInsets.only(bottom: 20),
-        padding: EdgeInsets.all(10),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.2,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: KELightRed,
-        ),
-        child: Row(
-          children: [
-            Image.asset(Img, fit: BoxFit.fitHeight,),
-            SizedBox(width:20),
-            Center(
-              child: Text(
-                Category, style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500, color: KERed),
-              ),
+        width: MediaQuery.of(context).size.width * 0.5,
+        height: MediaQuery.of(context).size.width * 0.3,
+        child: Column(
+          children: <Widget>[
+            Image.asset(
+              imgPath,
+            ),
+            Text(
+              "$title",
+              style: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 30,
+                  color: KERed),
             )
           ],
         ),
@@ -143,7 +141,7 @@ class BlockEvents extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * 0.89,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Colors.green,
+                              color: ABColor,
                             ),
                             child: Center(
                               child: Text(
@@ -170,7 +168,7 @@ class BlockEvents extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * 0.89,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Colors.yellow,
+                              color: CDColor,
                             ),
                             child: Center(
                               child: Text(
@@ -192,24 +190,7 @@ class BlockEvents extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) => Eevents()));
                           },
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                            height: MediaQuery.of(context).size.height * 0.10,
-                            width: MediaQuery.of(context).size.width * 0.89,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.black,
-                            ),
-                            child: Center(
-                              child: Text(
-                                "E",
-                                style: TextStyle(
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w700,
-                                    color: bgColor),
-                              ),
-                            ),
-                          ),
+                          child: BlockContainer('assets/image/Blocks/EBlock.png', 'E Block')
                         ),
                         SizedBox(height: 25),
                         InkWell(
@@ -225,7 +206,7 @@ class BlockEvents extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * 0.89,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Colors.blue,
+                              color: FColor,
                             ),
                             child: Center(
                               child: Text(
@@ -252,7 +233,7 @@ class BlockEvents extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * 0.89,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: Colors.red,
+                              color: GHColor,
                             ),
                             child: Center(
                               child: Text(
