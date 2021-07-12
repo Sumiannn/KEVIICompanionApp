@@ -1,12 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/HallInfo/CCA_Info/CommitteeCCA.dart';
-import 'package:keviiapp/HallInfo/CCA_Info/CulturalCCA.dart';
-import 'package:keviiapp/HallInfo/CCA_Info/SportsCCA.dart';
-import 'package:keviiapp/HallInfo/Hall_History/HallHistory.dart';
-
-
+import 'package:url_launcher/url_launcher.dart';
 import '../../colorScheme.dart';
 import '../../SignInSignUp/email_login.dart';
 import '../../HomePage/home.dart';
@@ -14,29 +9,6 @@ import '../../HomePage/home.dart';
 class Fevents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Widget CcaCategory(String Img, String Category) {
-      return Container(
-        margin: EdgeInsets.only(bottom: 20),
-        padding: EdgeInsets.all(10),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.2,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: KELightRed,
-        ),
-        child: Row(
-          children: [
-            Image.asset(Img, fit: BoxFit.fitHeight,),
-            SizedBox(width:20),
-            Center(
-              child: Text(
-                Category, style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500, color: KERed),
-              ),
-            )
-          ],
-        ),
-      );
-    }
     return Scaffold(
       backgroundColor: bgColor,
       body: Stack(
@@ -106,7 +78,7 @@ class Fevents extends StatelessWidget {
                 padding: EdgeInsets.only(right: 12),
                 width: MediaQuery.of(context).size.width,
                 child: Text(
-                  "Bonjour F Blockers! :)",
+                  "Bonjour F Blockers! Look at what your Block Committee has in store for you guys!",
                   style: TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 18,
@@ -115,56 +87,24 @@ class Fevents extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
-              top: 150,
-              left: 25,
-              right: 25,
-              child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height*0.71,
-                  margin: EdgeInsets.only(top: 10.0),
-                  child: ListView(
-                      physics: BouncingScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      children: <Widget>[
-                        InkWell(
-                          onTap: () {
-
-                          },
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                            height: MediaQuery.of(context).size.height * 0.10,
-                            width: MediaQuery.of(context).size.width * 0.89,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.blue,
-                            ),
-                            child: Center(
-                              child: Text(
-                                "(: F Events :)",
-                                style: TextStyle(
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.black),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ])
-              ),
-            ),
             Positioned.fill(
-              top: 260,
+              top: 200,
               child: Container(
                   child: StreamBuilder(
                       stream: FirebaseFirestore.instance
                           .collection('Block Events')
-                          .where('Block', isEqualTo: 'F')
+                          .where('Block', isEqualTo: 'F').orderBy('Timestamp')
                           .snapshots(),
                       builder: (context, snapshot) {
                         if (!snapshot.hasData ||
                             snapshot.data.docs.length == 0) {
-                          return Text('Loading Please Wait');
+                          return Center(
+                            child: Text(
+                              'Hang on! Your Block Committee is still in the process of planning some exciting stuff for you!',
+                              style:TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: FColor,),
+                              textAlign: TextAlign.center,
+                            ),
+                          );
                         }
                         List<Tab> tabs = [];
                         List<Widget> tabBarViews = [];
@@ -181,11 +121,6 @@ class Fevents extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.network(
                                       doc['ImageURL'],
-                                      height:
-                                      MediaQuery.of(context).size.height *
-                                          0.22,
-                                      width:
-                                      MediaQuery.of(context).size.width,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -219,14 +154,12 @@ class Fevents extends StatelessWidget {
                                               child: Text(
                                                 doc['Block Event Name'],
                                                 style: TextStyle(
-                                                    fontSize: 30,
+                                                    fontSize: 23,
                                                     fontWeight:
                                                     FontWeight.w600,
                                                     color: KERed),
                                                 textAlign: TextAlign.left,
                                               ))),
-                                      SizedBox(
-                                          height: MediaQuery.of(context).size.height*0.010),
                                       Container(
                                         width: MediaQuery.of(context)
                                             .size
@@ -239,18 +172,45 @@ class Fevents extends StatelessWidget {
                                           MainAxisAlignment.center,
                                           children: [
                                             Text(
-                                              'Sign-Up Link:',
+                                              doc['Date'],
                                               textAlign: TextAlign.right,
                                               style: TextStyle(
-                                                  fontWeight:
-                                                  FontWeight.bold),
+                                                  fontSize: 20,
+                                                  color: KEYellow,
+                                                  fontWeight: FontWeight.bold),
                                             ),
-                                            Text(doc['Sign Up Link'],
-                                                style:
-                                                TextStyle(fontSize: 16))
+                                            Text(
+                                              'Sign-Up Method:',
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(doc['Sign Up Method'],
+                                                style: TextStyle(fontSize: 16))
                                           ],
                                         ),
+                                      ),
+                                      doc['Sign Up Link'] != 'None'
+                                          ? Container(
+                                        margin: EdgeInsets.only(
+                                            left: 20, right: 20, top: 10),
+                                        child: ElevatedButton(
+                                          onPressed: () {
+                                            _launchURL(doc['Sign Up Link']);
+                                          },
+                                          style: ButtonStyle(
+                                              backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  ABColor)),
+                                          child: Text("Sign Up Here",
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: KERed,
+                                                  fontWeight: FontWeight.bold),
+                                              textAlign: TextAlign.center),
+                                        ),
                                       )
+                                          : SizedBox()
                                     ],
                                   ),
                                 ),
@@ -300,7 +260,7 @@ class Fevents extends StatelessWidget {
                               ),
                               Container(
                                 height:
-                                MediaQuery.of(context).size.height * 0.57,
+                                MediaQuery.of(context).size.height * 0.65,
                                 child: TabBarView(
                                     key: Key('tabBarView'),
                                     children: tabBarViews),
@@ -316,7 +276,13 @@ class Fevents extends StatelessWidget {
       ),
     );
   }
-
+  _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
       title: Text("Are you sure you want to Log Out?"),
@@ -358,7 +324,7 @@ class PathPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = new Paint();
-    paint.color = KELightYellow;
+    paint.color = FColor;
 
     Path path = new Path();
     path.moveTo(0, 0);
