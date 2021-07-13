@@ -56,6 +56,7 @@ class BlockEvents extends StatelessWidget {
           ),
         );
     }
+
     return Scaffold(
       backgroundColor: bgColor,
       body: Stack(
