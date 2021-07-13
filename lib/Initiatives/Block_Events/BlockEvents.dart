@@ -21,7 +21,7 @@ class BlockEvents extends StatelessWidget {
     Container BlockContainer(String imgPath, String title) {
       return Container(
           padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-          height: MediaQuery.of(context).size.height * 0.25,
+          height: MediaQuery.of(context).size.height * 0.15,
           width: MediaQuery.of(context).size.width * 0.89,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
