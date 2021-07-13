@@ -17,27 +17,31 @@ import 'GHevents.dart';
 class BlockEvents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     Container BlockContainer(String imgPath, String title) {
       return Container(
-        width: MediaQuery.of(context).size.width * 0.5,
-        height: MediaQuery.of(context).size.width * 0.3,
-        child: Column(
-          children: <Widget>[
-            Image.asset(
-              imgPath,
-            ),
-            Text(
-              "$title",
+          padding: EdgeInsets.only(right: 10, top: 5, left: 10),
+          height: MediaQuery.of(context).size.height * 0.25,
+          width: MediaQuery.of(context).size.width * 0.89,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            image: DecorationImage(
+                image: AssetImage(
+                    imgPath),
+                fit: BoxFit.cover),
+          ),
+          child: Center(
+            child: Text(
+              title,
               style: TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 30,
-                  color: KERed),
-            )
-          ],
-        ),
-      );
+                  fontSize: 50,
+                  fontWeight: FontWeight.w900,
+                  color: Color(0xFFAE0700)),
+            ),
+          ),
+        );
     }
+
     return Scaffold(
       backgroundColor: bgColor,
       body: Stack(
@@ -135,24 +139,7 @@ class BlockEvents extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) => ABevents()));
                           },
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                            height: MediaQuery.of(context).size.height * 0.10,
-                            width: MediaQuery.of(context).size.width * 0.89,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: ABColor,
-                            ),
-                            child: Center(
-                              child: Text(
-                                "AB",
-                                style: TextStyle(
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.black),
-                              ),
-                            ),
-                          ),
+                          child: BlockContainer('assets/image/Blocks/ABBlock.png', 'AB')
                         ),
                         SizedBox(height: 25),
                         InkWell(
@@ -162,24 +149,7 @@ class BlockEvents extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) => CDevents()));
                           },
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                            height: MediaQuery.of(context).size.height * 0.10,
-                            width: MediaQuery.of(context).size.width * 0.89,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: CDColor,
-                            ),
-                            child: Center(
-                              child: Text(
-                                "CD",
-                                style: TextStyle(
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.black),
-                              ),
-                            ),
-                          ),
+                          child: BlockContainer('assets/image/Blocks/CDBlock.png', 'CD')
                         ),
                         SizedBox(height: 25),
                         InkWell(
@@ -190,7 +160,7 @@ class BlockEvents extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) => Eevents()));
                           },
-                          child: BlockContainer('assets/image/Blocks/EBlock.png', 'E Block')
+                          child: BlockContainer('assets/image/Blocks/EBlock.png', 'E')
                         ),
                         SizedBox(height: 25),
                         InkWell(
@@ -200,24 +170,7 @@ class BlockEvents extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) => Fevents()));
                           },
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                            height: MediaQuery.of(context).size.height * 0.10,
-                            width: MediaQuery.of(context).size.width * 0.89,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: FColor,
-                            ),
-                            child: Center(
-                              child: Text(
-                                "F",
-                                style: TextStyle(
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.black),
-                              ),
-                            ),
-                          ),
+                          child: BlockContainer('assets/image/Blocks/FBlock.png', 'F')
                         ),
                         SizedBox(height: 25),
                         InkWell(
@@ -227,24 +180,7 @@ class BlockEvents extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) => GHevents()));
                           },
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                            height: MediaQuery.of(context).size.height * 0.10,
-                            width: MediaQuery.of(context).size.width * 0.89,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: GHColor,
-                            ),
-                            child: Center(
-                              child: Text(
-                                "GH",
-                                style: TextStyle(
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.black),
-                              ),
-                            ),
-                          ),
+                          child: BlockContainer('assets/image/Blocks/GHBlock.png', 'GH'),
                         ),
                       ])
               ),
