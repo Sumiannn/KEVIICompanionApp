@@ -25,7 +25,7 @@ class Eevents extends StatelessWidget {
               left: 15,
               child: IconButton(
                 key: Key('Back Button'),
-                icon: Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
+                icon: Icon(Icons.arrow_back_rounded, color: Color(0xFFAE0700), size: 30),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -67,7 +67,7 @@ class Eevents extends StatelessWidget {
                     fontFamily: 'Montserrat',
                     fontSize: 30,
                     fontWeight: FontWeight.w700,
-                    color: KERed),
+                    color: Color(0xFFAE0700)),
               ),
             ),
             Positioned(
@@ -83,7 +83,7 @@ class Eevents extends StatelessWidget {
                       fontFamily: 'Montserrat',
                       fontSize: 18,
                       fontWeight: FontWeight.w300,
-                      color: KERed),
+                      color: Color(0xFFAE0700)),
                 ),
               ),
             ),
