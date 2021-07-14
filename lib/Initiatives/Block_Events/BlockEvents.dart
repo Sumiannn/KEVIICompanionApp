@@ -19,6 +19,26 @@ class BlockEvents extends StatelessWidget {
   Widget build(BuildContext context) {
       Container BlockContainer(String imgPath, String title, Color blockColor) {
       return Container(
+
+          padding: EdgeInsets.only(right: 10, top: 5, left: 10),
+          height: MediaQuery.of(context).size.height * 0.15,
+          width: MediaQuery.of(context).size.width * 0.89,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            image: DecorationImage(
+                image: AssetImage(
+                    imgPath),
+                fit: BoxFit.cover),
+          ),
+          child: Center(
+            child: Text(
+              title,
+              style: TextStyle(
+                  fontSize: 50,
+                  fontWeight: FontWeight.w900,
+                  color: Color(0xFFAE0700)),
+            ),
+
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           height: MediaQuery.of(context).size.height * 0.23,
           width: MediaQuery.of(context).size.width,
@@ -53,6 +73,7 @@ class BlockEvents extends StatelessWidget {
                 ),
               )
             ],
+
           ),
         );
     }
