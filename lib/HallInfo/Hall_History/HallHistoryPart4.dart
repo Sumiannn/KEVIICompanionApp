@@ -130,7 +130,7 @@ class TabWidget extends StatelessWidget {
           left: 0,
           right: 0,
           child: Container(
-              height: MediaQuery.of(context).size.height*0.9,
+              height: MediaQuery.of(context).size.height*0.70,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
