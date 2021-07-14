@@ -17,29 +17,65 @@ import 'GHevents.dart';
 class BlockEvents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    Container BlockContainer(String imgPath, String title) {
+    Container BlockContainer(String imgPath, String title, Color blockColor) {
       return Container(
+
           padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-          height: MediaQuery.of(context).size.height * 0.15,
-          width: MediaQuery.of(context).size.width * 0.89,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-                image: AssetImage(
-                    imgPath),
-                fit: BoxFit.cover),
-          ),
-          child: Center(
-            child: Text(
-              title,
-              style: TextStyle(
-                  fontSize: 50,
-                  fontWeight: FontWeight.w900,
-                  color: Color(0xFFAE0700)),
-            ),
-          ),
-        );
+      height: MediaQuery.of(context).size.height * 0.15,
+      width: MediaQuery.of(context).size.width * 0.89,
+      decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      image: DecorationImage(
+      image: AssetImage(
+      imgPath),
+      fit: BoxFit.cover),
+      ),
+      child: Center(
+      child: Text(
+      title,
+      style: TextStyle(
+      fontSize: 50,
+      fontWeight: FontWeight.w900,
+      color: Color(0xFFAE0700)),
+      ),
+
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      height: MediaQuery.of(context).size.height * 0.23,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: blockColor,
+      ),
+      child: Column(
+      children: [
+      Container(
+      height: MediaQuery.of(context).size.height * 0.15,
+
+      child: Image.asset(
+      imgPath,
+      fit: BoxFit.fill,
+      ),
+      ),
+      Expanded(
+      child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+      Text(
+      title,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+      fontSize: 19,
+      fontWeight: FontWeight.w700,
+      color: Color(0xFF6b6b6b)),
+      ),
+      ],
+      ),
+      )
+      ],
+
+      ),
+      );
     }
 
     return Scaffold(
@@ -111,7 +147,7 @@ class BlockEvents extends StatelessWidget {
                 padding: EdgeInsets.only(right: 12),
                 width: MediaQuery.of(context).size.width,
                 child: Text(
-                  "Which Block are you from? Check out our latest Block Events for the various Blocks! :)",
+                  "Which Block are you from? Check out our latest Block Events for the various blocks!",
                   style: TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 18,
@@ -121,7 +157,7 @@ class BlockEvents extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 200,
+              top: 180,
               left: 25,
               right: 25,
               child: Container(
@@ -133,54 +169,54 @@ class BlockEvents extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       children: <Widget>[
                         InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ABevents()));
-                          },
-                          child: BlockContainer('assets/image/Blocks/ABBlock.png', 'AB')
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ABevents()));
+                            },
+                            child: BlockContainer('assets/image/Blocks/ABBlock.png', 'Block AB', ABColor)
                         ),
-                        SizedBox(height: 25),
+                        SizedBox(height: 10,),
                         InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CDevents()));
-                          },
-                          child: BlockContainer('assets/image/Blocks/CDBlock.png', 'CD')
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CDevents()));
+                            },
+                            child: BlockContainer('assets/image/Blocks/CDBlock.png', 'Block CD', CDColor)
                         ),
-                        SizedBox(height: 25),
+                        SizedBox(height: 10,),
                         InkWell(
-                          key: Key('Block Events Button'),
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Eevents()));
-                          },
-                          child: BlockContainer('assets/image/Blocks/EBlock.png', 'E')
+                            key: Key('Block Events Button'),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Eevents()));
+                            },
+                            child: BlockContainer('assets/image/Blocks/EBlock.png', 'Block E', EColor)
                         ),
-                        SizedBox(height: 25),
+                        SizedBox(height: 10,),
                         InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Fevents()));
-                          },
-                          child: BlockContainer('assets/image/Blocks/FBlock.png', 'F')
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Fevents()));
+                            },
+                            child: BlockContainer('assets/image/Blocks/FBlock.png', 'Block F', FColor)
                         ),
-                        SizedBox(height: 25),
+                        SizedBox(height: 10,),
                         InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => GHevents()));
-                          },
-                          child: BlockContainer('assets/image/Blocks/GHBlock.png', 'GH'),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => GHevents()));
+                            },
+                            child: BlockContainer('assets/image/Blocks/GHBlock.png', 'Block GH', GHColor)
                         ),
                       ])
               ),
