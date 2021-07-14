@@ -12,6 +12,29 @@ import '../HomePage/home.dart';
 class HallInfoOptionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Widget InfoContainer(String image, String Title) {
+      return Container(
+        padding: EdgeInsets.only(right: 10, top: 5, left: 10),
+        height: MediaQuery.of(context).size.height * 0.30,
+        width: MediaQuery.of(context).size.width * 0.89,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          image: DecorationImage(
+              image:
+              AssetImage(image),
+              fit: BoxFit.cover),
+        ),
+        child: Center(
+          child: Text(
+            Title,
+            style: TextStyle(
+                fontSize: 21,
+                fontWeight: FontWeight.w700,
+                color: bgColor),
+          ),
+        ),
+      );
+    }
     return Scaffold(
       backgroundColor: bgColor,
       body: Stack(
@@ -113,27 +136,7 @@ class HallInfoOptionScreen extends StatelessWidget {
                               ),
                             );
                           },
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                            height: MediaQuery.of(context).size.height * 0.25,
-                            width: MediaQuery.of(context).size.width * 0.89,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                  image:
-                                  AssetImage('assets/image/KE7HallHistory.jpg'),
-                                  fit: BoxFit.cover),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Hall History",
-                                style: TextStyle(
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w700,
-                                    color: bgColor),
-                              ),
-                            ),
-                          ),
+                          child: InfoContainer('assets/image/KE7HallHistory.jpg', 'Hall History')
                         ),
                       SizedBox(height: 10),
                       InkWell(
@@ -147,61 +150,41 @@ class HallInfoOptionScreen extends StatelessWidget {
                             ),
                           );
                         },
-                        child: Container(
-                          padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                          height: MediaQuery.of(context).size.height * 0.25,
-                          width: MediaQuery.of(context).size.width * 0.89,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/image/CheckBookingsImage.jpg'),
-                                fit: BoxFit.cover),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "CCA Information",
-                              style: TextStyle(
-                                  fontSize: 21,
-                                  fontWeight: FontWeight.w700,
-                                  color: bgColor),
-                            ),
-                          ),
-                        ),
+                        child: InfoContainer('assets/image/CheckBookingsImage.jpg', 'CCA Information')
                       ),
                       SizedBox(height: 10),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  RoomInfo(),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-                          height: MediaQuery.of(context).size.height * 0.25,
-                          width: MediaQuery.of(context).size.width * 0.89,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/image/KE7HallRoom.png'),
-                                fit: BoxFit.cover),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Room Information",
-                              style: TextStyle(
-                                  fontSize: 21,
-                                  fontWeight: FontWeight.w700,
-                                  color: bgColor),
-                            ),
-                          ),
-                        ),
-                      ),
+                      // InkWell(
+                      //   onTap: () {
+                      //     Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //         builder: (context) =>
+                      //             RoomInfo(),
+                      //       ),
+                      //     );
+                      //   },
+                      //   child: Container(
+                      //     padding: EdgeInsets.only(right: 10, top: 5, left: 10),
+                      //     height: MediaQuery.of(context).size.height * 0.25,
+                      //     width: MediaQuery.of(context).size.width * 0.89,
+                      //     decoration: BoxDecoration(
+                      //       borderRadius: BorderRadius.circular(10),
+                      //       image: DecorationImage(
+                      //           image: AssetImage(
+                      //               'assets/image/KE7HallRoom.png'),
+                      //           fit: BoxFit.cover),
+                      //     ),
+                      //     child: Center(
+                      //       child: Text(
+                      //         "Room Information",
+                      //         style: TextStyle(
+                      //             fontSize: 21,
+                      //             fontWeight: FontWeight.w700,
+                      //             color: bgColor),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ])
             ),
           ),
@@ -211,14 +194,14 @@ class HallInfoOptionScreen extends StatelessWidget {
   }
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
-      title: Text("Are you sure you want to Log Out?"),
+      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: KERed),),
       actions: <Widget>[
         FlatButton(
           onPressed: () {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text('Cancel', style: TextStyle(color: Colors.black),),
+          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         ),
         FlatButton(
           onPressed: () {
@@ -231,7 +214,7 @@ class HallInfoOptionScreen extends StatelessWidget {
                       (Route<dynamic> route) => false);
             });
           },
-          child: Text('Logout', style: TextStyle(color: Colors.black),),
+          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         )
       ],
     );

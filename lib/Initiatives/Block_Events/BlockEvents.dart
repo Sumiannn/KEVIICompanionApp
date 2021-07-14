@@ -17,67 +17,46 @@ import 'GHevents.dart';
 class BlockEvents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-      Container BlockContainer(String imgPath, String title, Color blockColor) {
+    Container BlockContainer(String imgPath, String title, Color blockColor) {
       return Container(
-
-          padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-          height: MediaQuery.of(context).size.height * 0.15,
-          width: MediaQuery.of(context).size.width * 0.89,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-                image: AssetImage(
-                    imgPath),
-                fit: BoxFit.cover),
-          ),
-          child: Center(
-            child: Text(
-              title,
-              style: TextStyle(
-                  fontSize: 50,
-                  fontWeight: FontWeight.w900,
-                  color: Color(0xFFAE0700)),
-            ),
-
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          height: MediaQuery.of(context).size.height * 0.23,
-          width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.only(bottom: 10),
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        height: MediaQuery.of(context).size.height * 0.23,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: blockColor,
         ),
-          child: Column(
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.15,
+        child: Column(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.15,
 
-                child: Image.asset(
-                  imgPath,
-                  fit: BoxFit.fill,
-                ),
+              child: Image.asset(
+                imgPath,
+                fit: BoxFit.fill,
               ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 19,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF6b6b6b)),
-                    ),
-                  ],
-                ),
-              )
-            ],
-
-          ),
-        );
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 19,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xFF6b6b6b)),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      );
     }
-
     return Scaffold(
       backgroundColor: bgColor,
       body: Stack(
@@ -162,61 +141,61 @@ class BlockEvents extends StatelessWidget {
               right: 25,
               child: Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height*0.71,
-                  margin: EdgeInsets.only(top: 10.0),
+                  height: MediaQuery.of(context).size.height*0.74,
+                  margin: EdgeInsets.only(top: 15.0),
                   child: ListView(
                       physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       children: <Widget>[
                         InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ABevents()));
-                          },
-                          child: BlockContainer('assets/image/Blocks/ABBlock.png', 'Block AB', ABColor)
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ABevents()));
+                            },
+                            child: BlockContainer('assets/image/Blocks/ABBlock.png', 'Block AB', ABColor)
                         ),
                         SizedBox(height: 10,),
                         InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CDevents()));
-                          },
-                          child: BlockContainer('assets/image/Blocks/CDBlock.png', 'Block CD', CDColor)
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CDevents()));
+                            },
+                            child: BlockContainer('assets/image/Blocks/CDBlock.png', 'Block CD', CDColor)
                         ),
                         SizedBox(height: 10,),
                         InkWell(
-                          key: Key('Block Events Button'),
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Eevents()));
-                          },
-                          child: BlockContainer('assets/image/Blocks/EBlock.png', 'Block E', EColor)
+                            key: Key('Block Events Button'),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Eevents()));
+                            },
+                            child: BlockContainer('assets/image/Blocks/EBlock.png', 'Block E', EColor)
                         ),
                         SizedBox(height: 10,),
                         InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Fevents()));
-                          },
-                          child: BlockContainer('assets/image/Blocks/FBlock.png', 'Block F', FColor)
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Fevents()));
+                            },
+                            child: BlockContainer('assets/image/Blocks/FBlock.png', 'Block F', FColor)
                         ),
                         SizedBox(height: 10,),
                         InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => GHevents()));
-                          },
-                          child: BlockContainer('assets/image/Blocks/GHBlock.png', 'Block GH', GHColor)
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => GHevents()));
+                            },
+                            child: BlockContainer('assets/image/Blocks/GHBlock.png', 'Block GH', GHColor)
                         ),
                       ])
               ),

@@ -104,6 +104,7 @@ flutter:
     - assets/BookingVenues/DiningHall.jpg
     - assets/image/BlockEventImage.png
     - assets/image/FundRaisersImage.png
+    - assets/image/FundImage.png
     - assets/image/StudentInitiatives.png
     - assets/image/Blocks/ABBlock.png
     - assets/image/Blocks/CDBlock.png
