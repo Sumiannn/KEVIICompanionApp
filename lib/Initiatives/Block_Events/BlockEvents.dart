@@ -19,65 +19,44 @@ class BlockEvents extends StatelessWidget {
   Widget build(BuildContext context) {
     Container BlockContainer(String imgPath, String title, Color blockColor) {
       return Container(
+        margin: EdgeInsets.only(bottom: 10),
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        height: MediaQuery.of(context).size.height * 0.23,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: blockColor,
+        ),
+        child: Column(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.15,
 
-          padding: EdgeInsets.only(right: 10, top: 5, left: 10),
-      height: MediaQuery.of(context).size.height * 0.15,
-      width: MediaQuery.of(context).size.width * 0.89,
-      decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(10),
-      image: DecorationImage(
-      image: AssetImage(
-      imgPath),
-      fit: BoxFit.cover),
-      ),
-      child: Center(
-      child: Text(
-      title,
-      style: TextStyle(
-      fontSize: 50,
-      fontWeight: FontWeight.w900,
-      color: Color(0xFFAE0700)),
-      ),
-
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      height: MediaQuery.of(context).size.height * 0.23,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(10),
-      color: blockColor,
-      ),
-      child: Column(
-      children: [
-      Container(
-      height: MediaQuery.of(context).size.height * 0.15,
-
-      child: Image.asset(
-      imgPath,
-      fit: BoxFit.fill,
-      ),
-      ),
-      Expanded(
-      child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-      Text(
-      title,
-      textAlign: TextAlign.center,
-      style: TextStyle(
-      fontSize: 19,
-      fontWeight: FontWeight.w700,
-      color: Color(0xFF6b6b6b)),
-      ),
-      ],
-      ),
-      )
-      ],
-
-      ),
+              child: Image.asset(
+                imgPath,
+                fit: BoxFit.fill,
+              ),
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 19,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xFF6b6b6b)),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       );
     }
-
     return Scaffold(
       backgroundColor: bgColor,
       body: Stack(
@@ -162,8 +141,8 @@ class BlockEvents extends StatelessWidget {
               right: 25,
               child: Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height*0.71,
-                  margin: EdgeInsets.only(top: 10.0),
+                  height: MediaQuery.of(context).size.height*0.74,
+                  margin: EdgeInsets.only(top: 15.0),
                   child: ListView(
                       physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.vertical,

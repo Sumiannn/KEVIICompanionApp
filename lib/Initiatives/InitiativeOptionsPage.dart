@@ -122,7 +122,7 @@ class _InitiativeOptionsPageState extends State<InitiativeOptionsPage> {
                       Container(
                         height: MediaQuery.of(context).size.height * 0.2,
                         child: Image.asset(
-                          'assets/image/FundRaisersImage.png',
+                          'assets/image/FundImage.png',
                           fit: BoxFit.fill,
                         ),
                       ),
