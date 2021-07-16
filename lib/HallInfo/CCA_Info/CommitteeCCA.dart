@@ -198,7 +198,7 @@ class TabWidget extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(
-                                  height: 20.0,
+                                  height: 10.0,
                                 ),
                                 Center(
                                   child: Text(
@@ -232,6 +232,7 @@ class TabWidget extends StatelessWidget {
                                         children: [
                                           Container(
                                             margin: EdgeInsets.only(
+                                                top: 10,
                                                 left: 20,
                                                 right: 20,
                                                 bottom: 10),
@@ -243,7 +244,7 @@ class TabWidget extends StatelessWidget {
                                                 height: MediaQuery.of(context)
                                                         .size
                                                         .height *
-                                                    0.22,
+                                                    0.25,
                                                 width: MediaQuery.of(context)
                                                     .size
                                                     .width,
