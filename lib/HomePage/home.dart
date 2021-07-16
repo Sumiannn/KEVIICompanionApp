@@ -120,7 +120,7 @@ class _HomeState extends State<Home> {
             left: 25,
             child: Container(
                 key: Key('Home sliding panel'),
-                width: MediaQuery.of(context).size.width,
+                width: MediaQuery.of(context).size.width*0.9,
                 height: 150,
                 margin: EdgeInsets.only(top: 10),
                 child: ListView(
