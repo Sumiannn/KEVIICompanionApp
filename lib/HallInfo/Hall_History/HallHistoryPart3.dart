@@ -124,67 +124,63 @@ class TabWidget extends StatelessWidget {
       padding: EdgeInsets.all(0),
       controller: scrollController,
       children: [
-        Positioned(
-          top: 230,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: Container(
-              height: MediaQuery.of(context).size.height*0.70,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-                color: bgColor,
+        Container(
+            height: MediaQuery.of(context).size.height*0.70,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
               ),
-              child: ListView(
-                physics: BouncingScrollPhysics(),
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: [
-                  SizedBox(
-                    height: 5,
+              color: bgColor,
+            ),
+            child: ListView(
+              key: Key('History Page'),
+              physics: BouncingScrollPhysics(),
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              children: [
+                SizedBox(
+                  height: 5,
+                ),
+                Center(
+                  child: Text(
+                    "King Edward VII Hall",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.w700,
+                        color: KERed),
                   ),
-                  Center(
-                    child: Text(
-                      "King Edward VII Hall",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.w700,
-                          color: KERed),
-                    ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: Text(
+                    "Sepoy Lines, 12 College Road (1957-1987)",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: KEYellow),
                   ),
-                  SizedBox(
-                    height: 20,
+                ),
+                Container(
+                  key: Key('Long Text'),
+                  margin: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: KELightRed),
+                  child: Text(
+                    "On 30th November 1957, a new hostel was declared open by the Prime Minister of Malaya, Tunku Abdul Rahman. The new Hall of Residence was named “King Edward VII Hall” in honour of the old KEVII College of Medicine, which had ceased to exist as it had become the Faculty of Medicine for the University of Malaya. The Hall housed more than 250 students in two blocks.",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: 20),
                   ),
-                  Center(
-                    child: Text(
-                      "Sepoy Lines, 12 College Road (1957-1987)",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          color: KEYellow),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(20),
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: KELightRed),
-                    child: Text(
-                      "On 30th November 1957, a new hostel was declared open by the Prime Minister of Malaya, Tunku Abdul Rahman. The new Hall of Residence was named “King Edward VII Hall” in honour of the old KEVII College of Medicine, which had ceased to exist as it had become the Faculty of Medicine for the University of Malaya. The Hall housed more than 250 students in two blocks.",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
-                ],
-              )),
-        ),
+                ),
+              ],
+            )),
       ]
   );
 }

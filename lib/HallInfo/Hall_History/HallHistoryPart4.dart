@@ -124,67 +124,63 @@ class TabWidget extends StatelessWidget {
       padding: EdgeInsets.all(0),
       controller: scrollController,
       children: [
-        Positioned(
-          top: 230,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: Container(
-              height: MediaQuery.of(context).size.height*0.70,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-                color: bgColor,
+        Container(
+            height: MediaQuery.of(context).size.height*0.70,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
               ),
-              child: ListView(
-                physics: BouncingScrollPhysics(),
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: [
-                  SizedBox(
-                    height: 5,
+              color: bgColor,
+            ),
+            child: ListView(
+              key: Key('History Page'),
+              physics: BouncingScrollPhysics(),
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              children: [
+                SizedBox(
+                  height: 5,
+                ),
+                Center(
+                  child: Text(
+                    "King Edward VII Hall",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.w700,
+                        color: KERed),
                   ),
-                  Center(
-                    child: Text(
-                      "King Edward VII Hall",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.w700,
-                          color: KERed),
-                    ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: Text(
+                    "1A Kent Ridge Road (1987 - Present)",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: KEYellow),
                   ),
-                  SizedBox(
-                    height: 20,
+                ),
+                Container(
+                  key: Key('Long Text'),
+                  margin: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: KELightRed),
+                  child: Text(
+                    "25th November 1988 marked the official grand opening ceremony of KEVII Hall at the NUS Kent Ridge campus, graced by their President Wee Kim Wee amidst much celebrations. The new King Edward VII Hall took in the most number of non-medical students in its history in order to broaden the student profile of its residents, a practice evident in the diversity of current KEVII hall residents. The sprawling new hostel overlooks the National University Hospital.",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: 20),
                   ),
-                  Center(
-                    child: Text(
-                      "1A Kent Ridge Road (1987-Present)",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          color: KEYellow),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(20),
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: KELightRed),
-                    child: Text(
-                      "25th November 1988 marked the official grand opening ceremony of KEVII Hall at the NUS Kent Ridge campus, graced by their President Wee Kim Wee amidst much celebrations. The new King Edward VII Hall took in the most number of non-medical students in its history in order to broaden the student profile of its residents, a practice evident in the diversity of current KEVII hall residents. The sprawling new hostel overlooks the National University Hospital.",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
-                ],
-              )),
-        ),
+                ),
+              ],
+            )),
       ]
   );
 }
