@@ -125,68 +125,63 @@ class TabWidget extends StatelessWidget {
       padding: EdgeInsets.all(0),
       controller: scrollController,
       children: [
-        Positioned(
-          top: 230,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: Container(
-              height: MediaQuery.of(context).size.height*0.50,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-                color: bgColor,
+        Container(
+            height: MediaQuery.of(context).size.height*0.70,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
               ),
-              child: ListView(
-                key: Key('History Page'),
-                physics: BouncingScrollPhysics(),
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: [
-                  SizedBox(
-                    height: 5,
+              color: bgColor,
+            ),
+            child: ListView(
+              key: Key('History Page'),
+              physics: BouncingScrollPhysics(),
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              children: [
+                SizedBox(
+                  height: 5,
+                ),
+                Center(
+                  child: Text(
+                    "Holne Chase",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.w700,
+                        color: KERed),
                   ),
-                  Center(
-                    child: Text(
-                      "Holne Chase",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.w700,
-                          color: KERed),
-                    ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: Text(
+                    "Grange Road (1938-1956)",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: KEYellow),
                   ),
-                  SizedBox(
-                    height: 20,
+                ),
+                Container(
+                  key: Key('Long Text'),
+                  margin: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: KELightRed),
+                  child: Text(
+                    "Female students during the F.M.S. years stayed in a bungalow at Grange Road, quaintly called “Holne Chase”, an all-female hostel. The grounds were beautiful with huge trees and flowering shrubs. There were also tennis and badminton courts.",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: 20),
                   ),
-                  Center(
-                    child: Text(
-                      "Grange Road (1938-1956)",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          color: KEYellow),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(20),
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: KELightRed),
-                    child: Text(
-                      "Female students during the F.M.S. years stayed in a bungalow at Grange Road, quaintly called “Holne Chase”, an all-female hostel. The grounds were beautiful with huge trees and flowering shrubs. There were also tennis and badminton courts.",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
-                ],
-              )),
-        ),
+                ),
+              ],
+            )),
       ]
   );
 }
