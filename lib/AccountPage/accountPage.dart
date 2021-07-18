@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:keviiapp/AccountPage/editAccount.dart';
 import 'package:keviiapp/Facilities/ManageBookingsPage.dart';
 import 'package:keviiapp/colorScheme.dart';
 
@@ -96,9 +97,7 @@ class _accountPageState extends State<accountPage> {
                     );
                   }
                   Map<String, dynamic> data = snapshot.data.data();
-                  return Column(
-                    children: [
-                      Container(
+                  return Container(
                         padding: EdgeInsets.all(7),
                         decoration: BoxDecoration(
                             color: bgColor, shape: BoxShape.circle),
@@ -109,23 +108,47 @@ class _accountPageState extends State<accountPage> {
                               Image.asset('assets/image/ProfilePics/fox.png')
                                   .image,
                         ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        "${data['nusid']}",
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          color: KERed,
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w900,
-                        ),
-                      )
-                    ],
-                  );
+                      );
                 },
               )),
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.35,
+            child: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('users')
+                    .doc(user.uid)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Container(
+                        width: MediaQuery.of(context).size.width,
+                        child: Text(
+                          'Name Loading...',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: KERed,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w900,
+                          ),
+                          textAlign: TextAlign.center,
+                        ));
+                  }
+                  Map<String, dynamic> data = snapshot.data.data();
+                  return Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Text(
+                      "${data['last name']} " + "${data['first name']}",
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: KERed,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w900,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  );
+                }),
+          ),
           Positioned(
             top: 330,
             left: 20,
@@ -157,14 +180,15 @@ class _accountPageState extends State<accountPage> {
                                 child: buildTextField(
                                     'Email', '${data['email']}', false)),
                             Expanded(
-                                child:
-                                    buildTextField('Preferred Name', 'The Fox', false)),
-                            Expanded(
                                 child: buildTextField(
                                     'Room', '${data['room']}', false)),
                             Expanded(
                                 child: buildTextField(
-                                    'Role', '${data['Role']}', false)),
+                                    'First Name', '${data['first name']}', false)),
+
+                            Expanded(
+                                child: buildTextField(
+                                    'Last Name', '${data['last name']}', false)),
                           ],
                         );
                       },
@@ -207,7 +231,12 @@ class _accountPageState extends State<accountPage> {
                         ],
                       ),
                     ),
-                    onTap: () {}, //TODO
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => editAccount()));
+                    }, //TODO
                   ),
                   SizedBox(
                     height: 10,
@@ -271,7 +300,10 @@ class _accountPageState extends State<accountPage> {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text('Cancel', style: TextStyle(color: Colors.black),),
+          child: Text(
+            'Cancel',
+            style: TextStyle(color: Colors.black),
+          ),
         ),
         FlatButton(
           onPressed: () {
@@ -281,10 +313,13 @@ class _accountPageState extends State<accountPage> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => EmailLogIn()),
-                      (Route<dynamic> route) => false);
+                  (Route<dynamic> route) => false);
             });
           },
-          child: Text('Logout', style: TextStyle(color: Colors.black),),
+          child: Text(
+            'Logout',
+            style: TextStyle(color: Colors.black),
+          ),
         )
       ],
     );

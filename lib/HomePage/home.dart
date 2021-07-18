@@ -102,7 +102,7 @@ class _HomeState extends State<Home> {
                     }
                     Map<String, dynamic> data = snapshot.data.data();
                     return Text(
-                      "Welcome ${data['nusid']}",
+                      "Welcome ${data['first name']}",
                       style: TextStyle(
                         fontSize: 30.0,
                         color: KERed,
