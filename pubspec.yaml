@@ -44,6 +44,9 @@ dependencies:
   flutter_form_builder: ^6.0.1
   fake_cloud_firestore: ^1.1.2
   url_launcher: ^6.0.9
+  image_picker: ^0.8.2
+  firebase_storage: ^10.0.1
+  path_provider: ^2.0.2
 
 dev_dependencies:
   flutter_driver:
@@ -111,6 +114,7 @@ flutter:
     - assets/image/Blocks/EBlock.png
     - assets/image/Blocks/FBlock.png
     - assets/image/Blocks/GHBlock.png
+    - assets/image/Initiatives.png
     - assets/image/OCIP.jpg
 
       # An image asset can refer to one or more resolution-specific "variants", see
