@@ -152,7 +152,7 @@ class _HomeState extends State<Home> {
                     ),
                     InkWell(
                       key: Key('Student Initiatives Button'),
-                      child: categoryContainer("StudentInitiatives.png", "Initiatives"),
+                      child: categoryContainer("Initiatives.png", "Initiatives"),
                       onTap: () {
                         Navigator.push(
                             context,
