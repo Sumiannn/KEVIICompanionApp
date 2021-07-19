@@ -713,14 +713,14 @@ class _AddBookingState extends State<AddBooking> {
 
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
-      title: Text("Are you sure you want to Log Out?"),
+      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
       actions: <Widget>[
         FlatButton(
           onPressed: () {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text('Cancel', style: TextStyle(color: Colors.black),),
+          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         ),
         FlatButton(
           onPressed: () {
@@ -733,7 +733,7 @@ class _AddBookingState extends State<AddBooking> {
                       (Route<dynamic> route) => false);
             });
           },
-          child: Text('Logout', style: TextStyle(color: Colors.black),),
+          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         )
       ],
     );
