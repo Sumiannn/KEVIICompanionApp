@@ -303,11 +303,6 @@ class _accountPageState extends State<accountPage> {
 
           child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
 
-          child: Text(
-            'Cancel',
-            style: TextStyle(color: Colors.black),
-          ),
-
         ),
         FlatButton(
           onPressed: () {
@@ -322,11 +317,6 @@ class _accountPageState extends State<accountPage> {
           },
 
           child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
-
-          child: Text(
-            'Logout',
-            style: TextStyle(color: Colors.black),
-          ),
 
         )
       ],
