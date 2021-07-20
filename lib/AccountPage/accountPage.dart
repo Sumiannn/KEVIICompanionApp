@@ -282,7 +282,7 @@ class _accountPageState extends State<accountPage> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => EmailLogIn()),
-                  (Route<dynamic> route) => false);
+                      (Route<dynamic> route) => false);
             });
           },
           child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),

@@ -40,7 +40,6 @@ class _editAccountState extends State<editAccount> {
       backgroundColor: bgColor,
       body: Form(
         key: _formKey,
-        child: Container(
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -90,95 +89,66 @@ class _editAccountState extends State<editAccount> {
                 ),
               ),
               Positioned(
-                  top: MediaQuery.of(context).size.width * 0.3,
-                  left: MediaQuery.of(context).size.width * 0.3,
-                  right: MediaQuery.of(context).size.width * 0.3,
-                  child: Avatar(
-                    avatarURL: avatarURL,
-                    onTap: () async {
-                      var picker = ImagePicker();
-                      var imagePicked =
-                          await picker.pickImage(source: ImageSource.gallery);
-                      if (imagePicked != null) {
-                        setState(() {
-                          _imageFile = File(imagePicked.path);
-                        });
-                        uploadProfileImage(_imageFile);
-                      }
-                      print('here');
-                    },
-                  )),
-              Positioned(
-                top: MediaQuery.of(context).size.width * 0.62,
-                left: MediaQuery.of(context).size.width * 0.6,
-                child: InkWell(
-                  onTap: () async {
-                    var picker = ImagePicker();
-                    var imagePicked =
-                        await picker.pickImage(source: ImageSource.gallery);
-                    if (imagePicked != null) {
-                      setState(() {
-                        _imageFile = File(imagePicked.path);
-                      });
-                      uploadProfileImage(_imageFile);
-                    }
-                  },
-                  child: CircleAvatar(
-                    radius: 17,
-                    backgroundColor: KERed,
-                    child: Icon(
-                      Icons.edit,
-                      size: 20,
-                      color: KELightRed,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: MediaQuery.of(context).size.height * 0.38,
-                child: StreamBuilder(
-                    stream: FirebaseFirestore.instance
-                        .collection('users')
-                        .doc(user.uid)
-                        .snapshots(),
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData) {
-                        return Container(
-                            width: MediaQuery.of(context).size.width,
-                            child: Text(
-                              'Name Loading...',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                color: KERed,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w900,
-                              ),
-                              textAlign: TextAlign.center,
-                            ));
-                      }
-                      Map<String, dynamic> data = snapshot.data.data();
-                      return Container(
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(
-                          "${data['last name']} " + "${data['first name']}",
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: KERed,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w900,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      );
-                    }),
-              ),
-              Positioned(
-                top: 330,
-                left: 20,
-                right: 20,
+                bottom: MediaQuery.of(context).size.height * 0.045,
+                left: MediaQuery.of(context).size.width*0.05,
+                right: MediaQuery.of(context).size.width*0.05,
                 child: SingleChildScrollView(
-                  child: Column(
+                  child: ListView(
+                    shrinkWrap: true,
+                    clipBehavior: Clip.none,
                     children: [
+                      Avatar(
+                        avatarURL: avatarURL,
+                        onTap: () async {
+                          var picker = ImagePicker();
+                          var imagePicked =
+                          await picker.pickImage(source: ImageSource.gallery);
+                          if (imagePicked != null) {
+                            setState(() {
+                              _imageFile = File(imagePicked.path);
+                            });
+                            uploadProfileImage(_imageFile);
+                          }
+                          print('here');
+                        },
+                      ),
+                      SizedBox(height: 20),
+                      StreamBuilder(
+                          stream: FirebaseFirestore.instance
+                              .collection('users')
+                              .doc(user.uid)
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if (!snapshot.hasData) {
+                              return Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Text(
+                                    'Name Loading...',
+                                    style: TextStyle(
+                                      fontSize: 20.0,
+                                      color: KERed,
+                                      fontFamily: 'Montserrat',
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ));
+                            }
+                            Map<String, dynamic> data = snapshot.data.data();
+                            return Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: Text(
+                                "${data['last name']} " + "${data['first name']}",
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: KERed,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w900,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            );
+                          }),
+                      SizedBox(height: 20),
                       Container(
                         padding:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -296,11 +266,36 @@ class _editAccountState extends State<editAccount> {
                     ],
                   ),
                 ),
-              )
+              ),
+              Positioned(
+                top: MediaQuery.of(context).size.width * 0.62,
+                left: MediaQuery.of(context).size.width * 0.6,
+                child: InkWell(
+                  onTap: () async {
+                    var picker = ImagePicker();
+                    var imagePicked =
+                    await picker.pickImage(source: ImageSource.gallery);
+                    if (imagePicked != null) {
+                      setState(() {
+                        _imageFile = File(imagePicked.path);
+                      });
+                      uploadProfileImage(_imageFile);
+                    }
+                  },
+                  child: CircleAvatar(
+                    radius: 17,
+                    backgroundColor: KERed,
+                    child: Icon(
+                      Icons.edit,
+                      size: 20,
+                      color: KELightRed,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
-      ),
     );
   }
 
@@ -318,17 +313,14 @@ class _editAccountState extends State<editAccount> {
 
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
-      title: Text("Are you sure you want to Log Out?"),
+      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
       actions: <Widget>[
         FlatButton(
           onPressed: () {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text(
-            'Cancel',
-            style: TextStyle(color: Colors.black),
-          ),
+          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         ),
         FlatButton(
           onPressed: () {
@@ -338,13 +330,10 @@ class _editAccountState extends State<editAccount> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => EmailLogIn()),
-                  (Route<dynamic> route) => false);
+                      (Route<dynamic> route) => false);
             });
           },
-          child: Text(
-            'Logout',
-            style: TextStyle(color: Colors.black),
-          ),
+          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         )
       ],
     );

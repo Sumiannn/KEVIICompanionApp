@@ -34,7 +34,6 @@ class _EmailLogInState extends State<EmailLogIn> {
             key: _formKey,
                 child: Stack(
                     alignment: Alignment.center,
-                    fit: StackFit.expand,
                     children: <Widget>[
                   Container(
                     height: MediaQuery.of(context).size.height,
@@ -44,7 +43,7 @@ class _EmailLogInState extends State<EmailLogIn> {
                     ),
                   ),
                   Positioned(
-                    top: 0,
+                    bottom: MediaQuery.of(context).size.height*0.6,
                     child: Container(
                       height: 307,
                       width: MediaQuery.of(context).size.width,
