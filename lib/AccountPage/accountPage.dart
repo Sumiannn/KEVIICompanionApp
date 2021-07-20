@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:keviiapp/AccountPage/editAccount.dart';
 import 'package:keviiapp/Facilities/ManageBookingsPage.dart';
 import 'package:keviiapp/colorScheme.dart';
-
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import '../SignInSignUp/email_login.dart';
 import '../HomePage/home.dart';
+import 'avatar.dart';
 
 class accountPage extends StatefulWidget {
   accountPage();
@@ -18,11 +19,12 @@ class accountPage extends StatefulWidget {
 class _accountPageState extends State<accountPage> {
   bool isObscurePassword = true;
   User user = FirebaseAuth.instance.currentUser;
+  firebase_storage.FirebaseStorage storage = firebase_storage.FirebaseStorage.instance;
+  String avatarURL;
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    downloadURLExample();
     return Scaffold(
       backgroundColor: bgColor,
       body: Stack(
@@ -77,42 +79,12 @@ class _accountPageState extends State<accountPage> {
               top: MediaQuery.of(context).size.width * 0.3,
               left: MediaQuery.of(context).size.width * 0.3,
               right: MediaQuery.of(context).size.width * 0.3,
-              child: StreamBuilder(
-                stream: FirebaseFirestore.instance
-                    .collection('users')
-                    .doc(user.uid)
-                    .snapshots(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return Container(
-                      padding: EdgeInsets.all(7),
-                      decoration:
-                          BoxDecoration(color: bgColor, shape: BoxShape.circle),
-                      child: CircleAvatar(
-                        radius: 65,
-                        backgroundColor: bgColor,
-                        backgroundImage: NetworkImage(
-                            'https://nus.edu.sg/osa/images/default-source/kevii-hall/open-house/cute-myke.png?sfvrsn=bb17fcf7_2'),
-                      ),
-                    );
-                  }
-                  Map<String, dynamic> data = snapshot.data.data();
-                  return Container(
-                        padding: EdgeInsets.all(7),
-                        decoration: BoxDecoration(
-                            color: bgColor, shape: BoxShape.circle),
-                        child: CircleAvatar(
-                          radius: 65,
-                          backgroundColor: bgColor,
-                          backgroundImage:
-                              Image.asset('assets/image/ProfilePics/fox.png')
-                                  .image,
-                        ),
-                      );
-                },
-              )),
+              child: Avatar(
+                    avatarURL: avatarURL,
+                  )
+              ),
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.35,
+            top: MediaQuery.of(context).size.height * 0.38,
             child: StreamBuilder(
                 stream: FirebaseFirestore.instance
                     .collection('users')
@@ -301,8 +273,6 @@ class _accountPageState extends State<accountPage> {
             Navigator.of(context).pop(false);
           },
 
-          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
-
           child: Text(
             'Cancel',
             style: TextStyle(color: Colors.black),
@@ -320,8 +290,6 @@ class _accountPageState extends State<accountPage> {
                   (Route<dynamic> route) => false);
             });
           },
-
-          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
 
           child: Text(
             'Logout',
@@ -367,6 +335,14 @@ class _accountPageState extends State<accountPage> {
         ),
       ),
     );
+  }
+    downloadURLExample() async {
+    String downloadURL = await firebase_storage.FirebaseStorage.instance
+        .ref('images/profilePic/${user.uid}')
+        .getDownloadURL();
+    setState(() {
+      avatarURL = downloadURL;
+    });
   }
 }
 

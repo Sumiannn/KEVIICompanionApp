@@ -47,7 +47,7 @@ class _EmailLogInState extends State<EmailLogIn> {
                       width: MediaQuery.of(context).size.width,
                       child: Center(
                         child: Image.asset(
-                          'assets/image/KEVIILogo.png', fit: BoxFit.cover,
+                          'assets/image/logo.png', fit: BoxFit.cover,
                         ),
                       ),
                     ),

@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/Facilities/ManageBookingsPage.dart';
 import 'package:keviiapp/HomePage/home.dart';
 import 'package:keviiapp/SignInSignUp/email_login.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -25,8 +24,10 @@ class _editAccountState extends State<editAccount> {
   final _formKey = GlobalKey<FormState>();
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   User user = FirebaseAuth.instance.currentUser;
-  firebase_storage.FirebaseStorage storage = firebase_storage.FirebaseStorage.instance;
+  firebase_storage.FirebaseStorage storage =
+      firebase_storage.FirebaseStorage.instance;
   File _imageFile;
+  String avatarURL;
   TextEditingController emailController = TextEditingController(),
       roomController = TextEditingController(),
       firstNameController = TextEditingController(),
@@ -34,6 +35,7 @@ class _editAccountState extends State<editAccount> {
 
   @override
   Widget build(BuildContext context) {
+    downloadURLExample();
     return Scaffold(
       backgroundColor: bgColor,
       body: Form(
@@ -91,15 +93,84 @@ class _editAccountState extends State<editAccount> {
                 left: MediaQuery.of(context).size.width * 0.3,
                 right: MediaQuery.of(context).size.width * 0.3,
                 child: Avatar(
+                  avatarURL: avatarURL,
                   onTap: () async {
                     var picker = ImagePicker();
-                    final imagePicked = await picker.pickImage(source: ImageSource.gallery);
+                    var imagePicked =
+                        await picker.pickImage(source: ImageSource.gallery);
+                    if (imagePicked != null) {
+                      setState(() {
+                        _imageFile = File(imagePicked.path);
+                      });
+                      uploadProfileImage(_imageFile);
+                    }
+                    print('here');
+                  },
+                )),
+            Positioned(
+              top: MediaQuery.of(context).size.width * 0.62,
+              left: MediaQuery.of(context).size.width * 0.6,
+              child: InkWell(
+                onTap: () async {
+                  var picker = ImagePicker();
+                  var imagePicked =
+                      await picker.pickImage(source: ImageSource.gallery);
+                  if (imagePicked != null) {
                     setState(() {
                       _imageFile = File(imagePicked.path);
                     });
                     uploadProfileImage(_imageFile);
-                  },
-                )),
+                  }
+                },
+                child: CircleAvatar(
+                  radius: 17,
+                  backgroundColor: KERed,
+                  child: Icon(
+                    Icons.edit,
+                    size: 20,
+                    color: KELightRed,
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.38,
+              child: StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(user.uid)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(
+                            'Name Loading...',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              color: KERed,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w900,
+                            ),
+                            textAlign: TextAlign.center,
+                          ));
+                    }
+                    Map<String, dynamic> data = snapshot.data.data();
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Text(
+                        "${data['last name']} " + "${data['first name']}",
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: KERed,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w900,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    );
+                  }),
+            ),
             Positioned(
               top: 330,
               left: 20,
@@ -311,17 +382,26 @@ class _editAccountState extends State<editAccount> {
       ),
     );
   }
+
   Future<void> uploadProfileImage(File file) async {
     try {
       await firebase_storage.FirebaseStorage.instance
-          .ref('image/profilePic/${user.uid}')
+          .ref('images/profilePic/${user.uid}')
           .putFile(file);
     } on FirebaseException catch (e) {
       // e.g, e.code == 'canceled'
     }
   }
-}
 
+  downloadURLExample() async {
+    String downloadURL = await firebase_storage.FirebaseStorage.instance
+        .ref('images/profilePic/${user.uid}')
+        .getDownloadURL();
+    setState(() {
+      avatarURL = downloadURL;
+    });
+  }
+}
 
 class pathPainter extends CustomPainter {
   @override
