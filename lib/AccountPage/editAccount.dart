@@ -40,60 +40,78 @@ class _editAccountState extends State<editAccount> {
       backgroundColor: bgColor,
       body: Form(
         key: _formKey,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: CustomPaint(
-                painter: pathPainter(),
-              ),
-            ),
-            Positioned(
-              top: 25,
-              left: 15,
-              child: IconButton(
-                key: Key('Back Button'),
-                icon: Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-            Positioned(
-              top: 25,
-              right: 55,
-              child: IconButton(
-                icon: Icon(Icons.home_rounded, color: KERed, size: 30),
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => Home()),
-                      (Route<dynamic> route) => false);
-                },
-              ),
-            ),
-            Positioned(
-              top: 25,
-              right: 15,
-              child: IconButton(
-                icon: Icon(
-                  Icons.exit_to_app_rounded,
-                  color: KERed,
-                  size: 30,
+        child: Container(
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: CustomPaint(
+                  painter: pathPainter(),
                 ),
-                onPressed: () {
-                  logOutNotice(context);
-                },
               ),
-            ),
-            Positioned(
-                top: MediaQuery.of(context).size.width * 0.3,
-                left: MediaQuery.of(context).size.width * 0.3,
-                right: MediaQuery.of(context).size.width * 0.3,
-                child: Avatar(
-                  avatarURL: avatarURL,
+              Positioned(
+                top: 25,
+                left: 15,
+                child: IconButton(
+                  key: Key('Back Button'),
+                  icon: Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+              Positioned(
+                top: 25,
+                right: 55,
+                child: IconButton(
+                  icon: Icon(Icons.home_rounded, color: KERed, size: 30),
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => Home()),
+                        (Route<dynamic> route) => false);
+                  },
+                ),
+              ),
+              Positioned(
+                top: 25,
+                right: 15,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.exit_to_app_rounded,
+                    color: KERed,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    logOutNotice(context);
+                  },
+                ),
+              ),
+              Positioned(
+                  top: MediaQuery.of(context).size.width * 0.3,
+                  left: MediaQuery.of(context).size.width * 0.3,
+                  right: MediaQuery.of(context).size.width * 0.3,
+                  child: Avatar(
+                    avatarURL: avatarURL,
+                    onTap: () async {
+                      var picker = ImagePicker();
+                      var imagePicked =
+                          await picker.pickImage(source: ImageSource.gallery);
+                      if (imagePicked != null) {
+                        setState(() {
+                          _imageFile = File(imagePicked.path);
+                        });
+                        uploadProfileImage(_imageFile);
+                      }
+                      print('here');
+                    },
+                  )),
+              Positioned(
+                top: MediaQuery.of(context).size.width * 0.62,
+                left: MediaQuery.of(context).size.width * 0.6,
+                child: InkWell(
                   onTap: () async {
                     var picker = ImagePicker();
                     var imagePicked =
@@ -104,199 +122,183 @@ class _editAccountState extends State<editAccount> {
                       });
                       uploadProfileImage(_imageFile);
                     }
-                    print('here');
                   },
-                )),
-            Positioned(
-              top: MediaQuery.of(context).size.width * 0.62,
-              left: MediaQuery.of(context).size.width * 0.6,
-              child: InkWell(
-                onTap: () async {
-                  var picker = ImagePicker();
-                  var imagePicked =
-                      await picker.pickImage(source: ImageSource.gallery);
-                  if (imagePicked != null) {
-                    setState(() {
-                      _imageFile = File(imagePicked.path);
-                    });
-                    uploadProfileImage(_imageFile);
-                  }
-                },
-                child: CircleAvatar(
-                  radius: 17,
-                  backgroundColor: KERed,
-                  child: Icon(
-                    Icons.edit,
-                    size: 20,
-                    color: KELightRed,
+                  child: CircleAvatar(
+                    radius: 17,
+                    backgroundColor: KERed,
+                    child: Icon(
+                      Icons.edit,
+                      size: 20,
+                      color: KELightRed,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Positioned(
-              top: MediaQuery.of(context).size.height * 0.38,
-              child: StreamBuilder(
-                  stream: FirebaseFirestore.instance
-                      .collection('users')
-                      .doc(user.uid)
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.38,
+                child: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection('users')
+                        .doc(user.uid)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Container(
+                            width: MediaQuery.of(context).size.width,
+                            child: Text(
+                              'Name Loading...',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                color: KERed,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w900,
+                              ),
+                              textAlign: TextAlign.center,
+                            ));
+                      }
+                      Map<String, dynamic> data = snapshot.data.data();
                       return Container(
-                          width: MediaQuery.of(context).size.width,
-                          child: Text(
-                            'Name Loading...',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              color: KERed,
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w900,
-                            ),
-                            textAlign: TextAlign.center,
-                          ));
-                    }
-                    Map<String, dynamic> data = snapshot.data.data();
-                    return Container(
-                      width: MediaQuery.of(context).size.width,
-                      child: Text(
-                        "${data['last name']} " + "${data['first name']}",
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          color: KERed,
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w900,
+                        width: MediaQuery.of(context).size.width,
+                        child: Text(
+                          "${data['last name']} " + "${data['first name']}",
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: KERed,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w900,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    );
-                  }),
-            ),
-            Positioned(
-              top: 330,
-              left: 20,
-              right: 20,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                      height: MediaQuery.of(context).size.height * 0.35,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: KELightYellow,
-                      ),
-                      child: StreamBuilder(
-                        stream: FirebaseFirestore.instance
-                            .collection('users')
-                            .doc(user.uid)
-                            .snapshots(),
-                        builder: (context, snapshot) {
-                          if (!snapshot.hasData) {
-                            return Text("Loading, please wait");
-                          }
-                          Map<String, dynamic> data = snapshot.data.data();
-                          return Column(
-                            children: [
-                              Expanded(
-                                  child: buildTextField(
-                                      'Email (Not Editable)',
-                                      '${data['email']}',
-                                      false,
-                                      KERed,
-                                      emailController,
-                                      'Email')),
-                              Expanded(
-                                  child: buildTextField(
-                                      'Room (Editable)',
-                                      '${data['room']}',
-                                      true,
-                                      KEBlack,
-                                      roomController,
-                                      'Room')),
-                              Expanded(
-                                  child: buildTextField(
-                                      'First Name (Editable)',
-                                      '${data['first name']}',
-                                      true,
-                                      KEBlack,
-                                      firstNameController,
-                                      'First Name')),
-                              Expanded(
-                                  child: buildTextField(
-                                      'Last Name (Editable)',
-                                      '${data['last name']}',
-                                      true,
-                                      KEBlack,
-                                      lastNameController,
-                                      'Last Name')),
-                            ],
-                          );
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    InkWell(
-                      child: Container(
+                      );
+                    }),
+              ),
+              Positioned(
+                top: 330,
+                left: 20,
+                right: 20,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
                         padding:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                        height: MediaQuery.of(context).size.height * 0.06,
+                        height: MediaQuery.of(context).size.height * 0.35,
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: KELightRed,
+                          color: KELightYellow,
                         ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                        "Save Edit",
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w700,
-                                            color: KERed),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
+                        child: StreamBuilder(
+                          stream: FirebaseFirestore.instance
+                              .collection('users')
+                              .doc(user.uid)
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if (!snapshot.hasData) {
+                              return Text("Loading, please wait");
+                            }
+                            Map<String, dynamic> data = snapshot.data.data();
+                            return Column(
+                              children: [
+                                Expanded(
+                                    child: buildTextField(
+                                        'Email (Not Editable)',
+                                        '${data['email']}',
+                                        false,
+                                        KERed,
+                                        emailController,
+                                        'Email')),
+                                Expanded(
+                                    child: buildTextField(
+                                        'Room (Editable)',
+                                        '${data['room']}',
+                                        true,
+                                        KEBlack,
+                                        roomController,
+                                        'Room')),
+                                Expanded(
+                                    child: buildTextField(
+                                        'First Name (Editable)',
+                                        '${data['first name']}',
+                                        true,
+                                        KEBlack,
+                                        firstNameController,
+                                        'First Name')),
+                                Expanded(
+                                    child: buildTextField(
+                                        'Last Name (Editable)',
+                                        '${data['last name']}',
+                                        true,
+                                        KEBlack,
+                                        lastNameController,
+                                        'Last Name')),
+                              ],
+                            );
+                          },
                         ),
                       ),
-                      onTap: () async {
-                        if (_formKey.currentState.validate()) {
-                          updateAccount();
-                        }
-                        Navigator.pop(context);
-                      }, //TODO
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'You can only edit your Profile Picture, Room Number, First Name and Last Name. Remember to press "Save Edit" to save any changes!',
-                      style: TextStyle(
-                          color: KERed,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13,
-                          fontStyle: FontStyle.italic),
-                      textAlign: TextAlign.center,
-                    )
-                  ],
+                      SizedBox(
+                        height: 10,
+                      ),
+                      InkWell(
+                        child: Container(
+                          padding:
+                              EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                          height: MediaQuery.of(context).size.height * 0.06,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: KELightRed,
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: Center(
+                                        child: Text(
+                                          "Save Edit",
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w700,
+                                              color: KERed),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        onTap: () async {
+                          if (_formKey.currentState.validate()) {
+                            updateAccount();
+                          }
+                          Navigator.pop(context);
+                        }, //TODO
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'You can only edit your Profile Picture, Room Number, First Name and Last Name. Remember to press "Save Edit" to save any changes!',
+                        style: TextStyle(
+                            color: KERed,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                            fontStyle: FontStyle.italic),
+                        textAlign: TextAlign.center,
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

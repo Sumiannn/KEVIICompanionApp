@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:keviiapp/SignInSignUp/email_login.dart';
 import 'package:keviiapp/colorScheme.dart';
 
@@ -66,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/image/logo.png', height: 400, fit: BoxFit.cover,),
+            Image.asset('assets/image/KEVIILogo.png', height: 400, fit: BoxFit.cover,),
             SizedBox(height: 10.0),
             CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation(KERed),

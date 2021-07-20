@@ -336,7 +336,7 @@ class _accountPageState extends State<accountPage> {
       ),
     );
   }
-    downloadURLExample() async {
+  downloadURLExample() async {
     String downloadURL = await firebase_storage.FirebaseStorage.instance
         .ref('images/profilePic/${user.uid}')
         .getDownloadURL();
