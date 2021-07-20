@@ -272,12 +272,7 @@ class _accountPageState extends State<accountPage> {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-
-          child: Text(
-            'Cancel',
-            style: TextStyle(color: Colors.black),
-          ),
-
+          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         ),
         FlatButton(
           onPressed: () {
@@ -287,15 +282,10 @@ class _accountPageState extends State<accountPage> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => EmailLogIn()),
-                  (Route<dynamic> route) => false);
+                      (Route<dynamic> route) => false);
             });
           },
-
-          child: Text(
-            'Logout',
-            style: TextStyle(color: Colors.black),
-          ),
-
+          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         )
       ],
     );
