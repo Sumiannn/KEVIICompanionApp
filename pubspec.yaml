@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   firebase_core: ^1.3.0
+  firebase_app_check:
   firebase_auth: ^1.4.1
   firebase_dynamic_links: ^2.0.6
   provider: ^5.0.0

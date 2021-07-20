@@ -52,7 +52,7 @@ class _EmailSignUpState extends State<EmailSignUp> {
                     width: MediaQuery.of(context).size.width,
                     child: Center(
                       child: Image.asset(
-                        'assets/image/KEVIILogo.png',
+                        'assets/image/logo.png',
                         fit: BoxFit.cover,
                       ),
                     ),

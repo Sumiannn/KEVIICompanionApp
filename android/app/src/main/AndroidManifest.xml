@@ -2,6 +2,7 @@
     package="com.example.keviiapp">
    <application
         android:label="keviiapp"
+        android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
