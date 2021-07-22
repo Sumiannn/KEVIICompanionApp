@@ -5,11 +5,11 @@
   </a>
 </p>
 
-An application targetted at helping King Edward VII residents be in the know about what is happening around the hall. It also serves as a platform for residents to check availability or book facilities in the hall. 
+An application targetted at helping King Edward VII residents be in the know about what is happening around the hall, such as the latest news in hall and what are the upcoming exciting block events for their respective blocks. It also serves as a platform for residents to check availability or book facilities in the hall.
 
 ## Motivation
 
-As residents of KEVII, we hope to have an integrated environment where we can access any hall information with a few swipes on our phones. We believe that there is potential to make KEVIIans' lives more comfortable and convenient through a residential application. This also has the potential to provide a lot more transparency in the hall.
+As residents of KEVII, we hope to have an integrated environment where we can access any hall information with a few swipes on our phones. We believe that there is potential to make KEVIIans' lives more comfortable and convenient through a residential application. This also has the potential to provide a lot more transparency in the hall. We hope that this application can positively impact KEVIIans' lives one way or another.
 
 ### User stories
 - As a KEVIIan, I can access the latest news page so that I know what is going on around me in the hall
