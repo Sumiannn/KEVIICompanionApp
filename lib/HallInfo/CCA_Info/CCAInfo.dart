@@ -116,46 +116,41 @@ class CCAInfo extends StatelessWidget {
               top: 230,
               left: 20,
               right: 20,
-              child: InkWell(
-                key: Key('Committee CCA Button'),
-                onTap: (){
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (builder) => CommitteeCCA())
-                  );
-                },
-                child:
-                    CcaCategory('assets/image/CommitteeCca.png', 'Committee'),
-                ),
+              child: Column(
+                children: [
+                  InkWell(
+                    key: Key('Committee CCA Button'),
+                    onTap: (){
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (builder) => CommitteeCCA())
+                      );
+                    },
+                    child:
+                        CcaCategory('assets/image/CommitteeCca.png', 'Committee'),
+                    ),
+                  SizedBox(height: 10),
+                  InkWell(
+                    key: Key('Cultural CCA Button'),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (builder) => CulturalCCA())
+                      );
+                    },
+                    child: CcaCategory('assets/image/CulturalCca1.png', 'Cultural'),
+                  ),
+                  SizedBox(height: 10),
+                  InkWell(
+                    key: Key('Sports CCA Button'),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (builder) => SportsCCA())
+                      );
+                    },
+                    child: CcaCategory('assets/image/SportCCA.png', 'Sports'),
+                  )
+                ],
               ),
-            Positioned(
-              top: 400,
-              left: 20,
-                right: 20,
-              child: InkWell(
-                key: Key('Cultural CCA Button'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (builder) => CulturalCCA())
-                  );
-                },
-                child: CcaCategory('assets/image/CulturalCca1.png', 'Cultural'),
               ),
-            ),
-            Positioned(
-              top: 570,
-              left: 20,
-              right: 20,
-              child: InkWell(
-                key: Key('Sports CCA Button'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (builder) => SportsCCA())
-                  );
-                },
-                child: CcaCategory('assets/image/SportCCA.png', 'Sports'),
-              ),
-            )
-
           ]
       ),
     );

@@ -21,6 +21,10 @@ class _accountPageState extends State<accountPage> {
   User user = FirebaseAuth.instance.currentUser;
   firebase_storage.FirebaseStorage storage = firebase_storage.FirebaseStorage.instance;
   String avatarURL;
+  TextEditingController emailController = TextEditingController(),
+      roomController = TextEditingController(),
+      firstNameController = TextEditingController(),
+      lastNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -76,60 +80,57 @@ class _accountPageState extends State<accountPage> {
             ),
           ),
           Positioned(
-              top: MediaQuery.of(context).size.width * 0.3,
-              left: MediaQuery.of(context).size.width * 0.3,
-              right: MediaQuery.of(context).size.width * 0.3,
-              child: Avatar(
-                    avatarURL: avatarURL,
-                  )
-              ),
-          Positioned(
-            top: MediaQuery.of(context).size.height * 0.38,
-            child: StreamBuilder(
-                stream: FirebaseFirestore.instance
-                    .collection('users')
-                    .doc(user.uid)
-                    .snapshots(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return Container(
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(
-                          'Name Loading...',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: KERed,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w900,
-                          ),
-                          textAlign: TextAlign.center,
-                        ));
-                  }
-                  Map<String, dynamic> data = snapshot.data.data();
-                  return Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      "${data['last name']} " + "${data['first name']}",
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: KERed,
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w900,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  );
-                }),
-          ),
-          Positioned(
-            top: 330,
-            left: 20,
-            right: 20,
+            bottom: MediaQuery.of(context).size.height * 0.045,
+            left: MediaQuery.of(context).size.width*0.05,
+            right: MediaQuery.of(context).size.width*0.05,
             child: SingleChildScrollView(
-              child: Column(
+              child: ListView(
+                shrinkWrap: true,
+                clipBehavior: Clip.none,
                 children: [
+                  Avatar(
+                    avatarURL: avatarURL,
+                  ),
+                  SizedBox(height: 20),
+                  StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(user.uid)
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: Text(
+                                'Name Loading...',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: KERed,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w900,
+                                ),
+                                textAlign: TextAlign.center,
+                              ));
+                        }
+                        Map<String, dynamic> data = snapshot.data.data();
+                        return Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(
+                            "${data['last name']} " + "${data['first name']}",
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              color: KERed,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w900,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        );
+                      }),
+                  SizedBox(height: 20),
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    padding:
+                    EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                     height: MediaQuery.of(context).size.height * 0.35,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
@@ -150,17 +151,36 @@ class _accountPageState extends State<accountPage> {
                           children: [
                             Expanded(
                                 child: buildTextField(
-                                    'Email', '${data['email']}', false)),
+                                    'Email',
+                                    '${data['email']}',
+                                    false,
+                                    KERed,
+                                    emailController,
+                                    'Email')),
                             Expanded(
                                 child: buildTextField(
-                                    'Room', '${data['room']}', false)),
+                                    'Room',
+                                    '${data['room']}',
+                                    true,
+                                    KEBlack,
+                                    roomController,
+                                    'Room')),
                             Expanded(
                                 child: buildTextField(
-                                    'First Name', '${data['first name']}', false)),
-
+                                    'First Name',
+                                    '${data['first name']}',
+                                    true,
+                                    KEBlack,
+                                    firstNameController,
+                                    'First Name')),
                             Expanded(
                                 child: buildTextField(
-                                    'Last Name', '${data['last name']}', false)),
+                                    'Last Name',
+                                    '${data['last name']}',
+                                    true,
+                                    KEBlack,
+                                    lastNameController,
+                                    'Last Name')),
                           ],
                         );
                       },
@@ -172,7 +192,7 @@ class _accountPageState extends State<accountPage> {
                   InkWell(
                     child: Container(
                       padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       height: MediaQuery.of(context).size.height * 0.06,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
@@ -216,7 +236,7 @@ class _accountPageState extends State<accountPage> {
                   InkWell(
                     child: Container(
                       padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       height: MediaQuery.of(context).size.height * 0.06,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
@@ -257,7 +277,7 @@ class _accountPageState extends State<accountPage> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -297,23 +317,15 @@ class _accountPageState extends State<accountPage> {
         });
   }
 
-  Widget buildTextField(
-      String labelText, String placeHolder, bool isPasswordTextField) {
+  Widget buildTextField(String labelText, String placeHolder, bool isEditable,
+      Color textColor, TextEditingController controller, String fieldName) {
     return Padding(
       padding: EdgeInsets.only(bottom: 14.5),
-      child: TextField(
-        enabled: false,
-        obscureText: isPasswordTextField ? isObscurePassword : false,
+      child: TextFormField(
+        controller: controller,
+        enabled: isEditable ? true : false,
         decoration: InputDecoration(
           border: InputBorder.none,
-          suffixIcon: isPasswordTextField
-              ? IconButton(
-                  icon: Icon(
-                    Icons.remove_red_eye_rounded,
-                    color: KERed,
-                  ),
-                  onPressed: () {})
-              : null,
           contentPadding: EdgeInsets.only(bottom: 5),
           labelText: labelText,
           labelStyle: TextStyle(
@@ -323,6 +335,13 @@ class _accountPageState extends State<accountPage> {
           hintStyle: TextStyle(
               fontSize: 18, fontWeight: FontWeight.w500, color: KERed),
         ),
+        validator: (value) {
+          if (value.isEmpty) {
+            setState(() {
+              controller..text = placeHolder;
+            });
+          }
+        },
       ),
     );
   }

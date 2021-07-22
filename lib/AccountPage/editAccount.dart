@@ -268,7 +268,7 @@ class _editAccountState extends State<editAccount> {
                 ),
               ),
               Positioned(
-                top: MediaQuery.of(context).size.width * 0.62,
+                bottom: MediaQuery.of(context).size.height * 0.62,
                 left: MediaQuery.of(context).size.width * 0.6,
                 child: InkWell(
                   onTap: () async {
