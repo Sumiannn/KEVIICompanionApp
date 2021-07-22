@@ -152,7 +152,7 @@ class HallInfoOptionScreen extends StatelessWidget {
                         },
                         child: InfoContainer('assets/image/CheckBookingsImage.jpg', 'CCA Information')
                       ),
-                      SizedBox(height: 10),
+                      // SizedBox(height: 10),
                       // InkWell(
                       //   onTap: () {
                       //     Navigator.push(

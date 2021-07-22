@@ -158,7 +158,7 @@ class FacilitiesBookingPage extends StatelessWidget {
                         height: 10,
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.45,
+                        height: MediaQuery.of(context).size.height * 0.50,
                         child: TabBarView(
                           children: [
                             Padding(
