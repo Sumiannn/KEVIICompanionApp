@@ -16,9 +16,9 @@ As residents of KEVII, we hope to have an integrated environment where we can ac
 - As a KEVIIan, I can check what facilities are available for booking so that I can aboid potential conflict
 - As a KEVIIan, I can read about the hall's history and current information so that I resonate better with the community
 - As a KEVIIan, I can check what student/ CCA led initiatives are ongoing so that I can support my peers
-- As a KEVIIan, I can post questions to the KEVII community via the Forum so that I can get help/ support
-- As an Admin/ JCRC, I can broadcast the latest happenings of the hall so that residents are up to date
-- As an Admin/ JCRC, I can moderate the bookings of facilities so that we comply with any restrictions due to the current pandemic
+- As a KEVIIan, I can post questions to the KEVII community via the Forum so that I can get help/support
+- As an Admin/JCRC, I can broadcast the latest happenings of the hall so that residents are up to date
+- As an Admin/JCRC, I can moderate the bookings of facilities so that we comply with any restrictions due to the current pandemic
 
 #### Poster and Video for KEVII Companion App
 [Poster](https://drive.google.com/file/d/19mow_U1EuReTTWyCUIcRKHue_S2a3xzY/view?usp=sharing)
@@ -98,7 +98,7 @@ A few of the things you can do with KEVII Companion App:
 - Improved UI 
 - Finalised Login and Sign-Up page
 - Finalised Hall Info Page with Hall History and CCA Info elements
-- Completed bookings of facilities function along with checking of current bookings
+- Completed bookings of facilities function along with checking of current bookings and edit/delete bookings feature
 - Started software testing
 
 ### Milestone 1
@@ -120,12 +120,13 @@ Here are our deliverables for the second Milestone:
 
 ## Development Plan
 - 28/06 - 14/07 : 
-    - Touch up on bus in existing functions
+    - Touch up on built-in existing functions
     - Implement Student Intiatives Page
     - Implement a Forum Page
+    - Complete the Edit User Profile feature
     - Simultaneously work on software testing
 - 14/07 - 25/07 :
-    - Focus on software testing
+    - Focus on software testing eg. unit, widget, integration and manual testing
     - Try implementing the application
     - Work on relevant documentation
 
