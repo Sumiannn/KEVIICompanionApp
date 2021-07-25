@@ -152,7 +152,7 @@ class HallInfoOptionScreen extends StatelessWidget {
                         },
                         child: InfoContainer('assets/image/CheckBookingsImage.jpg', 'CCA Information')
                       ),
-                      SizedBox(height: 10),
+                      // SizedBox(height: 10),
                       // InkWell(
                       //   onTap: () {
                       //     Navigator.push(
@@ -194,7 +194,7 @@ class HallInfoOptionScreen extends StatelessWidget {
   }
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
-      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: KERed),),
+      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
       actions: <Widget>[
         FlatButton(
           onPressed: () {

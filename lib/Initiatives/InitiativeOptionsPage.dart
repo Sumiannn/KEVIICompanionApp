@@ -107,134 +107,136 @@ class _InitiativeOptionsPageState extends State<InitiativeOptionsPage> {
               top: 190,
               left: 20,
               right: 20,
-              child: InkWell(
-                key: Key('Fund Raiser Button'),
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  height: MediaQuery.of(context).size.height * 0.35,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: KELightRed,
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.2,
-                        child: Image.asset(
-                          'assets/image/FundImage.png',
-                          fit: BoxFit.fill,
-                        ),
+              child: Column(
+                children: [
+                  InkWell(
+                    key: Key('Fund Raiser Button'),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      height: MediaQuery.of(context).size.height * 0.35,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: KELightRed,
                       ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Fund Raisers",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.w700,
-                                  color: KERed),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: MediaQuery.of(context).size.height * 0.2,
+                            child: Image.asset(
+                              'assets/image/FundImage.png',
+                              fit: BoxFit.fill,
                             ),
-                            Text(
-                              "Click to find out the ongoing fund raisers by our very own CCAs",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                  color: KERed),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          FundRaisers(),
-                    ),
-                  );                },
-              )),
-          Positioned(
-              top: 470,
-              left: 20,
-              right: 20,
-              child: InkWell(
-                key: Key('Block Event Button'),
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  height: MediaQuery.of(context).size.height * 0.35,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: KELightRed,
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.2,
-                        child: Image.asset(
-                          'assets/image/BlockEventImage.png',
-                          fit: BoxFit.fill,
-                        ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Fund Raisers",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w700,
+                                      color: KERed),
+                                ),
+                                Text(
+                                  "Click to find out the ongoing fund raisers by our very own CCAs",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w500,
+                                      color: KERed),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
                       ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Block Events",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.w700,
-                                  color: KERed),
-                            ),
-                            Text(
-                              "Click to find out the upcoming Block Events from your own blocks!",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                  color: KERed),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          BlockEvents(),
                     ),
-                  );                },
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              FundRaisers(),
+                        ),
+                      );                },
+                  ),
+                  SizedBox(height: 15),
+                  InkWell(
+                    key: Key('Block Event Button'),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      height: MediaQuery.of(context).size.height * 0.35,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: KELightRed,
+                      ),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: MediaQuery.of(context).size.height * 0.2,
+                            child: Image.asset(
+                              'assets/image/BlockEventImage.png',
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Block Events",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w700,
+                                      color: KERed),
+                                ),
+                                Text(
+                                  "Click to find out the upcoming Block Events from your own blocks!",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w500,
+                                      color: KERed),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              BlockEvents(),
+                        ),
+                      );                },
+                  )
+                ],
               )),
         ],
       ),
     );
   }
+
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
-      title: Text("Are you sure you want to Log Out?"),
+      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
       actions: <Widget>[
         FlatButton(
           onPressed: () {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text('Cancel', style: TextStyle(color: Colors.black),),
+          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         ),
         FlatButton(
           onPressed: () {
@@ -247,7 +249,7 @@ class _InitiativeOptionsPageState extends State<InitiativeOptionsPage> {
                       (Route<dynamic> route) => false);
             });
           },
-          child: Text('Logout', style: TextStyle(color: Colors.black),),
+          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         )
       ],
     );
@@ -258,6 +260,7 @@ class _InitiativeOptionsPageState extends State<InitiativeOptionsPage> {
           return alertDialog;
         });
   }
+
 }
 class pathPainter extends CustomPainter {
   @override

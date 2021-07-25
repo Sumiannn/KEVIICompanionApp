@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:keviiapp/AccountPage/editAccount.dart';
 import 'package:keviiapp/Facilities/ManageBookingsPage.dart';
 import 'package:keviiapp/colorScheme.dart';
-
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import '../SignInSignUp/email_login.dart';
 import '../HomePage/home.dart';
+import 'avatar.dart';
 
 class accountPage extends StatefulWidget {
   accountPage();
@@ -17,11 +19,16 @@ class accountPage extends StatefulWidget {
 class _accountPageState extends State<accountPage> {
   bool isObscurePassword = true;
   User user = FirebaseAuth.instance.currentUser;
+  firebase_storage.FirebaseStorage storage = firebase_storage.FirebaseStorage.instance;
+  String avatarURL;
+  TextEditingController emailController = TextEditingController(),
+      roomController = TextEditingController(),
+      firstNameController = TextEditingController(),
+      lastNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    downloadURLExample();
     return Scaffold(
       backgroundColor: bgColor,
       body: Stack(
@@ -73,68 +80,57 @@ class _accountPageState extends State<accountPage> {
             ),
           ),
           Positioned(
-              top: MediaQuery.of(context).size.width * 0.3,
-              left: MediaQuery.of(context).size.width * 0.3,
-              right: MediaQuery.of(context).size.width * 0.3,
-              child: StreamBuilder(
-                stream: FirebaseFirestore.instance
-                    .collection('users')
-                    .doc(user.uid)
-                    .snapshots(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return Container(
-                      padding: EdgeInsets.all(7),
-                      decoration:
-                          BoxDecoration(color: bgColor, shape: BoxShape.circle),
-                      child: CircleAvatar(
-                        radius: 65,
-                        backgroundColor: bgColor,
-                        backgroundImage: NetworkImage(
-                            'https://nus.edu.sg/osa/images/default-source/kevii-hall/open-house/cute-myke.png?sfvrsn=bb17fcf7_2'),
-                      ),
-                    );
-                  }
-                  Map<String, dynamic> data = snapshot.data.data();
-                  return Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(7),
-                        decoration: BoxDecoration(
-                            color: bgColor, shape: BoxShape.circle),
-                        child: CircleAvatar(
-                          radius: 65,
-                          backgroundColor: bgColor,
-                          backgroundImage:
-                              Image.asset('assets/image/ProfilePics/fox.png')
-                                  .image,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        "${data['nusid']}",
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          color: KERed,
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w900,
-                        ),
-                      )
-                    ],
-                  );
-                },
-              )),
-          Positioned(
-            top: 330,
-            left: 20,
-            right: 20,
+            bottom: MediaQuery.of(context).size.height * 0.045,
+            left: MediaQuery.of(context).size.width*0.05,
+            right: MediaQuery.of(context).size.width*0.05,
             child: SingleChildScrollView(
-              child: Column(
+              child: ListView(
+                shrinkWrap: true,
+                clipBehavior: Clip.none,
                 children: [
+                  Avatar(
+                    avatarURL: avatarURL,
+                  ),
+                  SizedBox(height: 20),
+                  StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(user.uid)
+                          .snapshots(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: Text(
+                                'Name Loading...',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: KERed,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w900,
+                                ),
+                                textAlign: TextAlign.center,
+                              ));
+                        }
+                        Map<String, dynamic> data = snapshot.data.data();
+                        return Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(
+                            "${data['last name']} " + "${data['first name']}",
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              color: KERed,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w900,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        );
+                      }),
+                  SizedBox(height: 20),
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    padding:
+                    EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                     height: MediaQuery.of(context).size.height * 0.35,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
@@ -155,16 +151,36 @@ class _accountPageState extends State<accountPage> {
                           children: [
                             Expanded(
                                 child: buildTextField(
-                                    'Email', '${data['email']}', false)),
-                            Expanded(
-                                child:
-                                    buildTextField('Preferred Name', 'The Fox', false)),
+                                    'Email',
+                                    '${data['email']}',
+                                    false,
+                                    KERed,
+                                    emailController,
+                                    'Email')),
                             Expanded(
                                 child: buildTextField(
-                                    'Room', '${data['room']}', false)),
+                                    'Room',
+                                    '${data['room']}',
+                                    true,
+                                    KEBlack,
+                                    roomController,
+                                    'Room')),
                             Expanded(
                                 child: buildTextField(
-                                    'Role', '${data['Role']}', false)),
+                                    'First Name',
+                                    '${data['first name']}',
+                                    true,
+                                    KEBlack,
+                                    firstNameController,
+                                    'First Name')),
+                            Expanded(
+                                child: buildTextField(
+                                    'Last Name',
+                                    '${data['last name']}',
+                                    true,
+                                    KEBlack,
+                                    lastNameController,
+                                    'Last Name')),
                           ],
                         );
                       },
@@ -176,7 +192,7 @@ class _accountPageState extends State<accountPage> {
                   InkWell(
                     child: Container(
                       padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       height: MediaQuery.of(context).size.height * 0.06,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
@@ -207,7 +223,12 @@ class _accountPageState extends State<accountPage> {
                         ],
                       ),
                     ),
-                    onTap: () {}, //TODO
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => editAccount()));
+                    }, //TODO
                   ),
                   SizedBox(
                     height: 10,
@@ -215,7 +236,7 @@ class _accountPageState extends State<accountPage> {
                   InkWell(
                     child: Container(
                       padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       height: MediaQuery.of(context).size.height * 0.06,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
@@ -256,7 +277,7 @@ class _accountPageState extends State<accountPage> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -264,14 +285,14 @@ class _accountPageState extends State<accountPage> {
 
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
-      title: Text("Are you sure you want to Log Out?"),
+      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
       actions: <Widget>[
         FlatButton(
           onPressed: () {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text('Cancel', style: TextStyle(color: Colors.black),),
+          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         ),
         FlatButton(
           onPressed: () {
@@ -284,7 +305,7 @@ class _accountPageState extends State<accountPage> {
                       (Route<dynamic> route) => false);
             });
           },
-          child: Text('Logout', style: TextStyle(color: Colors.black),),
+          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         )
       ],
     );
@@ -296,23 +317,15 @@ class _accountPageState extends State<accountPage> {
         });
   }
 
-  Widget buildTextField(
-      String labelText, String placeHolder, bool isPasswordTextField) {
+  Widget buildTextField(String labelText, String placeHolder, bool isEditable,
+      Color textColor, TextEditingController controller, String fieldName) {
     return Padding(
       padding: EdgeInsets.only(bottom: 14.5),
-      child: TextField(
-        enabled: false,
-        obscureText: isPasswordTextField ? isObscurePassword : false,
+      child: TextFormField(
+        controller: controller,
+        enabled: isEditable ? true : false,
         decoration: InputDecoration(
           border: InputBorder.none,
-          suffixIcon: isPasswordTextField
-              ? IconButton(
-                  icon: Icon(
-                    Icons.remove_red_eye_rounded,
-                    color: KERed,
-                  ),
-                  onPressed: () {})
-              : null,
           contentPadding: EdgeInsets.only(bottom: 5),
           labelText: labelText,
           labelStyle: TextStyle(
@@ -322,8 +335,23 @@ class _accountPageState extends State<accountPage> {
           hintStyle: TextStyle(
               fontSize: 18, fontWeight: FontWeight.w500, color: KERed),
         ),
+        validator: (value) {
+          if (value.isEmpty) {
+            setState(() {
+              controller..text = placeHolder;
+            });
+          }
+        },
       ),
     );
+  }
+  downloadURLExample() async {
+    String downloadURL = await firebase_storage.FirebaseStorage.instance
+        .ref('images/profilePic/${user.uid}')
+        .getDownloadURL();
+    setState(() {
+      avatarURL = downloadURL;
+    });
   }
 }
 

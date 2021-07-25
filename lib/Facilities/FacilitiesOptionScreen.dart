@@ -98,158 +98,156 @@ class FacilitiesOptionsScreen extends StatelessWidget {
             top: 230,
             left: 20,
             right: 20,
-            child: InkWell(
-              key: Key('Manage my bookings option'),
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                height: MediaQuery.of(context).size.height * 0.18,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: KELightRed,
-                ),
-                child: Row(
-                  children: [
-                    Image.asset(
-                      'assets/image/ManageBookingsImage.png',
-                      fit: BoxFit.fill,
+            child: Column(
+              children: [
+                InkWell(
+                  key: Key('Manage my bookings option'),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    height: MediaQuery.of(context).size.height * 0.18,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: KELightRed,
                     ),
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Manage My Bookings",
-                            style: TextStyle(
-                                fontSize: 19,
-                                fontWeight: FontWeight.w700,
-                                color: KERed),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/image/ManageBookingsImage.png',
+                          fit: BoxFit.fill,
+                        ),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Manage My Bookings",
+                                style: TextStyle(
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w700,
+                                    color: KERed),
+                              ),
+                              Text(
+                                "Change or update my bookings' timings, venue, or other details",
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
+                                    color: KERed),
+                              )
+                            ],
                           ),
-                          Text(
-                            "Change or update my bookings' timings, venue, or other details",
-                            style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                color: KERed),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
+                        )
+                      ],
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            settings: RouteSettings(name: "Manage Bookings Page"),
+                            builder: (context) => ManageBookingsPage()));
+                  },
                 ),
-              ),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        settings: RouteSettings(name: "Manage Bookings Page"),
-                        builder: (context) => ManageBookingsPage()));
-              },
+                SizedBox(height: 20),
+                InkWell(
+                  key: Key('Check current bookings option'),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    height: MediaQuery.of(context).size.height * 0.18,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: KELightRed,
+                    ),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/image/CurrentBookingsImage.png',
+                          fit: BoxFit.fill,
+                        ),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Check current Bookings",
+                                style: TextStyle(
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w700,
+                                    color: KERed),
+                              ),
+                              Text(
+                                "Obtain details about current bookings",
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
+                                    color: KERed),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FacilitiesBookingPage()));
+                  }, //TODO
+                ),
+                SizedBox(height: 20),
+                InkWell(
+                  key: Key('Add a booking option'),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    height: MediaQuery.of(context).size.height * 0.18,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: KELightRed,
+                    ),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/image/AddBookingImage.png',
+                          fit: BoxFit.fill,
+                        ),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Add a Booking",
+                                style: TextStyle(
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w700,
+                                    color: KERed),
+                              ),
+                              Text(
+                                "Make bookings for facilities",
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w500,
+                                    color: KERed),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AddBooking()));
+                  }, //TODO
+                )
+              ],
             ),
           ),
-          Positioned(
-              top: 385,
-              left: 20,
-              right: 20,
-              child: InkWell(
-                key: Key('Check current bookings option'),
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  height: MediaQuery.of(context).size.height * 0.18,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: KELightRed,
-                  ),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        'assets/image/CurrentBookingsImage.png',
-                        fit: BoxFit.fill,
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Check current Bookings",
-                              style: TextStyle(
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.w700,
-                                  color: KERed),
-                            ),
-                            Text(
-                              "Obtain details about current bookings",
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                  color: KERed),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => FacilitiesBookingPage()));
-                }, //TODO
-              )),
-          Positioned(
-              top: 540,
-              left: 20,
-              right: 20,
-              child: InkWell(
-                key: Key('Add a booking option'),
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  height: MediaQuery.of(context).size.height * 0.18,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: KELightRed,
-                  ),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        'assets/image/AddBookingImage.png',
-                        fit: BoxFit.fill,
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Add a Booking",
-                              style: TextStyle(
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.w700,
-                                  color: KERed),
-                            ),
-                            Text(
-                              "Make bookings for facilities",
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                  color: KERed),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AddBooking()));
-                }, //TODO
-              ))
         ],
       ),
     );
@@ -257,14 +255,14 @@ class FacilitiesOptionsScreen extends StatelessWidget {
 
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
-      title: Text("Are you sure you want to Log Out?"),
+      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
       actions: <Widget>[
         FlatButton(
           onPressed: () {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text('Cancel', style: TextStyle(color: Colors.black),),
+          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         ),
         FlatButton(
           onPressed: () {
@@ -277,7 +275,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
                       (Route<dynamic> route) => false);
             });
           },
-          child: Text('Logout', style: TextStyle(color: Colors.black),),
+          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         )
       ],
     );
@@ -288,6 +286,7 @@ class FacilitiesOptionsScreen extends StatelessWidget {
           return alertDialog;
         });
   }
+
 }
 
 class pathPainter extends CustomPainter {

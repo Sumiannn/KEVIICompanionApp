@@ -93,17 +93,14 @@ class _CommitteeCCAState extends State<CommitteeCCA> {
 
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
-      title: Text("Are you sure you want to Log Out?"),
+      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
       actions: <Widget>[
         FlatButton(
           onPressed: () {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text(
-            'Cancel',
-            style: TextStyle(color: Colors.black),
-          ),
+          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         ),
         FlatButton(
           onPressed: () {
@@ -113,13 +110,10 @@ class _CommitteeCCAState extends State<CommitteeCCA> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => EmailLogIn()),
-                  (Route<dynamic> route) => false);
+                      (Route<dynamic> route) => false);
             });
           },
-          child: Text(
-            'Logout',
-            style: TextStyle(color: Colors.black),
-          ),
+          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         )
       ],
     );
@@ -355,6 +349,60 @@ class TabWidget extends StatelessWidget {
                                               ),
                                               textAlign: TextAlign.justify,
                                             ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Container(
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                    margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.05),
+                                                    alignment: Alignment.centerLeft,
+                                                    width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                        0.5,
+                                                    child: FittedBox(
+                                                        fit: BoxFit.scaleDown,
+                                                        child: Text(
+                                                          'CCA Heads\' Tele Handles',
+                                                          style: TextStyle(
+                                                              fontSize: 30,
+                                                              fontWeight:
+                                                              FontWeight.w600,
+                                                              color: KERed),
+                                                          textAlign: TextAlign.left,
+                                                        ))),
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                      0.38,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                    children: [
+                                                      Text(
+                                                        doc['Female Capt'],
+                                                        textAlign: TextAlign.right,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                            FontWeight.bold),
+                                                      ),
+                                                      Text(doc['Male Capt'],
+                                                          style: TextStyle(
+                                                              fontWeight: FontWeight.bold))
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10.0,
                                           )
                                         ],
                                       ),

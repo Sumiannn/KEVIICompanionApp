@@ -81,6 +81,7 @@ class _HomeState extends State<Home> {
             top: 75,
             left: 25,
             child: Column(
+              key: Key('Welcome Message'),
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 StreamBuilder(
@@ -102,7 +103,7 @@ class _HomeState extends State<Home> {
                     }
                     Map<String, dynamic> data = snapshot.data.data();
                     return Text(
-                      "Welcome ${data['nusid']}",
+                      "Welcome ${data['first name']}!",
                       style: TextStyle(
                         fontSize: 30.0,
                         color: KERed,
@@ -152,7 +153,7 @@ class _HomeState extends State<Home> {
                     ),
                     InkWell(
                       key: Key('Student Initiatives Button'),
-                      child: categoryContainer("StudentInitiatives.png", "Initiatives"),
+                      child: categoryContainer("Initiatives.png", "Initiatives"),
                       onTap: () {
                         Navigator.push(
                             context,
@@ -230,14 +231,14 @@ class _HomeState extends State<Home> {
 
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
-      title: Text("Are you sure you want to Log Out?"),
+      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
       actions: <Widget>[
         FlatButton(
           onPressed: () {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text('Cancel', style: TextStyle(color: Colors.black),),
+          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         ),
         FlatButton(
           onPressed: () {
@@ -250,7 +251,7 @@ class _HomeState extends State<Home> {
                       (Route<dynamic> route) => false);
             });
           },
-          child: Text('Logout', style: TextStyle(color: Colors.black),),
+          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         )
       ],
     );

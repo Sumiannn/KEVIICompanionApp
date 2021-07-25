@@ -8,6 +8,7 @@ import 'package:keviiapp/Auth.dart';
 
 class EmailLogIn extends StatefulWidget {
   final FirebaseAuth auth;
+
   const EmailLogIn({
     Key key,
     @required this.auth,
@@ -31,8 +32,9 @@ class _EmailLogInState extends State<EmailLogIn> {
         backgroundColor: bgColor,
         body: Form(
             key: _formKey,
-            child: SingleChildScrollView(
-                child: Stack(alignment: Alignment.center, children: <Widget>[
+                child: Stack(
+                    alignment: Alignment.center,
+                    children: <Widget>[
                   Container(
                     height: MediaQuery.of(context).size.height,
                     width: MediaQuery.of(context).size.width,
@@ -41,13 +43,14 @@ class _EmailLogInState extends State<EmailLogIn> {
                     ),
                   ),
                   Positioned(
-                    top:0,
+                    bottom: MediaQuery.of(context).size.height*0.6,
                     child: Container(
                       height: 307,
                       width: MediaQuery.of(context).size.width,
                       child: Center(
                         child: Image.asset(
-                          'assets/image/KEVIILogo.png', fit: BoxFit.cover,
+                          'assets/image/KEVIILogo.png',
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -59,14 +62,14 @@ class _EmailLogInState extends State<EmailLogIn> {
                       margin: EdgeInsets.only(top: 20),
                       child: Center(
                           child: Text(
-                            "Sign In",
-                            style: TextStyle(
-                              color: KERed,
-                              fontFamily: 'Montserrat',
-                              fontSize: 35.0,
-                              fontWeight: FontWeight.w900,
-                            ),
-                          )),
+                        "Sign In",
+                        style: TextStyle(
+                          color: KERed,
+                          fontFamily: 'Montserrat',
+                          fontSize: 35.0,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      )),
                     ),
                   ),
                   Positioned(
@@ -85,7 +88,7 @@ class _EmailLogInState extends State<EmailLogIn> {
                         ),
                         hintText: "Enter NUS Email",
                         hintStyle:
-                        TextStyle(color: KERed, fontFamily: 'Montserrat'),
+                            TextStyle(color: KERed, fontFamily: 'Montserrat'),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: BorderSide.none,
@@ -119,7 +122,7 @@ class _EmailLogInState extends State<EmailLogIn> {
                         ),
                         hintText: "Enter Password",
                         hintStyle:
-                        TextStyle(color: KERed, fontFamily: 'Montserrat'),
+                            TextStyle(color: KERed, fontFamily: 'Montserrat'),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide: BorderSide.none,
@@ -141,70 +144,95 @@ class _EmailLogInState extends State<EmailLogIn> {
                     child: isLoading
                         ? CircularProgressIndicator()
                         : ElevatedButton(
-                      style: ButtonStyle(
-                          shape: MaterialStateProperty.all<
-                              RoundedRectangleBorder>(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            side: BorderSide.none,
-                          )),
-                          backgroundColor:
-                          MaterialStateProperty.all<Color>(KERed)),
-                      onPressed: () async {
-                        if (_formKey.currentState.validate()) {
-                          setState(() {
-                            isLoading = true;
-                          });
-                          String userResult = await Auth(auth: FirebaseAuth.instance).signIn(
-                            email: emailController.text,
-                            password: passwordController.text,
-                          );
-                          if (userResult =='Success') {
-                            emailController.clear();
-                            passwordController.clear();
-                            setState(() {
-                              isLoading = false;
-                            });
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(builder: (context) => Home(uid: auth.currentUser.uid)));
-                          } else {
-                            setState(() {
-                              isLoading = false;
-                            });
-                            print(userResult);
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    backgroundColor: KELightYellow,
-                                    title: Text("Error", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: KERed),),
-                                    content: Text(userResult, style: TextStyle(fontSize: 18, color: KERed), textAlign: TextAlign.left,),
-                                    actions: [
-                                      ElevatedButton(
-                                        style: ButtonStyle(backgroundColor:  MaterialStateProperty.all<Color>(
-                                            KERed)),
-                                        child: Text("Retry", style: TextStyle(fontSize: 18, color: KELightYellow, fontWeight: FontWeight.bold), textAlign: TextAlign.left),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      )
-                                    ],
-                                  );
+                            style: ButtonStyle(
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                  side: BorderSide.none,
+                                )),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(KERed)),
+                            onPressed: () async {
+                              if (_formKey.currentState.validate()) {
+                                setState(() {
+                                  isLoading = true;
                                 });
-                          }
-                        }
-                      },
-                      child: Text(
-                        'Log In',
-                        style: TextStyle(
-                            color: KELightYellow, fontFamily: 'Montserrat'),
-                      ),
-                    ),
+                                String userResult =
+                                    await Auth(auth: FirebaseAuth.instance)
+                                        .signIn(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                );
+                                if (userResult == 'Success') {
+                                  emailController.clear();
+                                  passwordController.clear();
+                                  setState(() {
+                                    isLoading = false;
+                                  });
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              Home(uid: auth.currentUser.uid)));
+                                } else {
+                                  setState(() {
+                                    isLoading = false;
+                                  });
+                                  print(userResult);
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          backgroundColor: KELightYellow,
+                                          title: Text(
+                                            "Error",
+                                            style: TextStyle(
+                                                fontSize: 30,
+                                                fontWeight: FontWeight.bold,
+                                                color: KERed),
+                                          ),
+                                          content: Text(
+                                            userResult,
+                                            style: TextStyle(
+                                                fontSize: 18, color: KERed),
+                                            textAlign: TextAlign.left,
+                                          ),
+                                          actions: [
+                                            ElevatedButton(
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all<
+                                                          Color>(KERed)),
+                                              child: Text("Retry",
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      color: KELightYellow,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                  textAlign: TextAlign.left),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                            )
+                                          ],
+                                        );
+                                      });
+                                }
+                              }
+                            },
+                            child: Text(
+                              'Log In',
+                              style: TextStyle(
+                                  color: KELightYellow,
+                                  fontFamily: 'Montserrat'),
+                            ),
+                          ),
                   ),
                   Positioned(
                     bottom: MediaQuery.of(context).size.height * 0.15,
                     child: GestureDetector(
-                      key: Key('Sign Up Link'),
+                        key: Key('Sign Up Link'),
                         child: Text("New KEViian? Sign Up Here",
                             style: TextStyle(
                                 fontSize: 12.0,
@@ -215,17 +243,18 @@ class _EmailLogInState extends State<EmailLogIn> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => EmailSignUp()),
+                            MaterialPageRoute(
+                                builder: (context) => EmailSignUp()),
                           );
                         }),
                   ),
-                ]))));
+                ])));
   }
 
   void logInToFb() {
     FirebaseAuth.instance
         .signInWithEmailAndPassword(
-        email: emailController.text, password: passwordController.text)
+            email: emailController.text, password: passwordController.text)
         .then((result) {
       isLoading = false;
       Navigator.pushReplacement(
@@ -242,13 +271,26 @@ class _EmailLogInState extends State<EmailLogIn> {
           builder: (BuildContext context) {
             return AlertDialog(
               backgroundColor: KELightYellow,
-              title: Text("Error", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: KERed),),
-              content: Text(err.message, style: TextStyle(fontSize: 18, color: KERed), textAlign: TextAlign.left,),
+              title: Text(
+                "Error",
+                style: TextStyle(
+                    fontSize: 30, fontWeight: FontWeight.bold, color: KERed),
+              ),
+              content: Text(
+                err.message,
+                style: TextStyle(fontSize: 18, color: KERed),
+                textAlign: TextAlign.left,
+              ),
               actions: [
                 ElevatedButton(
-                  style: ButtonStyle(backgroundColor:  MaterialStateProperty.all<Color>(
-                      KERed)),
-                  child: Text("Retry", style: TextStyle(fontSize: 18, color: KELightYellow, fontWeight: FontWeight.bold), textAlign: TextAlign.left),
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(KERed)),
+                  child: Text("Retry",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: KELightYellow,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.left),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },

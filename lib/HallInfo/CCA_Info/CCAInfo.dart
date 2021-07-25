@@ -116,46 +116,41 @@ class CCAInfo extends StatelessWidget {
               top: 230,
               left: 20,
               right: 20,
-              child: InkWell(
-                key: Key('Committee CCA Button'),
-                onTap: (){
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (builder) => CommitteeCCA())
-                  );
-                },
-                child:
-                    CcaCategory('assets/image/CommitteeCca.png', 'Committee'),
-                ),
+              child: Column(
+                children: [
+                  InkWell(
+                    key: Key('Committee CCA Button'),
+                    onTap: (){
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (builder) => CommitteeCCA())
+                      );
+                    },
+                    child:
+                        CcaCategory('assets/image/CommitteeCca.png', 'Committee'),
+                    ),
+                  SizedBox(height: 10),
+                  InkWell(
+                    key: Key('Cultural CCA Button'),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (builder) => CulturalCCA())
+                      );
+                    },
+                    child: CcaCategory('assets/image/CulturalCca1.png', 'Cultural'),
+                  ),
+                  SizedBox(height: 10),
+                  InkWell(
+                    key: Key('Sports CCA Button'),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (builder) => SportsCCA())
+                      );
+                    },
+                    child: CcaCategory('assets/image/SportCCA.png', 'Sports'),
+                  )
+                ],
               ),
-            Positioned(
-              top: 400,
-              left: 20,
-                right: 20,
-              child: InkWell(
-                key: Key('Cultural CCA Button'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (builder) => CulturalCCA())
-                  );
-                },
-                child: CcaCategory('assets/image/CulturalCca1.png', 'Cultural'),
               ),
-            ),
-            Positioned(
-              top: 570,
-              left: 20,
-              right: 20,
-              child: InkWell(
-                key: Key('Sports CCA Button'),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (builder) => SportsCCA())
-                  );
-                },
-                child: CcaCategory('assets/image/SportCCA.png', 'Sports'),
-              ),
-            )
-
           ]
       ),
     );
@@ -163,14 +158,14 @@ class CCAInfo extends StatelessWidget {
 
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
-      title: Text("Are you sure you want to Log Out?"),
+      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
       actions: <Widget>[
         FlatButton(
           onPressed: () {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text('Cancel', style: TextStyle(color: Colors.black),),
+          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         ),
         FlatButton(
           onPressed: () {
@@ -183,7 +178,7 @@ class CCAInfo extends StatelessWidget {
                       (Route<dynamic> route) => false);
             });
           },
-          child: Text('Logout', style: TextStyle(color: Colors.black),),
+          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         )
       ],
     );
