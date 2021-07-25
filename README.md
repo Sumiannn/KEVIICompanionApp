@@ -20,10 +20,12 @@ As residents of KEVII, we hope to have an integrated environment where we can ac
 - As an Admin/JCRC, I can broadcast the latest happenings of the hall so that residents are up to date
 - As an Admin/JCRC, I can moderate the bookings of facilities so that we comply with any restrictions due to the current pandemic
 
-#### Poster and Video for KEVII Companion App
+## Poster and Video for KEVII Companion App
 [Poster](https://drive.google.com/file/d/19mow_U1EuReTTWyCUIcRKHue_S2a3xzY/view?usp=sharing)
 
 [Video](https://drive.google.com/file/d/1p7UtrSRDuGdwv-FupOJKhAKPTgDP5PaJ/view?usp=sharing)
+## Documentation for KEVII Companion App
+[Documentation](https://docs.google.com/document/d/1kkrl71dJ7dAU92z4IodPDnEm8al2KX-kvE5p2FLnla4/edit?usp=sharing)
 
 ## Tech/ Framework used
 - [Flutter](https://flutter.dev/?gclid=CjwKCAjwzMeFBhBwEiwAzwS8zOlVhQ4XY-OWtlHr5eAtJrca4f0cAZLwOB08biQ04MgjChUnlUzL7RoCxaQQAvD_BwE&gclsrc=aw.ds)
@@ -116,33 +118,39 @@ Here are our deliverables for the second Milestone:
  - [Widget Testing](https://drive.google.com/file/d/1GbR24G8n9Jy9Q7hgM97vgfJ_y0PkaNxh/view?usp=sharing)
  - [Integrated Testing](https://drive.google.com/file/d/1iifCTaSfTBDDgW2ZIfK4B8sBSLnbeG4d/view?usp=sharing)
 
+### Milestone 3
+Here are our deliverables for the second Milestone:
+ - [Poster](https://drive.google.com/file/d/1Q_l8AgeY0iHJaawrGb3h86B4iClC5CD8/view?usp=sharing)
+#### Demo Video/ Application run through
+ - [Demo Video](https://drive.google.com/file/d/1yeVyjErGrtABHNUCHPUPjI3mr-3SnsyE/view?usp=sharing)
+#### Software Testing
+ - [Integrated Testing](https://drive.google.com/file/d/1iifCTaSfTBDDgW2ZIfK4B8sBSLnbeG4d/view?usp=sharing)
 
 
 ## Development Plan
-- 28/06 - 14/07 : 
-    - Touch up on built-in existing functions
-    - Implement Student Intiatives Page
-    - Implement a Forum Page
-    - Complete the Edit User Profile feature
-    - Simultaneously work on software testing
-- 14/07 - 25/07 :
-    - Focus on software testing eg. unit, widget, integration and manual testing
-    - Try implementing the application
-    - Work on relevant documentation
-
-- 26/07 - 28/07 :
-    - Finalise Milestone 3 submission
-    - Work on any potential features
+27/08 - 1/08:
+  - Continue doing User Acceptance testing and gather feedback about the application
+After 1/08:
+  - Implement any potential features such as Open Jio, KEIPs or other suggestions from testers
+  - Pitch application to hall administrators JCRC to explore the potential of implementing this for KEVIIans
 
 ## Build Process
+### Using Android Studio Emulator
 1) Follow the [Flutter Installation Guide](https://flutter.dev/docs/get-started/install) to set up the environment needed. 
 2) Clone or download this repo
 3) Get relevant dependencies for `pubspec.yaml` using `flutter pub get`
 4) Open Up AVD manager in [Android Studio](https://developer.android.com/studio?gclid=CjwKCAjwzMeFBhBwEiwAzwS8zN6EV4643vWftKpXfuIvnCSOBE999cYR-QPSSZn1xhO0JCyFRf0R0hoCKlQQAvD_BwE&gclsrc=aw.ds) and start an Android emulator
 5) Run the app on the specified emulator
 
+### Getting the apk file from Android Studio  (requires Physical Android Device)
+1) Enable Developer options and USB debugging on your device. Detailed instructions are available in the [Android documentation](https://developer.android.com/studio/debug/dev-options).
+2) Using a USB cable, plug your phone into your computer. If prompted on your device, authorize your computer to access your device.
+3) Get relevant dependencies for `pubspec.yaml` using `flutter pub get`.
+4) Select your Android device.
+5) On the terminal run the command 'flutter run' and KEVII Companion App will be installed on your device.
+
 ## Contributors
-1) Thia Su Mian
-2) Chng Lip Kiam
+6) Thia Su Mian
+7) Chng Lip Kiam
 
 
