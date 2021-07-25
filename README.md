@@ -122,9 +122,10 @@ Here are our deliverables for the second Milestone:
 Here are our deliverables for the second Milestone:
  - [Poster](https://drive.google.com/file/d/1Q_l8AgeY0iHJaawrGb3h86B4iClC5CD8/view?usp=sharing)
 #### Demo Video/ Application run through
- - [Demo Video](https://drive.google.com/file/d/1yeVyjErGrtABHNUCHPUPjI3mr-3SnsyE/view?usp=sharing)
+ - [Demo Video](https://drive.google.com/file/d/1T_zhT866H-yQHhr_Er_dd-IN_Wqu8n_k/view?usp=sharing)
 #### Software Testing
  - [Integrated Testing](https://drive.google.com/file/d/1iifCTaSfTBDDgW2ZIfK4B8sBSLnbeG4d/view?usp=sharing)
+ - [User Acceptance Testing Form](https://forms.gle/TqWcvoef3G1y4kYR6)
 
 
 ## Development Plan
