@@ -864,7 +864,7 @@ class _EditBookingsState extends State<EditBookings> {
                           },
                           child: Center(
                               child: Text(
-                                'Edit Booking',
+                                'Save Changes',
                                 style: TextStyle(
                                     color: KERed,
                                     fontSize: 19,

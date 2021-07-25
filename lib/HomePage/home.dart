@@ -81,6 +81,7 @@ class _HomeState extends State<Home> {
             top: 75,
             left: 25,
             child: Column(
+              key: Key('Welcome Message'),
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 StreamBuilder(
