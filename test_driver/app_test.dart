@@ -83,18 +83,18 @@ void main() {
     var newsImage = find.byValueKey('News panel');
 
 
-    test('Test Home Page', () async {
-      //await driver.scroll(homeSlidingPanel, 200, 0, Duration(seconds:1));
-      await driver.scrollUntilVisible(homeSlidingPanel, accountButton);
-      await Future.delayed(Duration(seconds: 1));
-      //await driver.scroll(homeSlidingPanel, -200, 0, Duration(seconds:1));
-      await driver.scrollUntilVisible(homeSlidingPanel, facilitesButton);
-      await Future.delayed(Duration(seconds: 3));
-      //await driver.scroll(latestNewsPanel, 0, 200, Duration(seconds:1));
-      //await driver.scroll(latestNewsPanel, 0, 200, Duration(seconds:1));
-      await driver.scrollUntilVisible(latestNewsPanel, news);
-      await Future.delayed(Duration(seconds: 2));
-    });
+    // test('Test Home Page', () async {
+    //   //await driver.scroll(homeSlidingPanel, 200, 0, Duration(seconds:1));
+    //   await driver.scrollUntilVisible(homeSlidingPanel, accountButton);
+    //   await Future.delayed(Duration(seconds: 1));
+    //   //await driver.scroll(homeSlidingPanel, -200, 0, Duration(seconds:1));
+    //   await driver.scrollUntilVisible(homeSlidingPanel, facilitesButton);
+    //   await Future.delayed(Duration(seconds: 3));
+    //   //await driver.scroll(latestNewsPanel, 0, 200, Duration(seconds:1));
+    //   //await driver.scroll(latestNewsPanel, 0, 200, Duration(seconds:1));
+    //   await driver.scrollUntilVisible(latestNewsPanel, news);
+    //   await Future.delayed(Duration(seconds: 2));
+    // });
 
     test('Latest News Page', () async {
       await driver.tap(newsImage);
@@ -160,6 +160,7 @@ void main() {
       await driver.tap(yearbook);
       await driver.scroll(tabBarView, 0.0, -200, Duration(seconds:3));
       await Future.delayed(Duration(seconds: 2));
+      await driver.scroll(tabBarView, 0.0, 300, Duration(seconds:3));
       await driver.tap(backButton);
       await Future.delayed(Duration(seconds: 2));
     });
@@ -174,6 +175,7 @@ void main() {
       await driver.tap(xinyao);
       await driver.scroll(tabBarView, 0.0, -200, Duration(seconds:3));
       await Future.delayed(Duration(seconds: 2));
+      await driver.scroll(tabBarView, 0.0, 300, Duration(seconds:3));
       await driver.tap(backButton);
       await Future.delayed(Duration(seconds: 2));
     });
@@ -188,6 +190,7 @@ void main() {
       await driver.tap(ulti);
       await driver.scroll(tabBarView, 0.0, -200, Duration(seconds:3));
       await Future.delayed(Duration(seconds: 2));
+      await driver.scroll(tabBarView, 0.0, 300, Duration(seconds:3));
       await driver.tap(backButton);
       await Future.delayed(Duration(seconds: 2));
       await driver.tap(backButton);
