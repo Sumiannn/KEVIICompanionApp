@@ -101,7 +101,11 @@ A few of the things you can do with KEVII Companion App:
 - Finalised Login and Sign-Up page
 - Finalised Hall Info Page with Hall History and CCA Info elements
 - Completed bookings of facilities function along with checking of current bookings and edit/delete bookings feature
-- Started software testing
+- Covered software testing
+- Implemented Manage Bookings feature
+- Implemented Initiatives  feature
+- Updated Account Page to make it editable for users
+- Conducted User Acceptance Test to gather feedback about the application.
 
 ### Milestone 1
 Here are our deliverables for the first Milestone:
@@ -124,8 +128,9 @@ Here are our deliverables for the second Milestone:
 #### Demo Video/ Application run through
  - [Demo Video](https://drive.google.com/file/d/1T_zhT866H-yQHhr_Er_dd-IN_Wqu8n_k/view?usp=sharing)
 #### Software Testing
- - [Integrated Testing](https://drive.google.com/file/d/1iifCTaSfTBDDgW2ZIfK4B8sBSLnbeG4d/view?usp=sharing)
- - [User Acceptance Testing Form](https://forms.gle/TqWcvoef3G1y4kYR6)
+ - [Integrated Testing](https://drive.google.com/file/d/1p8NSQC5vKe6srkQg49Mv42EtEy81wFtd/view?usp=sharing)
+ - [User Acceptance Testing Form](https://docs.google.com/forms/d/e/1FAIpQLSftoUmv7skxfHOIoBz3BFch6SrqNfmGsy1CPIAhYBUHI_0cVA/viewform?usp=sf_link)
+      - The details and insights from responses are documented in our documentation
 
 
 ## Development Plan
