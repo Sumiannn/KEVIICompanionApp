@@ -156,7 +156,7 @@ After 1/08:
 5) On the terminal run the command 'flutter run' and KEVII Companion App will be installed on your device.
 
 ## Contributors
-6) Thia Su Mian
-7) Chng Lip Kiam
+1) Thia Su Mian
+2) Chng Lip Kiam
 
 
