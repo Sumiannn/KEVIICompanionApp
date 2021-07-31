@@ -81,17 +81,51 @@ A few of the things you can do with KEVII Companion App:
   <img alt="Login Page Screenshot" title="Login Page Screenshot" src = "https://i.imgur.com/wkW3Lkh.png" height=500>
   <img alt="SignUp Page Screenshot1" title="SignUp Page Screenshot1" src = "https://i.imgur.com/ma7HmBw.png" height=500>
   <img alt="SignUp Page Screenshot2" title="SignUp Page Screenshot2" src = "https://i.imgur.com/9IRkOjp.png" height=500>
-  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/pVGCH6S.png" height=500>
-  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/yH9Dq5f.png" height=500>
 
 </p>
 <p align="center">
-  <img alt="Facilities Page Screenshot" title="Facilities Page Screenshot" src = "https://i.imgur.com/UiU76Xx.png" height=500>
-  <img alt="Check Current Bookings Page Screenshot" title="Check Current Bookings Page Screenshot" src = "https://i.imgur.com/TvVINo0.png" height=500>
-  <img alt="Booking Details Page Screenshot" title="Booking Detail Page Screenshot" src = "https://i.imgur.com/Fu6M8mH.png" height=500>
-  <img alt="Booking Page Screenshot" title="Booking Page Screenshot" src = "https://i.imgur.com/So4j9Dy.png" height=500>
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/pVGCH6S.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/yH9Dq5f.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/lFal6lj.png" height=500>
 
 </p>
+<p align="center">
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/AR6GOB0.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/tby59dD.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/OARm8xD.png" height=500>
+
+</p>
+<p align="center">
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/9yiTbgS.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/sx5gke8.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/7WoLNRw.png" height=500>
+
+</p>
+<p align="center">
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/O0pGi5u.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/VAwOYsh.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/J6PHcKd.png" height=500>
+
+</p>
+<p align="center">
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/yax9TOF.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/PaxpoPZ.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/OAmFr3t.png" height=500>
+
+</p>
+<p align="center">
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/ZRbp4n9.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "" height=500>
+  <img alt="Latest News" title="Latest News" src = "" height=500>
+
+</p>
+<p align="center">
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/ZRbp4n9.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/sFJ8j5k.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/fTqGgk5.png" height=500>
+
+</p>
+
 
 ## Potential Features
 - KEIPS points system
