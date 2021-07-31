@@ -78,9 +78,11 @@ A few of the things you can do with KEVII Companion App:
 
 ## Screen Shots
 <p align="center">
-  <img alt="Login Page Screenshot" title="Login Page Screenshot" src = "https://i.imgur.com/lD2ahcE.png" height=500>
-  <img alt="SignUp Page Screenshot" title="SignUp Page Screenshot" src = "https://i.imgur.com/S2Nn9h2.png" height=500>
-  <img alt="HomePage Screenshot" title="HomePage Screenshot" src = "https://i.imgur.com/zy9KfOx.png" height=500>
+  <img alt="Login Page Screenshot" title="Login Page Screenshot" src = "https://i.imgur.com/wkW3Lkh.png" height=500>
+  <img alt="SignUp Page Screenshot1" title="SignUp Page Screenshot1" src = "https://i.imgur.com/ma7HmBw.png" height=500>
+  <img alt="SignUp Page Screenshot2" title="SignUp Page Screenshot2" src = "https://i.imgur.com/9IRkOjp.png" height=500>
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/pVGCH6S.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/yH9Dq5f.png" height=500>
 
 </p>
 <p align="center">
