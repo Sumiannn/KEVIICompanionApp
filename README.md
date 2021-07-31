@@ -115,12 +115,6 @@ A few of the things you can do with KEVII Companion App:
 </p>
 <p align="center">
   <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/ZRbp4n9.png" height=500>
-  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "" height=500>
-  <img alt="Latest News" title="Latest News" src = "" height=500>
-
-</p>
-<p align="center">
-  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/ZRbp4n9.png" height=500>
   <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/sFJ8j5k.png" height=500>
   <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/fTqGgk5.png" height=500>
 
