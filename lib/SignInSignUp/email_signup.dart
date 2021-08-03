@@ -89,17 +89,20 @@ class _EmailSignUpState extends State<EmailSignUp> {
                   ),
                 ),
                 Positioned(
+
                   width: MediaQuery.of(context).size.width * 0.9,
                   bottom: MediaQuery.of(context).size.height * 0.017 ,
                   left: MediaQuery.of(context).size.width * 0.05,
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.57,
                     child: ListView(
+                      key: Key('Sign Up Form'),
                       physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       children: [
                         TextFormField(
+                          key: Key('Signup Form'),
                           controller: emailController,
                           decoration: InputDecoration(
                             filled: true,

@@ -18,7 +18,7 @@ void main() {
     var emailTextField = find.byValueKey('Email Field');
     var pwTextField = find.byValueKey('Password Field');
     var button = find.byType('ElevatedButton');
-    var header = find.text('Welcome E0524717');
+    var header = find.byValueKey('Welcome Message');
     var SignUpLink = find.byValueKey('Sign Up Link');
     var backButton = find.byValueKey('Back Button');
 
@@ -33,8 +33,12 @@ void main() {
 
     test('Test Sign Up page empty fields', () async {
       var signUpButton = find.byValueKey('Sign Up Button');
+      var signUpForm = find.byValueKey('Signup Form');
+      assert(signUpForm != null);
+      await driver.scroll(signUpForm, 0.0, -300, Duration(seconds:1));
+      //await driver.scrollUntilVisible(signUpForm, signUpButton);
       await driver.tap(signUpButton);
-      var errorPrompt = find.text('Enter your NUS Email');
+      var errorPrompt = find.text('Not a valid NUSID');
       assert(errorPrompt != null);
       await Future.delayed(Duration(seconds: 1));
       await driver.tap(backButton);
@@ -67,7 +71,7 @@ void main() {
       await driver.waitFor(header);
       await driver.waitUntilNoTransientCallbacks();
       assert (header != null);
-      await Future.delayed(Duration(seconds: 5));
+      await Future.delayed(Duration(seconds: 3));
 
     }, timeout: Timeout.none);
     
@@ -79,14 +83,18 @@ void main() {
     var newsImage = find.byValueKey('News panel');
 
 
-    test('Test Home Page', () async {
-      await driver.scrollUntilVisible(homeSlidingPanel, accountButton);
-      await Future.delayed(Duration(seconds: 3));
-      await driver.scrollUntilVisible(homeSlidingPanel, facilitesButton);
-      await Future.delayed(Duration(seconds: 3));
-      await driver.scrollUntilVisible(latestNewsPanel, news);
-      await Future.delayed(Duration(seconds: 2));
-    });
+    // test('Test Home Page', () async {
+    //   //await driver.scroll(homeSlidingPanel, 200, 0, Duration(seconds:1));
+    //   await driver.scrollUntilVisible(homeSlidingPanel, accountButton);
+    //   await Future.delayed(Duration(seconds: 1));
+    //   //await driver.scroll(homeSlidingPanel, -200, 0, Duration(seconds:1));
+    //   await driver.scrollUntilVisible(homeSlidingPanel, facilitesButton);
+    //   await Future.delayed(Duration(seconds: 3));
+    //   //await driver.scroll(latestNewsPanel, 0, 200, Duration(seconds:1));
+    //   //await driver.scroll(latestNewsPanel, 0, 200, Duration(seconds:1));
+    //   await driver.scrollUntilVisible(latestNewsPanel, news);
+    //   await Future.delayed(Duration(seconds: 2));
+    // });
 
     test('Latest News Page', () async {
       await driver.tap(newsImage);
@@ -152,6 +160,7 @@ void main() {
       await driver.tap(yearbook);
       await driver.scroll(tabBarView, 0.0, -200, Duration(seconds:3));
       await Future.delayed(Duration(seconds: 2));
+      await driver.scroll(tabBarView, 0.0, 300, Duration(seconds:3));
       await driver.tap(backButton);
       await Future.delayed(Duration(seconds: 2));
     });
@@ -166,6 +175,7 @@ void main() {
       await driver.tap(xinyao);
       await driver.scroll(tabBarView, 0.0, -200, Duration(seconds:3));
       await Future.delayed(Duration(seconds: 2));
+      await driver.scroll(tabBarView, 0.0, 300, Duration(seconds:3));
       await driver.tap(backButton);
       await Future.delayed(Duration(seconds: 2));
     });
@@ -180,6 +190,7 @@ void main() {
       await driver.tap(ulti);
       await driver.scroll(tabBarView, 0.0, -200, Duration(seconds:3));
       await Future.delayed(Duration(seconds: 2));
+      await driver.scroll(tabBarView, 0.0, 300, Duration(seconds:3));
       await driver.tap(backButton);
       await Future.delayed(Duration(seconds: 2));
       await driver.tap(backButton);
