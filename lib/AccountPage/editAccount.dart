@@ -353,6 +353,7 @@ class _editAccountState extends State<editAccount> {
         controller: controller,
         enabled: isEditable ? true : false,
         decoration: InputDecoration(
+          suffixIcon: isEditable ? Icon(Icons.edit, color: KERed,) : null,
           border: InputBorder.none,
           contentPadding: EdgeInsets.only(bottom: 5),
           labelText: labelText,

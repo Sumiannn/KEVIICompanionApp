@@ -20,10 +20,12 @@ As residents of KEVII, we hope to have an integrated environment where we can ac
 - As an Admin/JCRC, I can broadcast the latest happenings of the hall so that residents are up to date
 - As an Admin/JCRC, I can moderate the bookings of facilities so that we comply with any restrictions due to the current pandemic
 
-#### Poster and Video for KEVII Companion App
+## Poster and Video for KEVII Companion App
 [Poster](https://drive.google.com/file/d/19mow_U1EuReTTWyCUIcRKHue_S2a3xzY/view?usp=sharing)
 
 [Video](https://drive.google.com/file/d/1p7UtrSRDuGdwv-FupOJKhAKPTgDP5PaJ/view?usp=sharing)
+## Documentation for KEVII Companion App
+[Documentation](https://docs.google.com/document/d/1kkrl71dJ7dAU92z4IodPDnEm8al2KX-kvE5p2FLnla4/edit?usp=sharing)
 
 ## Tech/ Framework used
 - [Flutter](https://flutter.dev/?gclid=CjwKCAjwzMeFBhBwEiwAzwS8zOlVhQ4XY-OWtlHr5eAtJrca4f0cAZLwOB08biQ04MgjChUnlUzL7RoCxaQQAvD_BwE&gclsrc=aw.ds)
@@ -76,18 +78,48 @@ A few of the things you can do with KEVII Companion App:
 
 ## Screen Shots
 <p align="center">
-  <img alt="Login Page Screenshot" title="Login Page Screenshot" src = "https://i.imgur.com/lD2ahcE.png" height=500>
-  <img alt="SignUp Page Screenshot" title="SignUp Page Screenshot" src = "https://i.imgur.com/S2Nn9h2.png" height=500>
-  <img alt="HomePage Screenshot" title="HomePage Screenshot" src = "https://i.imgur.com/zy9KfOx.png" height=500>
+  <img alt="Login Page Screenshot" title="Login Page Screenshot" src = "https://i.imgur.com/wkW3Lkh.png" height=500>
+  <img alt="SignUp Page Screenshot1" title="SignUp Page Screenshot1" src = "https://i.imgur.com/ma7HmBw.png" height=500>
+  <img alt="SignUp Page Screenshot2" title="SignUp Page Screenshot2" src = "https://i.imgur.com/9IRkOjp.png" height=500>
 
 </p>
 <p align="center">
-  <img alt="Facilities Page Screenshot" title="Facilities Page Screenshot" src = "https://i.imgur.com/UiU76Xx.png" height=500>
-  <img alt="Check Current Bookings Page Screenshot" title="Check Current Bookings Page Screenshot" src = "https://i.imgur.com/TvVINo0.png" height=500>
-  <img alt="Booking Details Page Screenshot" title="Booking Detail Page Screenshot" src = "https://i.imgur.com/Fu6M8mH.png" height=500>
-  <img alt="Booking Page Screenshot" title="Booking Page Screenshot" src = "https://i.imgur.com/So4j9Dy.png" height=500>
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/pVGCH6S.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/yH9Dq5f.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/lFal6lj.png" height=500>
 
 </p>
+<p align="center">
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/AR6GOB0.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/tby59dD.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/OARm8xD.png" height=500>
+
+</p>
+<p align="center">
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/9yiTbgS.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/sx5gke8.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/7WoLNRw.png" height=500>
+
+</p>
+<p align="center">
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/O0pGi5u.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/VAwOYsh.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/J6PHcKd.png" height=500>
+
+</p>
+<p align="center">
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/yax9TOF.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/PaxpoPZ.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/OAmFr3t.png" height=500>
+
+</p>
+<p align="center">
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/ZRbp4n9.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/sFJ8j5k.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/fTqGgk5.png" height=500>
+
+</p>
+
 
 ## Potential Features
 - KEIPS points system
@@ -99,7 +131,11 @@ A few of the things you can do with KEVII Companion App:
 - Finalised Login and Sign-Up page
 - Finalised Hall Info Page with Hall History and CCA Info elements
 - Completed bookings of facilities function along with checking of current bookings and edit/delete bookings feature
-- Started software testing
+- Covered software testing
+- Implemented Manage Bookings feature
+- Implemented Initiatives  feature
+- Updated Account Page to make it editable for users
+- Conducted User Acceptance Test to gather feedback about the application.
 
 ### Milestone 1
 Here are our deliverables for the first Milestone:
@@ -116,30 +152,38 @@ Here are our deliverables for the second Milestone:
  - [Widget Testing](https://drive.google.com/file/d/1GbR24G8n9Jy9Q7hgM97vgfJ_y0PkaNxh/view?usp=sharing)
  - [Integrated Testing](https://drive.google.com/file/d/1iifCTaSfTBDDgW2ZIfK4B8sBSLnbeG4d/view?usp=sharing)
 
+### Milestone 3
+Here are our deliverables for the second Milestone:
+ - [Poster](https://drive.google.com/file/d/1Q_l8AgeY0iHJaawrGb3h86B4iClC5CD8/view?usp=sharing)
+#### Demo Video/ Application run through
+ - [Demo Video](https://drive.google.com/file/d/1T_zhT866H-yQHhr_Er_dd-IN_Wqu8n_k/view?usp=sharing)
+#### Software Testing
+ - [Integrated Testing](https://drive.google.com/file/d/1p8NSQC5vKe6srkQg49Mv42EtEy81wFtd/view?usp=sharing)
+ - [User Acceptance Testing Form](https://docs.google.com/forms/d/e/1FAIpQLSftoUmv7skxfHOIoBz3BFch6SrqNfmGsy1CPIAhYBUHI_0cVA/viewform?usp=sf_link)
+      - The details and insights from responses are documented in our documentation
 
 
 ## Development Plan
-- 28/06 - 14/07 : 
-    - Touch up on built-in existing functions
-    - Implement Student Intiatives Page
-    - Implement a Forum Page
-    - Complete the Edit User Profile feature
-    - Simultaneously work on software testing
-- 14/07 - 25/07 :
-    - Focus on software testing eg. unit, widget, integration and manual testing
-    - Try implementing the application
-    - Work on relevant documentation
-
-- 26/07 - 28/07 :
-    - Finalise Milestone 3 submission
-    - Work on any potential features
+27/08 - 1/08:
+  - Continue doing User Acceptance testing and gather feedback about the application
+After 1/08:
+  - Implement any potential features such as Open Jio, KEIPs or other suggestions from testers
+  - Pitch application to hall administrators JCRC to explore the potential of implementing this for KEVIIans
 
 ## Build Process
+### Using Android Studio Emulator
 1) Follow the [Flutter Installation Guide](https://flutter.dev/docs/get-started/install) to set up the environment needed. 
 2) Clone or download this repo
 3) Get relevant dependencies for `pubspec.yaml` using `flutter pub get`
 4) Open Up AVD manager in [Android Studio](https://developer.android.com/studio?gclid=CjwKCAjwzMeFBhBwEiwAzwS8zN6EV4643vWftKpXfuIvnCSOBE999cYR-QPSSZn1xhO0JCyFRf0R0hoCKlQQAvD_BwE&gclsrc=aw.ds) and start an Android emulator
 5) Run the app on the specified emulator
+
+### Getting the apk file from Android Studio  (requires Physical Android Device)
+1) Enable Developer options and USB debugging on your device. Detailed instructions are available in the [Android documentation](https://developer.android.com/studio/debug/dev-options).
+2) Using a USB cable, plug your phone into your computer. If prompted on your device, authorize your computer to access your device.
+3) Get relevant dependencies for `pubspec.yaml` using `flutter pub get`.
+4) Select your Android device.
+5) On the terminal run the command 'flutter run' and KEVII Companion App will be installed on your device.
 
 ## Contributors
 1) Thia Su Mian
