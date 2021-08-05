@@ -84,197 +84,201 @@ class _accountPageState extends State<accountPage> {
             left: MediaQuery.of(context).size.width*0.05,
             right: MediaQuery.of(context).size.width*0.05,
             child: SingleChildScrollView(
-              child: ListView(
-                shrinkWrap: true,
-                clipBehavior: Clip.none,
-                children: [
-                  Avatar(
-                    avatarURL: avatarURL,
-                  ),
-                  SizedBox(height: 20),
-                  StreamBuilder(
-                      stream: FirebaseFirestore.instance
-                          .collection('users')
-                          .doc(user.uid)
-                          .snapshots(),
-                      builder: (context, snapshot) {
-                        if (!snapshot.hasData) {
-                          return Container(
-                              width: MediaQuery.of(context).size.width,
-                              child: Text(
-                                'Name Loading...',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: KERed,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w900,
-                                ),
-                                textAlign: TextAlign.center,
-                              ));
-                        }
-                        Map<String, dynamic> data = snapshot.data.data();
-                        return Container(
-                          width: MediaQuery.of(context).size.width,
-                          child: Text(
-                            "${data['last name']} " + "${data['first name']}",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              color: KERed,
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w900,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        );
-                      }),
-                  SizedBox(height: 20),
-                  Container(
-                    padding:
-                    EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                    height: MediaQuery.of(context).size.height * 0.35,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: KELightYellow,
+              child: Center(
+                child: ListView(
+                  shrinkWrap: true,
+                  clipBehavior: Clip.none,
+                  children: [
+                    Avatar(
+                      avatarURL: avatarURL,
                     ),
-                    child: StreamBuilder(
-                      stream: FirebaseFirestore.instance
-                          .collection('users')
-                          .doc(user.uid)
-                          .snapshots(),
-                      builder: (context, snapshot) {
-                        if (!snapshot.hasData) {
-                          return Text("Loading, please wait");
-                        }
-                        Map<String, dynamic> data = snapshot.data.data();
-                        return Column(
+                    SizedBox(height: 20),
+                    StreamBuilder(
+                        stream: FirebaseFirestore.instance
+                            .collection('users')
+                            .doc(user.uid)
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return Container(
+                                width: MediaQuery.of(context).size.width,
+                                child: Text(
+                                  'Name Loading...',
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: KERed,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ));
+                          }
+                          Map<String, dynamic> data = snapshot.data.data();
+                          return Container(
+                            width: MediaQuery.of(context).size.width,
+                            child: Text(
+                              "${data['last name']} " + "${data['first name']}",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                color: KERed,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w900,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          );
+                        }),
+                    SizedBox(height: 20),
+                    Container(
+                      padding:
+                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      height: MediaQuery.of(context).size.height * 0.35,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: KELightYellow,
+                      ),
+                      child: StreamBuilder(
+                        stream: FirebaseFirestore.instance
+                            .collection('users')
+                            .doc(user.uid)
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return Text("Loading, please wait");
+                          }
+                          Map<String, dynamic> data = snapshot.data.data();
+                          return Column(
+                            children: [
+                              Expanded(
+                                  child: buildTextField(
+                                      'Email',
+                                      '${data['email']}',
+                                      false,
+                                      KERed,
+                                      emailController,
+                                      'Email')),
+                              Expanded(
+                                  child: buildTextField(
+                                      'Room',
+                                      '${data['room']}',
+                                      true,
+                                      KEBlack,
+                                      roomController,
+                                      'Room')),
+                              Expanded(
+                                  child: buildTextField(
+                                      'First Name',
+                                      '${data['first name']}',
+                                      true,
+                                      KEBlack,
+                                      firstNameController,
+                                      'First Name')),
+                              Expanded(
+                                  child: buildTextField(
+                                      'Last Name',
+                                      '${data['last name']}',
+                                      true,
+                                      KEBlack,
+                                      lastNameController,
+                                      'Last Name')),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    InkWell(
+                      key: Key('Edit Account Button'),
+                      child: Container(
+                        padding:
+                        EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                        height: MediaQuery.of(context).size.height * 0.06,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: KELightRed,
+                        ),
+                        child: Row(
                           children: [
                             Expanded(
-                                child: buildTextField(
-                                    'Email',
-                                    '${data['email']}',
-                                    false,
-                                    KERed,
-                                    emailController,
-                                    'Email')),
-                            Expanded(
-                                child: buildTextField(
-                                    'Room',
-                                    '${data['room']}',
-                                    true,
-                                    KEBlack,
-                                    roomController,
-                                    'Room')),
-                            Expanded(
-                                child: buildTextField(
-                                    'First Name',
-                                    '${data['first name']}',
-                                    true,
-                                    KEBlack,
-                                    firstNameController,
-                                    'First Name')),
-                            Expanded(
-                                child: buildTextField(
-                                    'Last Name',
-                                    '${data['last name']}',
-                                    true,
-                                    KEBlack,
-                                    lastNameController,
-                                    'Last Name')),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                        "Edit Profile",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700,
+                                            color: KERed),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
                           ],
-                        );
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  InkWell(
-                    child: Container(
-                      padding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: KELightRed,
+                        ),
                       ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "Edit Profile",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700,
-                                          color: KERed),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => editAccount()));
+                      }, //TODO
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    InkWell(
+                      key: Key('Manage Bookings Button'),
+                      child: Container(
+                        padding:
+                        EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                        height: MediaQuery.of(context).size.height * 0.06,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: KELightRed,
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                        "Manage My Bookings",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700,
+                                            color: KERed),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ManageBookingsPage()));
+                      }, //TODO
                     ),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => editAccount()));
-                    }, //TODO
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  InkWell(
-                    child: Container(
-                      padding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: KELightRed,
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Center(
-                                    child: Text(
-                                      "Manage My Bookings",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700,
-                                          color: KERed),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ManageBookingsPage()));
-                    }, //TODO
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
