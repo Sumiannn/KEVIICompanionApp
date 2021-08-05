@@ -186,6 +186,11 @@ class _AddBookingState extends State<AddBooking> {
 
                             EdgeInsets.symmetric(vertical: 10, horizontal: 10),
 
+<<<<<<< HEAD
+=======
+                                EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+
+>>>>>>> 97fe98a45ab1d061a5eb2824c24626a5969cd2f1
                             height: MediaQuery.of(context).size.height * 0.09,
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
@@ -202,6 +207,10 @@ class _AddBookingState extends State<AddBooking> {
 
                                       BorderRadius.all(Radius.circular(10)),
 
+<<<<<<< HEAD
+=======
+                                          BorderRadius.all(Radius.circular(10)),
+>>>>>>> 97fe98a45ab1d061a5eb2824c24626a5969cd2f1
 
                                       color: KERed),
                                   child: Column(
@@ -236,6 +245,7 @@ class _AddBookingState extends State<AddBooking> {
                                                 padding: EdgeInsets.symmetric(
                                                     horizontal: 20.0),
                                                 child: DropdownButtonFormField(
+<<<<<<< HEAD
                                                     decoration: InputDecoration(
                                                         enabledBorder:
 
@@ -244,11 +254,85 @@ class _AddBookingState extends State<AddBooking> {
 
                                                 hint: Text(
                                                   'Select a Venue',
+=======
+                                                  decoration: InputDecoration(
+                                                      enabledBorder:
+
+                                                      InputBorder.none),
+
+                                                          InputBorder.none),
+
+                                                  hint: Text(
+                                                    'Select a Venue',
+                                                    style: TextStyle(
+                                                        color: KERed,
+                                                        fontSize: 19.0,
+                                                        fontFamily: 'Montserrat',
+                                                        fontWeight: FontWeight.w700),
+                                                  ),
+                                                  dropdownColor: KELightRed,
+                                                  icon: Icon(
+                                                    Icons.arrow_drop_down_rounded,
+                                                    color: KERed,
+                                                  ),
+                                                  iconSize: 25.0,
+                                                  isExpanded: true,
+>>>>>>> 97fe98a45ab1d061a5eb2824c24626a5969cd2f1
                                                   style: TextStyle(
                                                       color: KERed,
                                                       fontSize: 19.0,
                                                       fontFamily: 'Montserrat',
                                                       fontWeight: FontWeight.w700),
+<<<<<<< HEAD
+=======
+                                                  value: venueChoose,
+                                                  onChanged: (newValue) {
+                                                    setState(() {
+                                                      venueChoose = newValue;
+                                                    });
+                                                  },
+                                                  items: snapshot.data.docs.map<
+
+                                                      DropdownMenuItem<String>>(
+                                                          (DocumentSnapshot document) {
+                                                        return new DropdownMenuItem<
+                                                            String>(
+                                                          value: document['Value'],
+                                                          child: Text(
+                                                            document['Value'],
+                                                            style: TextStyle(
+                                                              fontFamily: 'Montserrat',
+                                                              fontSize: 19.0,
+                                                              color: KERed,
+                                                              fontWeight: FontWeight.w700,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }).toList(),
+
+                                                          DropdownMenuItem<String>>(
+                                                      (DocumentSnapshot document) {
+                                                    return new DropdownMenuItem<
+                                                        String>(
+                                                      value: document['Value'],
+                                                      child: Text(
+                                                        document['Value'],
+                                                        style: TextStyle(
+                                                          fontFamily: 'Montserrat',
+                                                          fontSize: 19.0,
+                                                          color: KERed,
+                                                          fontWeight: FontWeight.w700,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }).toList(),
+
+                                                  validator: (value) {
+                                                    if (value == null) {
+                                                      return 'Required';
+                                                    }
+                                                  },
+>>>>>>> 97fe98a45ab1d061a5eb2824c24626a5969cd2f1
                                                 ),
                                                 dropdownColor: KELightRed,
                                                 icon: Icon(
