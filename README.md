@@ -78,18 +78,48 @@ A few of the things you can do with KEVII Companion App:
 
 ## Screen Shots
 <p align="center">
-  <img alt="Login Page Screenshot" title="Login Page Screenshot" src = "https://i.imgur.com/lD2ahcE.png" height=500>
-  <img alt="SignUp Page Screenshot" title="SignUp Page Screenshot" src = "https://i.imgur.com/S2Nn9h2.png" height=500>
-  <img alt="HomePage Screenshot" title="HomePage Screenshot" src = "https://i.imgur.com/zy9KfOx.png" height=500>
+  <img alt="Login Page Screenshot" title="Login Page Screenshot" src = "https://i.imgur.com/wkW3Lkh.png" height=500>
+  <img alt="SignUp Page Screenshot1" title="SignUp Page Screenshot1" src = "https://i.imgur.com/ma7HmBw.png" height=500>
+  <img alt="SignUp Page Screenshot2" title="SignUp Page Screenshot2" src = "https://i.imgur.com/9IRkOjp.png" height=500>
 
 </p>
 <p align="center">
-  <img alt="Facilities Page Screenshot" title="Facilities Page Screenshot" src = "https://i.imgur.com/UiU76Xx.png" height=500>
-  <img alt="Check Current Bookings Page Screenshot" title="Check Current Bookings Page Screenshot" src = "https://i.imgur.com/TvVINo0.png" height=500>
-  <img alt="Booking Details Page Screenshot" title="Booking Detail Page Screenshot" src = "https://i.imgur.com/Fu6M8mH.png" height=500>
-  <img alt="Booking Page Screenshot" title="Booking Page Screenshot" src = "https://i.imgur.com/So4j9Dy.png" height=500>
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/pVGCH6S.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/yH9Dq5f.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/lFal6lj.png" height=500>
 
 </p>
+<p align="center">
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/AR6GOB0.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/tby59dD.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/OARm8xD.png" height=500>
+
+</p>
+<p align="center">
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/9yiTbgS.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/sx5gke8.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/7WoLNRw.png" height=500>
+
+</p>
+<p align="center">
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/O0pGi5u.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/VAwOYsh.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/J6PHcKd.png" height=500>
+
+</p>
+<p align="center">
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/yax9TOF.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/PaxpoPZ.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/OAmFr3t.png" height=500>
+
+</p>
+<p align="center">
+  <img alt="HomePage Screenshot1" title="HomePage Screenshot1" src = "https://i.imgur.com/ZRbp4n9.png" height=500>
+  <img alt="HomePage Screenshot2" title="HomePage Screenshot2" src = "https://i.imgur.com/sFJ8j5k.png" height=500>
+  <img alt="Latest News" title="Latest News" src = "https://i.imgur.com/fTqGgk5.png" height=500>
+
+</p>
+
 
 ## Potential Features
 - KEIPS points system
@@ -101,7 +131,11 @@ A few of the things you can do with KEVII Companion App:
 - Finalised Login and Sign-Up page
 - Finalised Hall Info Page with Hall History and CCA Info elements
 - Completed bookings of facilities function along with checking of current bookings and edit/delete bookings feature
-- Started software testing
+- Covered software testing
+- Implemented Manage Bookings feature
+- Implemented Initiatives  feature
+- Updated Account Page to make it editable for users
+- Conducted User Acceptance Test to gather feedback about the application.
 
 ### Milestone 1
 Here are our deliverables for the first Milestone:
@@ -124,8 +158,9 @@ Here are our deliverables for the second Milestone:
 #### Demo Video/ Application run through
  - [Demo Video](https://drive.google.com/file/d/1T_zhT866H-yQHhr_Er_dd-IN_Wqu8n_k/view?usp=sharing)
 #### Software Testing
- - [Integrated Testing](https://drive.google.com/file/d/1iifCTaSfTBDDgW2ZIfK4B8sBSLnbeG4d/view?usp=sharing)
- - [User Acceptance Testing Form](https://forms.gle/TqWcvoef3G1y4kYR6)
+ - [Integrated Testing](https://drive.google.com/file/d/1p8NSQC5vKe6srkQg49Mv42EtEy81wFtd/view?usp=sharing)
+ - [User Acceptance Testing Form](https://docs.google.com/forms/d/e/1FAIpQLSftoUmv7skxfHOIoBz3BFch6SrqNfmGsy1CPIAhYBUHI_0cVA/viewform?usp=sf_link)
+      - The details and insights from responses are documented in our documentation
 
 
 ## Development Plan
@@ -151,7 +186,7 @@ After 1/08:
 5) On the terminal run the command 'flutter run' and KEVII Companion App will be installed on your device.
 
 ## Contributors
-6) Thia Su Mian
-7) Chng Lip Kiam
+1) Thia Su Mian
+2) Chng Lip Kiam
 
 

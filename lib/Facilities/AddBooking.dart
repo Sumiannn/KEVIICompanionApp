@@ -6,7 +6,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:keviiapp/Facilities/BookingConfirmationPage.dart';
-import 'package:keviiapp/Facilities/FacilitiesBookingPage.dart';
 
 import '../colorScheme.dart';
 import '../SignInSignUp/email_login.dart';
@@ -583,6 +582,8 @@ class _AddBookingState extends State<AddBooking> {
                                   validator: (value) {
                                     if (value.isEmpty) {
                                       return 'Enter an estimated pax.';
+                                    } else if (int.parse(value) > 10) {
+                                      return 'You cannot have more than 10 people!';
                                     }
                                     return null;
                                   },
@@ -737,6 +738,11 @@ class _AddBookingState extends State<AddBooking> {
         dateChosen.day, startTime.hour, startTime.minute);
     DateTime chosenEnd = DateTime(dateChosen.year, dateChosen.month,
         dateChosen.day, endTime.hour, endTime.minute);
+    DateTime eightAM = DateTime(dateChosen.year, dateChosen.month,
+        dateChosen.day, 8, 0);
+
+    DateTime elevenPM = DateTime(dateChosen.year, dateChosen.month,
+        dateChosen.day, 23, 0);
     List<TimePair> ListOfTimes = [];
     if (chosenStart.isAfter(chosenEnd)) {
       showDialog(
@@ -751,6 +757,43 @@ class _AddBookingState extends State<AddBooking> {
               ),
               content: Text(
                 'Start Time is after End Time!',
+                style: TextStyle(fontSize: 18, color: KERed),
+                textAlign: TextAlign.left,
+              ),
+              actions: [
+                ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(KERed)),
+                  child: Text("Ok",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: KELightYellow,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.left),
+                  onPressed: () {
+                    setState(() {
+                      startTime = null;
+                      endTime = null;
+                    });
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    } else if(chosenStart.isBefore(eightAM) || chosenEnd.isAfter(elevenPM)) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              backgroundColor: KELightYellow,
+              title: Text(
+                "Invalid Timing",
+                style: TextStyle(
+                    fontSize: 30, fontWeight: FontWeight.bold, color: KERed),
+              ),
+              content: Text(
+                'Facilities are closed from 11pm to 8am',
                 style: TextStyle(fontSize: 18, color: KERed),
                 textAlign: TextAlign.left,
               ),
