@@ -183,7 +183,11 @@ class _AddBookingState extends State<AddBooking> {
                         Form(
                           child: Container(
                             padding:
+
                             EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+
+                                EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+
                             height: MediaQuery.of(context).size.height * 0.09,
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
@@ -197,7 +201,11 @@ class _AddBookingState extends State<AddBooking> {
                                   width: 40,
                                   decoration: BoxDecoration(
                                       borderRadius:
+
                                       BorderRadius.all(Radius.circular(10)),
+
+                                          BorderRadius.all(Radius.circular(10)),
+
                                       color: KERed),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -233,7 +241,11 @@ class _AddBookingState extends State<AddBooking> {
                                                 child: DropdownButtonFormField(
                                                   decoration: InputDecoration(
                                                       enabledBorder:
+
                                                       InputBorder.none),
+
+                                                          InputBorder.none),
+
                                                   hint: Text(
                                                     'Select a Venue',
                                                     style: TextStyle(
@@ -261,6 +273,7 @@ class _AddBookingState extends State<AddBooking> {
                                                     });
                                                   },
                                                   items: snapshot.data.docs.map<
+
                                                       DropdownMenuItem<String>>(
                                                           (DocumentSnapshot document) {
                                                         return new DropdownMenuItem<
@@ -277,6 +290,24 @@ class _AddBookingState extends State<AddBooking> {
                                                           ),
                                                         );
                                                       }).toList(),
+
+                                                          DropdownMenuItem<String>>(
+                                                      (DocumentSnapshot document) {
+                                                    return new DropdownMenuItem<
+                                                        String>(
+                                                      value: document['Value'],
+                                                      child: Text(
+                                                        document['Value'],
+                                                        style: TextStyle(
+                                                          fontFamily: 'Montserrat',
+                                                          fontSize: 19.0,
+                                                          color: KERed,
+                                                          fontWeight: FontWeight.w700,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }).toList(),
+
                                                   validator: (value) {
                                                     if (value == null) {
                                                       return 'Required';
