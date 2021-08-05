@@ -91,6 +91,7 @@ class FundRaisers extends StatelessWidget {
         Positioned.fill(
           top: 200,
           child: Container(
+
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: StreamBuilder(
@@ -280,7 +281,8 @@ class FundRaisers extends StatelessWidget {
                           Container(
                             height: MediaQuery.of(context).size.height * 0.65,
                             child: TabBarView(
-                                key: Key('tabBarView'), children: tabBarViews),
+                                key: Key('Event Details'),
+                                children: tabBarViews),
                           )
                         ],
                       ),

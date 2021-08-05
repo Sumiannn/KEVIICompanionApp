@@ -6,7 +6,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:keviiapp/Facilities/BookingConfirmationPage.dart';
-import 'package:keviiapp/Facilities/FacilitiesBookingPage.dart';
 
 import '../colorScheme.dart';
 import '../SignInSignUp/email_login.dart';
@@ -170,519 +169,528 @@ class _AddBookingState extends State<AddBooking> {
                   ),
                 ),
                 Positioned(
-                  top: 230,
+                  top: MediaQuery.of(context).size.height * 0.27,
                   left: 20,
                   right: 20,
-                  child: Column(
-                    children: [
-                      Form(
-                        child: Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                          height: MediaQuery.of(context).size.height * 0.09,
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: KELightRed,
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 40.0,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
-                                    color: KERed),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.location_on_rounded,
-                                      color: bgColor,
-                                      size: 30,
-                                    )
-                                  ],
+                  child: Container(
+                    height: MediaQuery.of(context).size.height,
+                    child: ListView(
+                      scrollDirection: Axis.vertical,
+                      physics: BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      clipBehavior: Clip.none,
+                      children: [
+                        Form(
+                          child: Container(
+                            padding:
+                                EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                            height: MediaQuery.of(context).size.height * 0.09,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: KELightRed,
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 40.0,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(10)),
+                                      color: KERed),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.location_on_rounded,
+                                        color: bgColor,
+                                        size: 30,
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    StreamBuilder(
-                                        stream: FirebaseFirestore.instance
-                                            .collection('Available Facilities')
-                                            .snapshots(),
-                                        builder: (context, snapshot) {
-                                          if (!snapshot.hasData) {
-                                            return Text('Loading, please wait');
-                                          }
-                                          return Expanded(
-                                            child: Container(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 20.0),
-                                              child: DropdownButtonFormField(
-                                                decoration: InputDecoration(
-                                                    enabledBorder:
-                                                        InputBorder.none),
-                                                hint: Text(
-                                                  'Select a Venue',
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      StreamBuilder(
+                                          stream: FirebaseFirestore.instance
+                                              .collection('Available Facilities')
+                                              .snapshots(),
+                                          builder: (context, snapshot) {
+                                            if (!snapshot.hasData) {
+                                              return Text('Loading, please wait');
+                                            }
+                                            return Expanded(
+                                              child: Container(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 20.0),
+                                                child: DropdownButtonFormField(
+                                                  decoration: InputDecoration(
+                                                      enabledBorder:
+                                                          InputBorder.none),
+                                                  hint: Text(
+                                                    'Select a Venue',
+                                                    style: TextStyle(
+                                                        color: KERed,
+                                                        fontSize: 19.0,
+                                                        fontFamily: 'Montserrat',
+                                                        fontWeight: FontWeight.w700),
+                                                  ),
+                                                  dropdownColor: KELightRed,
+                                                  icon: Icon(
+                                                    Icons.arrow_drop_down_rounded,
+                                                    color: KERed,
+                                                  ),
+                                                  iconSize: 25.0,
+                                                  isExpanded: true,
                                                   style: TextStyle(
+                                                      fontFamily: 'Montserrat',
                                                       color: KERed,
                                                       fontSize: 19.0,
-                                                      fontFamily: 'Montserrat',
                                                       fontWeight: FontWeight.w700),
-                                                ),
-                                                dropdownColor: KELightRed,
-                                                icon: Icon(
-                                                  Icons.arrow_drop_down_rounded,
-                                                  color: KERed,
-                                                ),
-                                                iconSize: 25.0,
-                                                isExpanded: true,
-                                                style: TextStyle(
-                                                    fontFamily: 'Montserrat',
-                                                    color: KERed,
-                                                    fontSize: 19.0,
-                                                    fontWeight: FontWeight.w700),
-                                                value: venueChoose,
-                                                onChanged: (newValue) {
-                                                  setState(() {
-                                                    venueChoose = newValue;
-                                                  });
-                                                },
-                                                items: snapshot.data.docs.map<
-                                                        DropdownMenuItem<String>>(
-                                                    (DocumentSnapshot document) {
-                                                  return new DropdownMenuItem<
-                                                      String>(
-                                                    value: document['Value'],
-                                                    child: Text(
-                                                      document['Value'],
-                                                      style: TextStyle(
-                                                        fontFamily: 'Montserrat',
-                                                        fontSize: 19.0,
-                                                        color: KERed,
-                                                        fontWeight: FontWeight.w700,
+                                                  value: venueChoose,
+                                                  onChanged: (newValue) {
+                                                    setState(() {
+                                                      venueChoose = newValue;
+                                                    });
+                                                  },
+                                                  items: snapshot.data.docs.map<
+                                                          DropdownMenuItem<String>>(
+                                                      (DocumentSnapshot document) {
+                                                    return new DropdownMenuItem<
+                                                        String>(
+                                                      value: document['Value'],
+                                                      child: Text(
+                                                        document['Value'],
+                                                        style: TextStyle(
+                                                          fontFamily: 'Montserrat',
+                                                          fontSize: 19.0,
+                                                          color: KERed,
+                                                          fontWeight: FontWeight.w700,
+                                                        ),
                                                       ),
-                                                    ),
-                                                  );
-                                                }).toList(),
-                                                validator: (value) {
-                                                  if (value == null) {
-                                                    return 'Required';
-                                                  }
-                                                },
+                                                    );
+                                                  }).toList(),
+                                                  validator: (value) {
+                                                    if (value == null) {
+                                                      return 'Required';
+                                                    }
+                                                  },
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        }),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 15),
-                      InkWell(
-                        child: Container(
-                          padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                          height: MediaQuery.of(context).size.height * 0.09,
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: KELightRed,
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 40.0,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                    color: KERed),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.date_range_rounded,
-                                      color: bgColor,
-                                      size: 30,
-                                    )
-                                  ],
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: dateChosen != null
-                                      ? Text(
-                                    dateChosen.day.toString() +
-                                        ' - ' +
-                                        dateChosen.month.toString() +
-                                        ' - ' +
-                                        dateChosen.year.toString(),
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 19,
-                                        color: KERed),
-                                  )
-                                      : Text(
-                                    "Select a Date",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 19,
-                                        color: KERed),
-                                  )),
-                              SizedBox(width: 45.0),
-                            ],
-                          ),
-                        ),
-                        onTap: () {
-                          selectDatePicker(context);
-                        },
-                      ),
-                      SizedBox(height: 15),
-                      InkWell(
-                        child: Container(
-                          padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                          height: MediaQuery.of(context).size.height * 0.09,
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: KELightRed,
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 40.0,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                    color: KERed),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.access_time_rounded,
-                                      color: bgColor,
-                                      size: 30,
-                                    )
-                                  ],
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: startTime != null
-                                      ? Text(
-                                    'Start Time: ' +
-                                        startTime.format(context),
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 19,
-                                        color: KERed),
-                                  )
-                                      : Text(
-                                    "Select Start Time",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 19,
-                                        color: KERed),
-                                  )),
-                            ],
-                          ),
-                        ),
-                        onTap: () {
-                          selectStartTimePicker(context);
-                        },
-                      ),
-                      SizedBox(height: 15),
-                      InkWell(
-                        child: Container(
-                          padding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                          height: MediaQuery.of(context).size.height * 0.09,
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: KELightRed,
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 40.0,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                    color: KERed),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.access_time_rounded,
-                                      color: bgColor,
-                                      size: 30,
-                                    )
-                                  ],
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                                  child: endTime != null
-                                      ? Text(
-                                    'End Time: ' + endTime.format(context),
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 19,
-                                        color: KERed),
-                                  )
-                                      : Text(
-                                    "Select End Time",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 19,
-                                        color: KERed),
-                                  )),
-                            ],
-                          ),
-                        ),
-                        onTap: () {
-                          selectEndTimePicker(context);
-                        },
-                      ),
-                      SizedBox(height: 15),
-                      Container(
-                        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                        height: MediaQuery.of(context).size.height * 0.09,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: KELightRed,
-                        ),
-                        child: Row(children: [
-                          Container(
-                            height: 40.0,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(10)),
-                                color: KERed),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.sports_tennis_rounded,
-                                  color: bgColor,
-                                  size: 30,
+                                            );
+                                          }),
+                                    ],
+                                  ),
                                 )
                               ],
                             ),
                           ),
-                          SizedBox(width: 10),
-                          Expanded(
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 20.0,
-                              ),
-                              child: TextFormField(
-                                controller: ccaField,
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.zero,
-                                  filled: true,
-                                  fillColor: KELightRed,
-                                  labelText: "CCA/ Block",
-                                  labelStyle: TextStyle(
-                                      color: KERed,
-                                      fontSize: 19,
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w700),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                    borderSide: BorderSide.none,
+                        ),
+                        SizedBox(height: 10),
+                        InkWell(
+                          child: Container(
+                            padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                            height: MediaQuery.of(context).size.height * 0.09,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: KELightRed,
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 40.0,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                      color: KERed),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.date_range_rounded,
+                                        color: bgColor,
+                                        size: 30,
+                                      )
+                                    ],
                                   ),
                                 ),
-                                // The validator receives the text that the user has entered.
-                                validator: (value) {
-                                  if (value.isEmpty) {
-                                    return 'Enter a CCA/ Block etc.';
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ),
-                          ),
-                        ]),
-                      ),
-                      SizedBox(height: 15),
-                      Container(
-                        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                        height: MediaQuery.of(context).size.height * 0.09,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: KELightRed,
-                        ),
-                        child: Row(children: [
-                          Container(
-                            height: 40.0,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(10)),
-                                color: KERed),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.people_outline_rounded,
-                                  color: bgColor,
-                                  size: 30,
-                                )
+                                SizedBox(width: 10),
+                                Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                                    child: dateChosen != null
+                                        ? Text(
+                                      dateChosen.day.toString() +
+                                          ' - ' +
+                                          dateChosen.month.toString() +
+                                          ' - ' +
+                                          dateChosen.year.toString(),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 19,
+                                          color: KERed),
+                                    )
+                                        : Text(
+                                      "Select a Date",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 19,
+                                          color: KERed),
+                                    )),
+                                SizedBox(width: 45.0),
                               ],
                             ),
                           ),
-                          SizedBox(width: 10),
-                          Expanded(
-                            child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 20.0),
-                              child: TextFormField(
-                                controller: numOfPax,
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.zero,
-                                  filled: true,
-                                  fillColor: KELightRed,
-                                  labelText: "Number of People",
-                                  labelStyle: TextStyle(
-                                      color: KERed,
-                                      fontSize: 19,
-                                      fontFamily: 'Montserrat',
-                                      fontWeight: FontWeight.w700),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                    borderSide: BorderSide.none,
+                          onTap: () {
+                            selectDatePicker(context);
+                          },
+                        ),
+                        SizedBox(height: 10),
+                        InkWell(
+                          child: Container(
+                            padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                            height: MediaQuery.of(context).size.height * 0.09,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: KELightRed,
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 40.0,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                      color: KERed),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.access_time_rounded,
+                                        color: bgColor,
+                                        size: 30,
+                                      )
+                                    ],
                                   ),
                                 ),
-                                // The validator receives the text that the user has entered.
-                                validator: (value) {
-                                  if (value.isEmpty) {
-                                    return 'Enter an estimated pax.';
-                                  }
-                                  return null;
-                                },
-                              ),
+                                SizedBox(width: 10),
+                                Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                                    child: startTime != null
+                                        ? Text(
+                                      'Start Time: ' +
+                                          startTime.format(context),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 19,
+                                          color: KERed),
+                                    )
+                                        : Text(
+                                      "Select Start Time",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 19,
+                                          color: KERed),
+                                    )),
+                              ],
                             ),
                           ),
-                        ]),
-                      ),
-                      SizedBox(height: 15),
-                      ElevatedButton(
-                        onPressed: () {
-                          if (venueChoose == null) {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    backgroundColor: KELightYellow,
-                                    title: Text(
-                                      "Error",
-                                      style: TextStyle(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.bold,
-                                          color: KERed),
-                                    ),
-                                    content: Text(
-                                      'Choose a valid venue',
-                                      style: TextStyle(fontSize: 18, color: KERed),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                    actions: [
-                                      ElevatedButton(
-                                        style: ButtonStyle(
-                                            backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                KERed)),
-                                        child: Text("Ok",
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                color: KELightYellow,
-                                                fontWeight: FontWeight.bold),
-                                            textAlign: TextAlign.left),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
+                          onTap: () {
+                            selectStartTimePicker(context);
+                          },
+                        ),
+                        SizedBox(height: 10),
+                        InkWell(
+                          child: Container(
+                            padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                            height: MediaQuery.of(context).size.height * 0.09,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: KELightRed,
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 40.0,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                      color: KERed),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.access_time_rounded,
+                                        color: bgColor,
+                                        size: 30,
                                       )
                                     ],
-                                  );
-                                });
-                          } else if (dateChosen == null ||
-                              startTime == null ||
-                              endTime == null) {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    backgroundColor: KELightYellow,
-                                    title: Text(
-                                      "Error",
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                                    child: endTime != null
+                                        ? Text(
+                                      'End Time: ' + endTime.format(context),
                                       style: TextStyle(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.bold,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 19,
                                           color: KERed),
+                                    )
+                                        : Text(
+                                      "Select End Time",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 19,
+                                          color: KERed),
+                                    )),
+                              ],
+                            ),
+                          ),
+                          onTap: () {
+                            selectEndTimePicker(context);
+                          },
+                        ),
+                        SizedBox(height: 15),
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                          height: MediaQuery.of(context).size.height * 0.09,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: KELightRed,
+                          ),
+                          child: Row(children: [
+                            Container(
+                              height: 40.0,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  color: KERed),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.sports_tennis_rounded,
+                                    color: bgColor,
+                                    size: 30,
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Expanded(
+                              child: Container(
+                                alignment: Alignment.centerLeft,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 20.0,
+                                ),
+                                child: TextFormField(
+                                  controller: ccaField,
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.zero,
+                                    filled: true,
+                                    fillColor: KELightRed,
+                                    labelText: "CCA/ Block",
+                                    labelStyle: TextStyle(
+                                        color: KERed,
+                                        fontSize: 19,
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w700),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      borderSide: BorderSide.none,
                                     ),
-                                    content: Text(
-                                      'Choose a valid Date/ Start/ End Time',
-                                      style: TextStyle(fontSize: 18, color: KERed),
-                                      textAlign: TextAlign.left,
+                                  ),
+                                  // The validator receives the text that the user has entered.
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Enter a CCA/ Block etc.';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ),
+                          ]),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                          height: MediaQuery.of(context).size.height * 0.09,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: KELightRed,
+                          ),
+                          child: Row(children: [
+                            Container(
+                              height: 40.0,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  color: KERed),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.people_outline_rounded,
+                                    color: bgColor,
+                                    size: 30,
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                                child: TextFormField(
+                                  controller: numOfPax,
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.zero,
+                                    filled: true,
+                                    fillColor: KELightRed,
+                                    labelText: "Number of People",
+                                    labelStyle: TextStyle(
+                                        color: KERed,
+                                        fontSize: 19,
+                                        fontFamily: 'Montserrat',
+                                        fontWeight: FontWeight.w700),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      borderSide: BorderSide.none,
                                     ),
-                                    actions: [
-                                      ElevatedButton(
-                                        style: ButtonStyle(
-                                            backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                KERed)),
-                                        child: Text("Ok",
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                color: KELightYellow,
-                                                fontWeight: FontWeight.bold),
-                                            textAlign: TextAlign.left),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      )
-                                    ],
-                                  );
-                                });
-                          }
-                          _formKey.currentState.validate();
-                          if (_formKey.currentState.validate()) {
-                            setState(() {
-                              isLoading = true;
-                            });
-                            addBooking();
-                          }
-                        },
-                        child: Center(
-                            child: Text(
-                              'Add Booking',
-                              style: TextStyle(
-                                  color: KERed,
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.w700),
-                            )),
-                      )
-                    ],
+                                  ),
+                                  // The validator receives the text that the user has entered.
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Enter an estimated pax.';
+                                    } else if (int.parse(value) > 10) {
+                                      return 'You cannot have more than 10 people!';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ),
+                          ]),
+                        ),
+                        SizedBox(height: 2),
+                        ElevatedButton(
+                          onPressed: () {
+                            if (venueChoose == null) {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      backgroundColor: KELightYellow,
+                                      title: Text(
+                                        "Error",
+                                        style: TextStyle(
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.bold,
+                                            color: KERed),
+                                      ),
+                                      content: Text(
+                                        'Choose a valid venue',
+                                        style: TextStyle(fontSize: 18, color: KERed),
+                                        textAlign: TextAlign.left,
+                                      ),
+                                      actions: [
+                                        ElevatedButton(
+                                          style: ButtonStyle(
+                                              backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  KERed)),
+                                          child: Text("Ok",
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: KELightYellow,
+                                                  fontWeight: FontWeight.bold),
+                                              textAlign: TextAlign.left),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        )
+                                      ],
+                                    );
+                                  });
+                            } else if (dateChosen == null ||
+                                startTime == null ||
+                                endTime == null) {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      backgroundColor: KELightYellow,
+                                      title: Text(
+                                        "Error",
+                                        style: TextStyle(
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.bold,
+                                            color: KERed),
+                                      ),
+                                      content: Text(
+                                        'Choose a valid Date/ Start/ End Time',
+                                        style: TextStyle(fontSize: 18, color: KERed),
+                                        textAlign: TextAlign.left,
+                                      ),
+                                      actions: [
+                                        ElevatedButton(
+                                          style: ButtonStyle(
+                                              backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  KERed)),
+                                          child: Text("Ok",
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: KELightYellow,
+                                                  fontWeight: FontWeight.bold),
+                                              textAlign: TextAlign.left),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        )
+                                      ],
+                                    );
+                                  });
+                            }
+                            _formKey.currentState.validate();
+                            if (_formKey.currentState.validate()) {
+                              setState(() {
+                                isLoading = true;
+                              });
+                              addBooking();
+                            }
+                          },
+                          child: Center(
+                              child: Text(
+                                'Add Booking',
+                                style: TextStyle(
+                                    color: KERed,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w700),
+                              )),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -730,6 +738,11 @@ class _AddBookingState extends State<AddBooking> {
         dateChosen.day, startTime.hour, startTime.minute);
     DateTime chosenEnd = DateTime(dateChosen.year, dateChosen.month,
         dateChosen.day, endTime.hour, endTime.minute);
+    DateTime eightAM = DateTime(dateChosen.year, dateChosen.month,
+        dateChosen.day, 8, 0);
+
+    DateTime elevenPM = DateTime(dateChosen.year, dateChosen.month,
+        dateChosen.day, 23, 0);
     List<TimePair> ListOfTimes = [];
     if (chosenStart.isAfter(chosenEnd)) {
       showDialog(
@@ -744,6 +757,43 @@ class _AddBookingState extends State<AddBooking> {
               ),
               content: Text(
                 'Start Time is after End Time!',
+                style: TextStyle(fontSize: 18, color: KERed),
+                textAlign: TextAlign.left,
+              ),
+              actions: [
+                ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(KERed)),
+                  child: Text("Ok",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: KELightYellow,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.left),
+                  onPressed: () {
+                    setState(() {
+                      startTime = null;
+                      endTime = null;
+                    });
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    } else if(chosenStart.isBefore(eightAM) || chosenEnd.isAfter(elevenPM)) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              backgroundColor: KELightYellow,
+              title: Text(
+                "Invalid Timing",
+                style: TextStyle(
+                    fontSize: 30, fontWeight: FontWeight.bold, color: KERed),
+              ),
+              content: Text(
+                'Facilities are closed from 11pm to 8am',
                 style: TextStyle(fontSize: 18, color: KERed),
                 textAlign: TextAlign.left,
               ),

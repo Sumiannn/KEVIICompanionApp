@@ -91,6 +91,7 @@ class ABevents extends StatelessWidget {
         Positioned.fill(
           top: 200,
           child: Container(
+            key: Key('Event Details'),
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: StreamBuilder(

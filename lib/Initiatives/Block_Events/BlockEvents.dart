@@ -148,6 +148,7 @@ class BlockEvents extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       children: <Widget>[
                         InkWell(
+                          key: Key('AB'),
                             onTap: () {
                               Navigator.push(
                                   context,
