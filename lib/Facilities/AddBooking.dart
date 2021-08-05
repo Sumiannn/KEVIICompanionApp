@@ -22,7 +22,7 @@ class _AddBookingState extends State<AddBooking> {
   final _formKey = GlobalKey<FormState>();
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   DatabaseReference dbRef =
-      FirebaseDatabase.instance.reference().child("Facilities");
+  FirebaseDatabase.instance.reference().child("Facilities");
   String title = 'Add a Booking', venueChoose;
   TextEditingController ccaField = new TextEditingController(),
       numOfPax = new TextEditingController();
@@ -106,7 +106,7 @@ class _AddBookingState extends State<AddBooking> {
                   child: IconButton(
                     key: Key('Back Button'),
                     icon:
-                        Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
+                    Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -121,7 +121,7 @@ class _AddBookingState extends State<AddBooking> {
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(builder: (context) => Home()),
-                          (Route<dynamic> route) => false);
+                              (Route<dynamic> route) => false);
                     },
                   ),
                 ),
@@ -183,7 +183,11 @@ class _AddBookingState extends State<AddBooking> {
                         Form(
                           child: Container(
                             padding:
+
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+
                                 EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+
                             height: MediaQuery.of(context).size.height * 0.09,
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
@@ -197,7 +201,11 @@ class _AddBookingState extends State<AddBooking> {
                                   width: 40,
                                   decoration: BoxDecoration(
                                       borderRadius:
+
+                                      BorderRadius.all(Radius.circular(10)),
+
                                           BorderRadius.all(Radius.circular(10)),
+
                                       color: KERed),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -233,7 +241,11 @@ class _AddBookingState extends State<AddBooking> {
                                                 child: DropdownButtonFormField(
                                                   decoration: InputDecoration(
                                                       enabledBorder:
+
+                                                      InputBorder.none),
+
                                                           InputBorder.none),
+
                                                   hint: Text(
                                                     'Select a Venue',
                                                     style: TextStyle(
@@ -261,6 +273,24 @@ class _AddBookingState extends State<AddBooking> {
                                                     });
                                                   },
                                                   items: snapshot.data.docs.map<
+
+                                                      DropdownMenuItem<String>>(
+                                                          (DocumentSnapshot document) {
+                                                        return new DropdownMenuItem<
+                                                            String>(
+                                                          value: document['Value'],
+                                                          child: Text(
+                                                            document['Value'],
+                                                            style: TextStyle(
+                                                              fontFamily: 'Montserrat',
+                                                              fontSize: 19.0,
+                                                              color: KERed,
+                                                              fontWeight: FontWeight.w700,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }).toList(),
+
                                                           DropdownMenuItem<String>>(
                                                       (DocumentSnapshot document) {
                                                     return new DropdownMenuItem<
@@ -277,6 +307,7 @@ class _AddBookingState extends State<AddBooking> {
                                                       ),
                                                     );
                                                   }).toList(),
+
                                                   validator: (value) {
                                                     if (value == null) {
                                                       return 'Required';
@@ -855,7 +886,7 @@ class _AddBookingState extends State<AddBooking> {
                         ElevatedButton(
                           style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all<Color>(KERed)),
+                              MaterialStateProperty.all<Color>(KERed)),
                           child: Text("Ok",
                               style: TextStyle(
                                   fontSize: 18,
@@ -887,11 +918,11 @@ class _AddBookingState extends State<AddBooking> {
                   '-' +
                   dateChosen.year.toString(),
               'Start time':
-                  TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
-                      .format(context),
+              TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
+                  .format(context),
               'End time':
-                  TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
-                      .format(context),
+              TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
+                  .format(context),
               'Venue': venueChoose,
               'Start Time (Timestamp)': chosenStart,
               'End Time (Timestamp)': chosenEnd,
@@ -906,23 +937,23 @@ class _AddBookingState extends State<AddBooking> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => BookingConfirmationPage(
-                          venueChoose,
-                          dateChosen.day.toString() +
-                              '-' +
-                              dateChosen.month.toString() +
-                              '-' +
-                              dateChosen.year.toString(),
-                          TimeOfDay(
-                                  hour: chosenStart.hour,
-                                  minute: chosenStart.minute)
-                              .format(context),
-                          TimeOfDay(
-                                  hour: chosenEnd.hour,
-                                  minute: chosenEnd.minute)
-                              .format(context),
-                          numOfPax.text,
-                          ccaField.text,
-                        )));
+                      venueChoose,
+                      dateChosen.day.toString() +
+                          '-' +
+                          dateChosen.month.toString() +
+                          '-' +
+                          dateChosen.year.toString(),
+                      TimeOfDay(
+                          hour: chosenStart.hour,
+                          minute: chosenStart.minute)
+                          .format(context),
+                      TimeOfDay(
+                          hour: chosenEnd.hour,
+                          minute: chosenEnd.minute)
+                          .format(context),
+                      numOfPax.text,
+                      ccaField.text,
+                    )));
           }
         } else {
           // list is empty
@@ -933,16 +964,16 @@ class _AddBookingState extends State<AddBooking> {
                 '-' +
                 dateChosen.year.toString(),
             'Start time':
-                TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
-                    .format(context),
+            TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
+                .format(context),
             'End time':
-                TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
-                    .format(context),
+            TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
+                .format(context),
             'Venue': venueChoose,
             'Start Time (Timestamp)':
-                chosenStart.subtract(const Duration(hours: 8)),
+            chosenStart.subtract(const Duration(hours: 8)),
             'End Time (Timestamp)':
-                chosenEnd.subtract(const Duration(hours: 8)),
+            chosenEnd.subtract(const Duration(hours: 8)),
             'CcaBlock': ccaField.text,
             'Number of Pax': numOfPax.text,
             'user': this.user.uid,
@@ -954,22 +985,22 @@ class _AddBookingState extends State<AddBooking> {
               context,
               MaterialPageRoute(
                   builder: (context) => BookingConfirmationPage(
-                        venueChoose,
-                        dateChosen.day.toString() +
-                            '-' +
-                            dateChosen.month.toString() +
-                            '-' +
-                            dateChosen.year.toString(),
-                        TimeOfDay(
-                                hour: chosenStart.hour,
-                                minute: chosenStart.minute)
-                            .format(context),
-                        TimeOfDay(
-                                hour: chosenEnd.hour, minute: chosenEnd.minute)
-                            .format(context),
-                        numOfPax.text,
-                        ccaField.text,
-                      )));
+                    venueChoose,
+                    dateChosen.day.toString() +
+                        '-' +
+                        dateChosen.month.toString() +
+                        '-' +
+                        dateChosen.year.toString(),
+                    TimeOfDay(
+                        hour: chosenStart.hour,
+                        minute: chosenStart.minute)
+                        .format(context),
+                    TimeOfDay(
+                        hour: chosenEnd.hour, minute: chosenEnd.minute)
+                        .format(context),
+                    numOfPax.text,
+                    ccaField.text,
+                  )));
         }
       });
     }
@@ -986,7 +1017,6 @@ Logic:
 3) For each pair in the list:
      if (chosenStart is between start and end time) throwError
      if (chosenEnd is between start and end time) throwError
-
     Future<int> StartInBetween = FirebaseFirestore.instance
         .collection('Facilities')
         .where('Venue', isEqualTo: venueChoose)
@@ -1001,7 +1031,6 @@ Logic:
         .where('End Time (Timestamp)', isLessThanOrEqualTo: chosenEnd)
         .snapshots()
         .length;
-
      */
 
 class TimePair {
