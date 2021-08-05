@@ -83,18 +83,18 @@ void main() {
     var newsImage = find.byValueKey('News panel');
 
 
-    // test('Test Home Page', () async {
-    //   //await driver.scroll(homeSlidingPanel, 200, 0, Duration(seconds:1));
-    //   await driver.scrollUntilVisible(homeSlidingPanel, accountButton);
-    //   await Future.delayed(Duration(seconds: 1));
-    //   //await driver.scroll(homeSlidingPanel, -200, 0, Duration(seconds:1));
-    //   await driver.scrollUntilVisible(homeSlidingPanel, facilitesButton);
-    //   await Future.delayed(Duration(seconds: 3));
-    //   //await driver.scroll(latestNewsPanel, 0, 200, Duration(seconds:1));
-    //   //await driver.scroll(latestNewsPanel, 0, 200, Duration(seconds:1));
-    //   await driver.scrollUntilVisible(latestNewsPanel, news);
-    //   await Future.delayed(Duration(seconds: 2));
-    // });
+    test('Test Home Page', () async {
+      await driver.scroll(homeSlidingPanel, -200, 0, Duration(seconds:1));
+      //await driver.scrollUntilVisible(homeSlidingPanel, accountButton);
+      await Future.delayed(Duration(seconds: 1));
+      await driver.scroll(homeSlidingPanel, 200, 0, Duration(seconds:1));
+      //await driver.scrollUntilVisible(homeSlidingPanel, facilitesButton);
+      await Future.delayed(Duration(seconds: 1));
+      await driver.scroll(latestNewsPanel, 0, 200, Duration(seconds:1));
+      //await driver.scroll(latestNewsPanel, 0, 200, Duration(seconds:1));
+      //await driver.scrollUntilVisible(latestNewsPanel, news);
+      //await Future.delayed(Duration(seconds: 2));
+    });
 
     test('Latest News Page', () async {
       await driver.tap(newsImage);
@@ -244,14 +244,51 @@ void main() {
     });
 
     test('Account Page', () async{
-      await driver.scrollUntilVisible(homeSlidingPanel, accountButton);
+      await driver.scroll(homeSlidingPanel, -200, 0, Duration(seconds: 1));
       await Future.delayed(Duration(seconds: 1));
       await driver.tap(accountButton);
       await Future.delayed(Duration(seconds: 2));
+      var editButton = find.byValueKey('Edit Account Button');
+      await driver.tap(editButton);
+      await Future.delayed(Duration(seconds: 3));
+      await driver.tap(backButton);
+      await Future.delayed(Duration(seconds: 3));
+
+    });
+
+    test('Manage Bookings', () async {
+      var manageBookings = find.byValueKey('Manage Bookings Button');
+      await driver.tap(manageBookings);
+      await Future.delayed(Duration(seconds: 3));
+      await driver.tap(backButton);
+      await Future.delayed(Duration(seconds: 3));
+      await driver.tap(backButton);
+    });
+
+    test('Initiatives', () async {
+      var initiatives = find.byValueKey('Initiatives Button');
+      await driver.tap(initiatives);
+      await Future.delayed(Duration(seconds: 3));
+      var fundRaiser = find.byValueKey('Fund Raiser Button');
+      await driver.tap(fundRaiser);
+      var event = find.byValueKey('Event Details');
+      await driver.scroll(event, 0, 200, Duration(seconds: 3));
+      await Future.delayed(Duration(seconds: 3));
+      await driver.tap(backButton);
+      var blockEvent = find.byValueKey('Block Event Button');
+      await driver.tap(blockEvent);
+      var AB = find.byValueKey("AB");
+      await driver.tap(AB);
+      await driver.scroll(event, 0, 200, Duration(seconds: 3));
+      await driver.tap(backButton);
+      await driver.tap(backButton);
       await driver.tap(backButton);
       var signOut = find.byValueKey('Sign out button');
       await driver.tap(signOut);
+      var confirm = find.byValueKey('Confirm Logout');
+      await driver.tap(confirm);
       await Future.delayed(Duration(seconds: 10));
     });
+
   });
 }

@@ -152,7 +152,7 @@ class _HomeState extends State<Home> {
                       },
                     ),
                     InkWell(
-                      key: Key('Student Initiatives Button'),
+                      key: Key('Initiatives Button'),
                       child: categoryContainer("Initiatives.png", "Initiatives"),
                       onTap: () {
                         Navigator.push(
@@ -241,6 +241,7 @@ class _HomeState extends State<Home> {
           child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
         ),
         FlatButton(
+          key: Key('Confirm Logout'),
           onPressed: () {
             print("Logout");
             FirebaseAuth auth = FirebaseAuth.instance;

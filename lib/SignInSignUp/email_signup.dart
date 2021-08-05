@@ -89,7 +89,6 @@ class _EmailSignUpState extends State<EmailSignUp> {
                   ),
                 ),
                 Positioned(
-
                   width: MediaQuery.of(context).size.width * 0.9,
                   bottom: MediaQuery.of(context).size.height * 0.017 ,
                   left: MediaQuery.of(context).size.width * 0.05,
