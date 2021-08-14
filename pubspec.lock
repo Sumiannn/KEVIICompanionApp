@@ -210,15 +210,25 @@ packages:
       name: file
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
+>>>>>>> ea6c74b40e641b9801344dd99fce422a939ca36a
 
     version: "6.0.0"
 
 
 
+<<<<<<< HEAD
+=======
+    version: "6.1.2"
+>>>>>>> b5d31526724df48c5b55d1c4451c69f7a206db54
+=======
 
     version: "6.1.2"
 
+>>>>>>> ea6c74b40e641b9801344dd99fce422a939ca36a
   firebase_app_check:
     dependency: "direct main"
     description:
