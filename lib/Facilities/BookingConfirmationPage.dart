@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:keviiapp/Facilities/FacilitiesBookingPage.dart';
 import 'package:keviiapp/HomePage/home.dart';
 import 'package:keviiapp/SignInSignUp/email_login.dart';
@@ -57,7 +55,7 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => Home()),
-                        (Route<dynamic> route) => false);
+                    (Route<dynamic> route) => false);
               },
             ),
           ),
@@ -127,12 +125,12 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
                     },
                     child: Center(
                         child: Text(
-                          'Go to bookings',
-                          style: TextStyle(
-                              color: KERed,
-                              fontSize: 19,
-                              fontWeight: FontWeight.w700),
-                        )),
+                      'Go to bookings',
+                      style: TextStyle(
+                          color: KERed,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w700),
+                    )),
                   )
                 ],
               )),
@@ -143,14 +141,20 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
 
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
-      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+      title: Text(
+        "Are you sure you want to Log Out?",
+        style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+      ),
       actions: <Widget>[
         FlatButton(
           onPressed: () {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+          child: Text(
+            'Cancel',
+            style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+          ),
         ),
         FlatButton(
           onPressed: () {
@@ -160,10 +164,13 @@ class _BookingConfirmationPageState extends State<BookingConfirmationPage> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => EmailLogIn()),
-                      (Route<dynamic> route) => false);
+                  (Route<dynamic> route) => false);
             });
           },
-          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+          child: Text(
+            'Logout',
+            style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+          ),
         )
       ],
     );
@@ -266,7 +273,6 @@ class pathPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
     return true;
   }
 }

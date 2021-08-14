@@ -93,14 +93,20 @@ class _CommitteeCCAState extends State<CommitteeCCA> {
 
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
-      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+      title: Text(
+        "Are you sure you want to Log Out?",
+        style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+      ),
       actions: <Widget>[
         FlatButton(
           onPressed: () {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+          child: Text(
+            'Cancel',
+            style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+          ),
         ),
         FlatButton(
           onPressed: () {
@@ -110,10 +116,13 @@ class _CommitteeCCAState extends State<CommitteeCCA> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => EmailLogIn()),
-                      (Route<dynamic> route) => false);
+                  (Route<dynamic> route) => false);
             });
           },
-          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+          child: Text(
+            'Logout',
+            style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+          ),
         )
       ],
     );
@@ -178,265 +187,256 @@ class TabWidget extends StatelessWidget {
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   children: [
-                        Container(
-                            height: MediaQuery.of(context).size.height*0.1,
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(40),
-                                topRight: Radius.circular(40),
-                              ),
-                              color: bgColor,
+                    Container(
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(40),
+                            topRight: Radius.circular(40),
+                          ),
+                          color: bgColor,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 10.0,
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: 10.0,
-                                ),
-                                Center(
-                                  child: Text(
-                                    "Committee CCAs",
-                                    style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.w700,
-                                        color: KERed),
-                                  ),
-                                ),
-                              ],
-                            )),
-                        Container(
-                            child: StreamBuilder(
-                                stream: FirebaseFirestore.instance
-                                    .collection('CCA Information')
-                                    .where('Type', isEqualTo: 'Committee')
-                                    .snapshots(),
-                                builder: (context, snapshot) {
-                                  if (!snapshot.hasData ||
-                                      snapshot.data.docs.length == 0) {
-                                    return Text('Loading Please Wait');
-                                  }
-                                  List<Tab> tabs = [];
-                                  List<Widget> tabBarViews = [];
+                            Center(
+                              child: Text(
+                                "Committee CCAs",
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.w700,
+                                    color: KERed),
+                              ),
+                            ),
+                          ],
+                        )),
+                    Container(
+                        child: StreamBuilder(
+                            stream: FirebaseFirestore.instance
+                                .collection('CCA Information')
+                                .where('Type', isEqualTo: 'Committee')
+                                .snapshots(),
+                            builder: (context, snapshot) {
+                              if (!snapshot.hasData ||
+                                  snapshot.data.docs.length == 0) {
+                                return Text('Loading Please Wait');
+                              }
+                              List<Tab> tabs = [];
+                              List<Widget> tabBarViews = [];
 
-                                  snapshot.data.docs.forEach((doc) {
-                                    tabs.add(Tab(text: doc['CCA Name']));
-                                    tabBarViews.add(
-                                      ListView(
-                                        children: [
-                                          Container(
-                                            margin: EdgeInsets.only(
-                                                top: 10,
-                                                left: 20,
-                                                right: 20,
-                                                bottom: 10),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              child: Image.network(
-                                                doc['ImageURL'],
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.25,
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
+                              snapshot.data.docs.forEach((doc) {
+                                tabs.add(Tab(text: doc['CCA Name']));
+                                tabBarViews.add(
+                                  ListView(
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            top: 10,
+                                            left: 20,
+                                            right: 20,
+                                            bottom: 10),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          child: Image.network(
+                                            doc['ImageURL'],
                                             height: MediaQuery.of(context)
                                                     .size
                                                     .height *
-                                                0.005,
-                                            decoration: BoxDecoration(
-                                                color: KELightYellow),
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(
-                                              left: 20,
-                                              right: 20,
-                                            ),
+                                                0.25,
                                             width: MediaQuery.of(context)
                                                 .size
                                                 .width,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.005,
+                                        decoration:
+                                            BoxDecoration(color: KELightYellow),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                          left: 20,
+                                          right: 20,
+                                        ),
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        height:
+                                            MediaQuery.of(context).size.height *
                                                 0.10,
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.5,
-                                                    child: FittedBox(
-                                                        fit: BoxFit.scaleDown,
-                                                        child: Text(
-                                                          doc['CCA Name'],
-                                                          style: TextStyle(
-                                                              fontSize: 30,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              color: KERed),
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                        ))),
-                                                Container(
-                                                  width:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          0.38,
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .end,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Text(
-                                                        'CCA Type',
-                                                        textAlign:
-                                                            TextAlign.right,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                                      Text(doc['Commitment'],
-                                                          style: TextStyle(
-                                                              fontSize: 16))
-                                                    ],
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.005,
-                                            decoration: BoxDecoration(
-                                                color: KELightYellow),
-                                          ),
-                                          Container(
-                                            margin: EdgeInsets.only(
-                                                left: 20, right: 20, top: 10),
-                                            padding: EdgeInsets.all(20),
-                                            decoration: BoxDecoration(
-                                              color: KELightRed,
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            child: Text(
-                                              doc['Description'],
-                                              style: TextStyle(
-                                                fontSize: 18,
-                                                color: KERed,
-                                              ),
-                                              textAlign: TextAlign.justify,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Container(
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                    margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.05),
-                                                    alignment: Alignment.centerLeft,
-                                                    width: MediaQuery.of(context)
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                alignment: Alignment.centerLeft,
+                                                width: MediaQuery.of(context)
                                                         .size
                                                         .width *
-                                                        0.5,
-                                                    child: FittedBox(
-                                                        fit: BoxFit.scaleDown,
-                                                        child: Text(
-                                                          'CCA Heads\' Tele Handles',
-                                                          style: TextStyle(
-                                                              fontSize: 30,
-                                                              fontWeight:
+                                                    0.5,
+                                                child: FittedBox(
+                                                    fit: BoxFit.scaleDown,
+                                                    child: Text(
+                                                      doc['CCA Name'],
+                                                      style: TextStyle(
+                                                          fontSize: 30,
+                                                          fontWeight:
                                                               FontWeight.w600,
-                                                              color: KERed),
-                                                          textAlign: TextAlign.left,
-                                                        ))),
-                                                Container(
-                                                  width: MediaQuery.of(context)
+                                                          color: KERed),
+                                                      textAlign: TextAlign.left,
+                                                    ))),
+                                            Container(
+                                              width: MediaQuery.of(context)
                                                       .size
                                                       .width *
-                                                      0.38,
-                                                  child: Column(
-                                                    crossAxisAlignment:
+                                                  0.38,
+                                              child: Column(
+                                                crossAxisAlignment:
                                                     CrossAxisAlignment.end,
-                                                    mainAxisAlignment:
+                                                mainAxisAlignment:
                                                     MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        doc['Female Capt'],
-                                                        textAlign: TextAlign.right,
-                                                        style: TextStyle(
-                                                            fontWeight:
+                                                children: [
+                                                  Text(
+                                                    'CCA Type',
+                                                    textAlign: TextAlign.right,
+                                                    style: TextStyle(
+                                                        fontWeight:
                                                             FontWeight.bold),
-                                                      ),
-                                                      Text(doc['Male Capt'],
-                                                          style: TextStyle(
-                                                              fontWeight: FontWeight.bold))
-                                                    ],
                                                   ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 10.0,
-                                          )
-                                        ],
-                                      ),
-                                    );
-                                  });
-                                  return DefaultTabController(
-                                    length: snapshot.data.docs.length,
-                                    child: Column(
-                                      children: [
-                                        TabBar(
-                                          key: Key('Tab bar'),
-                                          isScrollable: true,
-                                          labelStyle: TextStyle(
-                                              fontFamily: 'Montserrat',
-                                              fontWeight: FontWeight.w600),
-                                          indicatorColor: KEYellow,
-                                          unselectedLabelColor: KELightRed,
-                                          labelColor: KERed,
-                                          labelPadding: EdgeInsets.symmetric(
-                                              horizontal: 8.0),
-                                          tabs: tabs,
+                                                  Text(doc['Commitment'],
+                                                      style: TextStyle(
+                                                          fontSize: 16))
+                                                ],
+                                              ),
+                                            )
+                                          ],
                                         ),
-                                        Container(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height * 0.8,
-                                          child: TabBarView(
-                                              key: Key('tabBarView'),
-                                              children: tabBarViews),
-                                        )
-                                      ],
+                                      ),
+                                      Container(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.005,
+                                        decoration:
+                                            BoxDecoration(color: KELightYellow),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            left: 20, right: 20, top: 10),
+                                        padding: EdgeInsets.all(20),
+                                        decoration: BoxDecoration(
+                                          color: KELightRed,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        child: Text(
+                                          doc['Description'],
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            color: KERed,
+                                          ),
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                margin: EdgeInsets.only(
+                                                    left: MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        0.05),
+                                                alignment: Alignment.centerLeft,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.5,
+                                                child: FittedBox(
+                                                    fit: BoxFit.scaleDown,
+                                                    child: Text(
+                                                      'CCA Heads\' Tele Handles',
+                                                      style: TextStyle(
+                                                          fontSize: 30,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: KERed),
+                                                      textAlign: TextAlign.left,
+                                                    ))),
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.38,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    doc['Female Capt'],
+                                                    textAlign: TextAlign.right,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  Text(doc['Male Capt'],
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold))
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10.0,
+                                      )
+                                    ],
+                                  ),
+                                );
+                              });
+                              return DefaultTabController(
+                                length: snapshot.data.docs.length,
+                                child: Column(
+                                  children: [
+                                    TabBar(
+                                      key: Key('Tab bar'),
+                                      isScrollable: true,
+                                      labelStyle: TextStyle(
+                                          fontFamily: 'Montserrat',
+                                          fontWeight: FontWeight.w600),
+                                      indicatorColor: KEYellow,
+                                      unselectedLabelColor: KELightRed,
+                                      labelColor: KERed,
+                                      labelPadding:
+                                          EdgeInsets.symmetric(horizontal: 8.0),
+                                      tabs: tabs,
                                     ),
-                                  );
-                                })),
+                                    Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.8,
+                                      child: TabBarView(
+                                          key: Key('tabBarView'),
+                                          children: tabBarViews),
+                                    )
+                                  ],
+                                ),
+                              );
+                            })),
                   ]),
             )
           ]);

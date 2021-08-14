@@ -275,7 +275,7 @@ class _accountPageState extends State<accountPage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => ManageBookingsPage()));
-                      }, //TODO
+                      },
                     ),
                   ],
                 ),
@@ -383,7 +383,6 @@ class pathPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
     return true;
   }
 }

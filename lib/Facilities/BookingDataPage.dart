@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../colorScheme.dart';
 
@@ -82,7 +81,7 @@ class _BookingDataPageState extends State<BookingDataPage> {
                   top: 15,
                   left: 15,
                   child: IconButton(
-                    key: Key('Back Button'),
+                      key: Key('Back Button'),
                       icon: Icon(Icons.arrow_back),
                       color: Colors.white,
                       onPressed: () {
@@ -247,7 +246,6 @@ class pathPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
     return true;
   }
 }

@@ -23,149 +23,156 @@ class CCAInfo extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Image.asset(Img, fit: BoxFit.fitHeight,),
-            SizedBox(width:20),
+            Image.asset(
+              Img,
+              fit: BoxFit.fitHeight,
+            ),
+            SizedBox(width: 20),
             Center(
               child: Text(
-                Category, style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500, color: KERed),
+                Category,
+                style: TextStyle(
+                    fontSize: 30, fontWeight: FontWeight.w500, color: KERed),
               ),
             )
           ],
         ),
       );
     }
+
     return Scaffold(
       backgroundColor: bgColor,
-      body: Stack(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: CustomPaint(
-                painter: PathPainter(),
-              ),
+      body: Stack(children: [
+        Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: CustomPaint(
+            painter: PathPainter(),
+          ),
+        ),
+        Positioned(
+          top: 25,
+          left: 15,
+          child: IconButton(
+            key: Key('Back Button'),
+            icon: Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        Positioned(
+          top: 25,
+          right: 55,
+          child: IconButton(
+            icon: Icon(Icons.home_rounded, color: KERed, size: 30),
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home()),
+                  (Route<dynamic> route) => false);
+            },
+          ),
+        ),
+        Positioned(
+          top: 25,
+          right: 15,
+          child: IconButton(
+            icon: Icon(
+              Icons.exit_to_app_rounded,
+              color: KERed,
+              size: 30,
             ),
-            Positioned(
-              top: 25,
-              left: 15,
-              child: IconButton(
-                key: Key('Back Button'),
-                icon: Icon(Icons.arrow_back_rounded, color: KERed, size: 30),
-                onPressed: () {
-                  Navigator.pop(context);
+            onPressed: () {
+              logOutNotice(context);
+            },
+          ),
+        ),
+        Positioned(
+          top: 75,
+          left: 25,
+          child: Text(
+            "CCA Information",
+            style: TextStyle(
+                fontFamily: 'Montserrat',
+                fontSize: 30,
+                fontWeight: FontWeight.w700,
+                color: KERed),
+          ),
+        ),
+        Positioned(
+          top: 125,
+          left: 25,
+          right: 25,
+          child: Container(
+            padding: EdgeInsets.only(right: 12),
+            width: MediaQuery.of(context).size.width,
+            child: Text(
+              "Our CCAs are categorised into 3 main categories! Click any to check out the various CCAs!",
+              style: TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w300,
+                  color: KERed),
+            ),
+          ),
+        ),
+        Positioned(
+          top: 230,
+          left: 20,
+          right: 20,
+          child: Column(
+            children: [
+              InkWell(
+                key: Key('Committee CCA Button'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (builder) => CommitteeCCA()));
                 },
+                child:
+                    CcaCategory('assets/image/CommitteeCca.png', 'Committee'),
               ),
-            ),
-            Positioned(
-              top: 25,
-              right: 55,
-              child: IconButton(
-                icon: Icon(Icons.home_rounded, color: KERed, size: 30),
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => Home()),
-                          (Route<dynamic> route) => false);
+              SizedBox(height: 10),
+              InkWell(
+                key: Key('Cultural CCA Button'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (builder) => CulturalCCA()));
                 },
+                child: CcaCategory('assets/image/CulturalCca1.png', 'Cultural'),
               ),
-            ),
-            Positioned(
-              top: 25,
-              right: 15,
-              child: IconButton(
-                icon: Icon(
-                  Icons.exit_to_app_rounded,
-                  color: KERed,
-                  size: 30,
-                ),
-                onPressed: () {
-                  logOutNotice(context);
+              SizedBox(height: 10),
+              InkWell(
+                key: Key('Sports CCA Button'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (builder) => SportsCCA()));
                 },
-              ),
-            ),
-            Positioned(
-              top: 75,
-              left: 25,
-              child: Text(
-                "CCA Information",
-                style: TextStyle(
-                    fontFamily: 'Montserrat',
-                    fontSize: 30,
-                    fontWeight: FontWeight.w700,
-                    color: KERed),
-              ),
-            ),
-            Positioned(
-              top: 125,
-              left: 25,
-              right: 25,
-              child: Container(
-                padding: EdgeInsets.only(right: 12),
-                width: MediaQuery.of(context).size.width,
-                child: Text(
-                  "Our CCAs are categorised into 3 main categories! Click any to check out the various CCAs!",
-                  style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w300,
-                      color: KERed),
-                ),
-              ),
-            ),
-            Positioned(
-              top: 230,
-              left: 20,
-              right: 20,
-              child: Column(
-                children: [
-                  InkWell(
-                    key: Key('Committee CCA Button'),
-                    onTap: (){
-                      Navigator.push(context,
-                        MaterialPageRoute(builder: (builder) => CommitteeCCA())
-                      );
-                    },
-                    child:
-                        CcaCategory('assets/image/CommitteeCca.png', 'Committee'),
-                    ),
-                  SizedBox(height: 10),
-                  InkWell(
-                    key: Key('Cultural CCA Button'),
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (builder) => CulturalCCA())
-                      );
-                    },
-                    child: CcaCategory('assets/image/CulturalCca1.png', 'Cultural'),
-                  ),
-                  SizedBox(height: 10),
-                  InkWell(
-                    key: Key('Sports CCA Button'),
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (builder) => SportsCCA())
-                      );
-                    },
-                    child: CcaCategory('assets/image/SportCCA.png', 'Sports'),
-                  )
-                ],
-              ),
-              ),
-          ]
-      ),
+                child: CcaCategory('assets/image/SportCCA.png', 'Sports'),
+              )
+            ],
+          ),
+        ),
+      ]),
     );
   }
 
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
-      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+      title: Text(
+        "Are you sure you want to Log Out?",
+        style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+      ),
       actions: <Widget>[
         FlatButton(
           onPressed: () {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+          child: Text(
+            'Cancel',
+            style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+          ),
         ),
         FlatButton(
           onPressed: () {
@@ -175,10 +182,13 @@ class CCAInfo extends StatelessWidget {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => EmailLogIn()),
-                      (Route<dynamic> route) => false);
+                  (Route<dynamic> route) => false);
             });
           },
-          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+          child: Text(
+            'Logout',
+            style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+          ),
         )
       ],
     );
@@ -189,9 +199,7 @@ class CCAInfo extends StatelessWidget {
           return alertDialog;
         });
   }
-
 }
-
 
 class PathPainter extends CustomPainter {
   @override
@@ -212,7 +220,6 @@ class PathPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
     return true;
   }
 }

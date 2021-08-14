@@ -268,10 +268,6 @@ class PathPainter extends CustomPainter {
         size.width * 0.35, size.height * 0.32, 0, size.height * 0.29);
     path.close();
     canvas.drawPath(path, paint);
-    Paint linePaint = Paint()..strokeWidth = 3;
-    // canvas.drawLine(Offset(300,200), Offset(300,300), linePaint);
-    // canvas.drawLine(Offset(250,250), Offset(300,300), linePaint);
-    // canvas.drawLine(Offset(350,250), Offset(300,300), linePaint);
   }
 
   @override

@@ -353,7 +353,11 @@ class TabWidget extends StatelessWidget {
                                         child: Row(
                                           children: [
                                             Container(
-                                              margin: EdgeInsets.only(left: MediaQuery.of(context).size.width*0.05),
+                                                margin: EdgeInsets.only(
+                                                    left: MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        0.05),
                                                 alignment: Alignment.centerLeft,
                                                 width: MediaQuery.of(context)
                                                         .size
@@ -390,7 +394,8 @@ class TabWidget extends StatelessWidget {
                                                   ),
                                                   Text(doc['Male Capt'],
                                                       style: TextStyle(
-                                                          fontWeight: FontWeight.bold))
+                                                          fontWeight:
+                                                              FontWeight.bold))
                                                 ],
                                               ),
                                             )
