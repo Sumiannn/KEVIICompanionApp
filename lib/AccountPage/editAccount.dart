@@ -6,7 +6,6 @@ import 'package:keviiapp/HomePage/home.dart';
 import 'package:keviiapp/SignInSignUp/email_login.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 
 import '../colorScheme.dart';
 import 'avatar.dart';
@@ -249,7 +248,7 @@ class _editAccountState extends State<editAccount> {
                             updateAccount();
                           }
                           Navigator.pop(context);
-                        }, //TODO
+                        },
                       ),
                       SizedBox(
                         height: 10,
@@ -380,9 +379,7 @@ class _editAccountState extends State<editAccount> {
       await firebase_storage.FirebaseStorage.instance
           .ref('images/profilePic/${user.uid}')
           .putFile(file);
-    } on FirebaseException catch (e) {
-      // e.g, e.code == 'canceled'
-    }
+    } on FirebaseException catch (e) {}
   }
 
   downloadURLExample() async {
@@ -414,7 +411,6 @@ class pathPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
     return true;
   }
 }

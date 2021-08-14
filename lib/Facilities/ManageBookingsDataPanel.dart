@@ -1,11 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/Facilities/AddBooking.dart';
 import 'package:keviiapp/Facilities/EditBookings.dart';
-import 'package:keviiapp/Facilities/FacilitiesBookingPage.dart';
 import 'package:keviiapp/colorScheme.dart';
-
-import '../Facilities/BookingDataPage.dart';
 
 class ManageBookingsDataPanel extends StatelessWidget {
   final Color boxColor = Colors.amberAccent;
@@ -28,9 +24,6 @@ class ManageBookingsDataPanel extends StatelessWidget {
     'Dec'
   ];
 
-  //might want to includew the stateless wideget nextPage
-  // StatelessWidget nextPage (put in constructor also)
-
   ManageBookingsDataPanel(this.venue, this.date, this.StartTime, this.EndTime,
       this.StartTimeStamp, this.numOfPax, this.ccaBlock, this.referenceCode) {
     newDate = StartTimeStamp.toDate();
@@ -45,9 +38,7 @@ class ManageBookingsDataPanel extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) =>
-                    EditBookings(referenceCode)
-              ));
+                  builder: (context) => EditBookings(referenceCode)));
         },
         child: Container(
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
@@ -92,19 +83,19 @@ class ManageBookingsDataPanel extends StatelessWidget {
                         venue,
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
-                            fontSize: 20 ,
+                            fontSize: 20,
                             color: KERed),
                       ),
                       Text(StartTime + ' to ' + EndTime,
                           style: TextStyle(
                               fontWeight: FontWeight.w300,
-                              fontSize: MediaQuery.of(context).size.height*0.016,
+                              fontSize:
+                                  MediaQuery.of(context).size.height * 0.016,
                               color: KERed))
                     ],
                   ),
                 ],
               ),
-
             ],
           ),
         ),

@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:keviiapp/Facilities/ManageBookingsDataPanel.dart';
 import 'package:keviiapp/HomePage/home.dart';
-import 'package:keviiapp/Panels/bookingPagePanel.dart';
 import 'package:keviiapp/SignInSignUp/email_login.dart';
 
 import '../colorScheme.dart';
@@ -18,6 +17,7 @@ class ManageBookingsPage extends StatefulWidget {
 
 class _ManageBookingsPageState extends State<ManageBookingsPage> {
   User user = FirebaseAuth.instance.currentUser;
+
   DateTime isNow() {
     return DateTime(
       DateTime.now().year,
@@ -27,6 +27,7 @@ class _ManageBookingsPageState extends State<ManageBookingsPage> {
       0,
     );
   }
+
   @override
   Widget build(BuildContext context) {
     DateTime Today = isNow();
@@ -124,8 +125,8 @@ class _ManageBookingsPageState extends State<ManageBookingsPage> {
                   stream: FirebaseFirestore.instance
                       .collection('Facilities')
                       .where('user', isEqualTo: user.uid)
-                      .where('Start Time (Timestamp)', isGreaterThanOrEqualTo:
-                  Timestamp.fromDate(Today))
+                      .where('Start Time (Timestamp)',
+                          isGreaterThanOrEqualTo: Timestamp.fromDate(Today))
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (!snapshot.hasData || snapshot.data.docs.length == 0) {
@@ -136,7 +137,7 @@ class _ManageBookingsPageState extends State<ManageBookingsPage> {
                             color: KERed,
                             fontWeight: FontWeight.w600,
                             fontSize: 40),
-                            textAlign: TextAlign.center,
+                        textAlign: TextAlign.center,
                       ));
                     }
                     return ListView.builder(
@@ -168,14 +169,20 @@ class _ManageBookingsPageState extends State<ManageBookingsPage> {
 
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
-      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+      title: Text(
+        "Are you sure you want to Log Out?",
+        style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+      ),
       actions: <Widget>[
         FlatButton(
           onPressed: () {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+          child: Text(
+            'Cancel',
+            style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+          ),
         ),
         FlatButton(
           onPressed: () {
@@ -185,10 +192,13 @@ class _ManageBookingsPageState extends State<ManageBookingsPage> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => EmailLogIn()),
-                      (Route<dynamic> route) => false);
+                  (Route<dynamic> route) => false);
             });
           },
-          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+          child: Text(
+            'Logout',
+            style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+          ),
         )
       ],
     );

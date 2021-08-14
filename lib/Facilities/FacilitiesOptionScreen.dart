@@ -145,7 +145,8 @@ class FacilitiesOptionsScreen extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            settings: RouteSettings(name: "Manage Bookings Page"),
+                            settings:
+                                RouteSettings(name: "Manage Bookings Page"),
                             builder: (context) => ManageBookingsPage()));
                   },
                 ),
@@ -255,14 +256,20 @@ class FacilitiesOptionsScreen extends StatelessWidget {
 
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
-      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+      title: Text(
+        "Are you sure you want to Log Out?",
+        style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+      ),
       actions: <Widget>[
         FlatButton(
           onPressed: () {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+          child: Text(
+            'Cancel',
+            style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+          ),
         ),
         FlatButton(
           onPressed: () {
@@ -272,10 +279,13 @@ class FacilitiesOptionsScreen extends StatelessWidget {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => EmailLogIn()),
-                      (Route<dynamic> route) => false);
+                  (Route<dynamic> route) => false);
             });
           },
-          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+          child: Text(
+            'Logout',
+            style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+          ),
         )
       ],
     );
@@ -286,7 +296,6 @@ class FacilitiesOptionsScreen extends StatelessWidget {
           return alertDialog;
         });
   }
-
 }
 
 class pathPainter extends CustomPainter {
@@ -308,7 +317,6 @@ class pathPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
     return true;
   }
 }

@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:keviiapp/Facilities/ManageBookingsPage.dart';
 import 'package:keviiapp/HomePage/home.dart';
 import 'package:keviiapp/SignInSignUp/email_login.dart';
 
@@ -32,21 +30,11 @@ class _EditBookingsState extends State<EditBookings> {
 
   DateTime isNow() {
     return DateTime(
-      DateTime
-          .now()
-          .year,
-      DateTime
-          .now()
-          .month,
-      DateTime
-          .now()
-          .day,
-      DateTime
-          .now()
-          .hour,
-      DateTime
-          .now()
-          .minute,
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day,
+      DateTime.now().hour,
+      DateTime.now().minute,
     );
   }
 
@@ -95,13 +83,15 @@ class _EditBookingsState extends State<EditBookings> {
 
   DateTime getDate(Timestamp timestamp) {
     DateTime originalDate = DateTime.parse(timestamp.toDate().toString());
-    print(DateTime(originalDate.year, originalDate.month, originalDate.day).toString());
+    print(DateTime(originalDate.year, originalDate.month, originalDate.day)
+        .toString());
     return DateTime(originalDate.year, originalDate.month, originalDate.day);
   }
 
   TimeOfDay getHoursAndMin(Timestamp timestamp) {
     DateTime originalDate = DateTime.parse(timestamp.toDate().toString());
-    print(TimeOfDay(hour: originalDate.hour, minute: originalDate.minute).toString());
+    print(TimeOfDay(hour: originalDate.hour, minute: originalDate.minute)
+        .toString());
     return TimeOfDay(hour: originalDate.hour, minute: originalDate.minute);
   }
 
@@ -119,14 +109,8 @@ class _EditBookingsState extends State<EditBookings> {
               body: Stack(
                 children: [
                   Container(
-                    height: MediaQuery
-                        .of(context)
-                        .size
-                        .height,
-                    width: MediaQuery
-                        .of(context)
-                        .size
-                        .width,
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
                     child: CustomPaint(
                       painter: pathPainter(),
                     ),
@@ -152,7 +136,7 @@ class _EditBookingsState extends State<EditBookings> {
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(builder: (context) => Home()),
-                                (Route<dynamic> route) => false);
+                            (Route<dynamic> route) => false);
                       },
                     ),
                   ),
@@ -188,10 +172,7 @@ class _EditBookingsState extends State<EditBookings> {
                     right: 25,
                     child: Container(
                       padding: EdgeInsets.only(right: 12),
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width,
+                      width: MediaQuery.of(context).size.width,
                       child: Text(
                         "Modify this existing booking or completely delete it.",
                         style: TextStyle(
@@ -224,14 +205,8 @@ class _EditBookingsState extends State<EditBookings> {
                   child: Stack(
                     children: [
                       Container(
-                        height: MediaQuery
-                            .of(context)
-                            .size
-                            .height,
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width,
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
                         child: CustomPaint(
                           painter: pathPainter(),
                         ),
@@ -253,12 +228,12 @@ class _EditBookingsState extends State<EditBookings> {
                         right: 55,
                         child: IconButton(
                           icon:
-                          Icon(Icons.home_rounded, color: KERed, size: 30),
+                              Icon(Icons.home_rounded, color: KERed, size: 30),
                           onPressed: () {
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(builder: (context) => Home()),
-                                    (Route<dynamic> route) => false);
+                                (Route<dynamic> route) => false);
                           },
                         ),
                       ),
@@ -294,10 +269,7 @@ class _EditBookingsState extends State<EditBookings> {
                         right: 25,
                         child: Container(
                           padding: EdgeInsets.only(right: 12),
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
+                          width: MediaQuery.of(context).size.width,
                           child: Text(
                             "Modify this existing booking or completely delete it.",
                             style: TextStyle(
@@ -316,14 +288,8 @@ class _EditBookingsState extends State<EditBookings> {
                           child: Container(
                             padding: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 10),
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .height * 0.09,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width,
+                            height: MediaQuery.of(context).size.height * 0.09,
+                            width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: KELightRed,
@@ -335,7 +301,7 @@ class _EditBookingsState extends State<EditBookings> {
                                   width: 40,
                                   decoration: BoxDecoration(
                                       borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                                          BorderRadius.all(Radius.circular(10)),
                                       color: KERed),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -355,12 +321,12 @@ class _EditBookingsState extends State<EditBookings> {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       StreamBuilder(
                                           stream: FirebaseFirestore.instance
                                               .collection(
-                                              'Available Facilities')
+                                                  'Available Facilities')
                                               .snapshots(),
                                           builder: (context, snapshot) {
                                             if (!snapshot.hasData) {
@@ -374,16 +340,16 @@ class _EditBookingsState extends State<EditBookings> {
                                                 child: DropdownButtonFormField(
                                                   decoration: InputDecoration(
                                                       enabledBorder:
-                                                      InputBorder.none),
+                                                          InputBorder.none),
                                                   hint: Text(
                                                     bookingData['Venue'],
                                                     style: TextStyle(
                                                         color: KERed,
                                                         fontSize: 19.0,
                                                         fontFamily:
-                                                        'Montserrat',
+                                                            'Montserrat',
                                                         fontWeight:
-                                                        FontWeight.w700),
+                                                            FontWeight.w700),
                                                   ),
                                                   dropdownColor: KELightRed,
                                                   icon: Icon(
@@ -398,38 +364,41 @@ class _EditBookingsState extends State<EditBookings> {
                                                       color: KERed,
                                                       fontSize: 19.0,
                                                       fontWeight:
-                                                      FontWeight.w700),
-                                                  value: venueChoose = bookingData['Venue'],
+                                                          FontWeight.w700),
+                                                  value: venueChoose =
+                                                      bookingData['Venue'],
                                                   onChanged: (newValue) {
                                                     setState(() {
                                                       venueChoose = newValue;
                                                     });
                                                   },
                                                   items: snapshot.data.docs.map<
-                                                      DropdownMenuItem<
-                                                          String>>(
-                                                          (DocumentSnapshot
-                                                      document) {
-                                                        return new DropdownMenuItem<
-                                                            String>(
-                                                          value: document['Value'],
-                                                          child: Text(
-                                                            document['Value'],
-                                                            style: TextStyle(
-                                                              fontFamily:
+                                                          DropdownMenuItem<
+                                                              String>>(
+                                                      (DocumentSnapshot
+                                                          document) {
+                                                    return new DropdownMenuItem<
+                                                        String>(
+                                                      value: document['Value'],
+                                                      child: Text(
+                                                        document['Value'],
+                                                        style: TextStyle(
+                                                          fontFamily:
                                                               'Montserrat',
-                                                              fontSize: 19.0,
-                                                              color: KERed,
-                                                              fontWeight:
+                                                          fontSize: 19.0,
+                                                          color: KERed,
+                                                          fontWeight:
                                                               FontWeight.w700,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      }).toList(),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }).toList(),
                                                   validator: (value) {
                                                     if (value == null) {
                                                       setState(() {
-                                                        venueChoose = bookingData['Venue'];
+                                                        venueChoose =
+                                                            bookingData[
+                                                                'Venue'];
                                                       });
                                                     }
                                                   },
@@ -453,14 +422,8 @@ class _EditBookingsState extends State<EditBookings> {
                           child: Container(
                             padding: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 10),
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .height * 0.09,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width,
+                            height: MediaQuery.of(context).size.height * 0.09,
+                            width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: KELightRed,
@@ -472,7 +435,7 @@ class _EditBookingsState extends State<EditBookings> {
                                   width: 40,
                                   decoration: BoxDecoration(
                                       borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                                          BorderRadius.all(Radius.circular(10)),
                                       color: KERed),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -488,26 +451,26 @@ class _EditBookingsState extends State<EditBookings> {
                                 SizedBox(width: 10),
                                 Container(
                                     padding:
-                                    EdgeInsets.symmetric(horizontal: 20.0),
+                                        EdgeInsets.symmetric(horizontal: 20.0),
                                     child: dateChosen != null
                                         ? Text(
-                                      dateChosen.day.toString() +
-                                          ' - ' +
-                                          dateChosen.month.toString() +
-                                          ' - ' +
-                                          dateChosen.year.toString(),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 19,
-                                          color: KERed),
-                                    )
+                                            dateChosen.day.toString() +
+                                                ' - ' +
+                                                dateChosen.month.toString() +
+                                                ' - ' +
+                                                dateChosen.year.toString(),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 19,
+                                                color: KERed),
+                                          )
                                         : Text(
-                                      bookingData['Date'],
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 19,
-                                          color: KERed),
-                                    )),
+                                            bookingData['Date'],
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 19,
+                                                color: KERed),
+                                          )),
                                 SizedBox(width: 45.0),
                               ],
                             ),
@@ -525,14 +488,8 @@ class _EditBookingsState extends State<EditBookings> {
                           child: Container(
                             padding: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 10),
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .height * 0.09,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width,
+                            height: MediaQuery.of(context).size.height * 0.09,
+                            width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: KELightRed,
@@ -544,7 +501,7 @@ class _EditBookingsState extends State<EditBookings> {
                                   width: 40,
                                   decoration: BoxDecoration(
                                       borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                                          BorderRadius.all(Radius.circular(10)),
                                       color: KERed),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -560,23 +517,24 @@ class _EditBookingsState extends State<EditBookings> {
                                 SizedBox(width: 10),
                                 Container(
                                     padding:
-                                    EdgeInsets.symmetric(horizontal: 20.0),
+                                        EdgeInsets.symmetric(horizontal: 20.0),
                                     child: startTime != null
                                         ? Text(
-                                      'Start Time: ' +
-                                          startTime.format(context),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 19,
-                                          color: KERed),
-                                    )
+                                            'Start Time: ' +
+                                                startTime.format(context),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 19,
+                                                color: KERed),
+                                          )
                                         : Text(
-                                      'Start Time: ' + bookingData['Start time'],
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 19,
-                                          color: KERed),
-                                    )),
+                                            'Start Time: ' +
+                                                bookingData['Start time'],
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 19,
+                                                color: KERed),
+                                          )),
                               ],
                             ),
                           ),
@@ -593,14 +551,8 @@ class _EditBookingsState extends State<EditBookings> {
                           child: Container(
                             padding: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 10),
-                            height: MediaQuery
-                                .of(context)
-                                .size
-                                .height * 0.09,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width,
+                            height: MediaQuery.of(context).size.height * 0.09,
+                            width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: KELightRed,
@@ -612,7 +564,7 @@ class _EditBookingsState extends State<EditBookings> {
                                   width: 40,
                                   decoration: BoxDecoration(
                                       borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
+                                          BorderRadius.all(Radius.circular(10)),
                                       color: KERed),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -628,24 +580,24 @@ class _EditBookingsState extends State<EditBookings> {
                                 SizedBox(width: 10),
                                 Container(
                                     padding:
-                                    EdgeInsets.symmetric(horizontal: 20.0),
+                                        EdgeInsets.symmetric(horizontal: 20.0),
                                     child: endTime != null
                                         ? Text(
-                                      'End Time: ' +
-                                          endTime.format(context),
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 19,
-                                          color: KERed),
-                                    )
-                                        :
-                                    Text(
-                                      'End Time: ' + bookingData['End time'],
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 19,
-                                          color: KERed),
-                                    )),
+                                            'End Time: ' +
+                                                endTime.format(context),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 19,
+                                                color: KERed),
+                                          )
+                                        : Text(
+                                            'End Time: ' +
+                                                bookingData['End time'],
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 19,
+                                                color: KERed),
+                                          )),
                               ],
                             ),
                           ),
@@ -661,14 +613,8 @@ class _EditBookingsState extends State<EditBookings> {
                         child: Container(
                           padding: EdgeInsets.symmetric(
                               vertical: 10, horizontal: 10),
-                          height: MediaQuery
-                              .of(context)
-                              .size
-                              .height * 0.09,
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
+                          height: MediaQuery.of(context).size.height * 0.09,
+                          width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: KELightRed,
@@ -679,7 +625,7 @@ class _EditBookingsState extends State<EditBookings> {
                               width: 40,
                               decoration: BoxDecoration(
                                   borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
+                                      BorderRadius.all(Radius.circular(10)),
                                   color: KERed),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -700,7 +646,8 @@ class _EditBookingsState extends State<EditBookings> {
                                   horizontal: 20.0,
                                 ),
                                 child: TextFormField(
-                                  controller: ccaField..text = bookingData['CcaBlock'],
+                                  controller: ccaField
+                                    ..text = bookingData['CcaBlock'],
                                   decoration: InputDecoration(
                                     contentPadding: EdgeInsets.zero,
                                     filled: true,
@@ -738,14 +685,8 @@ class _EditBookingsState extends State<EditBookings> {
                         child: Container(
                           padding: EdgeInsets.symmetric(
                               vertical: 10, horizontal: 10),
-                          height: MediaQuery
-                              .of(context)
-                              .size
-                              .height * 0.09,
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
+                          height: MediaQuery.of(context).size.height * 0.09,
+                          width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: KELightRed,
@@ -756,7 +697,7 @@ class _EditBookingsState extends State<EditBookings> {
                               width: 40,
                               decoration: BoxDecoration(
                                   borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
+                                      BorderRadius.all(Radius.circular(10)),
                                   color: KERed),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -774,7 +715,8 @@ class _EditBookingsState extends State<EditBookings> {
                               child: Container(
                                 padding: EdgeInsets.symmetric(horizontal: 20.0),
                                 child: TextFormField(
-                                  controller: numOfPax..text = bookingData['Number of Pax'],
+                                  controller: numOfPax
+                                    ..text = bookingData['Number of Pax'],
                                   decoration: InputDecoration(
                                     contentPadding: EdgeInsets.zero,
                                     filled: true,
@@ -834,8 +776,8 @@ class _EditBookingsState extends State<EditBookings> {
                                         ElevatedButton(
                                           style: ButtonStyle(
                                               backgroundColor:
-                                              MaterialStateProperty.all<
-                                                  Color>(KERed)),
+                                                  MaterialStateProperty.all<
+                                                      Color>(KERed)),
                                           child: Text("Ok",
                                               style: TextStyle(
                                                   fontSize: 18,
@@ -849,11 +791,16 @@ class _EditBookingsState extends State<EditBookings> {
                                       ],
                                     );
                                   });
-                            } if(dateChosen == null) {
-                                dateChosen = getDate(bookingData['Start Time (Timestamp)']);
-                            } if(startTime == null) {
-                              startTime = getHoursAndMin(bookingData['Start Time (Timestamp)']);
-                            } if(endTime == null) {
+                            }
+                            if (dateChosen == null) {
+                              dateChosen = getDate(
+                                  bookingData['Start Time (Timestamp)']);
+                            }
+                            if (startTime == null) {
+                              startTime = getHoursAndMin(
+                                  bookingData['Start Time (Timestamp)']);
+                            }
+                            if (endTime == null) {
                               endTime = getHoursAndMin(
                                   bookingData['End Time (Timestamp)']);
                             }
@@ -864,69 +811,74 @@ class _EditBookingsState extends State<EditBookings> {
                           },
                           child: Center(
                               child: Text(
-                                'Save Changes',
-                                style: TextStyle(
-                                    color: KERed,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w700),
-                              )),
+                            'Save Changes',
+                            style: TextStyle(
+                                color: KERed,
+                                fontSize: 19,
+                                fontWeight: FontWeight.w700),
+                          )),
                         ),
                       ),
                       Positioned(
                         top: 690,
                         left: 20,
                         right: 20,
-                        child: ElevatedButton(onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  backgroundColor: KELightYellow,
-                                  title: Text(
-                                    "Delete Booking",
-                                    style: TextStyle(
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold,
-                                        color: KERed),
-                                  ),
-                                  content: Text(
-                                    'Are you sure you want to delete this booking?',
-                                    style: TextStyle(
-                                        fontSize: 18, color: KERed),
-                                    textAlign: TextAlign.left,
-                                  ),
-                                  actions: [
-                                    ElevatedButton(
-                                      style: ButtonStyle(
-                                          backgroundColor: MaterialStateProperty
-                                              .all<Color>(KERed)),
-                                      child: Text("Ok",
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              color: KELightYellow,
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.left),
-                                      onPressed: () {
-                                        setState(() {
-                                          deleteBooking();
-                                        });
-                                        Navigator.popUntil(
-                                            context,
-                                            ModalRoute.withName("Manage Bookings Page"));                                      },
-                                    )
-                                  ],
-                                );
-                              });
-                        },
+                        child: ElevatedButton(
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    backgroundColor: KELightYellow,
+                                    title: Text(
+                                      "Delete Booking",
+                                      style: TextStyle(
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                          color: KERed),
+                                    ),
+                                    content: Text(
+                                      'Are you sure you want to delete this booking?',
+                                      style:
+                                          TextStyle(fontSize: 18, color: KERed),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                    actions: [
+                                      ElevatedButton(
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all<
+                                                    Color>(KERed)),
+                                        child: Text("Ok",
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: KELightYellow,
+                                                fontWeight: FontWeight.bold),
+                                            textAlign: TextAlign.left),
+                                        onPressed: () {
+                                          setState(() {
+                                            deleteBooking();
+                                          });
+                                          Navigator.popUntil(
+                                              context,
+                                              ModalRoute.withName(
+                                                  "Manage Bookings Page"));
+                                        },
+                                      )
+                                    ],
+                                  );
+                                });
+                          },
                           style: ElevatedButton.styleFrom(primary: KERed),
                           child: Center(
-                                child: Text(
-                                  'Delete Booking',
-                                  style: TextStyle(
-                                      color: KELightYellow,
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.w700),
-                                )),),
+                              child: Text(
+                            'Delete Booking',
+                            style: TextStyle(
+                                color: KELightYellow,
+                                fontSize: 19,
+                                fontWeight: FontWeight.w700),
+                          )),
+                        ),
                       )
                     ],
                   ),
@@ -937,14 +889,20 @@ class _EditBookingsState extends State<EditBookings> {
 
   void logOutNotice(BuildContext context) {
     var alertDialog = AlertDialog(
-      title: Text("Are you sure you want to Log Out?", style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+      title: Text(
+        "Are you sure you want to Log Out?",
+        style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+      ),
       actions: <Widget>[
         FlatButton(
           onPressed: () {
             print("Cancel");
             Navigator.of(context).pop(false);
           },
-          child: Text('Cancel', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+          child: Text(
+            'Cancel',
+            style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+          ),
         ),
         FlatButton(
           onPressed: () {
@@ -954,10 +912,13 @@ class _EditBookingsState extends State<EditBookings> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => EmailLogIn()),
-                      (Route<dynamic> route) => false);
+                  (Route<dynamic> route) => false);
             });
           },
-          child: Text('Logout', style: TextStyle(fontWeight: FontWeight.bold, color: KERed),),
+          child: Text(
+            'Logout',
+            style: TextStyle(fontWeight: FontWeight.bold, color: KERed),
+          ),
         )
       ],
     );
@@ -970,7 +931,10 @@ class _EditBookingsState extends State<EditBookings> {
   }
 
   void deleteBooking() async {
-    FirebaseFirestore.instance.collection('Facilities').doc(referenceCode).delete();
+    FirebaseFirestore.instance
+        .collection('Facilities')
+        .doc(referenceCode)
+        .delete();
   }
 
   void editBooking() async {
@@ -1019,7 +983,8 @@ class _EditBookingsState extends State<EditBookings> {
     } else {
       FirebaseFirestore.instance
           .collection('Facilities')
-          .where('Venue', isEqualTo: venueChoose).where('Reference Code', isNotEqualTo: referenceCode)
+          .where('Venue', isEqualTo: venueChoose)
+          .where('Reference Code', isNotEqualTo: referenceCode)
           .get()
           .then((QuerySnapshot querySnapshot) {
         if (querySnapshot.docs.isNotEmpty) {
@@ -1053,7 +1018,7 @@ class _EditBookingsState extends State<EditBookings> {
                         ElevatedButton(
                           style: ButtonStyle(
                               backgroundColor:
-                              MaterialStateProperty.all<Color>(KERed)),
+                                  MaterialStateProperty.all<Color>(KERed)),
                           child: Text("Ok",
                               style: TextStyle(
                                   fontSize: 18,
@@ -1078,18 +1043,21 @@ class _EditBookingsState extends State<EditBookings> {
           }
           if (count == 0) {
             // only if all documents traversed, then add booking
-            FirebaseFirestore.instance.collection('Facilities').doc(referenceCode).update({
+            FirebaseFirestore.instance
+                .collection('Facilities')
+                .doc(referenceCode)
+                .update({
               'Date': dateChosen.day.toString() +
                   '-' +
                   dateChosen.month.toString() +
                   '-' +
                   dateChosen.year.toString(),
               'Start time':
-              TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
-                  .format(context),
+                  TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
+                      .format(context),
               'End time':
-              TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
-                  .format(context),
+                  TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
+                      .format(context),
               'Venue': venueChoose,
               'Start Time (Timestamp)': chosenStart,
               'End Time (Timestamp)': chosenEnd,
@@ -1100,8 +1068,7 @@ class _EditBookingsState extends State<EditBookings> {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>
-                        BookingConfirmationPage(
+                    builder: (context) => BookingConfirmationPage(
                           venueChoose,
                           dateChosen.day.toString() +
                               '-' +
@@ -1109,12 +1076,12 @@ class _EditBookingsState extends State<EditBookings> {
                               '-' +
                               dateChosen.year.toString(),
                           TimeOfDay(
-                              hour: chosenStart.hour,
-                              minute: chosenStart.minute)
+                                  hour: chosenStart.hour,
+                                  minute: chosenStart.minute)
                               .format(context),
                           TimeOfDay(
-                              hour: chosenEnd.hour,
-                              minute: chosenEnd.minute)
+                                  hour: chosenEnd.hour,
+                                  minute: chosenEnd.minute)
                               .format(context),
                           numOfPax.text,
                           ccaField.text,
@@ -1129,29 +1096,27 @@ class _EditBookingsState extends State<EditBookings> {
                 '-' +
                 dateChosen.year.toString(),
             'Start time':
-            TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
-                .format(context),
+                TimeOfDay(hour: chosenStart.hour, minute: chosenStart.minute)
+                    .format(context),
             'End time':
-            TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
-                .format(context),
+                TimeOfDay(hour: chosenEnd.hour, minute: chosenEnd.minute)
+                    .format(context),
             'Venue': venueChoose,
             'Start Time (Timestamp)':
-            chosenStart.subtract(const Duration(hours: 8)),
+                chosenStart.subtract(const Duration(hours: 8)),
             'End Time (Timestamp)':
-            chosenEnd.subtract(const Duration(hours: 8)),
+                chosenEnd.subtract(const Duration(hours: 8)),
             'CcaBlock': ccaField.text,
             'Number of Pax': numOfPax.text,
             'user': this.user.uid,
-          }).then((value) =>
-              FirebaseFirestore.instance
-                  .collection('Facilities')
-                  .doc(value.id)
-                  .update({'Reference Code': value.id}));
+          }).then((value) => FirebaseFirestore.instance
+              .collection('Facilities')
+              .doc(value.id)
+              .update({'Reference Code': value.id}));
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                  builder: (context) =>
-                      BookingConfirmationPage(
+                  builder: (context) => BookingConfirmationPage(
                         venueChoose,
                         dateChosen.day.toString() +
                             '-' +
@@ -1159,11 +1124,11 @@ class _EditBookingsState extends State<EditBookings> {
                             '-' +
                             dateChosen.year.toString(),
                         TimeOfDay(
-                            hour: chosenStart.hour,
-                            minute: chosenStart.minute)
+                                hour: chosenStart.hour,
+                                minute: chosenStart.minute)
                             .format(context),
                         TimeOfDay(
-                            hour: chosenEnd.hour, minute: chosenEnd.minute)
+                                hour: chosenEnd.hour, minute: chosenEnd.minute)
                             .format(context),
                         numOfPax.text,
                         ccaField.text,
@@ -1212,7 +1177,6 @@ class pathPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
     return true;
   }
 }
